@@ -17,6 +17,16 @@ var (
 	dx_DxLib_End      = mod.NewProc("dx_DxLib_End")
 	dx_ProcessMessage = mod.NewProc("dx_ProcessMessage")
 	dx_DrawLine       = mod.NewProc("dx_DrawLine")
+	dx_DrawLineAA     = mod.NewProc("dx_DrawLineAA")
+	dx_DrawBox        = mod.NewProc("dx_DrawBox")
+	dx_DrawBoxAA      = mod.NewProc("dx_DrawBoxAA")
+	dx_DrawCircle     = mod.NewProc("dx_DrawCircle")
+	dx_DrawCircleAA   = mod.NewProc("dx_DrawCircleAA")
+	dx_DrawOval       = mod.NewProc("dx_DrawOval")
+	dx_DrawOvalAA     = mod.NewProc("dx_DrawOvalAA")
+	dx_DrawTriangle   = mod.NewProc("dx_DrawTriangle")
+	dx_DrawTriangleAA = mod.NewProc("dx_DrawTriangleAA")
+	dx_DrawPixel      = mod.NewProc("dx_DrawPixel")
 )
 
 func DxLib_Init() int {
@@ -51,6 +61,86 @@ func DrawLine(x1 int, y1 int, x2 int, y2 int, color uint) int {
 	return int(res)
 }
 
+func DrawLineAA(x1 float32, y1 float32, x2 float32, y2 float32, color uint) int {
+	res, _, err := dx_DrawLineAA.Call(pfloat32(x1), pfloat32(y1), pfloat32(x2), pfloat32(y2), puint(color))
+	if err != nil {
+		panic(err)
+	}
+	return int(res)
+}
+
+func DrawBox(x1 int, y1 int, x2 int, y2 int, color uint, fillFlag int) int {
+	res, _, err := dx_DrawBox.Call(pint(x1), pint(y1), pint(x2), pint(y2), puint(color), pint(fillFlag))
+	if err != nil {
+		panic(err)
+	}
+	return int(res)
+}
+
+func DrawBoxAA(x1 float32, y1 float32, x2 float32, y2 float32, color uint, fillFlag int) int {
+	res, _, err := dx_DrawBoxAA.Call(pfloat32(x1), pfloat32(y1), pfloat32(x2), pfloat32(y2), puint(color), pint(fillFlag))
+	if err != nil {
+		panic(err)
+	}
+	return int(res)
+}
+
+func DrawCircle(x int, y int, r int, color uint, fillFlag int) int {
+	res, _, err := dx_DrawCircle.Call(pint(x), pint(y), pint(r), puint(color), pint(fillFlag))
+	if err != nil {
+		panic(err)
+	}
+	return int(res)
+}
+
+func DrawCircleAA(x float32, y float32, r float32, posnum int, color uint, fillFlag int) int {
+	res, _, err := dx_DrawCircleAA.Call(pfloat32(x), pfloat32(y), pfloat32(r), pint(posnum), puint(color), pint(fillFlag))
+	if err != nil {
+		panic(err)
+	}
+	return int(res)
+}
+
+func DrawOval(x int, y int, rx int, ry int, color uint, fillFlag int) int {
+	res, _, err := dx_DrawOval.Call(pint(x), pint(y), pint(rx), pint(ry), puint(color), pint(fillFlag))
+	if err != nil {
+		panic(err)
+	}
+	return int(res)
+}
+
+func DrawOvalAA(x float32, y float32, rx float32, ry float32, posnum int, color uint, fillFlag int) int {
+	res, _, err := dx_DrawOvalAA.Call(pfloat32(x), pfloat32(y), pfloat32(rx), pfloat32(ry), pint(posnum), puint(color), pint(fillFlag))
+	if err != nil {
+		panic(err)
+	}
+	return int(res)
+}
+
+func DrawTriangle(x1 int, y1 int, x2 int, y2 int, x3 int, y3 int, color uint, fillFlag int) int {
+	res, _, err := dx_DrawTriangle.Call(pint(x1), pint(y1), pint(x2), pint(y2), pint(x3), pint(y3), puint(color), pint(fillFlag))
+	if err != nil {
+		panic(err)
+	}
+	return int(res)
+}
+
+func DrawTriangleAA(x1 float32, y1 float32, x2 float32, y2 float32, x3 float32, y3 float32, color uint, fillFlag int) int {
+	res, _, err := dx_DrawTriangleAA.Call(pfloat32(x1), pfloat32(y1), pfloat32(x2), pfloat32(y2), pfloat32(x3), pfloat32(y3), puint(color), pint(fillFlag))
+	if err != nil {
+		panic(err)
+	}
+	return int(res)
+}
+
+func DrawPixel(x int, y int, color uint) int {
+	res, _, err := dx_DrawPixel.Call(pint(x), pint(y), puint(color))
+	if err != nil {
+		panic(err)
+	}
+	return int(res)
+}
+
 func pint(i int) uintptr {
 	return uintptr(i)
 }
@@ -69,4 +159,12 @@ func pstring(str string) uintptr {
 		panic(err)
 	}
 	return uintptr(unsafe.Pointer(pbyte))
+}
+
+func pfloat32(f float32) uintptr {
+	return uintptr(f)
+}
+
+func pfloat64(f float64) uintptr {
+	return uintptr(f)
 }

@@ -14,8 +14,8 @@ import (
 )
 
 var (
-	cTypes  = []string{"int", "unsigned int", "char *", "double"}
-	goTypes = []string{"int", "uint", "string", "float64"}
+	cTypes  = []string{"int", "unsigned int", "char *", "double", "float"}
+	goTypes = []string{"int", "uint", "string", "float64", "float32"}
 )
 
 type dxFunc struct {
@@ -52,7 +52,7 @@ func parseArg(argStr string) ([]argument, error) {
 			}
 		}
 		if !ok {
-			return nil, fmt.Errorf("Failed to find valid c type")
+			return nil, fmt.Errorf("Failed to find valid c type in arg %s", arg)
 		}
 	}
 
@@ -211,5 +211,13 @@ func pstring(str string) uintptr {
 		panic(err)
 	}
 	return uintptr(unsafe.Pointer(pbyte))
+}
+
+func pfloat32(f float32) uintptr {
+	return uintptr(f)
+}
+
+func pfloat64(f float64) uintptr {
+	return uintptr(f)
 }
 `
