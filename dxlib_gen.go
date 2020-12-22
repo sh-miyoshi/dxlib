@@ -4,6 +4,10 @@ package dxlib
 
 import (
 	"syscall"
+	"unsafe"
+
+	"golang.org/x/text/encoding/japanese"
+	"golang.org/x/text/transform"
 )
 
 var (
@@ -16,35 +20,35 @@ var (
 )
 
 func DxLib_Init() int {
-	r, _, err := dx_DxLib_Init.Call()
+	res, _, err := dx_DxLib_Init.Call()
 	if err != nil {
 		panic(err)
 	}
-	return int(r)
+	return int(res)
 }
 
 func DxLib_End() int {
-	r, _, err := dx_DxLib_End.Call()
+	res, _, err := dx_DxLib_End.Call()
 	if err != nil {
 		panic(err)
 	}
-	return int(r)
+	return int(res)
 }
 
 func ProcessMessage() int {
-	r, _, err := dx_ProcessMessage.Call()
+	res, _, err := dx_ProcessMessage.Call()
 	if err != nil {
 		panic(err)
 	}
-	return int(r)
+	return int(res)
 }
 
 func DrawLine(x1 int, y1 int, x2 int, y2 int, color uint) int {
-	r, _, err := dx_DrawLine.Call(pint(x1), pint(y1), pint(x2), pint(y2), puint(color))
+	res, _, err := dx_DrawLine.Call(pint(x1), pint(y1), pint(x2), pint(y2), puint(color))
 	if err != nil {
 		panic(err)
 	}
-	return int(r)
+	return int(res)
 }
 
 func pint(i int) uintptr {
@@ -53,4 +57,16 @@ func pint(i int) uintptr {
 
 func puint(ui uint) uintptr {
 	return uintptr(ui)
+}
+
+func pstring(str string) uintptr {
+	sjisStr, _, err := transform.String(japanese.ShiftJIS.NewEncoder(), str)
+	if err != nil {
+		panic(err)
+	}
+	pbyte, err := syscall.BytePtrFromString(sjisStr)
+	if err != nil {
+		panic(err)
+	}
+	return uintptr(unsafe.Pointer(pbyte))
 }

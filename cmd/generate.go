@@ -169,6 +169,10 @@ package {{ .Package }}
 
 import (
 	"syscall"
+	"unsafe"
+
+	"golang.org/x/text/encoding/japanese"
+    "golang.org/x/text/transform"
 )
 
 var (
@@ -181,11 +185,11 @@ var (
 
 {{ range $i, $func := .Functions }}
 func {{ $func.Name }}({{ $func.GoArgs }}) {{ $func.Response }} {
-	r, _, err := dx_{{ $func.Name }}.Call({{ $func.PArgs }})
+	res, _, err := dx_{{ $func.Name }}.Call({{ $func.PArgs }})
 	if err != nil {
 		panic(err)
 	}
-	return int(r)
+	return int(res)
 }
 {{ end }}
 
@@ -195,5 +199,17 @@ func pint(i int) uintptr {
 
 func puint(ui uint) uintptr {
 	return uintptr(ui)
+}
+
+func pstring(str string) uintptr {
+	sjisStr, _, err := transform.String(japanese.ShiftJIS.NewEncoder(), str)
+	if err != nil {
+		panic(err)
+	}
+	pbyte, err := syscall.BytePtrFromString(sjisStr)
+	if err != nil {
+		panic(err)
+	}
+	return uintptr(unsafe.Pointer(pbyte))
 }
 `
