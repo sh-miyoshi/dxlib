@@ -9,8 +9,10 @@ import (
 var (
 	mod = syscall.NewLazyDLL("DxLib.dll")
 
-	dx_DxLib_Init = mod.NewProc("dx_DxLib_Init")
-	dx_DxLib_End  = mod.NewProc("dx_DxLib_End")
+	dx_DxLib_Init     = mod.NewProc("dx_DxLib_Init")
+	dx_DxLib_End      = mod.NewProc("dx_DxLib_End")
+	dx_ProcessMessage = mod.NewProc("dx_ProcessMessage")
+	dx_DrawLine       = mod.NewProc("dx_DrawLine")
 )
 
 func DxLib_Init() int {
@@ -27,4 +29,28 @@ func DxLib_End() int {
 		panic(err)
 	}
 	return int(r)
+}
+
+func ProcessMessage() int {
+	r, _, err := dx_ProcessMessage.Call()
+	if err != nil {
+		panic(err)
+	}
+	return int(r)
+}
+
+func DrawLine(x1 int, y1 int, x2 int, y2 int, color uint) int {
+	r, _, err := dx_DrawLine.Call(pint(x1), pint(y1), pint(x2), pint(y2), puint(color))
+	if err != nil {
+		panic(err)
+	}
+	return int(r)
+}
+
+func pint(i int) uintptr {
+	return uintptr(i)
+}
+
+func puint(ui uint) uintptr {
+	return uintptr(ui)
 }

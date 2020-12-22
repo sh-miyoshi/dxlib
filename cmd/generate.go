@@ -14,8 +14,8 @@ import (
 )
 
 var (
-	errInvalidLine = errors.New("Invalid input line")
-	errInvalidArg  = errors.New("Invalid argument")
+	cTypes  = []string{"int", "unsigned int", "char *", "double"}
+	goTypes = []string{"int", "uint", "string", "float64"}
 )
 
 type dxFunc struct {
@@ -23,38 +23,37 @@ type dxFunc struct {
 	Response string
 	GoArgs   string
 	PArgs    string
-	ProcName string
 }
 
 type argument struct {
 	Name   string
-	CType  string
 	GoType string
-}
-
-func validType(typ string) bool {
-	valids := []string{"int", "string"}
-	for _, valid := range valids {
-		if valid == typ {
-			return true
-		}
-	}
-	return false
 }
 
 func parseArg(argStr string) ([]argument, error) {
 	res := []argument{}
+	if argStr == "" {
+		return res, nil
+	}
+
 	for _, arg := range strings.Split(argStr, ",") {
 		arg = strings.TrimSpace(arg)
+		if arg == "..." {
+			return nil, errors.New("TODO ... is not implemented yet")
+		}
 
-		// TODO
-		// v := strings.Split(strings.TrimSpace(arg), " ")
-		// if len(v) != 2 {
-		// 	return nil, errInvalidArg
-		// }
-		// typ :=v[1]
-
-		// res = append(res, argument{Name: v[0], Type: typ})
+		ok := false
+		for i, typ := range cTypes {
+			if strings.HasPrefix(arg, typ) {
+				ok = true
+				name := strings.TrimPrefix(arg, typ)
+				res = append(res, argument{Name: name, GoType: goTypes[i]})
+				break
+			}
+		}
+		if !ok {
+			return nil, fmt.Errorf("Failed to find valid c type")
+		}
 	}
 
 	return res, nil
@@ -68,19 +67,27 @@ func parse(line string) (*dxFunc, error) {
 	res := dxFunc{}
 	raw := strings.TrimPrefix(line, "//dxlib ")
 
-	// valid format
-	//dxlib func <FuncName>(<arg1> interface{}, <arg2> ...) <response> "dx_<FuncName>"
-	v1 := strings.Split(raw, "(")
-	if len(v1) != 2 {
-		return nil, errInvalidLine
+	// valid format is c format function
+	//dxlib <response> <FuncName>(<arg1> interface{}, <arg2> ...)
+	v1 := strings.Split(raw, " ")
+	if len(v1) < 2 {
+		return nil, fmt.Errorf("Failed to get response and function")
 	}
-	res.Name = strings.TrimPrefix(v1[0], "func ")
+	res.Response = v1[0]
 
-	v2 := strings.Split(v1[1], ")")
-	if len(v2) != 2 {
-		return nil, errInvalidLine
+	raw = ""
+	for i := 1; i < len(v1); i++ {
+		raw += v1[i] + " "
 	}
-	args, err := parseArg(v2[0])
+
+	v2 := strings.Split(raw, "(")
+	if len(v2) != 2 {
+		return nil, fmt.Errorf("Failed to find func start (")
+	}
+	res.Name = v2[0]
+
+	argStr := strings.TrimSuffix(strings.TrimSpace(v2[1]), ")")
+	args, err := parseArg(argStr)
 	if err != nil {
 		return nil, err
 	}
@@ -91,20 +98,13 @@ func parse(line string) (*dxFunc, error) {
 	res.GoArgs = strings.TrimSuffix(res.GoArgs, ", ")
 	res.PArgs = strings.TrimSuffix(res.PArgs, ", ")
 
-	v3 := strings.Split(strings.TrimPrefix(v2[1], " "), " ")
-	if len(v3) != 2 {
-		return nil, errInvalidLine
-	}
-	res.Response = v3[0]
-	res.ProcName = strings.Trim(v3[1], "\"")
-
 	return &res, nil
 }
 
 func generate(w io.Writer, packageName string, funcs []dxFunc) {
 	procs := []string{}
 	for _, f := range funcs {
-		procs = append(procs, f.ProcName)
+		procs = append(procs, f.Name)
 	}
 
 	data := map[string]interface{}{
@@ -149,7 +149,7 @@ func main() {
 		}
 		d, err := parse(line)
 		if err != nil {
-			fmt.Printf("Failed to parse file: %v\n", err)
+			fmt.Printf("Failed to parse line %s: %v\n", line, err)
 			os.Exit(1)
 		}
 		if d != nil {
@@ -175,17 +175,25 @@ var (
 	mod = syscall.NewLazyDLL("DxLib.dll")
 
 	{{ range .Procs -}}
-	{{.}} = mod.NewProc("{{.}}")
+	dx_{{.}} = mod.NewProc("dx_{{.}}")
 	{{ end }}
 )
 
 {{ range $i, $func := .Functions }}
 func {{ $func.Name }}({{ $func.GoArgs }}) {{ $func.Response }} {
-	r, _, err := {{ $func.ProcName }}.Call({{ $func.PArgs }})
+	r, _, err := dx_{{ $func.Name }}.Call({{ $func.PArgs }})
 	if err != nil {
 		panic(err)
 	}
 	return int(r)
 }
 {{ end }}
+
+func pint(i int) uintptr {
+	return uintptr(i)
+}
+
+func puint(ui uint) uintptr {
+	return uintptr(ui)
+}
 `
