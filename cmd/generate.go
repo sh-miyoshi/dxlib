@@ -47,6 +47,7 @@ func parseArg(argStr string) ([]argument, error) {
 	for _, arg := range strings.Split(argStr, ",") {
 		arg = strings.TrimSpace(arg)
 
+		// TODO
 		// v := strings.Split(strings.TrimSpace(arg), " ")
 		// if len(v) != 2 {
 		// 	return nil, errInvalidArg
@@ -100,14 +101,14 @@ func parse(line string) (*dxFunc, error) {
 	return &res, nil
 }
 
-func generate(w io.Writer, funcs []dxFunc) {
+func generate(w io.Writer, packageName string, funcs []dxFunc) {
 	procs := []string{}
 	for _, f := range funcs {
 		procs = append(procs, f.ProcName)
 	}
 
 	data := map[string]interface{}{
-		"Package":   "dxlib", // TODO
+		"Package":   packageName,
 		"Procs":     procs,
 		"Functions": funcs,
 	}
@@ -138,9 +139,15 @@ func main() {
 	defer fp.Close()
 
 	data := []dxFunc{}
+	packageName := ""
 	scanner := bufio.NewScanner(fp)
 	for scanner.Scan() {
-		d, err := parse(scanner.Text())
+		line := scanner.Text()
+		if strings.HasPrefix(line, "package") {
+			packageName = strings.Split(line, " ")[1]
+			continue
+		}
+		d, err := parse(line)
 		if err != nil {
 			fmt.Printf("Failed to parse file: %v\n", err)
 			os.Exit(1)
@@ -151,7 +158,7 @@ func main() {
 	}
 
 	var buf bytes.Buffer
-	generate(&buf, data)
+	generate(&buf, packageName, data)
 	ioutil.WriteFile(output, buf.Bytes(), 0644)
 }
 
