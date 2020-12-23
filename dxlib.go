@@ -55,10 +55,80 @@ package dxlib
 //dxlib int SetTransColor(int red, int green, int blue)
 //dxlib int LoadBlendGraph(char *fileName)
 //dxlib int DrawBlendGraph(int x, int y, int grHandle, int transFlag, int blendGraph, int borderParam, int borderRange)
-
 //TODO int GraphFilter(int grHandle, int filterType, ...)
 //TODO int GraphFilterBlt(int srcGrHandle, int destGrHandle, int filterType, ...)
 //TODO int GraphFilterRectBlt(int srcGrHandle, int destGrHandle, int srcX1, int srcY1, int srcX2, int srcY2, int destX, int destY, int filterType, ...)
 //TODO int GraphBlend(int grHandle, int blendGrHandle, int blendRatio, int blendType, ...)
 //TODO int GraphBlendBlt(int srcGrHandle, int blendGrHandle, int destGrHandle, int blendRatio, int blendType, ...)
 //TODO int GraphBlendRectBlt( int srcGrHandle, int blendGrHandle, int destGrHandle, int srcX1, int srcY1, int srcX2, int srcY2, int blendX, int blendY, int destX, int destY, int blendRatio, int blendType, ...)
+
+// 文字描画関係関数
+//dxlib int DrawString(int x, int y, char *str, unsigned int color)
+//TODO int DrawFormatString(int x, int y, unsigned int color, char *format, ...)
+//dxlib int GetDrawStringWidth(char *str, int strLen)
+//TODO int GetDrawFormatStringWidth(char *format, ...)
+//dxlib int SetFontSize(int fontSize)
+//dxlib int SetFontThickness(int tinckPal)
+//dxlib int ChangeFont(char *fontName)
+//dxlib int ChangeFontType(int fontType)
+//dxlib int CreateFontToHandle(char *fontName, int size, int thick, int fontType)
+//dxlib int LoadFontDataToHandle(char *fileName, int edgeSize)
+//dxlib int DeleteFontToHandle(int fontHandle)
+//dxlib int SetFontCacheUsePremulAlphaFlag(int flag)
+//dxlib int DrawStringToHandle(int x, int y, char *str, unsigned int color, int fontHandle)
+//TODO int DrawFormatStringToHandle(int x, int y, unsigned int color, int fonthandle, char *format, ...)
+//dxlib int GetDrawStringWidthToHandle(char *str, int strLen, int fontHandle)
+// TODO int GetDrawFormatStringWidthToHandle(int fontHandle, char *format, ...)
+//dxlib int GetFontStateToHandle(char *fontName, int *size, int *thick, int fontHandle)
+//dxlib int InitFontToHandle()
+
+// 簡易画面出力関数
+//TODO
+
+// その他画面操作系関数
+//TODO
+
+// 動画関係関数
+//TODO
+
+// マスク関係関数
+//TODO
+
+// 入力関係の関数
+//TODO
+
+// 音利用関数
+//TODO
+
+// 音楽再生関数
+//TODO
+
+// ウエイト関係の関数
+//TODO
+
+// 時間関係の関数
+//TODO
+
+// 乱数取得関数
+//TODO
+
+// ウインドウモード関係
+//TODO
+
+// 通信関係
+//TODO
+
+// ファイル読み込み関係
+//TODO
+
+// ドット単位で画像にアクセスしたい関係
+//TODO
+
+// 非同期読み込み関係
+//TODO
+
+// 文字関係関数
+//TODO
+
+// マイナー関数
+//TODO

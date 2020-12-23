@@ -57,6 +57,20 @@ var (
 	dx_SetTransColor                        = mod.NewProc("dx_SetTransColor")
 	dx_LoadBlendGraph                       = mod.NewProc("dx_LoadBlendGraph")
 	dx_DrawBlendGraph                       = mod.NewProc("dx_DrawBlendGraph")
+	dx_DrawString                           = mod.NewProc("dx_DrawString")
+	dx_GetDrawStringWidth                   = mod.NewProc("dx_GetDrawStringWidth")
+	dx_SetFontSize                          = mod.NewProc("dx_SetFontSize")
+	dx_SetFontThickness                     = mod.NewProc("dx_SetFontThickness")
+	dx_ChangeFont                           = mod.NewProc("dx_ChangeFont")
+	dx_ChangeFontType                       = mod.NewProc("dx_ChangeFontType")
+	dx_CreateFontToHandle                   = mod.NewProc("dx_CreateFontToHandle")
+	dx_LoadFontDataToHandle                 = mod.NewProc("dx_LoadFontDataToHandle")
+	dx_DeleteFontToHandle                   = mod.NewProc("dx_DeleteFontToHandle")
+	dx_SetFontCacheUsePremulAlphaFlag       = mod.NewProc("dx_SetFontCacheUsePremulAlphaFlag")
+	dx_DrawStringToHandle                   = mod.NewProc("dx_DrawStringToHandle")
+	dx_GetDrawStringWidthToHandle           = mod.NewProc("dx_GetDrawStringWidthToHandle")
+	dx_GetFontStateToHandle                 = mod.NewProc("dx_GetFontStateToHandle")
+	dx_InitFontToHandle                     = mod.NewProc("dx_InitFontToHandle")
 )
 
 func DxLib_Init() int {
@@ -405,6 +419,118 @@ func LoadBlendGraph(fileName string) int {
 
 func DrawBlendGraph(x int, y int, grHandle int, transFlag int, blendGraph int, borderParam int, borderRange int) int {
 	res, _, err := dx_DrawBlendGraph.Call(pint(x), pint(y), pint(grHandle), pint(transFlag), pint(blendGraph), pint(borderParam), pint(borderRange))
+	if err != nil {
+		panic(err)
+	}
+	return int(res)
+}
+
+func DrawString(x int, y int, str string, color uint) int {
+	res, _, err := dx_DrawString.Call(pint(x), pint(y), pstring(str), puint(color))
+	if err != nil {
+		panic(err)
+	}
+	return int(res)
+}
+
+func GetDrawStringWidth(str string, strLen int) int {
+	res, _, err := dx_GetDrawStringWidth.Call(pstring(str), pint(strLen))
+	if err != nil {
+		panic(err)
+	}
+	return int(res)
+}
+
+func SetFontSize(fontSize int) int {
+	res, _, err := dx_SetFontSize.Call(pint(fontSize))
+	if err != nil {
+		panic(err)
+	}
+	return int(res)
+}
+
+func SetFontThickness(tinckPal int) int {
+	res, _, err := dx_SetFontThickness.Call(pint(tinckPal))
+	if err != nil {
+		panic(err)
+	}
+	return int(res)
+}
+
+func ChangeFont(fontName string) int {
+	res, _, err := dx_ChangeFont.Call(pstring(fontName))
+	if err != nil {
+		panic(err)
+	}
+	return int(res)
+}
+
+func ChangeFontType(fontType int) int {
+	res, _, err := dx_ChangeFontType.Call(pint(fontType))
+	if err != nil {
+		panic(err)
+	}
+	return int(res)
+}
+
+func CreateFontToHandle(fontName string, size int, thick int, fontType int) int {
+	res, _, err := dx_CreateFontToHandle.Call(pstring(fontName), pint(size), pint(thick), pint(fontType))
+	if err != nil {
+		panic(err)
+	}
+	return int(res)
+}
+
+func LoadFontDataToHandle(fileName string, edgeSize int) int {
+	res, _, err := dx_LoadFontDataToHandle.Call(pstring(fileName), pint(edgeSize))
+	if err != nil {
+		panic(err)
+	}
+	return int(res)
+}
+
+func DeleteFontToHandle(fontHandle int) int {
+	res, _, err := dx_DeleteFontToHandle.Call(pint(fontHandle))
+	if err != nil {
+		panic(err)
+	}
+	return int(res)
+}
+
+func SetFontCacheUsePremulAlphaFlag(flag int) int {
+	res, _, err := dx_SetFontCacheUsePremulAlphaFlag.Call(pint(flag))
+	if err != nil {
+		panic(err)
+	}
+	return int(res)
+}
+
+func DrawStringToHandle(x int, y int, str string, color uint, fontHandle int) int {
+	res, _, err := dx_DrawStringToHandle.Call(pint(x), pint(y), pstring(str), puint(color), pint(fontHandle))
+	if err != nil {
+		panic(err)
+	}
+	return int(res)
+}
+
+func GetDrawStringWidthToHandle(str string, strLen int, fontHandle int) int {
+	res, _, err := dx_GetDrawStringWidthToHandle.Call(pstring(str), pint(strLen), pint(fontHandle))
+	if err != nil {
+		panic(err)
+	}
+	return int(res)
+}
+
+func GetFontStateToHandle(fontName string, size *int, thick *int, fontHandle int) int {
+	res, _, err := dx_GetFontStateToHandle.Call(pstring(fontName), ppint(size), ppint(thick), pint(fontHandle))
+	if err != nil {
+		panic(err)
+	}
+	return int(res)
+}
+
+func InitFontToHandle() int {
+	res, _, err := dx_InitFontToHandle.Call()
 	if err != nil {
 		panic(err)
 	}
