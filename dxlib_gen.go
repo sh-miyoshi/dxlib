@@ -27,6 +27,7 @@ var (
 	dx_DrawTriangle   = mod.NewProc("dx_DrawTriangle")
 	dx_DrawTriangleAA = mod.NewProc("dx_DrawTriangleAA")
 	dx_DrawPixel      = mod.NewProc("dx_DrawPixel")
+	dx_GetPixel       = mod.NewProc("dx_GetPixel")
 )
 
 func DxLib_Init() int {
@@ -139,6 +140,14 @@ func DrawPixel(x int, y int, color uint) int {
 		panic(err)
 	}
 	return int(res)
+}
+
+func GetPixel(x int, y int) uint {
+	res, _, err := dx_GetPixel.Call(pint(x), pint(y))
+	if err != nil {
+		panic(err)
+	}
+	return uint(res)
 }
 
 func pint(i int) uintptr {

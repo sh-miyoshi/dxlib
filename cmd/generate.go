@@ -14,8 +14,7 @@ import (
 )
 
 var (
-	cTypes  = []string{"int", "unsigned int", "char *", "double", "float"}
-	goTypes = []string{"int", "uint", "string", "float64", "float32"}
+	cTypes = []string{"int", "unsigned int", "char *", "double", "float"}
 )
 
 type dxFunc struct {
@@ -28,6 +27,17 @@ type dxFunc struct {
 type argument struct {
 	Name   string
 	GoType string
+}
+
+func convToGoType(cType string) (string, bool) {
+	// Sort in the same order as cTypes
+	goTypes := []string{"int", "uint", "string", "float64", "float32"}
+	for i, t := range cTypes {
+		if t == cType {
+			return goTypes[i], true
+		}
+	}
+	return "", false
 }
 
 func parseArg(argStr string) ([]argument, error) {
@@ -43,11 +53,12 @@ func parseArg(argStr string) ([]argument, error) {
 		}
 
 		ok := false
-		for i, typ := range cTypes {
+		for _, typ := range cTypes {
 			if strings.HasPrefix(arg, typ) {
 				ok = true
 				name := strings.TrimPrefix(arg, typ)
-				res = append(res, argument{Name: name, GoType: goTypes[i]})
+				typ, _ = convToGoType(typ)
+				res = append(res, argument{Name: name, GoType: typ})
 				break
 			}
 		}
@@ -74,9 +85,19 @@ func parse(line string) (*dxFunc, error) {
 		return nil, fmt.Errorf("Failed to get response and function")
 	}
 	res.Response = v1[0]
+	index := 1
+	if v1[0] == "unsigned" {
+		res.Response += " " + v1[1]
+		index++
+	}
+	var ok bool
+	res.Response, ok = convToGoType(res.Response)
+	if !ok {
+		return nil, fmt.Errorf("Invalid response type")
+	}
 
 	raw = ""
-	for i := 1; i < len(v1); i++ {
+	for i := index; i < len(v1); i++ {
 		raw += v1[i] + " "
 	}
 
@@ -189,7 +210,7 @@ func {{ $func.Name }}({{ $func.GoArgs }}) {{ $func.Response }} {
 	if err != nil {
 		panic(err)
 	}
-	return int(res)
+	return  {{ $func.Response }}(res)
 }
 {{ end }}
 

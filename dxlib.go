@@ -18,3 +18,4 @@ package dxlib
 //dxlib int DrawTriangle(int x1, int y1, int x2, int y2, int x3, int y3, unsigned int color, int fillFlag)
 //dxlib int DrawTriangleAA(float x1, float y1, float x2, float y2, float x3, float y3, unsigned int color, int fillFlag)
 //dxlib int DrawPixel(int x, int y, unsigned int color)
+//dxlib unsigned int GetPixel(int x, int y)
