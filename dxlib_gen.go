@@ -13,21 +13,50 @@ import (
 var (
 	mod = syscall.NewLazyDLL("DxLib.dll")
 
-	dx_DxLib_Init     = mod.NewProc("dx_DxLib_Init")
-	dx_DxLib_End      = mod.NewProc("dx_DxLib_End")
-	dx_ProcessMessage = mod.NewProc("dx_ProcessMessage")
-	dx_DrawLine       = mod.NewProc("dx_DrawLine")
-	dx_DrawLineAA     = mod.NewProc("dx_DrawLineAA")
-	dx_DrawBox        = mod.NewProc("dx_DrawBox")
-	dx_DrawBoxAA      = mod.NewProc("dx_DrawBoxAA")
-	dx_DrawCircle     = mod.NewProc("dx_DrawCircle")
-	dx_DrawCircleAA   = mod.NewProc("dx_DrawCircleAA")
-	dx_DrawOval       = mod.NewProc("dx_DrawOval")
-	dx_DrawOvalAA     = mod.NewProc("dx_DrawOvalAA")
-	dx_DrawTriangle   = mod.NewProc("dx_DrawTriangle")
-	dx_DrawTriangleAA = mod.NewProc("dx_DrawTriangleAA")
-	dx_DrawPixel      = mod.NewProc("dx_DrawPixel")
-	dx_GetPixel       = mod.NewProc("dx_GetPixel")
+	dx_DxLib_Init                           = mod.NewProc("dx_DxLib_Init")
+	dx_DxLib_End                            = mod.NewProc("dx_DxLib_End")
+	dx_ProcessMessage                       = mod.NewProc("dx_ProcessMessage")
+	dx_DrawLine                             = mod.NewProc("dx_DrawLine")
+	dx_DrawLineAA                           = mod.NewProc("dx_DrawLineAA")
+	dx_DrawBox                              = mod.NewProc("dx_DrawBox")
+	dx_DrawBoxAA                            = mod.NewProc("dx_DrawBoxAA")
+	dx_DrawCircle                           = mod.NewProc("dx_DrawCircle")
+	dx_DrawCircleAA                         = mod.NewProc("dx_DrawCircleAA")
+	dx_DrawOval                             = mod.NewProc("dx_DrawOval")
+	dx_DrawOvalAA                           = mod.NewProc("dx_DrawOvalAA")
+	dx_DrawTriangle                         = mod.NewProc("dx_DrawTriangle")
+	dx_DrawTriangleAA                       = mod.NewProc("dx_DrawTriangleAA")
+	dx_DrawPixel                            = mod.NewProc("dx_DrawPixel")
+	dx_GetPixel                             = mod.NewProc("dx_GetPixel")
+	dx_LoadGraphScreen                      = mod.NewProc("dx_LoadGraphScreen")
+	dx_LoadGraph                            = mod.NewProc("dx_LoadGraph")
+	dx_LoadDivGraph                         = mod.NewProc("dx_LoadDivGraph")
+	dx_MakeGraph                            = mod.NewProc("dx_MakeGraph")
+	dx_MakeScreen                           = mod.NewProc("dx_MakeScreen")
+	dx_SetCreateDrawValidGraphMultiSample   = mod.NewProc("dx_SetCreateDrawValidGraphMultiSample")
+	dx_SetCreateGraphColorBitDepth          = mod.NewProc("dx_SetCreateGraphColorBitDepth")
+	dx_SetDrawValidFloatTypeGraphCreateFlag = mod.NewProc("dx_SetDrawValidFloatTypeGraphCreateFlag")
+	dx_SetCreateDrawValidGraphChannelNum    = mod.NewProc("dx_SetCreateDrawValidGraphChannelNum")
+	dx_SetUsePremulAlphaConvertLoad         = mod.NewProc("dx_SetUsePremulAlphaConvertLoad")
+	dx_DrawGraph                            = mod.NewProc("dx_DrawGraph")
+	dx_DrawTurnGraph                        = mod.NewProc("dx_DrawTurnGraph")
+	dx_DrawExtendGraph                      = mod.NewProc("dx_DrawExtendGraph")
+	dx_DrawRotaGraph                        = mod.NewProc("dx_DrawRotaGraph")
+	dx_DrawRotaGraph2                       = mod.NewProc("dx_DrawRotaGraph2")
+	dx_DrawRotaGraph3                       = mod.NewProc("dx_DrawRotaGraph3")
+	dx_DrawModiGraph                        = mod.NewProc("dx_DrawModiGraph")
+	dx_DrawRectGraph                        = mod.NewProc("dx_DrawRectGraph")
+	dx_DerivationGraph                      = mod.NewProc("dx_DerivationGraph")
+	dx_GetDrawScreenGraph                   = mod.NewProc("dx_GetDrawScreenGraph")
+	dx_GetGraphiteSize                      = mod.NewProc("dx_GetGraphiteSize")
+	dx_InitGraph                            = mod.NewProc("dx_InitGraph")
+	dx_DeleteGraph                          = mod.NewProc("dx_DeleteGraph")
+	dx_SetDrawMode                          = mod.NewProc("dx_SetDrawMode")
+	dx_SetDrawBlendMode                     = mod.NewProc("dx_SetDrawBlendMode")
+	dx_SetDrawBright                        = mod.NewProc("dx_SetDrawBright")
+	dx_SetTransColor                        = mod.NewProc("dx_SetTransColor")
+	dx_LoadBlendGraph                       = mod.NewProc("dx_LoadBlendGraph")
+	dx_DrawBlendGraph                       = mod.NewProc("dx_DrawBlendGraph")
 )
 
 func DxLib_Init() int {
@@ -148,6 +177,242 @@ func GetPixel(x int, y int) uint {
 		panic(err)
 	}
 	return uint(res)
+}
+
+func LoadGraphScreen(x int, y int, graphName string, transFlag int) int {
+	res, _, err := dx_LoadGraphScreen.Call(pint(x), pint(y), pstring(graphName), pint(transFlag))
+	if err != nil {
+		panic(err)
+	}
+	return int(res)
+}
+
+func LoadGraph(fileName string) int {
+	res, _, err := dx_LoadGraph.Call(pstring(fileName))
+	if err != nil {
+		panic(err)
+	}
+	return int(res)
+}
+
+func LoadDivGraph(fileName string, allnum int, xnum int, ynum int, xsize int, ysize int, handleBuf *int) int {
+	res, _, err := dx_LoadDivGraph.Call(pstring(fileName), pint(allnum), pint(xnum), pint(ynum), pint(xsize), pint(ysize), ppint(handleBuf))
+	if err != nil {
+		panic(err)
+	}
+	return int(res)
+}
+
+func MakeGraph(sizeX int, sizeY int) int {
+	res, _, err := dx_MakeGraph.Call(pint(sizeX), pint(sizeY))
+	if err != nil {
+		panic(err)
+	}
+	return int(res)
+}
+
+func MakeScreen(sizeX int, sizeY int, useAlphaChannel int) int {
+	res, _, err := dx_MakeScreen.Call(pint(sizeX), pint(sizeY), pint(useAlphaChannel))
+	if err != nil {
+		panic(err)
+	}
+	return int(res)
+}
+
+func SetCreateDrawValidGraphMultiSample(samples int, quality int) int {
+	res, _, err := dx_SetCreateDrawValidGraphMultiSample.Call(pint(samples), pint(quality))
+	if err != nil {
+		panic(err)
+	}
+	return int(res)
+}
+
+func SetCreateGraphColorBitDepth(bitDepth int) int {
+	res, _, err := dx_SetCreateGraphColorBitDepth.Call(pint(bitDepth))
+	if err != nil {
+		panic(err)
+	}
+	return int(res)
+}
+
+func SetDrawValidFloatTypeGraphCreateFlag(flag int) int {
+	res, _, err := dx_SetDrawValidFloatTypeGraphCreateFlag.Call(pint(flag))
+	if err != nil {
+		panic(err)
+	}
+	return int(res)
+}
+
+func SetCreateDrawValidGraphChannelNum(channelNum int) int {
+	res, _, err := dx_SetCreateDrawValidGraphChannelNum.Call(pint(channelNum))
+	if err != nil {
+		panic(err)
+	}
+	return int(res)
+}
+
+func SetUsePremulAlphaConvertLoad(useFlag int) int {
+	res, _, err := dx_SetUsePremulAlphaConvertLoad.Call(pint(useFlag))
+	if err != nil {
+		panic(err)
+	}
+	return int(res)
+}
+
+func DrawGraph(x int, y int, grHandle int, transFlag int) int {
+	res, _, err := dx_DrawGraph.Call(pint(x), pint(y), pint(grHandle), pint(transFlag))
+	if err != nil {
+		panic(err)
+	}
+	return int(res)
+}
+
+func DrawTurnGraph(x int, y int, grHandle int, transFlag int) int {
+	res, _, err := dx_DrawTurnGraph.Call(pint(x), pint(y), pint(grHandle), pint(transFlag))
+	if err != nil {
+		panic(err)
+	}
+	return int(res)
+}
+
+func DrawExtendGraph(x1 int, y1 int, x2 int, y2 int, grHandle int, transFlag int) int {
+	res, _, err := dx_DrawExtendGraph.Call(pint(x1), pint(y1), pint(x2), pint(y2), pint(grHandle), pint(transFlag))
+	if err != nil {
+		panic(err)
+	}
+	return int(res)
+}
+
+func DrawRotaGraph(x int, y int, extRate float64, angle float64, grHandle int, transFlag int, turnFlag int) int {
+	res, _, err := dx_DrawRotaGraph.Call(pint(x), pint(y), pfloat64(extRate), pfloat64(angle), pint(grHandle), pint(transFlag), pint(turnFlag))
+	if err != nil {
+		panic(err)
+	}
+	return int(res)
+}
+
+func DrawRotaGraph2(x int, y int, cx int, cy int, extRate float64, angle float64, grHandle int, transFlag int, turnFlag int) int {
+	res, _, err := dx_DrawRotaGraph2.Call(pint(x), pint(y), pint(cx), pint(cy), pfloat64(extRate), pfloat64(angle), pint(grHandle), pint(transFlag), pint(turnFlag))
+	if err != nil {
+		panic(err)
+	}
+	return int(res)
+}
+
+func DrawRotaGraph3(x int, y int, cx int, cy int, extRateX float64, extRateY float64, angle float64, grHandle int, transFlag int, turnFlag int) int {
+	res, _, err := dx_DrawRotaGraph3.Call(pint(x), pint(y), pint(cx), pint(cy), pfloat64(extRateX), pfloat64(extRateY), pfloat64(angle), pint(grHandle), pint(transFlag), pint(turnFlag))
+	if err != nil {
+		panic(err)
+	}
+	return int(res)
+}
+
+func DrawModiGraph(x1 int, y1 int, x2 int, y2 int, x3 int, y3 int, x4 int, y4 int, grHandle int, transFlag int) int {
+	res, _, err := dx_DrawModiGraph.Call(pint(x1), pint(y1), pint(x2), pint(y2), pint(x3), pint(y3), pint(x4), pint(y4), pint(grHandle), pint(transFlag))
+	if err != nil {
+		panic(err)
+	}
+	return int(res)
+}
+
+func DrawRectGraph(destX int, destY int, srcX int, srcY int, width int, height int, graphHandle int, transFlag int, turnFlag int) int {
+	res, _, err := dx_DrawRectGraph.Call(pint(destX), pint(destY), pint(srcX), pint(srcY), pint(width), pint(height), pint(graphHandle), pint(transFlag), pint(turnFlag))
+	if err != nil {
+		panic(err)
+	}
+	return int(res)
+}
+
+func DerivationGraph(srcX int, srcY int, width int, height int, srcGraphHandle int) int {
+	res, _, err := dx_DerivationGraph.Call(pint(srcX), pint(srcY), pint(width), pint(height), pint(srcGraphHandle))
+	if err != nil {
+		panic(err)
+	}
+	return int(res)
+}
+
+func GetDrawScreenGraph(x1 int, y1 int, x2 int, y2 int, grHandle int) int {
+	res, _, err := dx_GetDrawScreenGraph.Call(pint(x1), pint(y1), pint(x2), pint(y2), pint(grHandle))
+	if err != nil {
+		panic(err)
+	}
+	return int(res)
+}
+
+func GetGraphiteSize(grHandle int, sizeXBuf *int, sizeYBuf *int) int {
+	res, _, err := dx_GetGraphiteSize.Call(pint(grHandle), ppint(sizeXBuf), ppint(sizeYBuf))
+	if err != nil {
+		panic(err)
+	}
+	return int(res)
+}
+
+func InitGraph() int {
+	res, _, err := dx_InitGraph.Call()
+	if err != nil {
+		panic(err)
+	}
+	return int(res)
+}
+
+func DeleteGraph(grHandle int) int {
+	res, _, err := dx_DeleteGraph.Call(pint(grHandle))
+	if err != nil {
+		panic(err)
+	}
+	return int(res)
+}
+
+func SetDrawMode(drawMode int) int {
+	res, _, err := dx_SetDrawMode.Call(pint(drawMode))
+	if err != nil {
+		panic(err)
+	}
+	return int(res)
+}
+
+func SetDrawBlendMode(blendMode int, pal int) int {
+	res, _, err := dx_SetDrawBlendMode.Call(pint(blendMode), pint(pal))
+	if err != nil {
+		panic(err)
+	}
+	return int(res)
+}
+
+func SetDrawBright(redBright int, greenBright int, blueBright int) int {
+	res, _, err := dx_SetDrawBright.Call(pint(redBright), pint(greenBright), pint(blueBright))
+	if err != nil {
+		panic(err)
+	}
+	return int(res)
+}
+
+func SetTransColor(red int, green int, blue int) int {
+	res, _, err := dx_SetTransColor.Call(pint(red), pint(green), pint(blue))
+	if err != nil {
+		panic(err)
+	}
+	return int(res)
+}
+
+func LoadBlendGraph(fileName string) int {
+	res, _, err := dx_LoadBlendGraph.Call(pstring(fileName))
+	if err != nil {
+		panic(err)
+	}
+	return int(res)
+}
+
+func DrawBlendGraph(x int, y int, grHandle int, transFlag int, blendGraph int, borderParam int, borderRange int) int {
+	res, _, err := dx_DrawBlendGraph.Call(pint(x), pint(y), pint(grHandle), pint(transFlag), pint(blendGraph), pint(borderParam), pint(borderRange))
+	if err != nil {
+		panic(err)
+	}
+	return int(res)
+}
+
+func ppint(i *int) uintptr {
+	return uintptr(*i)
 }
 
 func pint(i int) uintptr {

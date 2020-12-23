@@ -3,10 +3,15 @@ package dxlib
 //go:generate go run cmd/generate.go -i dxlib.go -o dxlib_gen.go
 //go:generate gofmt -w dxlib_gen.go
 
+// DXライブラリリファレンス
+// https://dxlib.xsrv.jp/dxfunc.html
+
+// 使用必須関数
 //dxlib int DxLib_Init()
 //dxlib int DxLib_End()
 //dxlib int ProcessMessage()
 
+// 図形描画関数
 //dxlib int DrawLine(int x1, int y1, int x2, int y2, unsigned int color)
 //dxlib int DrawLineAA(float x1, float y1, float x2, float y2, unsigned int color)
 //dxlib int DrawBox(int x1, int y1, int x2, int y2, unsigned int color, int fillFlag)
@@ -19,3 +24,41 @@ package dxlib
 //dxlib int DrawTriangleAA(float x1, float y1, float x2, float y2, float x3, float y3, unsigned int color, int fillFlag)
 //dxlib int DrawPixel(int x, int y, unsigned int color)
 //dxlib unsigned int GetPixel(int x, int y)
+
+// グラフィックデータ制御関数
+//dxlib int LoadGraphScreen(int x, int y, char *graphName, int transFlag)
+//dxlib int LoadGraph(char *fileName)
+//dxlib int LoadDivGraph(char *fileName, int allnum, int xnum, int ynum, int xsize, int ysize, int *handleBuf)
+//dxlib int MakeGraph(int sizeX, int sizeY)
+//dxlib int MakeScreen(int sizeX, int sizeY, int useAlphaChannel)
+//dxlib int SetCreateDrawValidGraphMultiSample(int samples, int quality)
+//dxlib int SetCreateGraphColorBitDepth(int bitDepth)
+//dxlib int SetDrawValidFloatTypeGraphCreateFlag(int flag)
+//dxlib int SetCreateDrawValidGraphChannelNum(int channelNum)
+//dxlib int SetUsePremulAlphaConvertLoad(int useFlag)
+//dxlib int DrawGraph(int x, int y, int grHandle, int transFlag)
+//dxlib int DrawTurnGraph(int x, int y, int grHandle, int transFlag)
+//dxlib int DrawExtendGraph(int x1, int y1, int x2, int y2, int grHandle, int transFlag)
+//dxlib int DrawRotaGraph(int x, int y, double extRate, double angle, int grHandle, int transFlag, int turnFlag)
+//dxlib int DrawRotaGraph2(int x, int y, int cx, int cy, double extRate, double angle, int grHandle, int transFlag, int turnFlag)
+//dxlib int DrawRotaGraph3(int x, int y, int cx, int cy, double extRateX, double extRateY, double angle, int grHandle, int transFlag, int turnFlag)
+//dxlib int DrawModiGraph(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, int grHandle, int transFlag)
+//dxlib int DrawRectGraph(int destX, int destY, int srcX, int srcY, int width, int height, int graphHandle, int transFlag, int turnFlag)
+//dxlib int DerivationGraph(int srcX, int srcY, int width, int height, int srcGraphHandle)
+//dxlib int GetDrawScreenGraph(int x1, int y1, int x2, int y2, int grHandle)
+//dxlib int GetGraphiteSize(int grHandle, int *sizeXBuf, int *sizeYBuf)
+//dxlib int InitGraph()
+//dxlib int DeleteGraph(int grHandle)
+//dxlib int SetDrawMode(int drawMode)
+//dxlib int SetDrawBlendMode(int blendMode, int pal)
+//dxlib int SetDrawBright(int redBright, int greenBright, int blueBright)
+//dxlib int SetTransColor(int red, int green, int blue)
+//dxlib int LoadBlendGraph(char *fileName)
+//dxlib int DrawBlendGraph(int x, int y, int grHandle, int transFlag, int blendGraph, int borderParam, int borderRange)
+
+//TODO int GraphFilter(int grHandle, int filterType, ...)
+//TODO int GraphFilterBlt(int srcGrHandle, int destGrHandle, int filterType, ...)
+//TODO int GraphFilterRectBlt(int srcGrHandle, int destGrHandle, int srcX1, int srcY1, int srcX2, int srcY2, int destX, int destY, int filterType, ...)
+//TODO int GraphBlend(int grHandle, int blendGrHandle, int blendRatio, int blendType, ...)
+//TODO int GraphBlendBlt(int srcGrHandle, int blendGrHandle, int destGrHandle, int blendRatio, int blendType, ...)
+//TODO int GraphBlendRectBlt( int srcGrHandle, int blendGrHandle, int destGrHandle, int srcX1, int srcY1, int srcX2, int srcY2, int blendX, int blendY, int destX, int destY, int blendRatio, int blendType, ...)

@@ -14,7 +14,7 @@ import (
 )
 
 var (
-	cTypes = []string{"int", "unsigned int", "char *", "double", "float"}
+	cTypes = []string{"int *", "int", "unsigned int", "char *", "double", "float"}
 )
 
 type dxFunc struct {
@@ -31,7 +31,7 @@ type argument struct {
 
 func convToGoType(cType string) (string, bool) {
 	// Sort in the same order as cTypes
-	goTypes := []string{"int", "uint", "string", "float64", "float32"}
+	goTypes := []string{"*int", "int", "uint", "string", "float64", "float32"}
 	for i, t := range cTypes {
 		if t == cType {
 			return goTypes[i], true
@@ -114,7 +114,11 @@ func parse(line string) (*dxFunc, error) {
 	}
 	for _, arg := range args {
 		res.GoArgs += arg.Name + " " + arg.GoType + ", "
-		res.PArgs += "p" + arg.GoType + "(" + arg.Name + "), "
+		if strings.Contains(arg.GoType, "*") {
+			res.PArgs += "pp" + strings.Trim(arg.GoType, "*") + "(" + arg.Name + "), "
+		} else {
+			res.PArgs += "p" + arg.GoType + "(" + arg.Name + "), "
+		}
 	}
 	res.GoArgs = strings.TrimSuffix(res.GoArgs, ", ")
 	res.PArgs = strings.TrimSuffix(res.PArgs, ", ")
@@ -213,6 +217,10 @@ func {{ $func.Name }}({{ $func.GoArgs }}) {{ $func.Response }} {
 	return  {{ $func.Response }}(res)
 }
 {{ end }}
+
+func ppint(i *int) uintptr {
+	return uintptr(*i)
+}
 
 func pint(i int) uintptr {
 	return uintptr(i)
