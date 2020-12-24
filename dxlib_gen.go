@@ -99,6 +99,39 @@ var (
 	dx_SetUseMaskScreenFlag                 *syscall.LazyProc
 	dx_MakeMask                             *syscall.LazyProc
 	dx_GetMaskSize                          *syscall.LazyProc
+	dx_GetJoypadNum                         *syscall.LazyProc
+	dx_GetJoypadInputState                  *syscall.LazyProc
+	dx_GetJoypadAnalogInput                 *syscall.LazyProc
+	dx_SetJoypadDeadZone                    *syscall.LazyProc
+	dx_StartJoypadVibration                 *syscall.LazyProc
+	dx_StopJoypadVibration                  *syscall.LazyProc
+	dx_SetMouseDispFlag                     *syscall.LazyProc
+	dx_GetMousePoint                        *syscall.LazyProc
+	dx_SetMousePoint                        *syscall.LazyProc
+	dx_GetMouseInput                        *syscall.LazyProc
+	dx_GetMouseInputLog2                    *syscall.LazyProc
+	dx_GetMouseWheelRotVol                  *syscall.LazyProc
+	dx_GetTouchInputNum                     *syscall.LazyProc
+	dx_GetTouchInput                        *syscall.LazyProc
+	dx_CheckHitKeyAll                       *syscall.LazyProc
+	dx_CheckHitKey                          *syscall.LazyProc
+	dx_GetInputChar                         *syscall.LazyProc
+	dx_GetInputCharWait                     *syscall.LazyProc
+	dx_ClearInputCharBuf                    *syscall.LazyProc
+	dx_KeyInputString                       *syscall.LazyProc
+	dx_KeyInputSingleCharString             *syscall.LazyProc
+	dx_KeyInputNumber                       *syscall.LazyProc
+	dx_SetKeyInputStringColor               *syscall.LazyProc
+	dx_MakeKeyInput                         *syscall.LazyProc
+	dx_DeleteKeyInput                       *syscall.LazyProc
+	dx_InitKeyInput                         *syscall.LazyProc
+	dx_SetActiveKeyInput                    *syscall.LazyProc
+	dx_CheckKeyInput                        *syscall.LazyProc
+	dx_DrawKeyInputString                   *syscall.LazyProc
+	dx_DrawKeyInputModeString               *syscall.LazyProc
+	dx_SetKeyInputString                    *syscall.LazyProc
+	dx_SetKeyInputNumber                    *syscall.LazyProc
+	dx_GetKeyInputNumber                    *syscall.LazyProc
 	dx_ChangeWindowMode                     *syscall.LazyProc
 	dx_SetOutApplicationLogValidFlag        *syscall.LazyProc
 )
@@ -194,6 +227,39 @@ func Init(dllFile string) {
 	dx_SetUseMaskScreenFlag = mod.NewProc("dx_SetUseMaskScreenFlag")
 	dx_MakeMask = mod.NewProc("dx_MakeMask")
 	dx_GetMaskSize = mod.NewProc("dx_GetMaskSize")
+	dx_GetJoypadNum = mod.NewProc("dx_GetJoypadNum")
+	dx_GetJoypadInputState = mod.NewProc("dx_GetJoypadInputState")
+	dx_GetJoypadAnalogInput = mod.NewProc("dx_GetJoypadAnalogInput")
+	dx_SetJoypadDeadZone = mod.NewProc("dx_SetJoypadDeadZone")
+	dx_StartJoypadVibration = mod.NewProc("dx_StartJoypadVibration")
+	dx_StopJoypadVibration = mod.NewProc("dx_StopJoypadVibration")
+	dx_SetMouseDispFlag = mod.NewProc("dx_SetMouseDispFlag")
+	dx_GetMousePoint = mod.NewProc("dx_GetMousePoint")
+	dx_SetMousePoint = mod.NewProc("dx_SetMousePoint")
+	dx_GetMouseInput = mod.NewProc("dx_GetMouseInput")
+	dx_GetMouseInputLog2 = mod.NewProc("dx_GetMouseInputLog2")
+	dx_GetMouseWheelRotVol = mod.NewProc("dx_GetMouseWheelRotVol")
+	dx_GetTouchInputNum = mod.NewProc("dx_GetTouchInputNum")
+	dx_GetTouchInput = mod.NewProc("dx_GetTouchInput")
+	dx_CheckHitKeyAll = mod.NewProc("dx_CheckHitKeyAll")
+	dx_CheckHitKey = mod.NewProc("dx_CheckHitKey")
+	dx_GetInputChar = mod.NewProc("dx_GetInputChar")
+	dx_GetInputCharWait = mod.NewProc("dx_GetInputCharWait")
+	dx_ClearInputCharBuf = mod.NewProc("dx_ClearInputCharBuf")
+	dx_KeyInputString = mod.NewProc("dx_KeyInputString")
+	dx_KeyInputSingleCharString = mod.NewProc("dx_KeyInputSingleCharString")
+	dx_KeyInputNumber = mod.NewProc("dx_KeyInputNumber")
+	dx_SetKeyInputStringColor = mod.NewProc("dx_SetKeyInputStringColor")
+	dx_MakeKeyInput = mod.NewProc("dx_MakeKeyInput")
+	dx_DeleteKeyInput = mod.NewProc("dx_DeleteKeyInput")
+	dx_InitKeyInput = mod.NewProc("dx_InitKeyInput")
+	dx_SetActiveKeyInput = mod.NewProc("dx_SetActiveKeyInput")
+	dx_CheckKeyInput = mod.NewProc("dx_CheckKeyInput")
+	dx_DrawKeyInputString = mod.NewProc("dx_DrawKeyInputString")
+	dx_DrawKeyInputModeString = mod.NewProc("dx_DrawKeyInputModeString")
+	dx_SetKeyInputString = mod.NewProc("dx_SetKeyInputString")
+	dx_SetKeyInputNumber = mod.NewProc("dx_SetKeyInputNumber")
+	dx_GetKeyInputNumber = mod.NewProc("dx_GetKeyInputNumber")
 	dx_ChangeWindowMode = mod.NewProc("dx_ChangeWindowMode")
 	dx_SetOutApplicationLogValidFlag = mod.NewProc("dx_SetOutApplicationLogValidFlag")
 
@@ -988,6 +1054,303 @@ func GetMaskSize(widthBuf *int, heightBuf *int, maskHandle int) int {
 	}
 
 	res, _, _ := dx_GetMaskSize.Call(ppint(widthBuf), ppint(heightBuf), pint(maskHandle))
+	return int(res)
+}
+
+func GetJoypadNum() int {
+	if dx_GetJoypadNum == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_GetJoypadNum.Call()
+	return int(res)
+}
+
+func GetJoypadInputState(inputType int) int {
+	if dx_GetJoypadInputState == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_GetJoypadInputState.Call(pint(inputType))
+	return int(res)
+}
+
+func GetJoypadAnalogInput(xbuf *int, ybuf *int, inputType int) int {
+	if dx_GetJoypadAnalogInput == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_GetJoypadAnalogInput.Call(ppint(xbuf), ppint(ybuf), pint(inputType))
+	return int(res)
+}
+
+func SetJoypadDeadZone(inputType int, zone float64) int {
+	if dx_SetJoypadDeadZone == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_SetJoypadDeadZone.Call(pint(inputType), pfloat64(zone))
+	return int(res)
+}
+
+func StartJoypadVibration(inputType int, power int, time int) int {
+	if dx_StartJoypadVibration == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_StartJoypadVibration.Call(pint(inputType), pint(power), pint(time))
+	return int(res)
+}
+
+func StopJoypadVibration(inputType int) int {
+	if dx_StopJoypadVibration == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_StopJoypadVibration.Call(pint(inputType))
+	return int(res)
+}
+
+func SetMouseDispFlag(dispFlag int) int {
+	if dx_SetMouseDispFlag == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_SetMouseDispFlag.Call(pint(dispFlag))
+	return int(res)
+}
+
+func GetMousePoint(xbuf *int, ybuf *int) int {
+	if dx_GetMousePoint == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_GetMousePoint.Call(ppint(xbuf), ppint(ybuf))
+	return int(res)
+}
+
+func SetMousePoint(pointX int, pointY int) int {
+	if dx_SetMousePoint == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_SetMousePoint.Call(pint(pointX), pint(pointY))
+	return int(res)
+}
+
+func GetMouseInput() int {
+	if dx_GetMouseInput == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_GetMouseInput.Call()
+	return int(res)
+}
+
+func GetMouseInputLog2(button *int, clickX *int, clickY *int, logType *int, logDelete int) int {
+	if dx_GetMouseInputLog2 == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_GetMouseInputLog2.Call(ppint(button), ppint(clickX), ppint(clickY), ppint(logType), pint(logDelete))
+	return int(res)
+}
+
+func GetMouseWheelRotVol() int {
+	if dx_GetMouseWheelRotVol == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_GetMouseWheelRotVol.Call()
+	return int(res)
+}
+
+func GetTouchInputNum() int {
+	if dx_GetTouchInputNum == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_GetTouchInputNum.Call()
+	return int(res)
+}
+
+func GetTouchInput(inputNo int, positionX *int, positionY *int, id *int, device *int) int {
+	if dx_GetTouchInput == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_GetTouchInput.Call(pint(inputNo), ppint(positionX), ppint(positionY), ppint(id), ppint(device))
+	return int(res)
+}
+
+func CheckHitKeyAll(checkType int) int {
+	if dx_CheckHitKeyAll == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_CheckHitKeyAll.Call(pint(checkType))
+	return int(res)
+}
+
+func CheckHitKey(keyCode int) int {
+	if dx_CheckHitKey == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_CheckHitKey.Call(pint(keyCode))
+	return int(res)
+}
+
+func GetInputChar(deleteFlag int) byte {
+	if dx_GetInputChar == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_GetInputChar.Call(pint(deleteFlag))
+	return byte(res)
+}
+
+func GetInputCharWait(deleteFlag int) byte {
+	if dx_GetInputCharWait == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_GetInputCharWait.Call(pint(deleteFlag))
+	return byte(res)
+}
+
+func ClearInputCharBuf() int {
+	if dx_ClearInputCharBuf == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_ClearInputCharBuf.Call()
+	return int(res)
+}
+
+func KeyInputString(x int, y int, charMaxLength int, strBuffer string, cancelValidFlag int) int {
+	if dx_KeyInputString == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_KeyInputString.Call(pint(x), pint(y), pint(charMaxLength), pstring(strBuffer), pint(cancelValidFlag))
+	return int(res)
+}
+
+func KeyInputSingleCharString(x int, y int, charMaxLength int, strBuffer string, cancelValidFlag int) int {
+	if dx_KeyInputSingleCharString == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_KeyInputSingleCharString.Call(pint(x), pint(y), pint(charMaxLength), pstring(strBuffer), pint(cancelValidFlag))
+	return int(res)
+}
+
+func KeyInputNumber(x int, y int, maxNum int, minNum int, cancelValidFlag int) int {
+	if dx_KeyInputNumber == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_KeyInputNumber.Call(pint(x), pint(y), pint(maxNum), pint(minNum), pint(cancelValidFlag))
+	return int(res)
+}
+
+func SetKeyInputStringColor(nmlStr int, nmlCur int, imeStrBack int, imeCur int, imeLine int, imeSelectStr int, imeModeStr int, nmlStrE int, imeSelectStrE int, imeModeStrE int, imeSelectWinE int, imeSelectWinF int, selectStrBackColor int, selectStrColor int, selectStrEdgeColor int, imeStr int, imeStrE int) int {
+	if dx_SetKeyInputStringColor == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_SetKeyInputStringColor.Call(pint(nmlStr), pint(nmlCur), pint(imeStrBack), pint(imeCur), pint(imeLine), pint(imeSelectStr), pint(imeModeStr), pint(nmlStrE), pint(imeSelectStrE), pint(imeModeStrE), pint(imeSelectWinE), pint(imeSelectWinF), pint(selectStrBackColor), pint(selectStrColor), pint(selectStrEdgeColor), pint(imeStr), pint(imeStrE))
+	return int(res)
+}
+
+func MakeKeyInput(maxStrLength int, cancelValidFlag int, singleCharOnlyFlag int, numCharOnlyFlag int) int {
+	if dx_MakeKeyInput == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_MakeKeyInput.Call(pint(maxStrLength), pint(cancelValidFlag), pint(singleCharOnlyFlag), pint(numCharOnlyFlag))
+	return int(res)
+}
+
+func DeleteKeyInput(inputHandle int) int {
+	if dx_DeleteKeyInput == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_DeleteKeyInput.Call(pint(inputHandle))
+	return int(res)
+}
+
+func InitKeyInput() int {
+	if dx_InitKeyInput == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_InitKeyInput.Call()
+	return int(res)
+}
+
+func SetActiveKeyInput(inputHandle int) int {
+	if dx_SetActiveKeyInput == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_SetActiveKeyInput.Call(pint(inputHandle))
+	return int(res)
+}
+
+func CheckKeyInput(inputHandle int) int {
+	if dx_CheckKeyInput == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_CheckKeyInput.Call(pint(inputHandle))
+	return int(res)
+}
+
+func DrawKeyInputString(x int, y int, inputHandle int) int {
+	if dx_DrawKeyInputString == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_DrawKeyInputString.Call(pint(x), pint(y), pint(inputHandle))
+	return int(res)
+}
+
+func DrawKeyInputModeString(x int, y int) int {
+	if dx_DrawKeyInputModeString == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_DrawKeyInputModeString.Call(pint(x), pint(y))
+	return int(res)
+}
+
+func SetKeyInputString(str string, inputHandle int) int {
+	if dx_SetKeyInputString == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_SetKeyInputString.Call(pstring(str), pint(inputHandle))
+	return int(res)
+}
+
+func SetKeyInputNumber(number int, inputHandle int) int {
+	if dx_SetKeyInputNumber == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_SetKeyInputNumber.Call(pint(number), pint(inputHandle))
+	return int(res)
+}
+
+func GetKeyInputNumber(inputHandle int) int {
+	if dx_GetKeyInputNumber == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_GetKeyInputNumber.Call(pint(inputHandle))
 	return int(res)
 }
 

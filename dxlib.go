@@ -125,7 +125,42 @@ package dxlib
 //TODO int DrawFillMaskToDirectData(int x1, int y1, int x2, int y2, int width, int height, void *maskData)
 
 // 入力関係の関数
-//TODO
+//dxlib int GetJoypadNum()
+//dxlib int GetJoypadInputState(int inputType)
+//dxlib int GetJoypadAnalogInput(int *xbuf, int *ybuf, int inputType)
+//TODO int GetJoypadDirectInputState(int inputType, DINPUT_JOYSTATE *dinputState)
+//TODO int GetJoypadXInputState(int inputType, XINPUT_STATE *xinputState)
+//dxlib int SetJoypadDeadZone(int inputType, double zone)
+//dxlib int StartJoypadVibration(int inputType, int power, int time)
+//dxlib int StopJoypadVibration(int inputType)
+//dxlib int SetMouseDispFlag(int dispFlag)
+//dxlib int GetMousePoint(int *xbuf, int *ybuf)
+//dxlib int SetMousePoint(int pointX ,int pointY)
+//dxlib int GetMouseInput()
+//dxlib int GetMouseInputLog2(int *button, int *clickX, int *clickY, int *logType, int logDelete)
+//dxlib int GetMouseWheelRotVol()
+//dxlib int GetTouchInputNum()
+//dxlib int GetTouchInput(int inputNo, int *positionX, int *positionY, int *id, int *device)
+//dxlib int CheckHitKeyAll(int checkType)
+//dxlib int CheckHitKey(int keyCode)
+//TODO int GetHitKeyStateAll(char *keyStateBuf) // char array
+//dxlib char GetInputChar(int deleteFlag)
+//dxlib char GetInputCharWait(int deleteFlag)
+//dxlib int ClearInputCharBuf()
+//dxlib int KeyInputString(int x, int y, int charMaxLength, char *strBuffer, int cancelValidFlag)
+//dxlib int KeyInputSingleCharString(int x, int y, int charMaxLength, char *strBuffer, int cancelValidFlag)
+//dxlib int KeyInputNumber(int x, int y, int maxNum, int minNum, int cancelValidFlag)
+//dxlib int SetKeyInputStringColor(int nmlStr, int nmlCur, int imeStrBack, int imeCur, int imeLine, int imeSelectStr, int imeModeStr, int nmlStrE, int imeSelectStrE, int imeModeStrE, int imeSelectWinE, int imeSelectWinF, int selectStrBackColor, int selectStrColor, int selectStrEdgeColor, int imeStr, int imeStrE)
+//dxlib int MakeKeyInput(int maxStrLength, int cancelValidFlag, int singleCharOnlyFlag, int numCharOnlyFlag)
+//dxlib int DeleteKeyInput(int inputHandle)
+//dxlib int InitKeyInput()
+//dxlib int SetActiveKeyInput(int inputHandle)
+//dxlib int CheckKeyInput(int inputHandle)
+//dxlib int DrawKeyInputString(int x, int y, int inputHandle)
+//dxlib int DrawKeyInputModeString(int x, int y)
+//dxlib int SetKeyInputString(char *str, int inputHandle)
+//dxlib int SetKeyInputNumber(int number, int inputHandle)
+//dxlib int GetKeyInputNumber(int inputHandle)
 
 // 音利用関数
 //TODO
