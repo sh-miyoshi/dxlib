@@ -201,15 +201,25 @@ import (
 )
 
 var (
-	mod = syscall.NewLazyDLL("DxLib.dll")
+	{{ range .Procs -}}
+	dx_{{.}} *syscall.LazyProc
+	{{ end }}
+)
+
+func Init(dllFile string) {
+	mod := syscall.NewLazyDLL(dllFile)
 
 	{{ range .Procs -}}
 	dx_{{.}} = mod.NewProc("dx_{{.}}")
 	{{ end }}
-)
+}
 
 {{ range $i, $func := .Functions }}
 func {{ $func.Name }}({{ $func.GoArgs }}) {{ $func.Response }} {
+	if dx_{{ $func.Name }} == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
 	res, _, err := dx_{{ $func.Name }}.Call({{ $func.PArgs }})
 	if err != nil {
 		panic(err)
