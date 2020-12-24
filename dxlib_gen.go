@@ -81,6 +81,8 @@ var (
 	dx_SetDrawScreen                        *syscall.LazyProc
 	dx_ScreenFlip                           *syscall.LazyProc
 	dx_SetFullSceneAntiAliasingMode         *syscall.LazyProc
+	dx_ChangeWindowMode                     *syscall.LazyProc
+	dx_SetOutApplicationLogValidFlag        *syscall.LazyProc
 )
 
 func Init(dllFile string) {
@@ -156,6 +158,8 @@ func Init(dllFile string) {
 	dx_SetDrawScreen = mod.NewProc("dx_SetDrawScreen")
 	dx_ScreenFlip = mod.NewProc("dx_ScreenFlip")
 	dx_SetFullSceneAntiAliasingMode = mod.NewProc("dx_SetFullSceneAntiAliasingMode")
+	dx_ChangeWindowMode = mod.NewProc("dx_ChangeWindowMode")
+	dx_SetOutApplicationLogValidFlag = mod.NewProc("dx_SetOutApplicationLogValidFlag")
 
 }
 
@@ -786,6 +790,24 @@ func SetFullSceneAntiAliasingMode(samples int, quality int) int {
 	}
 
 	res, _, _ := dx_SetFullSceneAntiAliasingMode.Call(pint(samples), pint(quality))
+	return int(res)
+}
+
+func ChangeWindowMode(flag int) int {
+	if dx_ChangeWindowMode == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_ChangeWindowMode.Call(pint(flag))
+	return int(res)
+}
+
+func SetOutApplicationLogValidFlag(flag int) int {
+	if dx_SetOutApplicationLogValidFlag == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_SetOutApplicationLogValidFlag.Call(pint(flag))
 	return int(res)
 }
 

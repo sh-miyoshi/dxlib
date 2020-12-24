@@ -124,6 +124,7 @@ package dxlib
 //TODO
 
 // ウインドウモード関係
+//dxlib int ChangeWindowMode(int flag)
 //TODO
 
 // 通信関係
@@ -142,4 +143,5 @@ package dxlib
 //TODO
 
 // マイナー関数
+//dxlib int SetOutApplicationLogValidFlag(int flag)
 //TODO
