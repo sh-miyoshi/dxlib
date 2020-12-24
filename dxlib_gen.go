@@ -812,7 +812,7 @@ func SetOutApplicationLogValidFlag(flag int) int {
 }
 
 func ppint(i *int) uintptr {
-	return uintptr(*i)
+	return uintptr(unsafe.Pointer(i))
 }
 
 func pint(i int) uintptr {

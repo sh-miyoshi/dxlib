@@ -226,7 +226,7 @@ func {{ $func.Name }}({{ $func.GoArgs }}) {{ $func.Response }} {
 {{ end }}
 
 func ppint(i *int) uintptr {
-	return uintptr(*i)
+	return uintptr(unsafe.Pointer(i))
 }
 
 func pint(i int) uintptr {
