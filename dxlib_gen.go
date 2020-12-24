@@ -81,6 +81,12 @@ var (
 	dx_SetDrawScreen                        *syscall.LazyProc
 	dx_ScreenFlip                           *syscall.LazyProc
 	dx_SetFullSceneAntiAliasingMode         *syscall.LazyProc
+	dx_PlayMovie                            *syscall.LazyProc
+	dx_PlayMovieToGraph                     *syscall.LazyProc
+	dx_PauseMovieToGraph                    *syscall.LazyProc
+	dx_SeekMovieToGraph                     *syscall.LazyProc
+	dx_TellMovieToGraph                     *syscall.LazyProc
+	dx_GetMovieStateToGraph                 *syscall.LazyProc
 	dx_ChangeWindowMode                     *syscall.LazyProc
 	dx_SetOutApplicationLogValidFlag        *syscall.LazyProc
 )
@@ -158,6 +164,12 @@ func Init(dllFile string) {
 	dx_SetDrawScreen = mod.NewProc("dx_SetDrawScreen")
 	dx_ScreenFlip = mod.NewProc("dx_ScreenFlip")
 	dx_SetFullSceneAntiAliasingMode = mod.NewProc("dx_SetFullSceneAntiAliasingMode")
+	dx_PlayMovie = mod.NewProc("dx_PlayMovie")
+	dx_PlayMovieToGraph = mod.NewProc("dx_PlayMovieToGraph")
+	dx_PauseMovieToGraph = mod.NewProc("dx_PauseMovieToGraph")
+	dx_SeekMovieToGraph = mod.NewProc("dx_SeekMovieToGraph")
+	dx_TellMovieToGraph = mod.NewProc("dx_TellMovieToGraph")
+	dx_GetMovieStateToGraph = mod.NewProc("dx_GetMovieStateToGraph")
 	dx_ChangeWindowMode = mod.NewProc("dx_ChangeWindowMode")
 	dx_SetOutApplicationLogValidFlag = mod.NewProc("dx_SetOutApplicationLogValidFlag")
 
@@ -790,6 +802,60 @@ func SetFullSceneAntiAliasingMode(samples int, quality int) int {
 	}
 
 	res, _, _ := dx_SetFullSceneAntiAliasingMode.Call(pint(samples), pint(quality))
+	return int(res)
+}
+
+func PlayMovie(fileName string, exRate int, playType int) int {
+	if dx_PlayMovie == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_PlayMovie.Call(pstring(fileName), pint(exRate), pint(playType))
+	return int(res)
+}
+
+func PlayMovieToGraph(graphHandle int) int {
+	if dx_PlayMovieToGraph == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_PlayMovieToGraph.Call(pint(graphHandle))
+	return int(res)
+}
+
+func PauseMovieToGraph(graphHandle int) int {
+	if dx_PauseMovieToGraph == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_PauseMovieToGraph.Call(pint(graphHandle))
+	return int(res)
+}
+
+func SeekMovieToGraph(graphHandle int, time int) int {
+	if dx_SeekMovieToGraph == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_SeekMovieToGraph.Call(pint(graphHandle), pint(time))
+	return int(res)
+}
+
+func TellMovieToGraph(graphHandle int) int {
+	if dx_TellMovieToGraph == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_TellMovieToGraph.Call(pint(graphHandle))
+	return int(res)
+}
+
+func GetMovieStateToGraph(graphHandle int) int {
+	if dx_GetMovieStateToGraph == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_GetMovieStateToGraph.Call(pint(graphHandle))
 	return int(res)
 }
 

@@ -100,7 +100,12 @@ package dxlib
 //dxlib int SetFullSceneAntiAliasingMode(int samples, int quality)
 
 // 動画関係関数
-//TODO
+//dxlib int PlayMovie(char *fileName, int exRate, int playType)
+//dxlib int PlayMovieToGraph(int graphHandle)
+//dxlib int PauseMovieToGraph(int graphHandle)
+//dxlib int SeekMovieToGraph(int graphHandle, int time)
+//dxlib int TellMovieToGraph(int graphHandle)
+//dxlib int GetMovieStateToGraph(int graphHandle)
 
 // マスク関係関数
 //TODO
