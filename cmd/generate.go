@@ -220,10 +220,7 @@ func {{ $func.Name }}({{ $func.GoArgs }}) {{ $func.Response }} {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, err := dx_{{ $func.Name }}.Call({{ $func.PArgs }})
-	if err != nil {
-		panic(err)
-	}
+	res, _, _ := dx_{{ $func.Name }}.Call({{ $func.PArgs }})
 	return  {{ $func.Response }}(res)
 }
 {{ end }}

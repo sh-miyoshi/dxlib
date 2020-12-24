@@ -164,10 +164,7 @@ func DxLib_Init() int {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, err := dx_DxLib_Init.Call()
-	if err != nil {
-		panic(err)
-	}
+	res, _, _ := dx_DxLib_Init.Call()
 	return int(res)
 }
 
@@ -176,10 +173,7 @@ func DxLib_End() int {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, err := dx_DxLib_End.Call()
-	if err != nil {
-		panic(err)
-	}
+	res, _, _ := dx_DxLib_End.Call()
 	return int(res)
 }
 
@@ -188,10 +182,7 @@ func ProcessMessage() int {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, err := dx_ProcessMessage.Call()
-	if err != nil {
-		panic(err)
-	}
+	res, _, _ := dx_ProcessMessage.Call()
 	return int(res)
 }
 
@@ -200,10 +191,7 @@ func DrawLine(x1 int, y1 int, x2 int, y2 int, color uint) int {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, err := dx_DrawLine.Call(pint(x1), pint(y1), pint(x2), pint(y2), puint(color))
-	if err != nil {
-		panic(err)
-	}
+	res, _, _ := dx_DrawLine.Call(pint(x1), pint(y1), pint(x2), pint(y2), puint(color))
 	return int(res)
 }
 
@@ -212,10 +200,7 @@ func DrawLineAA(x1 float32, y1 float32, x2 float32, y2 float32, color uint) int 
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, err := dx_DrawLineAA.Call(pfloat32(x1), pfloat32(y1), pfloat32(x2), pfloat32(y2), puint(color))
-	if err != nil {
-		panic(err)
-	}
+	res, _, _ := dx_DrawLineAA.Call(pfloat32(x1), pfloat32(y1), pfloat32(x2), pfloat32(y2), puint(color))
 	return int(res)
 }
 
@@ -224,10 +209,7 @@ func DrawBox(x1 int, y1 int, x2 int, y2 int, color uint, fillFlag int) int {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, err := dx_DrawBox.Call(pint(x1), pint(y1), pint(x2), pint(y2), puint(color), pint(fillFlag))
-	if err != nil {
-		panic(err)
-	}
+	res, _, _ := dx_DrawBox.Call(pint(x1), pint(y1), pint(x2), pint(y2), puint(color), pint(fillFlag))
 	return int(res)
 }
 
@@ -236,10 +218,7 @@ func DrawBoxAA(x1 float32, y1 float32, x2 float32, y2 float32, color uint, fillF
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, err := dx_DrawBoxAA.Call(pfloat32(x1), pfloat32(y1), pfloat32(x2), pfloat32(y2), puint(color), pint(fillFlag))
-	if err != nil {
-		panic(err)
-	}
+	res, _, _ := dx_DrawBoxAA.Call(pfloat32(x1), pfloat32(y1), pfloat32(x2), pfloat32(y2), puint(color), pint(fillFlag))
 	return int(res)
 }
 
@@ -248,10 +227,7 @@ func DrawCircle(x int, y int, r int, color uint, fillFlag int) int {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, err := dx_DrawCircle.Call(pint(x), pint(y), pint(r), puint(color), pint(fillFlag))
-	if err != nil {
-		panic(err)
-	}
+	res, _, _ := dx_DrawCircle.Call(pint(x), pint(y), pint(r), puint(color), pint(fillFlag))
 	return int(res)
 }
 
@@ -260,10 +236,7 @@ func DrawCircleAA(x float32, y float32, r float32, posnum int, color uint, fillF
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, err := dx_DrawCircleAA.Call(pfloat32(x), pfloat32(y), pfloat32(r), pint(posnum), puint(color), pint(fillFlag))
-	if err != nil {
-		panic(err)
-	}
+	res, _, _ := dx_DrawCircleAA.Call(pfloat32(x), pfloat32(y), pfloat32(r), pint(posnum), puint(color), pint(fillFlag))
 	return int(res)
 }
 
@@ -272,10 +245,7 @@ func DrawOval(x int, y int, rx int, ry int, color uint, fillFlag int) int {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, err := dx_DrawOval.Call(pint(x), pint(y), pint(rx), pint(ry), puint(color), pint(fillFlag))
-	if err != nil {
-		panic(err)
-	}
+	res, _, _ := dx_DrawOval.Call(pint(x), pint(y), pint(rx), pint(ry), puint(color), pint(fillFlag))
 	return int(res)
 }
 
@@ -284,10 +254,7 @@ func DrawOvalAA(x float32, y float32, rx float32, ry float32, posnum int, color 
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, err := dx_DrawOvalAA.Call(pfloat32(x), pfloat32(y), pfloat32(rx), pfloat32(ry), pint(posnum), puint(color), pint(fillFlag))
-	if err != nil {
-		panic(err)
-	}
+	res, _, _ := dx_DrawOvalAA.Call(pfloat32(x), pfloat32(y), pfloat32(rx), pfloat32(ry), pint(posnum), puint(color), pint(fillFlag))
 	return int(res)
 }
 
@@ -296,10 +263,7 @@ func DrawTriangle(x1 int, y1 int, x2 int, y2 int, x3 int, y3 int, color uint, fi
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, err := dx_DrawTriangle.Call(pint(x1), pint(y1), pint(x2), pint(y2), pint(x3), pint(y3), puint(color), pint(fillFlag))
-	if err != nil {
-		panic(err)
-	}
+	res, _, _ := dx_DrawTriangle.Call(pint(x1), pint(y1), pint(x2), pint(y2), pint(x3), pint(y3), puint(color), pint(fillFlag))
 	return int(res)
 }
 
@@ -308,10 +272,7 @@ func DrawTriangleAA(x1 float32, y1 float32, x2 float32, y2 float32, x3 float32, 
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, err := dx_DrawTriangleAA.Call(pfloat32(x1), pfloat32(y1), pfloat32(x2), pfloat32(y2), pfloat32(x3), pfloat32(y3), puint(color), pint(fillFlag))
-	if err != nil {
-		panic(err)
-	}
+	res, _, _ := dx_DrawTriangleAA.Call(pfloat32(x1), pfloat32(y1), pfloat32(x2), pfloat32(y2), pfloat32(x3), pfloat32(y3), puint(color), pint(fillFlag))
 	return int(res)
 }
 
@@ -320,10 +281,7 @@ func DrawPixel(x int, y int, color uint) int {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, err := dx_DrawPixel.Call(pint(x), pint(y), puint(color))
-	if err != nil {
-		panic(err)
-	}
+	res, _, _ := dx_DrawPixel.Call(pint(x), pint(y), puint(color))
 	return int(res)
 }
 
@@ -332,10 +290,7 @@ func GetPixel(x int, y int) uint {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, err := dx_GetPixel.Call(pint(x), pint(y))
-	if err != nil {
-		panic(err)
-	}
+	res, _, _ := dx_GetPixel.Call(pint(x), pint(y))
 	return uint(res)
 }
 
@@ -344,10 +299,7 @@ func LoadGraphScreen(x int, y int, graphName string, transFlag int) int {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, err := dx_LoadGraphScreen.Call(pint(x), pint(y), pstring(graphName), pint(transFlag))
-	if err != nil {
-		panic(err)
-	}
+	res, _, _ := dx_LoadGraphScreen.Call(pint(x), pint(y), pstring(graphName), pint(transFlag))
 	return int(res)
 }
 
@@ -356,10 +308,7 @@ func LoadGraph(fileName string) int {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, err := dx_LoadGraph.Call(pstring(fileName))
-	if err != nil {
-		panic(err)
-	}
+	res, _, _ := dx_LoadGraph.Call(pstring(fileName))
 	return int(res)
 }
 
@@ -368,10 +317,7 @@ func LoadDivGraph(fileName string, allnum int, xnum int, ynum int, xsize int, ys
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, err := dx_LoadDivGraph.Call(pstring(fileName), pint(allnum), pint(xnum), pint(ynum), pint(xsize), pint(ysize), ppint(handleBuf))
-	if err != nil {
-		panic(err)
-	}
+	res, _, _ := dx_LoadDivGraph.Call(pstring(fileName), pint(allnum), pint(xnum), pint(ynum), pint(xsize), pint(ysize), ppint(handleBuf))
 	return int(res)
 }
 
@@ -380,10 +326,7 @@ func MakeGraph(sizeX int, sizeY int) int {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, err := dx_MakeGraph.Call(pint(sizeX), pint(sizeY))
-	if err != nil {
-		panic(err)
-	}
+	res, _, _ := dx_MakeGraph.Call(pint(sizeX), pint(sizeY))
 	return int(res)
 }
 
@@ -392,10 +335,7 @@ func MakeScreen(sizeX int, sizeY int, useAlphaChannel int) int {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, err := dx_MakeScreen.Call(pint(sizeX), pint(sizeY), pint(useAlphaChannel))
-	if err != nil {
-		panic(err)
-	}
+	res, _, _ := dx_MakeScreen.Call(pint(sizeX), pint(sizeY), pint(useAlphaChannel))
 	return int(res)
 }
 
@@ -404,10 +344,7 @@ func SetCreateDrawValidGraphMultiSample(samples int, quality int) int {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, err := dx_SetCreateDrawValidGraphMultiSample.Call(pint(samples), pint(quality))
-	if err != nil {
-		panic(err)
-	}
+	res, _, _ := dx_SetCreateDrawValidGraphMultiSample.Call(pint(samples), pint(quality))
 	return int(res)
 }
 
@@ -416,10 +353,7 @@ func SetCreateGraphColorBitDepth(bitDepth int) int {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, err := dx_SetCreateGraphColorBitDepth.Call(pint(bitDepth))
-	if err != nil {
-		panic(err)
-	}
+	res, _, _ := dx_SetCreateGraphColorBitDepth.Call(pint(bitDepth))
 	return int(res)
 }
 
@@ -428,10 +362,7 @@ func SetDrawValidFloatTypeGraphCreateFlag(flag int) int {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, err := dx_SetDrawValidFloatTypeGraphCreateFlag.Call(pint(flag))
-	if err != nil {
-		panic(err)
-	}
+	res, _, _ := dx_SetDrawValidFloatTypeGraphCreateFlag.Call(pint(flag))
 	return int(res)
 }
 
@@ -440,10 +371,7 @@ func SetCreateDrawValidGraphChannelNum(channelNum int) int {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, err := dx_SetCreateDrawValidGraphChannelNum.Call(pint(channelNum))
-	if err != nil {
-		panic(err)
-	}
+	res, _, _ := dx_SetCreateDrawValidGraphChannelNum.Call(pint(channelNum))
 	return int(res)
 }
 
@@ -452,10 +380,7 @@ func SetUsePremulAlphaConvertLoad(useFlag int) int {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, err := dx_SetUsePremulAlphaConvertLoad.Call(pint(useFlag))
-	if err != nil {
-		panic(err)
-	}
+	res, _, _ := dx_SetUsePremulAlphaConvertLoad.Call(pint(useFlag))
 	return int(res)
 }
 
@@ -464,10 +389,7 @@ func DrawGraph(x int, y int, grHandle int, transFlag int) int {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, err := dx_DrawGraph.Call(pint(x), pint(y), pint(grHandle), pint(transFlag))
-	if err != nil {
-		panic(err)
-	}
+	res, _, _ := dx_DrawGraph.Call(pint(x), pint(y), pint(grHandle), pint(transFlag))
 	return int(res)
 }
 
@@ -476,10 +398,7 @@ func DrawTurnGraph(x int, y int, grHandle int, transFlag int) int {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, err := dx_DrawTurnGraph.Call(pint(x), pint(y), pint(grHandle), pint(transFlag))
-	if err != nil {
-		panic(err)
-	}
+	res, _, _ := dx_DrawTurnGraph.Call(pint(x), pint(y), pint(grHandle), pint(transFlag))
 	return int(res)
 }
 
@@ -488,10 +407,7 @@ func DrawExtendGraph(x1 int, y1 int, x2 int, y2 int, grHandle int, transFlag int
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, err := dx_DrawExtendGraph.Call(pint(x1), pint(y1), pint(x2), pint(y2), pint(grHandle), pint(transFlag))
-	if err != nil {
-		panic(err)
-	}
+	res, _, _ := dx_DrawExtendGraph.Call(pint(x1), pint(y1), pint(x2), pint(y2), pint(grHandle), pint(transFlag))
 	return int(res)
 }
 
@@ -500,10 +416,7 @@ func DrawRotaGraph(x int, y int, extRate float64, angle float64, grHandle int, t
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, err := dx_DrawRotaGraph.Call(pint(x), pint(y), pfloat64(extRate), pfloat64(angle), pint(grHandle), pint(transFlag), pint(turnFlag))
-	if err != nil {
-		panic(err)
-	}
+	res, _, _ := dx_DrawRotaGraph.Call(pint(x), pint(y), pfloat64(extRate), pfloat64(angle), pint(grHandle), pint(transFlag), pint(turnFlag))
 	return int(res)
 }
 
@@ -512,10 +425,7 @@ func DrawRotaGraph2(x int, y int, cx int, cy int, extRate float64, angle float64
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, err := dx_DrawRotaGraph2.Call(pint(x), pint(y), pint(cx), pint(cy), pfloat64(extRate), pfloat64(angle), pint(grHandle), pint(transFlag), pint(turnFlag))
-	if err != nil {
-		panic(err)
-	}
+	res, _, _ := dx_DrawRotaGraph2.Call(pint(x), pint(y), pint(cx), pint(cy), pfloat64(extRate), pfloat64(angle), pint(grHandle), pint(transFlag), pint(turnFlag))
 	return int(res)
 }
 
@@ -524,10 +434,7 @@ func DrawRotaGraph3(x int, y int, cx int, cy int, extRateX float64, extRateY flo
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, err := dx_DrawRotaGraph3.Call(pint(x), pint(y), pint(cx), pint(cy), pfloat64(extRateX), pfloat64(extRateY), pfloat64(angle), pint(grHandle), pint(transFlag), pint(turnFlag))
-	if err != nil {
-		panic(err)
-	}
+	res, _, _ := dx_DrawRotaGraph3.Call(pint(x), pint(y), pint(cx), pint(cy), pfloat64(extRateX), pfloat64(extRateY), pfloat64(angle), pint(grHandle), pint(transFlag), pint(turnFlag))
 	return int(res)
 }
 
@@ -536,10 +443,7 @@ func DrawModiGraph(x1 int, y1 int, x2 int, y2 int, x3 int, y3 int, x4 int, y4 in
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, err := dx_DrawModiGraph.Call(pint(x1), pint(y1), pint(x2), pint(y2), pint(x3), pint(y3), pint(x4), pint(y4), pint(grHandle), pint(transFlag))
-	if err != nil {
-		panic(err)
-	}
+	res, _, _ := dx_DrawModiGraph.Call(pint(x1), pint(y1), pint(x2), pint(y2), pint(x3), pint(y3), pint(x4), pint(y4), pint(grHandle), pint(transFlag))
 	return int(res)
 }
 
@@ -548,10 +452,7 @@ func DrawRectGraph(destX int, destY int, srcX int, srcY int, width int, height i
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, err := dx_DrawRectGraph.Call(pint(destX), pint(destY), pint(srcX), pint(srcY), pint(width), pint(height), pint(graphHandle), pint(transFlag), pint(turnFlag))
-	if err != nil {
-		panic(err)
-	}
+	res, _, _ := dx_DrawRectGraph.Call(pint(destX), pint(destY), pint(srcX), pint(srcY), pint(width), pint(height), pint(graphHandle), pint(transFlag), pint(turnFlag))
 	return int(res)
 }
 
@@ -560,10 +461,7 @@ func DerivationGraph(srcX int, srcY int, width int, height int, srcGraphHandle i
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, err := dx_DerivationGraph.Call(pint(srcX), pint(srcY), pint(width), pint(height), pint(srcGraphHandle))
-	if err != nil {
-		panic(err)
-	}
+	res, _, _ := dx_DerivationGraph.Call(pint(srcX), pint(srcY), pint(width), pint(height), pint(srcGraphHandle))
 	return int(res)
 }
 
@@ -572,10 +470,7 @@ func GetDrawScreenGraph(x1 int, y1 int, x2 int, y2 int, grHandle int) int {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, err := dx_GetDrawScreenGraph.Call(pint(x1), pint(y1), pint(x2), pint(y2), pint(grHandle))
-	if err != nil {
-		panic(err)
-	}
+	res, _, _ := dx_GetDrawScreenGraph.Call(pint(x1), pint(y1), pint(x2), pint(y2), pint(grHandle))
 	return int(res)
 }
 
@@ -584,10 +479,7 @@ func GetGraphiteSize(grHandle int, sizeXBuf *int, sizeYBuf *int) int {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, err := dx_GetGraphiteSize.Call(pint(grHandle), ppint(sizeXBuf), ppint(sizeYBuf))
-	if err != nil {
-		panic(err)
-	}
+	res, _, _ := dx_GetGraphiteSize.Call(pint(grHandle), ppint(sizeXBuf), ppint(sizeYBuf))
 	return int(res)
 }
 
@@ -596,10 +488,7 @@ func InitGraph() int {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, err := dx_InitGraph.Call()
-	if err != nil {
-		panic(err)
-	}
+	res, _, _ := dx_InitGraph.Call()
 	return int(res)
 }
 
@@ -608,10 +497,7 @@ func DeleteGraph(grHandle int) int {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, err := dx_DeleteGraph.Call(pint(grHandle))
-	if err != nil {
-		panic(err)
-	}
+	res, _, _ := dx_DeleteGraph.Call(pint(grHandle))
 	return int(res)
 }
 
@@ -620,10 +506,7 @@ func SetDrawMode(drawMode int) int {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, err := dx_SetDrawMode.Call(pint(drawMode))
-	if err != nil {
-		panic(err)
-	}
+	res, _, _ := dx_SetDrawMode.Call(pint(drawMode))
 	return int(res)
 }
 
@@ -632,10 +515,7 @@ func SetDrawBlendMode(blendMode int, pal int) int {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, err := dx_SetDrawBlendMode.Call(pint(blendMode), pint(pal))
-	if err != nil {
-		panic(err)
-	}
+	res, _, _ := dx_SetDrawBlendMode.Call(pint(blendMode), pint(pal))
 	return int(res)
 }
 
@@ -644,10 +524,7 @@ func SetDrawBright(redBright int, greenBright int, blueBright int) int {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, err := dx_SetDrawBright.Call(pint(redBright), pint(greenBright), pint(blueBright))
-	if err != nil {
-		panic(err)
-	}
+	res, _, _ := dx_SetDrawBright.Call(pint(redBright), pint(greenBright), pint(blueBright))
 	return int(res)
 }
 
@@ -656,10 +533,7 @@ func SetTransColor(red int, green int, blue int) int {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, err := dx_SetTransColor.Call(pint(red), pint(green), pint(blue))
-	if err != nil {
-		panic(err)
-	}
+	res, _, _ := dx_SetTransColor.Call(pint(red), pint(green), pint(blue))
 	return int(res)
 }
 
@@ -668,10 +542,7 @@ func LoadBlendGraph(fileName string) int {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, err := dx_LoadBlendGraph.Call(pstring(fileName))
-	if err != nil {
-		panic(err)
-	}
+	res, _, _ := dx_LoadBlendGraph.Call(pstring(fileName))
 	return int(res)
 }
 
@@ -680,10 +551,7 @@ func DrawBlendGraph(x int, y int, grHandle int, transFlag int, blendGraph int, b
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, err := dx_DrawBlendGraph.Call(pint(x), pint(y), pint(grHandle), pint(transFlag), pint(blendGraph), pint(borderParam), pint(borderRange))
-	if err != nil {
-		panic(err)
-	}
+	res, _, _ := dx_DrawBlendGraph.Call(pint(x), pint(y), pint(grHandle), pint(transFlag), pint(blendGraph), pint(borderParam), pint(borderRange))
 	return int(res)
 }
 
@@ -692,10 +560,7 @@ func DrawString(x int, y int, str string, color uint) int {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, err := dx_DrawString.Call(pint(x), pint(y), pstring(str), puint(color))
-	if err != nil {
-		panic(err)
-	}
+	res, _, _ := dx_DrawString.Call(pint(x), pint(y), pstring(str), puint(color))
 	return int(res)
 }
 
@@ -704,10 +569,7 @@ func GetDrawStringWidth(str string, strLen int) int {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, err := dx_GetDrawStringWidth.Call(pstring(str), pint(strLen))
-	if err != nil {
-		panic(err)
-	}
+	res, _, _ := dx_GetDrawStringWidth.Call(pstring(str), pint(strLen))
 	return int(res)
 }
 
@@ -716,10 +578,7 @@ func SetFontSize(fontSize int) int {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, err := dx_SetFontSize.Call(pint(fontSize))
-	if err != nil {
-		panic(err)
-	}
+	res, _, _ := dx_SetFontSize.Call(pint(fontSize))
 	return int(res)
 }
 
@@ -728,10 +587,7 @@ func SetFontThickness(tinckPal int) int {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, err := dx_SetFontThickness.Call(pint(tinckPal))
-	if err != nil {
-		panic(err)
-	}
+	res, _, _ := dx_SetFontThickness.Call(pint(tinckPal))
 	return int(res)
 }
 
@@ -740,10 +596,7 @@ func ChangeFont(fontName string) int {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, err := dx_ChangeFont.Call(pstring(fontName))
-	if err != nil {
-		panic(err)
-	}
+	res, _, _ := dx_ChangeFont.Call(pstring(fontName))
 	return int(res)
 }
 
@@ -752,10 +605,7 @@ func ChangeFontType(fontType int) int {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, err := dx_ChangeFontType.Call(pint(fontType))
-	if err != nil {
-		panic(err)
-	}
+	res, _, _ := dx_ChangeFontType.Call(pint(fontType))
 	return int(res)
 }
 
@@ -764,10 +614,7 @@ func CreateFontToHandle(fontName string, size int, thick int, fontType int) int 
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, err := dx_CreateFontToHandle.Call(pstring(fontName), pint(size), pint(thick), pint(fontType))
-	if err != nil {
-		panic(err)
-	}
+	res, _, _ := dx_CreateFontToHandle.Call(pstring(fontName), pint(size), pint(thick), pint(fontType))
 	return int(res)
 }
 
@@ -776,10 +623,7 @@ func LoadFontDataToHandle(fileName string, edgeSize int) int {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, err := dx_LoadFontDataToHandle.Call(pstring(fileName), pint(edgeSize))
-	if err != nil {
-		panic(err)
-	}
+	res, _, _ := dx_LoadFontDataToHandle.Call(pstring(fileName), pint(edgeSize))
 	return int(res)
 }
 
@@ -788,10 +632,7 @@ func DeleteFontToHandle(fontHandle int) int {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, err := dx_DeleteFontToHandle.Call(pint(fontHandle))
-	if err != nil {
-		panic(err)
-	}
+	res, _, _ := dx_DeleteFontToHandle.Call(pint(fontHandle))
 	return int(res)
 }
 
@@ -800,10 +641,7 @@ func SetFontCacheUsePremulAlphaFlag(flag int) int {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, err := dx_SetFontCacheUsePremulAlphaFlag.Call(pint(flag))
-	if err != nil {
-		panic(err)
-	}
+	res, _, _ := dx_SetFontCacheUsePremulAlphaFlag.Call(pint(flag))
 	return int(res)
 }
 
@@ -812,10 +650,7 @@ func DrawStringToHandle(x int, y int, str string, color uint, fontHandle int) in
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, err := dx_DrawStringToHandle.Call(pint(x), pint(y), pstring(str), puint(color), pint(fontHandle))
-	if err != nil {
-		panic(err)
-	}
+	res, _, _ := dx_DrawStringToHandle.Call(pint(x), pint(y), pstring(str), puint(color), pint(fontHandle))
 	return int(res)
 }
 
@@ -824,10 +659,7 @@ func GetDrawStringWidthToHandle(str string, strLen int, fontHandle int) int {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, err := dx_GetDrawStringWidthToHandle.Call(pstring(str), pint(strLen), pint(fontHandle))
-	if err != nil {
-		panic(err)
-	}
+	res, _, _ := dx_GetDrawStringWidthToHandle.Call(pstring(str), pint(strLen), pint(fontHandle))
 	return int(res)
 }
 
@@ -836,10 +668,7 @@ func GetFontStateToHandle(fontName string, size *int, thick *int, fontHandle int
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, err := dx_GetFontStateToHandle.Call(pstring(fontName), ppint(size), ppint(thick), pint(fontHandle))
-	if err != nil {
-		panic(err)
-	}
+	res, _, _ := dx_GetFontStateToHandle.Call(pstring(fontName), ppint(size), ppint(thick), pint(fontHandle))
 	return int(res)
 }
 
@@ -848,10 +677,7 @@ func InitFontToHandle() int {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, err := dx_InitFontToHandle.Call()
-	if err != nil {
-		panic(err)
-	}
+	res, _, _ := dx_InitFontToHandle.Call()
 	return int(res)
 }
 
@@ -860,10 +686,7 @@ func clsDx() int {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, err := dx_clsDx.Call()
-	if err != nil {
-		panic(err)
-	}
+	res, _, _ := dx_clsDx.Call()
 	return int(res)
 }
 
@@ -872,10 +695,7 @@ func SetGraphMode(sizeX int, sizeY int, colorBitNum int) int {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, err := dx_SetGraphMode.Call(pint(sizeX), pint(sizeY), pint(colorBitNum))
-	if err != nil {
-		panic(err)
-	}
+	res, _, _ := dx_SetGraphMode.Call(pint(sizeX), pint(sizeY), pint(colorBitNum))
 	return int(res)
 }
 
@@ -884,10 +704,7 @@ func SetFullScreenResolutionMode(resolutionMode int) int {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, err := dx_SetFullScreenResolutionMode.Call(pint(resolutionMode))
-	if err != nil {
-		panic(err)
-	}
+	res, _, _ := dx_SetFullScreenResolutionMode.Call(pint(resolutionMode))
 	return int(res)
 }
 
@@ -896,10 +713,7 @@ func SetFullScreenScalingMode(scalingMode int) int {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, err := dx_SetFullScreenScalingMode.Call(pint(scalingMode))
-	if err != nil {
-		panic(err)
-	}
+	res, _, _ := dx_SetFullScreenScalingMode.Call(pint(scalingMode))
 	return int(res)
 }
 
@@ -908,10 +722,7 @@ func GetScreenState(sizeX *int, sizeY *int, colorBitDepth *int) int {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, err := dx_GetScreenState.Call(ppint(sizeX), ppint(sizeY), ppint(colorBitDepth))
-	if err != nil {
-		panic(err)
-	}
+	res, _, _ := dx_GetScreenState.Call(ppint(sizeX), ppint(sizeY), ppint(colorBitDepth))
 	return int(res)
 }
 
@@ -920,10 +731,7 @@ func SetDrawArea(x1 int, y1 int, x2 int, y2 int) int {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, err := dx_SetDrawArea.Call(pint(x1), pint(y1), pint(x2), pint(y2))
-	if err != nil {
-		panic(err)
-	}
+	res, _, _ := dx_SetDrawArea.Call(pint(x1), pint(y1), pint(x2), pint(y2))
 	return int(res)
 }
 
@@ -932,10 +740,7 @@ func ClearDrawScreen() int {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, err := dx_ClearDrawScreen.Call()
-	if err != nil {
-		panic(err)
-	}
+	res, _, _ := dx_ClearDrawScreen.Call()
 	return int(res)
 }
 
@@ -944,10 +749,7 @@ func SetBackgroundColor(red int, green int, blue int) int {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, err := dx_SetBackgroundColor.Call(pint(red), pint(green), pint(blue))
-	if err != nil {
-		panic(err)
-	}
+	res, _, _ := dx_SetBackgroundColor.Call(pint(red), pint(green), pint(blue))
 	return int(res)
 }
 
@@ -956,10 +758,7 @@ func GetColor(red int, green int, blue int) uint {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, err := dx_GetColor.Call(pint(red), pint(green), pint(blue))
-	if err != nil {
-		panic(err)
-	}
+	res, _, _ := dx_GetColor.Call(pint(red), pint(green), pint(blue))
 	return uint(res)
 }
 
@@ -968,10 +767,7 @@ func SetDrawScreen(drawScreen int) int {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, err := dx_SetDrawScreen.Call(pint(drawScreen))
-	if err != nil {
-		panic(err)
-	}
+	res, _, _ := dx_SetDrawScreen.Call(pint(drawScreen))
 	return int(res)
 }
 
@@ -980,10 +776,7 @@ func ScreenFlip() int {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, err := dx_ScreenFlip.Call()
-	if err != nil {
-		panic(err)
-	}
+	res, _, _ := dx_ScreenFlip.Call()
 	return int(res)
 }
 
@@ -992,10 +785,7 @@ func SetFullSceneAntiAliasingMode(samples int, quality int) int {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, err := dx_SetFullSceneAntiAliasingMode.Call(pint(samples), pint(quality))
-	if err != nil {
-		panic(err)
-	}
+	res, _, _ := dx_SetFullSceneAntiAliasingMode.Call(pint(samples), pint(quality))
 	return int(res)
 }
 
