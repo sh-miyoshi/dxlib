@@ -108,7 +108,21 @@ package dxlib
 //dxlib int GetMovieStateToGraph(int graphHandle)
 
 // マスク関係関数
-//TODO
+//dxlib int CreateMaskScreen()
+//dxlib int DeleteMaskScreen()
+//dxlib int LoadMask(char *fileName)
+//dxlib int LoadDivMask(char *fileName, int allnum, int xnum, int ynum, int xsize, int ysize, int *handleBuf)
+//dxlib int DrawMask(int x, int y, int maskHandle, int transMode)
+//dxlib int DrawFillMask(int x1, int y1, int x2, int y2, int maskHandle)
+//dxlib int DeleteMask(int maskHandle)
+//dxlib int InitMask()
+//dxlib int FillMaskScreen(int flag)
+//dxlib int SetUseMaskScreenFlag(int validFlag)
+//dxlib int MakeMask(int width, int height)
+//dxlib int GetMaskSize(int *widthBuf, int *heightBuf, int maskHandle)
+//TODO int SetDataToMask(int width, int height, void *maskData, int maskHandle)
+//TODO int DrawMaskToDirectData(int x, int y, int width, int height, void *maskData, int transMode)
+//TODO int DrawFillMaskToDirectData(int x1, int y1, int x2, int y2, int width, int height, void *maskData)
 
 // 入力関係の関数
 //TODO

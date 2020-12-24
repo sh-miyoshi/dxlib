@@ -87,6 +87,18 @@ var (
 	dx_SeekMovieToGraph                     *syscall.LazyProc
 	dx_TellMovieToGraph                     *syscall.LazyProc
 	dx_GetMovieStateToGraph                 *syscall.LazyProc
+	dx_CreateMaskScreen                     *syscall.LazyProc
+	dx_DeleteMaskScreen                     *syscall.LazyProc
+	dx_LoadMask                             *syscall.LazyProc
+	dx_LoadDivMask                          *syscall.LazyProc
+	dx_DrawMask                             *syscall.LazyProc
+	dx_DrawFillMask                         *syscall.LazyProc
+	dx_DeleteMask                           *syscall.LazyProc
+	dx_InitMask                             *syscall.LazyProc
+	dx_FillMaskScreen                       *syscall.LazyProc
+	dx_SetUseMaskScreenFlag                 *syscall.LazyProc
+	dx_MakeMask                             *syscall.LazyProc
+	dx_GetMaskSize                          *syscall.LazyProc
 	dx_ChangeWindowMode                     *syscall.LazyProc
 	dx_SetOutApplicationLogValidFlag        *syscall.LazyProc
 )
@@ -170,6 +182,18 @@ func Init(dllFile string) {
 	dx_SeekMovieToGraph = mod.NewProc("dx_SeekMovieToGraph")
 	dx_TellMovieToGraph = mod.NewProc("dx_TellMovieToGraph")
 	dx_GetMovieStateToGraph = mod.NewProc("dx_GetMovieStateToGraph")
+	dx_CreateMaskScreen = mod.NewProc("dx_CreateMaskScreen")
+	dx_DeleteMaskScreen = mod.NewProc("dx_DeleteMaskScreen")
+	dx_LoadMask = mod.NewProc("dx_LoadMask")
+	dx_LoadDivMask = mod.NewProc("dx_LoadDivMask")
+	dx_DrawMask = mod.NewProc("dx_DrawMask")
+	dx_DrawFillMask = mod.NewProc("dx_DrawFillMask")
+	dx_DeleteMask = mod.NewProc("dx_DeleteMask")
+	dx_InitMask = mod.NewProc("dx_InitMask")
+	dx_FillMaskScreen = mod.NewProc("dx_FillMaskScreen")
+	dx_SetUseMaskScreenFlag = mod.NewProc("dx_SetUseMaskScreenFlag")
+	dx_MakeMask = mod.NewProc("dx_MakeMask")
+	dx_GetMaskSize = mod.NewProc("dx_GetMaskSize")
 	dx_ChangeWindowMode = mod.NewProc("dx_ChangeWindowMode")
 	dx_SetOutApplicationLogValidFlag = mod.NewProc("dx_SetOutApplicationLogValidFlag")
 
@@ -856,6 +880,114 @@ func GetMovieStateToGraph(graphHandle int) int {
 	}
 
 	res, _, _ := dx_GetMovieStateToGraph.Call(pint(graphHandle))
+	return int(res)
+}
+
+func CreateMaskScreen() int {
+	if dx_CreateMaskScreen == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_CreateMaskScreen.Call()
+	return int(res)
+}
+
+func DeleteMaskScreen() int {
+	if dx_DeleteMaskScreen == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_DeleteMaskScreen.Call()
+	return int(res)
+}
+
+func LoadMask(fileName string) int {
+	if dx_LoadMask == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_LoadMask.Call(pstring(fileName))
+	return int(res)
+}
+
+func LoadDivMask(fileName string, allnum int, xnum int, ynum int, xsize int, ysize int, handleBuf *int) int {
+	if dx_LoadDivMask == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_LoadDivMask.Call(pstring(fileName), pint(allnum), pint(xnum), pint(ynum), pint(xsize), pint(ysize), ppint(handleBuf))
+	return int(res)
+}
+
+func DrawMask(x int, y int, maskHandle int, transMode int) int {
+	if dx_DrawMask == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_DrawMask.Call(pint(x), pint(y), pint(maskHandle), pint(transMode))
+	return int(res)
+}
+
+func DrawFillMask(x1 int, y1 int, x2 int, y2 int, maskHandle int) int {
+	if dx_DrawFillMask == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_DrawFillMask.Call(pint(x1), pint(y1), pint(x2), pint(y2), pint(maskHandle))
+	return int(res)
+}
+
+func DeleteMask(maskHandle int) int {
+	if dx_DeleteMask == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_DeleteMask.Call(pint(maskHandle))
+	return int(res)
+}
+
+func InitMask() int {
+	if dx_InitMask == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_InitMask.Call()
+	return int(res)
+}
+
+func FillMaskScreen(flag int) int {
+	if dx_FillMaskScreen == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_FillMaskScreen.Call(pint(flag))
+	return int(res)
+}
+
+func SetUseMaskScreenFlag(validFlag int) int {
+	if dx_SetUseMaskScreenFlag == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_SetUseMaskScreenFlag.Call(pint(validFlag))
+	return int(res)
+}
+
+func MakeMask(width int, height int) int {
+	if dx_MakeMask == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_MakeMask.Call(pint(width), pint(height))
+	return int(res)
+}
+
+func GetMaskSize(widthBuf *int, heightBuf *int, maskHandle int) int {
+	if dx_GetMaskSize == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_GetMaskSize.Call(ppint(widthBuf), ppint(heightBuf), pint(maskHandle))
 	return int(res)
 }
 
