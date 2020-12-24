@@ -71,6 +71,18 @@ var (
 	dx_GetDrawStringWidthToHandle           = mod.NewProc("dx_GetDrawStringWidthToHandle")
 	dx_GetFontStateToHandle                 = mod.NewProc("dx_GetFontStateToHandle")
 	dx_InitFontToHandle                     = mod.NewProc("dx_InitFontToHandle")
+	dx_clsDx                                = mod.NewProc("dx_clsDx")
+	dx_SetGraphMode                         = mod.NewProc("dx_SetGraphMode")
+	dx_SetFullScreenResolutionMode          = mod.NewProc("dx_SetFullScreenResolutionMode")
+	dx_SetFullScreenScalingMode             = mod.NewProc("dx_SetFullScreenScalingMode")
+	dx_GetScreenState                       = mod.NewProc("dx_GetScreenState")
+	dx_SetDrawArea                          = mod.NewProc("dx_SetDrawArea")
+	dx_ClearDrawScreen                      = mod.NewProc("dx_ClearDrawScreen")
+	dx_SetBackgroundColor                   = mod.NewProc("dx_SetBackgroundColor")
+	dx_GetColor                             = mod.NewProc("dx_GetColor")
+	dx_SetDrawScreen                        = mod.NewProc("dx_SetDrawScreen")
+	dx_ScreenFlip                           = mod.NewProc("dx_ScreenFlip")
+	dx_SetFullSceneAntiAliasingMode         = mod.NewProc("dx_SetFullSceneAntiAliasingMode")
 )
 
 func DxLib_Init() int {
@@ -531,6 +543,102 @@ func GetFontStateToHandle(fontName string, size *int, thick *int, fontHandle int
 
 func InitFontToHandle() int {
 	res, _, err := dx_InitFontToHandle.Call()
+	if err != nil {
+		panic(err)
+	}
+	return int(res)
+}
+
+func clsDx() int {
+	res, _, err := dx_clsDx.Call()
+	if err != nil {
+		panic(err)
+	}
+	return int(res)
+}
+
+func SetGraphMode(sizeX int, sizeY int, colorBitNum int) int {
+	res, _, err := dx_SetGraphMode.Call(pint(sizeX), pint(sizeY), pint(colorBitNum))
+	if err != nil {
+		panic(err)
+	}
+	return int(res)
+}
+
+func SetFullScreenResolutionMode(resolutionMode int) int {
+	res, _, err := dx_SetFullScreenResolutionMode.Call(pint(resolutionMode))
+	if err != nil {
+		panic(err)
+	}
+	return int(res)
+}
+
+func SetFullScreenScalingMode(scalingMode int) int {
+	res, _, err := dx_SetFullScreenScalingMode.Call(pint(scalingMode))
+	if err != nil {
+		panic(err)
+	}
+	return int(res)
+}
+
+func GetScreenState(sizeX *int, sizeY *int, colorBitDepth *int) int {
+	res, _, err := dx_GetScreenState.Call(ppint(sizeX), ppint(sizeY), ppint(colorBitDepth))
+	if err != nil {
+		panic(err)
+	}
+	return int(res)
+}
+
+func SetDrawArea(x1 int, y1 int, x2 int, y2 int) int {
+	res, _, err := dx_SetDrawArea.Call(pint(x1), pint(y1), pint(x2), pint(y2))
+	if err != nil {
+		panic(err)
+	}
+	return int(res)
+}
+
+func ClearDrawScreen() int {
+	res, _, err := dx_ClearDrawScreen.Call()
+	if err != nil {
+		panic(err)
+	}
+	return int(res)
+}
+
+func SetBackgroundColor(red int, green int, blue int) int {
+	res, _, err := dx_SetBackgroundColor.Call(pint(red), pint(green), pint(blue))
+	if err != nil {
+		panic(err)
+	}
+	return int(res)
+}
+
+func GetColor(red int, green int, blue int) uint {
+	res, _, err := dx_GetColor.Call(pint(red), pint(green), pint(blue))
+	if err != nil {
+		panic(err)
+	}
+	return uint(res)
+}
+
+func SetDrawScreen(drawScreen int) int {
+	res, _, err := dx_SetDrawScreen.Call(pint(drawScreen))
+	if err != nil {
+		panic(err)
+	}
+	return int(res)
+}
+
+func ScreenFlip() int {
+	res, _, err := dx_ScreenFlip.Call()
+	if err != nil {
+		panic(err)
+	}
+	return int(res)
+}
+
+func SetFullSceneAntiAliasingMode(samples int, quality int) int {
+	res, _, err := dx_SetFullSceneAntiAliasingMode.Call(pint(samples), pint(quality))
 	if err != nil {
 		panic(err)
 	}

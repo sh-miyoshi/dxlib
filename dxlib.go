@@ -78,15 +78,26 @@ package dxlib
 //dxlib int DrawStringToHandle(int x, int y, char *str, unsigned int color, int fontHandle)
 //TODO int DrawFormatStringToHandle(int x, int y, unsigned int color, int fonthandle, char *format, ...)
 //dxlib int GetDrawStringWidthToHandle(char *str, int strLen, int fontHandle)
-// TODO int GetDrawFormatStringWidthToHandle(int fontHandle, char *format, ...)
+//TODO int GetDrawFormatStringWidthToHandle(int fontHandle, char *format, ...)
 //dxlib int GetFontStateToHandle(char *fontName, int *size, int *thick, int fontHandle)
 //dxlib int InitFontToHandle()
 
 // 簡易画面出力関数
-//TODO
+//TODO int printfDx(char *format, ...)
+//dxlib int clsDx()
 
 // その他画面操作系関数
-//TODO
+//dxlib int SetGraphMode(int sizeX, int sizeY, int colorBitNum)
+//dxlib int SetFullScreenResolutionMode(int resolutionMode)
+//dxlib int SetFullScreenScalingMode(int scalingMode)
+//dxlib int GetScreenState(int *sizeX, int *sizeY, int *colorBitDepth)
+//dxlib int SetDrawArea(int x1, int y1, int x2, int y2)
+//dxlib int ClearDrawScreen()
+//dxlib int SetBackgroundColor(int red, int green, int blue)
+//dxlib unsigned int GetColor(int red, int green, int blue)
+//dxlib int SetDrawScreen(int drawScreen)
+//dxlib int ScreenFlip()
+//dxlib int SetFullSceneAntiAliasingMode(int samples, int quality)
 
 // 動画関係関数
 //TODO
