@@ -226,7 +226,10 @@ package dxlib
 
 // ウインドウモード関係
 //dxlib int ChangeWindowMode(int flag)
-//TODO
+//dxlib int SetMainWindowText(char *windowText)
+//dxlib int SetWindowIconID(int id)
+//dxlib int SetWindowSizeChangeEnableFlag(int flag)
+//dxlib int SetWindowSizeExtendRate(double exRate)
 
 // 通信関係
 //TODO

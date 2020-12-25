@@ -170,6 +170,10 @@ var (
 	dx_GetRand                              *syscall.LazyProc
 	dx_SRand                                *syscall.LazyProc
 	dx_ChangeWindowMode                     *syscall.LazyProc
+	dx_SetMainWindowText                    *syscall.LazyProc
+	dx_SetWindowIconID                      *syscall.LazyProc
+	dx_SetWindowSizeChangeEnableFlag        *syscall.LazyProc
+	dx_SetWindowSizeExtendRate              *syscall.LazyProc
 	dx_SetOutApplicationLogValidFlag        *syscall.LazyProc
 )
 
@@ -335,6 +339,10 @@ func Init(dllFile string) {
 	dx_GetRand = mod.NewProc("dx_GetRand")
 	dx_SRand = mod.NewProc("dx_SRand")
 	dx_ChangeWindowMode = mod.NewProc("dx_ChangeWindowMode")
+	dx_SetMainWindowText = mod.NewProc("dx_SetMainWindowText")
+	dx_SetWindowIconID = mod.NewProc("dx_SetWindowIconID")
+	dx_SetWindowSizeChangeEnableFlag = mod.NewProc("dx_SetWindowSizeChangeEnableFlag")
+	dx_SetWindowSizeExtendRate = mod.NewProc("dx_SetWindowSizeExtendRate")
 	dx_SetOutApplicationLogValidFlag = mod.NewProc("dx_SetOutApplicationLogValidFlag")
 
 }
@@ -1767,6 +1775,42 @@ func ChangeWindowMode(flag int) int {
 	}
 
 	res, _, _ := dx_ChangeWindowMode.Call(pint(flag))
+	return int(res)
+}
+
+func SetMainWindowText(windowText string) int {
+	if dx_SetMainWindowText == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_SetMainWindowText.Call(pstring(windowText))
+	return int(res)
+}
+
+func SetWindowIconID(id int) int {
+	if dx_SetWindowIconID == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_SetWindowIconID.Call(pint(id))
+	return int(res)
+}
+
+func SetWindowSizeChangeEnableFlag(flag int) int {
+	if dx_SetWindowSizeChangeEnableFlag == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_SetWindowSizeChangeEnableFlag.Call(pint(flag))
+	return int(res)
+}
+
+func SetWindowSizeExtendRate(exRate float64) int {
+	if dx_SetWindowSizeExtendRate == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_SetWindowSizeExtendRate.Call(pfloat64(exRate))
 	return int(res)
 }
 
