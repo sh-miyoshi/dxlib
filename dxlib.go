@@ -217,7 +217,7 @@ package dxlib
 
 // 時間関係の関数
 //dxlib int GetNowCount()
-//TODO LONGLONG GetNowHiPerformanceCount()
+//dxlib LONGLONG GetNowHiPerformanceCount()
 //TODO int GetDateTime(DATEDATA *dataBuf)
 
 // 乱数取得関数
@@ -253,10 +253,10 @@ package dxlib
 
 // ファイル読み込み関係
 //dxlib int FileRead_open(char *filePath, int async)
-//TODO LONGLONG FileRead_size(char *filePath)
+//dxlib LONGLONG FileRead_size(char *filePath)
 //dxlib int FileRead_close(int fileHandle)
-//TODO LONGLONG FileRead_tell(int fileHandle)
-//TODO int FileRead_seek(int fileHandle, LONGLONG offset, int origin)
+//dxlib LONGLONG FileRead_tell(int fileHandle)
+//dxlib int FileRead_seek(int fileHandle, LONGLONG offset, int origin)
 //TODO int FileRead_read(void *buffer, int readSize, int fileHandle)
 //dxlib int FileRead_eof(int fileHandle)
 //TODO int FileRead_gets(char *buffer, int num, int fileHandle) // array char

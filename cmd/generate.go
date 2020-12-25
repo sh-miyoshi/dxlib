@@ -14,7 +14,10 @@ import (
 )
 
 var (
-	cTypes = []string{"int *", "int", "unsigned int", "char *", "char", "double", "float"}
+	cTypes = []string{"int *", "int", "unsigned int", "char *", "char", "double", "float", "LONGLONG"}
+
+	// Sort in the same order as cTypes
+	goTypes = []string{"*int", "int", "uint", "string", "byte", "float64", "float32", "int64"}
 )
 
 type dxFunc struct {
@@ -30,8 +33,6 @@ type argument struct {
 }
 
 func convToGoType(cType string) (string, bool) {
-	// Sort in the same order as cTypes
-	goTypes := []string{"*int", "int", "uint", "string", "byte", "float64", "float32"}
 	for i, t := range cTypes {
 		if t == cType {
 			return goTypes[i], true
@@ -255,5 +256,9 @@ func pfloat32(f float32) uintptr {
 
 func pfloat64(f float64) uintptr {
 	return uintptr(f)
+}
+
+func pint64(i int64) uintptr {
+	return uintptr(i)
 }
 `

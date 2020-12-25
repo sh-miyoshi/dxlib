@@ -167,6 +167,7 @@ var (
 	dx_WaitVSync                            *syscall.LazyProc
 	dx_WaitKey                              *syscall.LazyProc
 	dx_GetNowCount                          *syscall.LazyProc
+	dx_GetNowHiPerformanceCount             *syscall.LazyProc
 	dx_GetRand                              *syscall.LazyProc
 	dx_SRand                                *syscall.LazyProc
 	dx_ChangeWindowMode                     *syscall.LazyProc
@@ -186,7 +187,10 @@ var (
 	dx_DeleteUDPSocket                      *syscall.LazyProc
 	dx_CheckNetWorkRecvUDP                  *syscall.LazyProc
 	dx_FileRead_open                        *syscall.LazyProc
+	dx_FileRead_size                        *syscall.LazyProc
 	dx_FileRead_close                       *syscall.LazyProc
+	dx_FileRead_tell                        *syscall.LazyProc
+	dx_FileRead_seek                        *syscall.LazyProc
 	dx_FileRead_eof                         *syscall.LazyProc
 	dx_FileRead_getc                        *syscall.LazyProc
 	dx_SetOutApplicationLogValidFlag        *syscall.LazyProc
@@ -351,6 +355,7 @@ func Init(dllFile string) {
 	dx_WaitVSync = mod.NewProc("dx_WaitVSync")
 	dx_WaitKey = mod.NewProc("dx_WaitKey")
 	dx_GetNowCount = mod.NewProc("dx_GetNowCount")
+	dx_GetNowHiPerformanceCount = mod.NewProc("dx_GetNowHiPerformanceCount")
 	dx_GetRand = mod.NewProc("dx_GetRand")
 	dx_SRand = mod.NewProc("dx_SRand")
 	dx_ChangeWindowMode = mod.NewProc("dx_ChangeWindowMode")
@@ -370,7 +375,10 @@ func Init(dllFile string) {
 	dx_DeleteUDPSocket = mod.NewProc("dx_DeleteUDPSocket")
 	dx_CheckNetWorkRecvUDP = mod.NewProc("dx_CheckNetWorkRecvUDP")
 	dx_FileRead_open = mod.NewProc("dx_FileRead_open")
+	dx_FileRead_size = mod.NewProc("dx_FileRead_size")
 	dx_FileRead_close = mod.NewProc("dx_FileRead_close")
+	dx_FileRead_tell = mod.NewProc("dx_FileRead_tell")
+	dx_FileRead_seek = mod.NewProc("dx_FileRead_seek")
 	dx_FileRead_eof = mod.NewProc("dx_FileRead_eof")
 	dx_FileRead_getc = mod.NewProc("dx_FileRead_getc")
 	dx_SetOutApplicationLogValidFlag = mod.NewProc("dx_SetOutApplicationLogValidFlag")
@@ -1781,6 +1789,15 @@ func GetNowCount() int {
 	return int(res)
 }
 
+func GetNowHiPerformanceCount() int64 {
+	if dx_GetNowHiPerformanceCount == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_GetNowHiPerformanceCount.Call()
+	return int64(res)
+}
+
 func GetRand(randMax int) int {
 	if dx_GetRand == nil {
 		panic("Please call dxlib.Init() at first")
@@ -1952,12 +1969,39 @@ func FileRead_open(filePath string, async int) int {
 	return int(res)
 }
 
+func FileRead_size(filePath string) int64 {
+	if dx_FileRead_size == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_FileRead_size.Call(pstring(filePath))
+	return int64(res)
+}
+
 func FileRead_close(fileHandle int) int {
 	if dx_FileRead_close == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
 	res, _, _ := dx_FileRead_close.Call(pint(fileHandle))
+	return int(res)
+}
+
+func FileRead_tell(fileHandle int) int64 {
+	if dx_FileRead_tell == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_FileRead_tell.Call(pint(fileHandle))
+	return int64(res)
+}
+
+func FileRead_seek(fileHandle int, offset int64, origin int) int {
+	if dx_FileRead_seek == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_FileRead_seek.Call(pint(fileHandle), pint64(offset), pint(origin))
 	return int(res)
 }
 
@@ -2018,4 +2062,8 @@ func pfloat32(f float32) uintptr {
 
 func pfloat64(f float64) uintptr {
 	return uintptr(f)
+}
+
+func pint64(i int64) uintptr {
+	return uintptr(i)
 }
