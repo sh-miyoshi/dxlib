@@ -298,5 +298,26 @@ package dxlib
 //TODO int GetCharBytes(int charCodeFormat, void *str)
 
 // マイナー関数
+//dxlib int SetAlwaysRunFlag(int flag)
 //dxlib int SetOutApplicationLogValidFlag(int flag)
-//TODO
+//dxlib int SetUseDXArchiveFlag(int flag)
+//dxlib int SetDXArchiveExtension(char *extension)
+//dxlib int SetDXArchiveKeyString(char *keyString)
+//dxlib int SetEmulation320x240(int flag)
+//dxlib int SetUse3DFlag(int flag)
+//dxlib int SetWaitVSyncFlag(int flag)
+//dxlib int SetUseDivGraphFlag(int flag)
+//dxlib int LoadPauseGraph(char *fileName)
+//dxlib int ScreenCopy()
+//dxlib int GetColorBitDepth()
+//dxlib int SaveDrawScreen(int x1, int y1, int x2, int y2, char *fileName)
+//TODO int EnumFontName(char *nameBuffer, int nameBufferNum) // array char
+//dxlib int DrawVString(int x, int y, char *str, int color)
+//dxlib int DrawVStringToHandle(int x, int y, char *str, int color, int fontHandle)
+//TODO int CreateGraphFromMem(void *memImage, int memImageSize)
+//TODO int ReCreateGraphFromMem(void *memImage, int memImageSize, int grHandle)
+//dxlib int ReloadFileGraphAll()
+//TODO int SetRestoreGraphCallback(void (* callback)())
+//dxlib int SetCreateSoundDataType(int soundDataType)
+//TODO int LoadSoundMemByMemImage(void *fileImageBuffer, int imageSize)
+//dxlib int SelectMidiMode(int mode)

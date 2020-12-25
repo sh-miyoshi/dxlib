@@ -217,7 +217,24 @@ var (
 	dx_CheckHandleASyncLoad                 *syscall.LazyProc
 	dx_GetASyncLoadNum                      *syscall.LazyProc
 	dx_SetUseCharCodeFormat                 *syscall.LazyProc
+	dx_SetAlwaysRunFlag                     *syscall.LazyProc
 	dx_SetOutApplicationLogValidFlag        *syscall.LazyProc
+	dx_SetUseDXArchiveFlag                  *syscall.LazyProc
+	dx_SetDXArchiveExtension                *syscall.LazyProc
+	dx_SetDXArchiveKeyString                *syscall.LazyProc
+	dx_SetEmulation320x240                  *syscall.LazyProc
+	dx_SetUse3DFlag                         *syscall.LazyProc
+	dx_SetWaitVSyncFlag                     *syscall.LazyProc
+	dx_SetUseDivGraphFlag                   *syscall.LazyProc
+	dx_LoadPauseGraph                       *syscall.LazyProc
+	dx_ScreenCopy                           *syscall.LazyProc
+	dx_GetColorBitDepth                     *syscall.LazyProc
+	dx_SaveDrawScreen                       *syscall.LazyProc
+	dx_DrawVString                          *syscall.LazyProc
+	dx_DrawVStringToHandle                  *syscall.LazyProc
+	dx_ReloadFileGraphAll                   *syscall.LazyProc
+	dx_SetCreateSoundDataType               *syscall.LazyProc
+	dx_SelectMidiMode                       *syscall.LazyProc
 )
 
 func Init(dllFile string) {
@@ -429,7 +446,24 @@ func Init(dllFile string) {
 	dx_CheckHandleASyncLoad = mod.NewProc("dx_CheckHandleASyncLoad")
 	dx_GetASyncLoadNum = mod.NewProc("dx_GetASyncLoadNum")
 	dx_SetUseCharCodeFormat = mod.NewProc("dx_SetUseCharCodeFormat")
+	dx_SetAlwaysRunFlag = mod.NewProc("dx_SetAlwaysRunFlag")
 	dx_SetOutApplicationLogValidFlag = mod.NewProc("dx_SetOutApplicationLogValidFlag")
+	dx_SetUseDXArchiveFlag = mod.NewProc("dx_SetUseDXArchiveFlag")
+	dx_SetDXArchiveExtension = mod.NewProc("dx_SetDXArchiveExtension")
+	dx_SetDXArchiveKeyString = mod.NewProc("dx_SetDXArchiveKeyString")
+	dx_SetEmulation320x240 = mod.NewProc("dx_SetEmulation320x240")
+	dx_SetUse3DFlag = mod.NewProc("dx_SetUse3DFlag")
+	dx_SetWaitVSyncFlag = mod.NewProc("dx_SetWaitVSyncFlag")
+	dx_SetUseDivGraphFlag = mod.NewProc("dx_SetUseDivGraphFlag")
+	dx_LoadPauseGraph = mod.NewProc("dx_LoadPauseGraph")
+	dx_ScreenCopy = mod.NewProc("dx_ScreenCopy")
+	dx_GetColorBitDepth = mod.NewProc("dx_GetColorBitDepth")
+	dx_SaveDrawScreen = mod.NewProc("dx_SaveDrawScreen")
+	dx_DrawVString = mod.NewProc("dx_DrawVString")
+	dx_DrawVStringToHandle = mod.NewProc("dx_DrawVStringToHandle")
+	dx_ReloadFileGraphAll = mod.NewProc("dx_ReloadFileGraphAll")
+	dx_SetCreateSoundDataType = mod.NewProc("dx_SetCreateSoundDataType")
+	dx_SelectMidiMode = mod.NewProc("dx_SelectMidiMode")
 
 }
 
@@ -2287,12 +2321,165 @@ func SetUseCharCodeFormat(charCodeFormat int) int {
 	return int(res)
 }
 
+func SetAlwaysRunFlag(flag int) int {
+	if dx_SetAlwaysRunFlag == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_SetAlwaysRunFlag.Call(pint(flag))
+	return int(res)
+}
+
 func SetOutApplicationLogValidFlag(flag int) int {
 	if dx_SetOutApplicationLogValidFlag == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
 	res, _, _ := dx_SetOutApplicationLogValidFlag.Call(pint(flag))
+	return int(res)
+}
+
+func SetUseDXArchiveFlag(flag int) int {
+	if dx_SetUseDXArchiveFlag == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_SetUseDXArchiveFlag.Call(pint(flag))
+	return int(res)
+}
+
+func SetDXArchiveExtension(extension string) int {
+	if dx_SetDXArchiveExtension == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_SetDXArchiveExtension.Call(pstring(extension))
+	return int(res)
+}
+
+func SetDXArchiveKeyString(keyString string) int {
+	if dx_SetDXArchiveKeyString == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_SetDXArchiveKeyString.Call(pstring(keyString))
+	return int(res)
+}
+
+func SetEmulation320x240(flag int) int {
+	if dx_SetEmulation320x240 == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_SetEmulation320x240.Call(pint(flag))
+	return int(res)
+}
+
+func SetUse3DFlag(flag int) int {
+	if dx_SetUse3DFlag == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_SetUse3DFlag.Call(pint(flag))
+	return int(res)
+}
+
+func SetWaitVSyncFlag(flag int) int {
+	if dx_SetWaitVSyncFlag == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_SetWaitVSyncFlag.Call(pint(flag))
+	return int(res)
+}
+
+func SetUseDivGraphFlag(flag int) int {
+	if dx_SetUseDivGraphFlag == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_SetUseDivGraphFlag.Call(pint(flag))
+	return int(res)
+}
+
+func LoadPauseGraph(fileName string) int {
+	if dx_LoadPauseGraph == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_LoadPauseGraph.Call(pstring(fileName))
+	return int(res)
+}
+
+func ScreenCopy() int {
+	if dx_ScreenCopy == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_ScreenCopy.Call()
+	return int(res)
+}
+
+func GetColorBitDepth() int {
+	if dx_GetColorBitDepth == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_GetColorBitDepth.Call()
+	return int(res)
+}
+
+func SaveDrawScreen(x1 int, y1 int, x2 int, y2 int, fileName string) int {
+	if dx_SaveDrawScreen == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_SaveDrawScreen.Call(pint(x1), pint(y1), pint(x2), pint(y2), pstring(fileName))
+	return int(res)
+}
+
+func DrawVString(x int, y int, str string, color int) int {
+	if dx_DrawVString == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_DrawVString.Call(pint(x), pint(y), pstring(str), pint(color))
+	return int(res)
+}
+
+func DrawVStringToHandle(x int, y int, str string, color int, fontHandle int) int {
+	if dx_DrawVStringToHandle == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_DrawVStringToHandle.Call(pint(x), pint(y), pstring(str), pint(color), pint(fontHandle))
+	return int(res)
+}
+
+func ReloadFileGraphAll() int {
+	if dx_ReloadFileGraphAll == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_ReloadFileGraphAll.Call()
+	return int(res)
+}
+
+func SetCreateSoundDataType(soundDataType int) int {
+	if dx_SetCreateSoundDataType == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_SetCreateSoundDataType.Call(pint(soundDataType))
+	return int(res)
+}
+
+func SelectMidiMode(mode int) int {
+	if dx_SelectMidiMode == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_SelectMidiMode.Call(pint(mode))
 	return int(res)
 }
 
