@@ -115,6 +115,7 @@ var (
 	dx_GetTouchInput                        *syscall.LazyProc
 	dx_CheckHitKeyAll                       *syscall.LazyProc
 	dx_CheckHitKey                          *syscall.LazyProc
+	dx_GetHitKeyStateAll                    *syscall.LazyProc
 	dx_GetInputChar                         *syscall.LazyProc
 	dx_GetInputCharWait                     *syscall.LazyProc
 	dx_ClearInputCharBuf                    *syscall.LazyProc
@@ -346,6 +347,7 @@ func Init(dllFile string) {
 	dx_GetTouchInput = mod.NewProc("dx_GetTouchInput")
 	dx_CheckHitKeyAll = mod.NewProc("dx_CheckHitKeyAll")
 	dx_CheckHitKey = mod.NewProc("dx_CheckHitKey")
+	dx_GetHitKeyStateAll = mod.NewProc("dx_GetHitKeyStateAll")
 	dx_GetInputChar = mod.NewProc("dx_GetInputChar")
 	dx_GetInputCharWait = mod.NewProc("dx_GetInputCharWait")
 	dx_ClearInputCharBuf = mod.NewProc("dx_ClearInputCharBuf")
@@ -1404,6 +1406,15 @@ func CheckHitKey(keyCode int) int {
 	}
 
 	res, _, _ := dx_CheckHitKey.Call(pint(keyCode))
+	return int(res)
+}
+
+func GetHitKeyStateAll(keyStateBuf []byte) int {
+	if dx_GetHitKeyStateAll == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_GetHitKeyStateAll.Call(parraybyte(keyStateBuf))
 	return int(res)
 }
 
@@ -2542,9 +2553,9 @@ func pint64(i int64) uintptr {
 }
 
 func parraybyte(b []byte) uintptr {
-	return uintptr(unsafe.Pointer(&b))
+	return uintptr(unsafe.Pointer(&b[0]))
 }
 
 func parrayint(i []int) uintptr {
-	return uintptr(unsafe.Pointer(&i))
+	return uintptr(unsafe.Pointer(&i[0]))
 }

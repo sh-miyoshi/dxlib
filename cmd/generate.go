@@ -265,10 +265,10 @@ func pint64(i int64) uintptr {
 }
 
 func parraybyte(b []byte) uintptr {
-	return uintptr(unsafe.Pointer(&b))
+	return uintptr(unsafe.Pointer(&b[0]))
 }
 
 func parrayint(i []int) uintptr {
-	return uintptr(unsafe.Pointer(&i))
+	return uintptr(unsafe.Pointer(&i[0]))
 }
 `

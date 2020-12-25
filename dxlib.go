@@ -146,7 +146,7 @@ package dxlib
 //dxlib int GetTouchInput(int inputNo, int *positionX, int *positionY, int *id, int *device)
 //dxlib int CheckHitKeyAll(int checkType)
 //dxlib int CheckHitKey(int keyCode)
-//TODO int GetHitKeyStateAll(char *keyStateBuf) // char array
+//dxlib int GetHitKeyStateAll(arraychar keyStateBuf)
 //dxlib char GetInputChar(int deleteFlag)
 //dxlib char GetInputCharWait(int deleteFlag)
 //dxlib int ClearInputCharBuf()
@@ -247,7 +247,7 @@ package dxlib
 //TODO int GetNetWorkIP(int netHandle, IPDATA *ipBuf)
 //dxlib int MakeUDPSocket(int recvPort)
 //dxlib int DeleteUDPSocket(int netUDPHandle)
-//TODO int NetWorkSendUDP(intnetUDPHandle, IPDATA sendIP, int sendPort, void *buffer, int length)
+//TODO int NetWorkSendUDP(int netUDPHandle, IPDATA sendIP, int sendPort, void *buffer, int length)
 //TODO int NetWorkRecvUDP(int netUDPHandle, IPDATA *recvIP, int *recvPort, void *buffer, int length, int peek)
 //dxlib int CheckNetWorkRecvUDP(int netUDPHandle)
 
