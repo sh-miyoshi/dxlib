@@ -211,7 +211,9 @@ package dxlib
 //dxlib int SetVolumeMusic(int volume)
 
 // ウエイト関係の関数
-//TODO
+//dxlib int WaitTimer(int waitTime)
+//dxlib int WaitVSync(int syncNum)
+//dxlib int WaitKey()
 
 // 時間関係の関数
 //TODO

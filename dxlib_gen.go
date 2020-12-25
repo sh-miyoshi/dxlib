@@ -163,6 +163,9 @@ var (
 	dx_CheckMusic                           *syscall.LazyProc
 	dx_StopMusic                            *syscall.LazyProc
 	dx_SetVolumeMusic                       *syscall.LazyProc
+	dx_WaitTimer                            *syscall.LazyProc
+	dx_WaitVSync                            *syscall.LazyProc
+	dx_WaitKey                              *syscall.LazyProc
 	dx_ChangeWindowMode                     *syscall.LazyProc
 	dx_SetOutApplicationLogValidFlag        *syscall.LazyProc
 )
@@ -322,6 +325,9 @@ func Init(dllFile string) {
 	dx_CheckMusic = mod.NewProc("dx_CheckMusic")
 	dx_StopMusic = mod.NewProc("dx_StopMusic")
 	dx_SetVolumeMusic = mod.NewProc("dx_SetVolumeMusic")
+	dx_WaitTimer = mod.NewProc("dx_WaitTimer")
+	dx_WaitVSync = mod.NewProc("dx_WaitVSync")
+	dx_WaitKey = mod.NewProc("dx_WaitKey")
 	dx_ChangeWindowMode = mod.NewProc("dx_ChangeWindowMode")
 	dx_SetOutApplicationLogValidFlag = mod.NewProc("dx_SetOutApplicationLogValidFlag")
 
@@ -1692,6 +1698,33 @@ func SetVolumeMusic(volume int) int {
 	}
 
 	res, _, _ := dx_SetVolumeMusic.Call(pint(volume))
+	return int(res)
+}
+
+func WaitTimer(waitTime int) int {
+	if dx_WaitTimer == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_WaitTimer.Call(pint(waitTime))
+	return int(res)
+}
+
+func WaitVSync(syncNum int) int {
+	if dx_WaitVSync == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_WaitVSync.Call(pint(syncNum))
+	return int(res)
+}
+
+func WaitKey() int {
+	if dx_WaitKey == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_WaitKey.Call()
 	return int(res)
 }
 
