@@ -289,7 +289,9 @@ package dxlib
 //dxlib int CreateDivGraphFromSoftImage(int siHandle, int allnum, int xnum, int ynum, int sizeX, int sizeY, int *handleBuf)
 
 // 非同期読み込み関係
-//TODO
+//dxlib int SetUseASyncLoadFlag(int flag)
+//dxlib int CheckHandleASyncLoad(int handle)
+//dxlib int GetASyncLoadNum()
 
 // 文字関係関数
 //TODO

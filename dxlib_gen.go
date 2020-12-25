@@ -213,6 +213,9 @@ var (
 	dx_DrawSoftImage                        *syscall.LazyProc
 	dx_CreateGraphFromSoftImage             *syscall.LazyProc
 	dx_CreateDivGraphFromSoftImage          *syscall.LazyProc
+	dx_SetUseASyncLoadFlag                  *syscall.LazyProc
+	dx_CheckHandleASyncLoad                 *syscall.LazyProc
+	dx_GetASyncLoadNum                      *syscall.LazyProc
 	dx_SetOutApplicationLogValidFlag        *syscall.LazyProc
 )
 
@@ -421,6 +424,9 @@ func Init(dllFile string) {
 	dx_DrawSoftImage = mod.NewProc("dx_DrawSoftImage")
 	dx_CreateGraphFromSoftImage = mod.NewProc("dx_CreateGraphFromSoftImage")
 	dx_CreateDivGraphFromSoftImage = mod.NewProc("dx_CreateDivGraphFromSoftImage")
+	dx_SetUseASyncLoadFlag = mod.NewProc("dx_SetUseASyncLoadFlag")
+	dx_CheckHandleASyncLoad = mod.NewProc("dx_CheckHandleASyncLoad")
+	dx_GetASyncLoadNum = mod.NewProc("dx_GetASyncLoadNum")
 	dx_SetOutApplicationLogValidFlag = mod.NewProc("dx_SetOutApplicationLogValidFlag")
 
 }
@@ -2240,6 +2246,33 @@ func CreateDivGraphFromSoftImage(siHandle int, allnum int, xnum int, ynum int, s
 	}
 
 	res, _, _ := dx_CreateDivGraphFromSoftImage.Call(pint(siHandle), pint(allnum), pint(xnum), pint(ynum), pint(sizeX), pint(sizeY), ppint(handleBuf))
+	return int(res)
+}
+
+func SetUseASyncLoadFlag(flag int) int {
+	if dx_SetUseASyncLoadFlag == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_SetUseASyncLoadFlag.Call(pint(flag))
+	return int(res)
+}
+
+func CheckHandleASyncLoad(handle int) int {
+	if dx_CheckHandleASyncLoad == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_CheckHandleASyncLoad.Call(pint(handle))
+	return int(res)
+}
+
+func GetASyncLoadNum() int {
+	if dx_GetASyncLoadNum == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_GetASyncLoadNum.Call()
 	return int(res)
 }
 
