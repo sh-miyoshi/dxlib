@@ -216,6 +216,7 @@ var (
 	dx_SetUseASyncLoadFlag                  *syscall.LazyProc
 	dx_CheckHandleASyncLoad                 *syscall.LazyProc
 	dx_GetASyncLoadNum                      *syscall.LazyProc
+	dx_SetUseCharCodeFormat                 *syscall.LazyProc
 	dx_SetOutApplicationLogValidFlag        *syscall.LazyProc
 )
 
@@ -427,6 +428,7 @@ func Init(dllFile string) {
 	dx_SetUseASyncLoadFlag = mod.NewProc("dx_SetUseASyncLoadFlag")
 	dx_CheckHandleASyncLoad = mod.NewProc("dx_CheckHandleASyncLoad")
 	dx_GetASyncLoadNum = mod.NewProc("dx_GetASyncLoadNum")
+	dx_SetUseCharCodeFormat = mod.NewProc("dx_SetUseCharCodeFormat")
 	dx_SetOutApplicationLogValidFlag = mod.NewProc("dx_SetOutApplicationLogValidFlag")
 
 }
@@ -2273,6 +2275,15 @@ func GetASyncLoadNum() int {
 	}
 
 	res, _, _ := dx_GetASyncLoadNum.Call()
+	return int(res)
+}
+
+func SetUseCharCodeFormat(charCodeFormat int) int {
+	if dx_SetUseCharCodeFormat == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_SetUseCharCodeFormat.Call(pint(charCodeFormat))
 	return int(res)
 }
 

@@ -294,7 +294,8 @@ package dxlib
 //dxlib int GetASyncLoadNum()
 
 // 文字関係関数
-//TODO
+//dxlib int SetUseCharCodeFormat(int charCodeFormat)
+//TODO int GetCharBytes(int charCodeFormat, void *str)
 
 // マイナー関数
 //dxlib int SetOutApplicationLogValidFlag(int flag)
