@@ -167,6 +167,8 @@ var (
 	dx_WaitVSync                            *syscall.LazyProc
 	dx_WaitKey                              *syscall.LazyProc
 	dx_GetNowCount                          *syscall.LazyProc
+	dx_GetRand                              *syscall.LazyProc
+	dx_SRand                                *syscall.LazyProc
 	dx_ChangeWindowMode                     *syscall.LazyProc
 	dx_SetOutApplicationLogValidFlag        *syscall.LazyProc
 )
@@ -330,6 +332,8 @@ func Init(dllFile string) {
 	dx_WaitVSync = mod.NewProc("dx_WaitVSync")
 	dx_WaitKey = mod.NewProc("dx_WaitKey")
 	dx_GetNowCount = mod.NewProc("dx_GetNowCount")
+	dx_GetRand = mod.NewProc("dx_GetRand")
+	dx_SRand = mod.NewProc("dx_SRand")
 	dx_ChangeWindowMode = mod.NewProc("dx_ChangeWindowMode")
 	dx_SetOutApplicationLogValidFlag = mod.NewProc("dx_SetOutApplicationLogValidFlag")
 
@@ -1736,6 +1740,24 @@ func GetNowCount() int {
 	}
 
 	res, _, _ := dx_GetNowCount.Call()
+	return int(res)
+}
+
+func GetRand(randMax int) int {
+	if dx_GetRand == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_GetRand.Call(pint(randMax))
+	return int(res)
+}
+
+func SRand(seed int) int {
+	if dx_SRand == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_SRand.Call(pint(seed))
 	return int(res)
 }
 

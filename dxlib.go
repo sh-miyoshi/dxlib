@@ -221,7 +221,8 @@ package dxlib
 //TODO int GetDateTime(DATEDATA *dataBuf)
 
 // 乱数取得関数
-//TODO
+//dxlib int GetRand(int randMax)
+//dxlib int SRand(int seed)
 
 // ウインドウモード関係
 //dxlib int ChangeWindowMode(int flag)
