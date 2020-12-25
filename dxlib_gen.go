@@ -193,6 +193,26 @@ var (
 	dx_FileRead_seek                        *syscall.LazyProc
 	dx_FileRead_eof                         *syscall.LazyProc
 	dx_FileRead_getc                        *syscall.LazyProc
+	dx_LoadSoftImage                        *syscall.LazyProc
+	dx_LoadARGB8ColorSoftImage              *syscall.LazyProc
+	dx_LoadXRGB8ColorSoftImage              *syscall.LazyProc
+	dx_MakeARGB8ColorSoftImage              *syscall.LazyProc
+	dx_MakeXRGB8ColorSoftImage              *syscall.LazyProc
+	dx_MakePAL8ColorSoftImage               *syscall.LazyProc
+	dx_DeleteSoftImage                      *syscall.LazyProc
+	dx_InitSoftImage                        *syscall.LazyProc
+	dx_GetSoftImageSize                     *syscall.LazyProc
+	dx_FillSoftImage                        *syscall.LazyProc
+	dx_SetPaletteSoftImage                  *syscall.LazyProc
+	dx_GetPaletteSoftImage                  *syscall.LazyProc
+	dx_DrawPixelPalCodeSoftImage            *syscall.LazyProc
+	dx_GetPixelPalCodeSoftImage             *syscall.LazyProc
+	dx_DrawPixelSoftImage                   *syscall.LazyProc
+	dx_GetPixelSoftImage                    *syscall.LazyProc
+	dx_BltSoftImage                         *syscall.LazyProc
+	dx_DrawSoftImage                        *syscall.LazyProc
+	dx_CreateGraphFromSoftImage             *syscall.LazyProc
+	dx_CreateDivGraphFromSoftImage          *syscall.LazyProc
 	dx_SetOutApplicationLogValidFlag        *syscall.LazyProc
 )
 
@@ -381,6 +401,26 @@ func Init(dllFile string) {
 	dx_FileRead_seek = mod.NewProc("dx_FileRead_seek")
 	dx_FileRead_eof = mod.NewProc("dx_FileRead_eof")
 	dx_FileRead_getc = mod.NewProc("dx_FileRead_getc")
+	dx_LoadSoftImage = mod.NewProc("dx_LoadSoftImage")
+	dx_LoadARGB8ColorSoftImage = mod.NewProc("dx_LoadARGB8ColorSoftImage")
+	dx_LoadXRGB8ColorSoftImage = mod.NewProc("dx_LoadXRGB8ColorSoftImage")
+	dx_MakeARGB8ColorSoftImage = mod.NewProc("dx_MakeARGB8ColorSoftImage")
+	dx_MakeXRGB8ColorSoftImage = mod.NewProc("dx_MakeXRGB8ColorSoftImage")
+	dx_MakePAL8ColorSoftImage = mod.NewProc("dx_MakePAL8ColorSoftImage")
+	dx_DeleteSoftImage = mod.NewProc("dx_DeleteSoftImage")
+	dx_InitSoftImage = mod.NewProc("dx_InitSoftImage")
+	dx_GetSoftImageSize = mod.NewProc("dx_GetSoftImageSize")
+	dx_FillSoftImage = mod.NewProc("dx_FillSoftImage")
+	dx_SetPaletteSoftImage = mod.NewProc("dx_SetPaletteSoftImage")
+	dx_GetPaletteSoftImage = mod.NewProc("dx_GetPaletteSoftImage")
+	dx_DrawPixelPalCodeSoftImage = mod.NewProc("dx_DrawPixelPalCodeSoftImage")
+	dx_GetPixelPalCodeSoftImage = mod.NewProc("dx_GetPixelPalCodeSoftImage")
+	dx_DrawPixelSoftImage = mod.NewProc("dx_DrawPixelSoftImage")
+	dx_GetPixelSoftImage = mod.NewProc("dx_GetPixelSoftImage")
+	dx_BltSoftImage = mod.NewProc("dx_BltSoftImage")
+	dx_DrawSoftImage = mod.NewProc("dx_DrawSoftImage")
+	dx_CreateGraphFromSoftImage = mod.NewProc("dx_CreateGraphFromSoftImage")
+	dx_CreateDivGraphFromSoftImage = mod.NewProc("dx_CreateDivGraphFromSoftImage")
 	dx_SetOutApplicationLogValidFlag = mod.NewProc("dx_SetOutApplicationLogValidFlag")
 
 }
@@ -2020,6 +2060,186 @@ func FileRead_getc(fileHandle int) int {
 	}
 
 	res, _, _ := dx_FileRead_getc.Call(pint(fileHandle))
+	return int(res)
+}
+
+func LoadSoftImage(fileName string) int {
+	if dx_LoadSoftImage == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_LoadSoftImage.Call(pstring(fileName))
+	return int(res)
+}
+
+func LoadARGB8ColorSoftImage(fileName string) int {
+	if dx_LoadARGB8ColorSoftImage == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_LoadARGB8ColorSoftImage.Call(pstring(fileName))
+	return int(res)
+}
+
+func LoadXRGB8ColorSoftImage(fileName string) int {
+	if dx_LoadXRGB8ColorSoftImage == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_LoadXRGB8ColorSoftImage.Call(pstring(fileName))
+	return int(res)
+}
+
+func MakeARGB8ColorSoftImage(sizeX int, sizeY int) int {
+	if dx_MakeARGB8ColorSoftImage == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_MakeARGB8ColorSoftImage.Call(pint(sizeX), pint(sizeY))
+	return int(res)
+}
+
+func MakeXRGB8ColorSoftImage(sizeX int, sizeY int) int {
+	if dx_MakeXRGB8ColorSoftImage == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_MakeXRGB8ColorSoftImage.Call(pint(sizeX), pint(sizeY))
+	return int(res)
+}
+
+func MakePAL8ColorSoftImage(sizeX int, sizeY int) int {
+	if dx_MakePAL8ColorSoftImage == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_MakePAL8ColorSoftImage.Call(pint(sizeX), pint(sizeY))
+	return int(res)
+}
+
+func DeleteSoftImage(siHandle int) int {
+	if dx_DeleteSoftImage == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_DeleteSoftImage.Call(pint(siHandle))
+	return int(res)
+}
+
+func InitSoftImage() int {
+	if dx_InitSoftImage == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_InitSoftImage.Call()
+	return int(res)
+}
+
+func GetSoftImageSize(siHandle int, width *int, height *int) int {
+	if dx_GetSoftImageSize == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_GetSoftImageSize.Call(pint(siHandle), ppint(width), ppint(height))
+	return int(res)
+}
+
+func FillSoftImage(siHandle int, r int, g int, b int, a int) int {
+	if dx_FillSoftImage == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_FillSoftImage.Call(pint(siHandle), pint(r), pint(g), pint(b), pint(a))
+	return int(res)
+}
+
+func SetPaletteSoftImage(siHandle int, paletteNo int, r int, g int, b int, a int) int {
+	if dx_SetPaletteSoftImage == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_SetPaletteSoftImage.Call(pint(siHandle), pint(paletteNo), pint(r), pint(g), pint(b), pint(a))
+	return int(res)
+}
+
+func GetPaletteSoftImage(siHandle int, paletteNo int, r *int, g *int, b *int, a *int) int {
+	if dx_GetPaletteSoftImage == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_GetPaletteSoftImage.Call(pint(siHandle), pint(paletteNo), ppint(r), ppint(g), ppint(b), ppint(a))
+	return int(res)
+}
+
+func DrawPixelPalCodeSoftImage(siHandle int, x int, y int, palNo int) int {
+	if dx_DrawPixelPalCodeSoftImage == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_DrawPixelPalCodeSoftImage.Call(pint(siHandle), pint(x), pint(y), pint(palNo))
+	return int(res)
+}
+
+func GetPixelPalCodeSoftImage(siHandle int, x int, y int) int {
+	if dx_GetPixelPalCodeSoftImage == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_GetPixelPalCodeSoftImage.Call(pint(siHandle), pint(x), pint(y))
+	return int(res)
+}
+
+func DrawPixelSoftImage(siHandle int, x int, y int, r int, g int, b int, a int) int {
+	if dx_DrawPixelSoftImage == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_DrawPixelSoftImage.Call(pint(siHandle), pint(x), pint(y), pint(r), pint(g), pint(b), pint(a))
+	return int(res)
+}
+
+func GetPixelSoftImage(siHandle int, x int, y int, r *int, g *int, b *int, a *int) int {
+	if dx_GetPixelSoftImage == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_GetPixelSoftImage.Call(pint(siHandle), pint(x), pint(y), ppint(r), ppint(g), ppint(b), ppint(a))
+	return int(res)
+}
+
+func BltSoftImage(srcX int, srcY int, srcSizeX int, srcSizeY int, srcSIHandle int, destX int, destY int, destSIHandle int) int {
+	if dx_BltSoftImage == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_BltSoftImage.Call(pint(srcX), pint(srcY), pint(srcSizeX), pint(srcSizeY), pint(srcSIHandle), pint(destX), pint(destY), pint(destSIHandle))
+	return int(res)
+}
+
+func DrawSoftImage(x int, y int, siHandle int) int {
+	if dx_DrawSoftImage == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_DrawSoftImage.Call(pint(x), pint(y), pint(siHandle))
+	return int(res)
+}
+
+func CreateGraphFromSoftImage(siHandle int) int {
+	if dx_CreateGraphFromSoftImage == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_CreateGraphFromSoftImage.Call(pint(siHandle))
+	return int(res)
+}
+
+func CreateDivGraphFromSoftImage(siHandle int, allnum int, xnum int, ynum int, sizeX int, sizeY int, handleBuf *int) int {
+	if dx_CreateDivGraphFromSoftImage == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_CreateDivGraphFromSoftImage.Call(pint(siHandle), pint(allnum), pint(xnum), pint(ynum), pint(sizeX), pint(sizeY), ppint(handleBuf))
 	return int(res)
 }
 

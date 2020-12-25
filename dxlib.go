@@ -264,7 +264,29 @@ package dxlib
 //TODO int FileRead_scanf(int fileHandle, char *format, ...)
 
 // ドット単位で画像にアクセスしたい関係
-//TODO
+//dxlib int LoadSoftImage(char *fileName)
+//dxlib int LoadARGB8ColorSoftImage(char *fileName)
+//dxlib int LoadXRGB8ColorSoftImage(char *fileName)
+//TODO int LoadSoftImageToMem(void *fileImage, int fileImageSize)
+//TODO int LoadARGB8ColorSoftImageToMem(void *fileImage, int fileImageSize)
+//TODO int LoadXRGB8ColorSoftImageToMem(void *fileImage, int fileImageSize)
+//dxlib int MakeARGB8ColorSoftImage(int sizeX, int sizeY)
+//dxlib int MakeXRGB8ColorSoftImage(int sizeX, int sizeY)
+//dxlib int MakePAL8ColorSoftImage(int sizeX, int sizeY)
+//dxlib int DeleteSoftImage(int siHandle)
+//dxlib int InitSoftImage()
+//dxlib int GetSoftImageSize(int siHandle, int *width, int *height)
+//dxlib int FillSoftImage(int siHandle, int r, int g, int b, int a)
+//dxlib int SetPaletteSoftImage(int siHandle, int paletteNo, int r, int g, int b, int a)
+//dxlib int GetPaletteSoftImage(int siHandle, int paletteNo, int *r, int *g, int *b, int *a)
+//dxlib int DrawPixelPalCodeSoftImage(int siHandle, int x, int y, int palNo)
+//dxlib int GetPixelPalCodeSoftImage(int siHandle, int x, int y)
+//dxlib int DrawPixelSoftImage(int siHandle, int x, int y, int r, int g, int b, int a)
+//dxlib int GetPixelSoftImage(int siHandle, int x, int y, int *r, int *g, int *b, int *a)
+//dxlib int BltSoftImage(int srcX, int srcY, int srcSizeX, int srcSizeY, int srcSIHandle, int destX, int destY, int destSIHandle)
+//dxlib int DrawSoftImage(int x, int y, int siHandle)
+//dxlib int CreateGraphFromSoftImage(int siHandle)
+//dxlib int CreateDivGraphFromSoftImage(int siHandle, int allnum, int xnum, int ynum, int sizeX, int sizeY, int *handleBuf)
 
 // 非同期読み込み関係
 //TODO
