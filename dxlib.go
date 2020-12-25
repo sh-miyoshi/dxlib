@@ -205,7 +205,10 @@ package dxlib
 //TODO int Set3DSoundListenerVelocity(VECTOR velocity)
 
 // 音楽再生関数
-//TODO
+//dxlib int PlayMusic(char *fileName, int playType)
+//dxlib int CheckMusic()
+//dxlib int StopMusic()
+//dxlib int SetVolumeMusic(int volume)
 
 // ウエイト関係の関数
 //TODO

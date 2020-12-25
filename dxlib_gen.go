@@ -159,6 +159,10 @@ var (
 	dx_SetCreate3DSoundFlag                 *syscall.LazyProc
 	dx_SetEnableXAudioFlag                  *syscall.LazyProc
 	dx_Set3DSoundOneMetre                   *syscall.LazyProc
+	dx_PlayMusic                            *syscall.LazyProc
+	dx_CheckMusic                           *syscall.LazyProc
+	dx_StopMusic                            *syscall.LazyProc
+	dx_SetVolumeMusic                       *syscall.LazyProc
 	dx_ChangeWindowMode                     *syscall.LazyProc
 	dx_SetOutApplicationLogValidFlag        *syscall.LazyProc
 )
@@ -314,6 +318,10 @@ func Init(dllFile string) {
 	dx_SetCreate3DSoundFlag = mod.NewProc("dx_SetCreate3DSoundFlag")
 	dx_SetEnableXAudioFlag = mod.NewProc("dx_SetEnableXAudioFlag")
 	dx_Set3DSoundOneMetre = mod.NewProc("dx_Set3DSoundOneMetre")
+	dx_PlayMusic = mod.NewProc("dx_PlayMusic")
+	dx_CheckMusic = mod.NewProc("dx_CheckMusic")
+	dx_StopMusic = mod.NewProc("dx_StopMusic")
+	dx_SetVolumeMusic = mod.NewProc("dx_SetVolumeMusic")
 	dx_ChangeWindowMode = mod.NewProc("dx_ChangeWindowMode")
 	dx_SetOutApplicationLogValidFlag = mod.NewProc("dx_SetOutApplicationLogValidFlag")
 
@@ -1648,6 +1656,42 @@ func Set3DSoundOneMetre(distance float32) int {
 	}
 
 	res, _, _ := dx_Set3DSoundOneMetre.Call(pfloat32(distance))
+	return int(res)
+}
+
+func PlayMusic(fileName string, playType int) int {
+	if dx_PlayMusic == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_PlayMusic.Call(pstring(fileName), pint(playType))
+	return int(res)
+}
+
+func CheckMusic() int {
+	if dx_CheckMusic == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_CheckMusic.Call()
+	return int(res)
+}
+
+func StopMusic() int {
+	if dx_StopMusic == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_StopMusic.Call()
+	return int(res)
+}
+
+func SetVolumeMusic(volume int) int {
+	if dx_SetVolumeMusic == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_SetVolumeMusic.Call(pint(volume))
 	return int(res)
 }
 
