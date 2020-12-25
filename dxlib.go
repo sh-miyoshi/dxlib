@@ -6,6 +6,9 @@ package dxlib
 // DXライブラリリファレンス
 // https://dxlib.xsrv.jp/dxfunc.html
 
+// 基本は先頭にdxlibをつけてC言語の関数名を書く
+// ただし、配列を扱いたい場合はarray<型>(arrayintなど)のように書く
+
 // 使用必須関数
 //dxlib int DxLib_Init()
 //dxlib int DxLib_End()
@@ -163,7 +166,43 @@ package dxlib
 //dxlib int GetKeyInputNumber(int inputHandle)
 
 // 音利用関数
-//TODO
+//dxlib int PlaySoundFile(char *fileName, int playType)
+//dxlib int CheckSoundFile()
+//dxlib int StopSoundFile()
+//dxlib int LoadSoundMem(char *fileName)
+//dxlib int PlaySoundMem(int soundHandle, int playType, int topPositionFlag)
+//dxlib int CheckSoundMem(int soundHandle)
+//dxlib int StopSoundMem(int soundHandle)
+//dxlib int DeleteSoundMem(int soundHandle)
+//dxlib int InitSoundMem()
+//dxlib int ChangePanSoundMem(int panPal, int soundHandle)
+//dxlib int ChangeVolumeSoundMem(int volumePan, int soundHandle)
+//dxlib int ChangeNextPlayPanSoundMem(int panPal, int soundHandle)
+//dxlib int ChangeNextPlayVolumeSoundMem(int volumePal, int soundHandle)
+//dxlib int SetFrequencySoundMem(int frequencyPal, int soundHandle)
+//dxlib int SetLoopPosSoundMem(int loopTime, int soundHandle)
+//dxlib int SetLoopSamplePosSoundMem(int loopSamplePosition, int soundHandle)
+//dxlib int SetCurrentPositionSoundMem(int samplePosition, int soundHandle)
+//dxlib int DuplicateSoundMem(int srcSoundHandle)
+//dxlib int SetCreateSoundPitchRate(float cents)
+//dxlib int SetCreateSoundTimeStretchRate(float rate)
+//TODO int Set3DPositionSoundMem(VECTOR position, int soundHandle)
+//dxlib int Set3DRadiusSoundMem(float radius, int soundHandle)
+//TODO int Set3DVelocitySoundMem(VECTOR velocity, int soundHandle)
+//TODO int SetNextPlay3DPositionSoundMem(VECCTOR position, int soundHandle)
+//dxlib int SetNextPlay3DRadiusSoundMem(float radius, int soundHandle)
+//TODO int SetNextPlay3DVelocitySoundMem(VECTOR velocity, int soundHandle)
+//TODO int Set3DReverbParamSoundMem(const SOUND3D_REVERB_PARAM *param, int soundHandle)
+//dxlib int Set3DPresetReverbParamSoundMem(int presetNo, int soundHandle)
+//TODO int Get3DPresetReverbParamSoundMem(SOUND3D_REVERB_PARAM *paramBuffer, int presetNo)
+//TODO int Set3DReverbParamSoundMemAll(const SOUND3D_REVERB_PARAM *param, int playSoundOnly)
+//dxlib int Set3DPresetReverbParamSoundMemAll(int presetNo, int playSoundOnly)
+//dxlib int SetCreate3DSoundFlag(int flag)
+//dxlib int SetEnableXAudioFlag(int flag)
+//dxlib int Set3DSoundOneMetre(float distance)
+//TODO int Set3DSoundListenerPosAndFrontPos_UpVecY(VECTOR position, VECTOR frontPosition)
+//TODO int Set3DSoundListenerPosAndFrontPosAndUpVec(VECTOR position, VECTOR frontPosition, VECTOR upVector)
+//TODO int Set3DSoundListenerVelocity(VECTOR velocity)
 
 // 音楽再生関数
 //TODO

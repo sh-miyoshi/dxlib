@@ -132,6 +132,33 @@ var (
 	dx_SetKeyInputString                    *syscall.LazyProc
 	dx_SetKeyInputNumber                    *syscall.LazyProc
 	dx_GetKeyInputNumber                    *syscall.LazyProc
+	dx_PlaySoundFile                        *syscall.LazyProc
+	dx_CheckSoundFile                       *syscall.LazyProc
+	dx_StopSoundFile                        *syscall.LazyProc
+	dx_LoadSoundMem                         *syscall.LazyProc
+	dx_PlaySoundMem                         *syscall.LazyProc
+	dx_CheckSoundMem                        *syscall.LazyProc
+	dx_StopSoundMem                         *syscall.LazyProc
+	dx_DeleteSoundMem                       *syscall.LazyProc
+	dx_InitSoundMem                         *syscall.LazyProc
+	dx_ChangePanSoundMem                    *syscall.LazyProc
+	dx_ChangeVolumeSoundMem                 *syscall.LazyProc
+	dx_ChangeNextPlayPanSoundMem            *syscall.LazyProc
+	dx_ChangeNextPlayVolumeSoundMem         *syscall.LazyProc
+	dx_SetFrequencySoundMem                 *syscall.LazyProc
+	dx_SetLoopPosSoundMem                   *syscall.LazyProc
+	dx_SetLoopSamplePosSoundMem             *syscall.LazyProc
+	dx_SetCurrentPositionSoundMem           *syscall.LazyProc
+	dx_DuplicateSoundMem                    *syscall.LazyProc
+	dx_SetCreateSoundPitchRate              *syscall.LazyProc
+	dx_SetCreateSoundTimeStretchRate        *syscall.LazyProc
+	dx_Set3DRadiusSoundMem                  *syscall.LazyProc
+	dx_SetNextPlay3DRadiusSoundMem          *syscall.LazyProc
+	dx_Set3DPresetReverbParamSoundMem       *syscall.LazyProc
+	dx_Set3DPresetReverbParamSoundMemAll    *syscall.LazyProc
+	dx_SetCreate3DSoundFlag                 *syscall.LazyProc
+	dx_SetEnableXAudioFlag                  *syscall.LazyProc
+	dx_Set3DSoundOneMetre                   *syscall.LazyProc
 	dx_ChangeWindowMode                     *syscall.LazyProc
 	dx_SetOutApplicationLogValidFlag        *syscall.LazyProc
 )
@@ -260,6 +287,33 @@ func Init(dllFile string) {
 	dx_SetKeyInputString = mod.NewProc("dx_SetKeyInputString")
 	dx_SetKeyInputNumber = mod.NewProc("dx_SetKeyInputNumber")
 	dx_GetKeyInputNumber = mod.NewProc("dx_GetKeyInputNumber")
+	dx_PlaySoundFile = mod.NewProc("dx_PlaySoundFile")
+	dx_CheckSoundFile = mod.NewProc("dx_CheckSoundFile")
+	dx_StopSoundFile = mod.NewProc("dx_StopSoundFile")
+	dx_LoadSoundMem = mod.NewProc("dx_LoadSoundMem")
+	dx_PlaySoundMem = mod.NewProc("dx_PlaySoundMem")
+	dx_CheckSoundMem = mod.NewProc("dx_CheckSoundMem")
+	dx_StopSoundMem = mod.NewProc("dx_StopSoundMem")
+	dx_DeleteSoundMem = mod.NewProc("dx_DeleteSoundMem")
+	dx_InitSoundMem = mod.NewProc("dx_InitSoundMem")
+	dx_ChangePanSoundMem = mod.NewProc("dx_ChangePanSoundMem")
+	dx_ChangeVolumeSoundMem = mod.NewProc("dx_ChangeVolumeSoundMem")
+	dx_ChangeNextPlayPanSoundMem = mod.NewProc("dx_ChangeNextPlayPanSoundMem")
+	dx_ChangeNextPlayVolumeSoundMem = mod.NewProc("dx_ChangeNextPlayVolumeSoundMem")
+	dx_SetFrequencySoundMem = mod.NewProc("dx_SetFrequencySoundMem")
+	dx_SetLoopPosSoundMem = mod.NewProc("dx_SetLoopPosSoundMem")
+	dx_SetLoopSamplePosSoundMem = mod.NewProc("dx_SetLoopSamplePosSoundMem")
+	dx_SetCurrentPositionSoundMem = mod.NewProc("dx_SetCurrentPositionSoundMem")
+	dx_DuplicateSoundMem = mod.NewProc("dx_DuplicateSoundMem")
+	dx_SetCreateSoundPitchRate = mod.NewProc("dx_SetCreateSoundPitchRate")
+	dx_SetCreateSoundTimeStretchRate = mod.NewProc("dx_SetCreateSoundTimeStretchRate")
+	dx_Set3DRadiusSoundMem = mod.NewProc("dx_Set3DRadiusSoundMem")
+	dx_SetNextPlay3DRadiusSoundMem = mod.NewProc("dx_SetNextPlay3DRadiusSoundMem")
+	dx_Set3DPresetReverbParamSoundMem = mod.NewProc("dx_Set3DPresetReverbParamSoundMem")
+	dx_Set3DPresetReverbParamSoundMemAll = mod.NewProc("dx_Set3DPresetReverbParamSoundMemAll")
+	dx_SetCreate3DSoundFlag = mod.NewProc("dx_SetCreate3DSoundFlag")
+	dx_SetEnableXAudioFlag = mod.NewProc("dx_SetEnableXAudioFlag")
+	dx_Set3DSoundOneMetre = mod.NewProc("dx_Set3DSoundOneMetre")
 	dx_ChangeWindowMode = mod.NewProc("dx_ChangeWindowMode")
 	dx_SetOutApplicationLogValidFlag = mod.NewProc("dx_SetOutApplicationLogValidFlag")
 
@@ -1351,6 +1405,249 @@ func GetKeyInputNumber(inputHandle int) int {
 	}
 
 	res, _, _ := dx_GetKeyInputNumber.Call(pint(inputHandle))
+	return int(res)
+}
+
+func PlaySoundFile(fileName string, playType int) int {
+	if dx_PlaySoundFile == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_PlaySoundFile.Call(pstring(fileName), pint(playType))
+	return int(res)
+}
+
+func CheckSoundFile() int {
+	if dx_CheckSoundFile == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_CheckSoundFile.Call()
+	return int(res)
+}
+
+func StopSoundFile() int {
+	if dx_StopSoundFile == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_StopSoundFile.Call()
+	return int(res)
+}
+
+func LoadSoundMem(fileName string) int {
+	if dx_LoadSoundMem == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_LoadSoundMem.Call(pstring(fileName))
+	return int(res)
+}
+
+func PlaySoundMem(soundHandle int, playType int, topPositionFlag int) int {
+	if dx_PlaySoundMem == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_PlaySoundMem.Call(pint(soundHandle), pint(playType), pint(topPositionFlag))
+	return int(res)
+}
+
+func CheckSoundMem(soundHandle int) int {
+	if dx_CheckSoundMem == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_CheckSoundMem.Call(pint(soundHandle))
+	return int(res)
+}
+
+func StopSoundMem(soundHandle int) int {
+	if dx_StopSoundMem == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_StopSoundMem.Call(pint(soundHandle))
+	return int(res)
+}
+
+func DeleteSoundMem(soundHandle int) int {
+	if dx_DeleteSoundMem == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_DeleteSoundMem.Call(pint(soundHandle))
+	return int(res)
+}
+
+func InitSoundMem() int {
+	if dx_InitSoundMem == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_InitSoundMem.Call()
+	return int(res)
+}
+
+func ChangePanSoundMem(panPal int, soundHandle int) int {
+	if dx_ChangePanSoundMem == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_ChangePanSoundMem.Call(pint(panPal), pint(soundHandle))
+	return int(res)
+}
+
+func ChangeVolumeSoundMem(volumePan int, soundHandle int) int {
+	if dx_ChangeVolumeSoundMem == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_ChangeVolumeSoundMem.Call(pint(volumePan), pint(soundHandle))
+	return int(res)
+}
+
+func ChangeNextPlayPanSoundMem(panPal int, soundHandle int) int {
+	if dx_ChangeNextPlayPanSoundMem == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_ChangeNextPlayPanSoundMem.Call(pint(panPal), pint(soundHandle))
+	return int(res)
+}
+
+func ChangeNextPlayVolumeSoundMem(volumePal int, soundHandle int) int {
+	if dx_ChangeNextPlayVolumeSoundMem == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_ChangeNextPlayVolumeSoundMem.Call(pint(volumePal), pint(soundHandle))
+	return int(res)
+}
+
+func SetFrequencySoundMem(frequencyPal int, soundHandle int) int {
+	if dx_SetFrequencySoundMem == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_SetFrequencySoundMem.Call(pint(frequencyPal), pint(soundHandle))
+	return int(res)
+}
+
+func SetLoopPosSoundMem(loopTime int, soundHandle int) int {
+	if dx_SetLoopPosSoundMem == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_SetLoopPosSoundMem.Call(pint(loopTime), pint(soundHandle))
+	return int(res)
+}
+
+func SetLoopSamplePosSoundMem(loopSamplePosition int, soundHandle int) int {
+	if dx_SetLoopSamplePosSoundMem == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_SetLoopSamplePosSoundMem.Call(pint(loopSamplePosition), pint(soundHandle))
+	return int(res)
+}
+
+func SetCurrentPositionSoundMem(samplePosition int, soundHandle int) int {
+	if dx_SetCurrentPositionSoundMem == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_SetCurrentPositionSoundMem.Call(pint(samplePosition), pint(soundHandle))
+	return int(res)
+}
+
+func DuplicateSoundMem(srcSoundHandle int) int {
+	if dx_DuplicateSoundMem == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_DuplicateSoundMem.Call(pint(srcSoundHandle))
+	return int(res)
+}
+
+func SetCreateSoundPitchRate(cents float32) int {
+	if dx_SetCreateSoundPitchRate == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_SetCreateSoundPitchRate.Call(pfloat32(cents))
+	return int(res)
+}
+
+func SetCreateSoundTimeStretchRate(rate float32) int {
+	if dx_SetCreateSoundTimeStretchRate == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_SetCreateSoundTimeStretchRate.Call(pfloat32(rate))
+	return int(res)
+}
+
+func Set3DRadiusSoundMem(radius float32, soundHandle int) int {
+	if dx_Set3DRadiusSoundMem == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_Set3DRadiusSoundMem.Call(pfloat32(radius), pint(soundHandle))
+	return int(res)
+}
+
+func SetNextPlay3DRadiusSoundMem(radius float32, soundHandle int) int {
+	if dx_SetNextPlay3DRadiusSoundMem == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_SetNextPlay3DRadiusSoundMem.Call(pfloat32(radius), pint(soundHandle))
+	return int(res)
+}
+
+func Set3DPresetReverbParamSoundMem(presetNo int, soundHandle int) int {
+	if dx_Set3DPresetReverbParamSoundMem == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_Set3DPresetReverbParamSoundMem.Call(pint(presetNo), pint(soundHandle))
+	return int(res)
+}
+
+func Set3DPresetReverbParamSoundMemAll(presetNo int, playSoundOnly int) int {
+	if dx_Set3DPresetReverbParamSoundMemAll == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_Set3DPresetReverbParamSoundMemAll.Call(pint(presetNo), pint(playSoundOnly))
+	return int(res)
+}
+
+func SetCreate3DSoundFlag(flag int) int {
+	if dx_SetCreate3DSoundFlag == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_SetCreate3DSoundFlag.Call(pint(flag))
+	return int(res)
+}
+
+func SetEnableXAudioFlag(flag int) int {
+	if dx_SetEnableXAudioFlag == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_SetEnableXAudioFlag.Call(pint(flag))
+	return int(res)
+}
+
+func Set3DSoundOneMetre(distance float32) int {
+	if dx_Set3DSoundOneMetre == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_Set3DSoundOneMetre.Call(pfloat32(distance))
 	return int(res)
 }
 
