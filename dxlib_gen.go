@@ -174,6 +174,21 @@ var (
 	dx_SetWindowIconID                      *syscall.LazyProc
 	dx_SetWindowSizeChangeEnableFlag        *syscall.LazyProc
 	dx_SetWindowSizeExtendRate              *syscall.LazyProc
+	dx_CloseNetWork                         *syscall.LazyProc
+	dx_PreparationListenNetWork             *syscall.LazyProc
+	dx_StopListenNetWork                    *syscall.LazyProc
+	dx_GetNetWorkDataLength                 *syscall.LazyProc
+	dx_GetNetWorkSendDataLength             *syscall.LazyProc
+	dx_GetNewAcceptNetWork                  *syscall.LazyProc
+	dx_GetLostNetWork                       *syscall.LazyProc
+	dx_GetNetWorkAcceptState                *syscall.LazyProc
+	dx_MakeUDPSocket                        *syscall.LazyProc
+	dx_DeleteUDPSocket                      *syscall.LazyProc
+	dx_CheckNetWorkRecvUDP                  *syscall.LazyProc
+	dx_FileRead_open                        *syscall.LazyProc
+	dx_FileRead_close                       *syscall.LazyProc
+	dx_FileRead_eof                         *syscall.LazyProc
+	dx_FileRead_getc                        *syscall.LazyProc
 	dx_SetOutApplicationLogValidFlag        *syscall.LazyProc
 )
 
@@ -343,6 +358,21 @@ func Init(dllFile string) {
 	dx_SetWindowIconID = mod.NewProc("dx_SetWindowIconID")
 	dx_SetWindowSizeChangeEnableFlag = mod.NewProc("dx_SetWindowSizeChangeEnableFlag")
 	dx_SetWindowSizeExtendRate = mod.NewProc("dx_SetWindowSizeExtendRate")
+	dx_CloseNetWork = mod.NewProc("dx_CloseNetWork")
+	dx_PreparationListenNetWork = mod.NewProc("dx_PreparationListenNetWork")
+	dx_StopListenNetWork = mod.NewProc("dx_StopListenNetWork")
+	dx_GetNetWorkDataLength = mod.NewProc("dx_GetNetWorkDataLength")
+	dx_GetNetWorkSendDataLength = mod.NewProc("dx_GetNetWorkSendDataLength")
+	dx_GetNewAcceptNetWork = mod.NewProc("dx_GetNewAcceptNetWork")
+	dx_GetLostNetWork = mod.NewProc("dx_GetLostNetWork")
+	dx_GetNetWorkAcceptState = mod.NewProc("dx_GetNetWorkAcceptState")
+	dx_MakeUDPSocket = mod.NewProc("dx_MakeUDPSocket")
+	dx_DeleteUDPSocket = mod.NewProc("dx_DeleteUDPSocket")
+	dx_CheckNetWorkRecvUDP = mod.NewProc("dx_CheckNetWorkRecvUDP")
+	dx_FileRead_open = mod.NewProc("dx_FileRead_open")
+	dx_FileRead_close = mod.NewProc("dx_FileRead_close")
+	dx_FileRead_eof = mod.NewProc("dx_FileRead_eof")
+	dx_FileRead_getc = mod.NewProc("dx_FileRead_getc")
 	dx_SetOutApplicationLogValidFlag = mod.NewProc("dx_SetOutApplicationLogValidFlag")
 
 }
@@ -1811,6 +1841,141 @@ func SetWindowSizeExtendRate(exRate float64) int {
 	}
 
 	res, _, _ := dx_SetWindowSizeExtendRate.Call(pfloat64(exRate))
+	return int(res)
+}
+
+func CloseNetWork(netHandle int) int {
+	if dx_CloseNetWork == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_CloseNetWork.Call(pint(netHandle))
+	return int(res)
+}
+
+func PreparationListenNetWork(port int) int {
+	if dx_PreparationListenNetWork == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_PreparationListenNetWork.Call(pint(port))
+	return int(res)
+}
+
+func StopListenNetWork() int {
+	if dx_StopListenNetWork == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_StopListenNetWork.Call()
+	return int(res)
+}
+
+func GetNetWorkDataLength(netHandle int) int {
+	if dx_GetNetWorkDataLength == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_GetNetWorkDataLength.Call(pint(netHandle))
+	return int(res)
+}
+
+func GetNetWorkSendDataLength(netHandle int) int {
+	if dx_GetNetWorkSendDataLength == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_GetNetWorkSendDataLength.Call(pint(netHandle))
+	return int(res)
+}
+
+func GetNewAcceptNetWork() int {
+	if dx_GetNewAcceptNetWork == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_GetNewAcceptNetWork.Call()
+	return int(res)
+}
+
+func GetLostNetWork() int {
+	if dx_GetLostNetWork == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_GetLostNetWork.Call()
+	return int(res)
+}
+
+func GetNetWorkAcceptState(netHandle int) int {
+	if dx_GetNetWorkAcceptState == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_GetNetWorkAcceptState.Call(pint(netHandle))
+	return int(res)
+}
+
+func MakeUDPSocket(recvPort int) int {
+	if dx_MakeUDPSocket == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_MakeUDPSocket.Call(pint(recvPort))
+	return int(res)
+}
+
+func DeleteUDPSocket(netUDPHandle int) int {
+	if dx_DeleteUDPSocket == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_DeleteUDPSocket.Call(pint(netUDPHandle))
+	return int(res)
+}
+
+func CheckNetWorkRecvUDP(netUDPHandle int) int {
+	if dx_CheckNetWorkRecvUDP == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_CheckNetWorkRecvUDP.Call(pint(netUDPHandle))
+	return int(res)
+}
+
+func FileRead_open(filePath string, async int) int {
+	if dx_FileRead_open == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_FileRead_open.Call(pstring(filePath), pint(async))
+	return int(res)
+}
+
+func FileRead_close(fileHandle int) int {
+	if dx_FileRead_close == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_FileRead_close.Call(pint(fileHandle))
+	return int(res)
+}
+
+func FileRead_eof(fileHandle int) int {
+	if dx_FileRead_eof == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_FileRead_eof.Call(pint(fileHandle))
+	return int(res)
+}
+
+func FileRead_getc(fileHandle int) int {
+	if dx_FileRead_getc == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_FileRead_getc.Call(pint(fileHandle))
 	return int(res)
 }
 

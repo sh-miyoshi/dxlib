@@ -232,10 +232,36 @@ package dxlib
 //dxlib int SetWindowSizeExtendRate(double exRate)
 
 // 通信関係
-//TODO
+//TODO int ConnectNetWork(IPDATA ipData, int port)
+//dxlib int CloseNetWork(int netHandle)
+//dxlib int PreparationListenNetWork(int port)
+//dxlib int StopListenNetWork()
+//TODO int NetWorkSend(int netHandle, void *buffer, int length)
+//dxlib int GetNetWorkDataLength(int netHandle)
+//dxlib int GetNetWorkSendDataLength(int netHandle)
+//TODO int NetWorkRecv(int netHandle, void *buffer, int length)
+//TODO int NetWorkRecvToPeek(int netHandle, void *buffer, int length)
+//dxlib int GetNewAcceptNetWork()
+//dxlib int GetLostNetWork()
+//dxlib int GetNetWorkAcceptState(int netHandle)
+//TODO int GetNetWorkIP(int netHandle, IPDATA *ipBuf)
+//dxlib int MakeUDPSocket(int recvPort)
+//dxlib int DeleteUDPSocket(int netUDPHandle)
+//TODO int NetWorkSendUDP(intnetUDPHandle, IPDATA sendIP, int sendPort, void *buffer, int length)
+//TODO int NetWorkRecvUDP(int netUDPHandle, IPDATA *recvIP, int *recvPort, void *buffer, int length, int peek)
+//dxlib int CheckNetWorkRecvUDP(int netUDPHandle)
 
 // ファイル読み込み関係
-//TODO
+//dxlib int FileRead_open(char *filePath, int async)
+//TODO LONGLONG FileRead_size(char *filePath)
+//dxlib int FileRead_close(int fileHandle)
+//TODO LONGLONG FileRead_tell(int fileHandle)
+//TODO int FileRead_seek(int fileHandle, LONGLONG offset, int origin)
+//TODO int FileRead_read(void *buffer, int readSize, int fileHandle)
+//dxlib int FileRead_eof(int fileHandle)
+//TODO int FileRead_gets(char *buffer, int num, int fileHandle) // array char
+//dxlib int FileRead_getc(int fileHandle)
+//TODO int FileRead_scanf(int fileHandle, char *format, ...)
 
 // ドット単位で画像にアクセスしたい関係
 //TODO
