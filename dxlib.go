@@ -31,7 +31,7 @@ package dxlib
 // グラフィックデータ制御関数
 //dxlib int LoadGraphScreen(int x, int y, char *graphName, int transFlag)
 //dxlib int LoadGraph(char *fileName)
-//dxlib int LoadDivGraph(char *fileName, int allnum, int xnum, int ynum, int xsize, int ysize, int *handleBuf)
+//dxlib int LoadDivGraph(char *fileName, int allnum, int xnum, int ynum, int xsize, int ysize, arrayint handleBuf)
 //dxlib int MakeGraph(int sizeX, int sizeY)
 //dxlib int MakeScreen(int sizeX, int sizeY, int useAlphaChannel)
 //dxlib int SetCreateDrawValidGraphMultiSample(int samples, int quality)
@@ -114,7 +114,7 @@ package dxlib
 //dxlib int CreateMaskScreen()
 //dxlib int DeleteMaskScreen()
 //dxlib int LoadMask(char *fileName)
-//dxlib int LoadDivMask(char *fileName, int allnum, int xnum, int ynum, int xsize, int ysize, int *handleBuf)
+//dxlib int LoadDivMask(char *fileName, int allnum, int xnum, int ynum, int xsize, int ysize, arrayint handleBuf)
 //dxlib int DrawMask(int x, int y, int maskHandle, int transMode)
 //dxlib int DrawFillMask(int x1, int y1, int x2, int y2, int maskHandle)
 //dxlib int DeleteMask(int maskHandle)
@@ -259,7 +259,7 @@ package dxlib
 //dxlib int FileRead_seek(int fileHandle, LONGLONG offset, int origin)
 //TODO int FileRead_read(void *buffer, int readSize, int fileHandle)
 //dxlib int FileRead_eof(int fileHandle)
-//TODO int FileRead_gets(char *buffer, int num, int fileHandle) // array char
+//dxlib int FileRead_gets(arraychar buffer, int num, int fileHandle)
 //dxlib int FileRead_getc(int fileHandle)
 //TODO int FileRead_scanf(int fileHandle, char *format, ...)
 
@@ -286,7 +286,7 @@ package dxlib
 //dxlib int BltSoftImage(int srcX, int srcY, int srcSizeX, int srcSizeY, int srcSIHandle, int destX, int destY, int destSIHandle)
 //dxlib int DrawSoftImage(int x, int y, int siHandle)
 //dxlib int CreateGraphFromSoftImage(int siHandle)
-//dxlib int CreateDivGraphFromSoftImage(int siHandle, int allnum, int xnum, int ynum, int sizeX, int sizeY, int *handleBuf)
+//dxlib int CreateDivGraphFromSoftImage(int siHandle, int allnum, int xnum, int ynum, int sizeX, int sizeY, arrayint handleBuf)
 
 // 非同期読み込み関係
 //dxlib int SetUseASyncLoadFlag(int flag)
@@ -311,7 +311,7 @@ package dxlib
 //dxlib int ScreenCopy()
 //dxlib int GetColorBitDepth()
 //dxlib int SaveDrawScreen(int x1, int y1, int x2, int y2, char *fileName)
-//TODO int EnumFontName(char *nameBuffer, int nameBufferNum) // array char
+//dxlib int EnumFontName(arraychar nameBuffer, int nameBufferNum)
 //dxlib int DrawVString(int x, int y, char *str, int color)
 //dxlib int DrawVStringToHandle(int x, int y, char *str, int color, int fontHandle)
 //TODO int CreateGraphFromMem(void *memImage, int memImageSize)

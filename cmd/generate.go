@@ -14,10 +14,10 @@ import (
 )
 
 var (
-	cTypes = []string{"int *", "int", "unsigned int", "char *", "char", "double", "float", "LONGLONG"}
+	cTypes = []string{"arrayint", "arraychar", "int *", "int", "unsigned int", "char *", "char", "double", "float", "LONGLONG"}
 
 	// Sort in the same order as cTypes
-	goTypes = []string{"*int", "int", "uint", "string", "byte", "float64", "float32", "int64"}
+	goTypes = []string{"[]int", "[]byte", "*int", "int", "uint", "string", "byte", "float64", "float32", "int64"}
 )
 
 type dxFunc struct {
@@ -115,7 +115,9 @@ func parse(line string) (*dxFunc, error) {
 	}
 	for _, arg := range args {
 		res.GoArgs += arg.Name + " " + arg.GoType + ", "
-		if strings.Contains(arg.GoType, "*") {
+		if strings.Contains(arg.GoType, "[]") {
+			res.PArgs += "parray" + strings.Trim(arg.GoType, "[]") + "(" + arg.Name + "), "
+		} else if strings.Contains(arg.GoType, "*") {
 			res.PArgs += "pp" + strings.Trim(arg.GoType, "*") + "(" + arg.Name + "), "
 		} else {
 			res.PArgs += "p" + arg.GoType + "(" + arg.Name + "), "
@@ -260,5 +262,13 @@ func pfloat64(f float64) uintptr {
 
 func pint64(i int64) uintptr {
 	return uintptr(i)
+}
+
+func parraybyte(b []byte) uintptr {
+	return uintptr(unsafe.Pointer(&b))
+}
+
+func parrayint(i []int) uintptr {
+	return uintptr(unsafe.Pointer(&i))
 }
 `

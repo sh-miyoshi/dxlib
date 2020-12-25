@@ -192,6 +192,7 @@ var (
 	dx_FileRead_tell                        *syscall.LazyProc
 	dx_FileRead_seek                        *syscall.LazyProc
 	dx_FileRead_eof                         *syscall.LazyProc
+	dx_FileRead_gets                        *syscall.LazyProc
 	dx_FileRead_getc                        *syscall.LazyProc
 	dx_LoadSoftImage                        *syscall.LazyProc
 	dx_LoadARGB8ColorSoftImage              *syscall.LazyProc
@@ -230,6 +231,7 @@ var (
 	dx_ScreenCopy                           *syscall.LazyProc
 	dx_GetColorBitDepth                     *syscall.LazyProc
 	dx_SaveDrawScreen                       *syscall.LazyProc
+	dx_EnumFontName                         *syscall.LazyProc
 	dx_DrawVString                          *syscall.LazyProc
 	dx_DrawVStringToHandle                  *syscall.LazyProc
 	dx_ReloadFileGraphAll                   *syscall.LazyProc
@@ -421,6 +423,7 @@ func Init(dllFile string) {
 	dx_FileRead_tell = mod.NewProc("dx_FileRead_tell")
 	dx_FileRead_seek = mod.NewProc("dx_FileRead_seek")
 	dx_FileRead_eof = mod.NewProc("dx_FileRead_eof")
+	dx_FileRead_gets = mod.NewProc("dx_FileRead_gets")
 	dx_FileRead_getc = mod.NewProc("dx_FileRead_getc")
 	dx_LoadSoftImage = mod.NewProc("dx_LoadSoftImage")
 	dx_LoadARGB8ColorSoftImage = mod.NewProc("dx_LoadARGB8ColorSoftImage")
@@ -459,6 +462,7 @@ func Init(dllFile string) {
 	dx_ScreenCopy = mod.NewProc("dx_ScreenCopy")
 	dx_GetColorBitDepth = mod.NewProc("dx_GetColorBitDepth")
 	dx_SaveDrawScreen = mod.NewProc("dx_SaveDrawScreen")
+	dx_EnumFontName = mod.NewProc("dx_EnumFontName")
 	dx_DrawVString = mod.NewProc("dx_DrawVString")
 	dx_DrawVStringToHandle = mod.NewProc("dx_DrawVStringToHandle")
 	dx_ReloadFileGraphAll = mod.NewProc("dx_ReloadFileGraphAll")
@@ -620,12 +624,12 @@ func LoadGraph(fileName string) int {
 	return int(res)
 }
 
-func LoadDivGraph(fileName string, allnum int, xnum int, ynum int, xsize int, ysize int, handleBuf *int) int {
+func LoadDivGraph(fileName string, allnum int, xnum int, ynum int, xsize int, ysize int, handleBuf []int) int {
 	if dx_LoadDivGraph == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_LoadDivGraph.Call(pstring(fileName), pint(allnum), pint(xnum), pint(ynum), pint(xsize), pint(ysize), ppint(handleBuf))
+	res, _, _ := dx_LoadDivGraph.Call(pstring(fileName), pint(allnum), pint(xnum), pint(ynum), pint(xsize), pint(ysize), parrayint(handleBuf))
 	return int(res)
 }
 
@@ -1178,12 +1182,12 @@ func LoadMask(fileName string) int {
 	return int(res)
 }
 
-func LoadDivMask(fileName string, allnum int, xnum int, ynum int, xsize int, ysize int, handleBuf *int) int {
+func LoadDivMask(fileName string, allnum int, xnum int, ynum int, xsize int, ysize int, handleBuf []int) int {
 	if dx_LoadDivMask == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_LoadDivMask.Call(pstring(fileName), pint(allnum), pint(xnum), pint(ynum), pint(xsize), pint(ysize), ppint(handleBuf))
+	res, _, _ := dx_LoadDivMask.Call(pstring(fileName), pint(allnum), pint(xnum), pint(ynum), pint(xsize), pint(ysize), parrayint(handleBuf))
 	return int(res)
 }
 
@@ -2096,6 +2100,15 @@ func FileRead_eof(fileHandle int) int {
 	return int(res)
 }
 
+func FileRead_gets(buffer []byte, num int, fileHandle int) int {
+	if dx_FileRead_gets == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_FileRead_gets.Call(parraybyte(buffer), pint(num), pint(fileHandle))
+	return int(res)
+}
+
 func FileRead_getc(fileHandle int) int {
 	if dx_FileRead_getc == nil {
 		panic("Please call dxlib.Init() at first")
@@ -2276,12 +2289,12 @@ func CreateGraphFromSoftImage(siHandle int) int {
 	return int(res)
 }
 
-func CreateDivGraphFromSoftImage(siHandle int, allnum int, xnum int, ynum int, sizeX int, sizeY int, handleBuf *int) int {
+func CreateDivGraphFromSoftImage(siHandle int, allnum int, xnum int, ynum int, sizeX int, sizeY int, handleBuf []int) int {
 	if dx_CreateDivGraphFromSoftImage == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_CreateDivGraphFromSoftImage.Call(pint(siHandle), pint(allnum), pint(xnum), pint(ynum), pint(sizeX), pint(sizeY), ppint(handleBuf))
+	res, _, _ := dx_CreateDivGraphFromSoftImage.Call(pint(siHandle), pint(allnum), pint(xnum), pint(ynum), pint(sizeX), pint(sizeY), parrayint(handleBuf))
 	return int(res)
 }
 
@@ -2438,6 +2451,15 @@ func SaveDrawScreen(x1 int, y1 int, x2 int, y2 int, fileName string) int {
 	return int(res)
 }
 
+func EnumFontName(nameBuffer []byte, nameBufferNum int) int {
+	if dx_EnumFontName == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_EnumFontName.Call(parraybyte(nameBuffer), pint(nameBufferNum))
+	return int(res)
+}
+
 func DrawVString(x int, y int, str string, color int) int {
 	if dx_DrawVString == nil {
 		panic("Please call dxlib.Init() at first")
@@ -2517,4 +2539,12 @@ func pfloat64(f float64) uintptr {
 
 func pint64(i int64) uintptr {
 	return uintptr(i)
+}
+
+func parraybyte(b []byte) uintptr {
+	return uintptr(unsafe.Pointer(&b))
+}
+
+func parrayint(i []int) uintptr {
+	return uintptr(unsafe.Pointer(&i))
 }
