@@ -166,6 +166,7 @@ var (
 	dx_WaitTimer                            *syscall.LazyProc
 	dx_WaitVSync                            *syscall.LazyProc
 	dx_WaitKey                              *syscall.LazyProc
+	dx_GetNowCount                          *syscall.LazyProc
 	dx_ChangeWindowMode                     *syscall.LazyProc
 	dx_SetOutApplicationLogValidFlag        *syscall.LazyProc
 )
@@ -328,6 +329,7 @@ func Init(dllFile string) {
 	dx_WaitTimer = mod.NewProc("dx_WaitTimer")
 	dx_WaitVSync = mod.NewProc("dx_WaitVSync")
 	dx_WaitKey = mod.NewProc("dx_WaitKey")
+	dx_GetNowCount = mod.NewProc("dx_GetNowCount")
 	dx_ChangeWindowMode = mod.NewProc("dx_ChangeWindowMode")
 	dx_SetOutApplicationLogValidFlag = mod.NewProc("dx_SetOutApplicationLogValidFlag")
 
@@ -1725,6 +1727,15 @@ func WaitKey() int {
 	}
 
 	res, _, _ := dx_WaitKey.Call()
+	return int(res)
+}
+
+func GetNowCount() int {
+	if dx_GetNowCount == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_GetNowCount.Call()
 	return int(res)
 }
 

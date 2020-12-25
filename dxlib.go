@@ -216,7 +216,9 @@ package dxlib
 //dxlib int WaitKey()
 
 // 時間関係の関数
-//TODO
+//dxlib int GetNowCount()
+//TODO LONGLONG GetNowHiPerformanceCount()
+//TODO int GetDateTime(DATEDATA *dataBuf)
 
 // 乱数取得関数
 //TODO
