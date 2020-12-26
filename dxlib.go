@@ -293,6 +293,11 @@ package dxlib
 //dxlib int SetCreateSoundDataType(int soundDataType)
 //dxlib int SelectMidiMode(int mode)
 
+// Extra functions
+// 直接DXライブラリの関数を呼ばずにGo言語側で処理することで呼べる関数
+//ext_dxlib DrawFormatString
+//ext_dxlib DrawFormatStringToHandle
+
 // Unsupported functions
 // 公式のreadme.txtより
 // > 基本的に「可変引数の関数」「void 型のポインタを引数で取る関数」「コールバック関数を引数で取る関数」が使えません。
@@ -303,9 +308,7 @@ package dxlib
 //unsupported int GraphBlend(int grHandle, int blendGrHandle, int blendRatio, int blendType, ...)
 //unsupported int GraphBlendBlt(int srcGrHandle, int blendGrHandle, int destGrHandle, int blendRatio, int blendType, ...)
 //unsupported int GraphBlendRectBlt( int srcGrHandle, int blendGrHandle, int destGrHandle, int srcX1, int srcY1, int srcX2, int srcY2, int blendX, int blendY, int destX, int destY, int blendRatio, int blendType, ...)
-//unsupported int DrawFormatString(int x, int y, unsigned int color, char *format, ...)
 //unsupported int GetDrawFormatStringWidth(char *format, ...)
-//unsupported int DrawFormatStringToHandle(int x, int y, unsigned int color, int fonthandle, char *format, ...)
 //unsupported int GetDrawFormatStringWidthToHandle(int fontHandle, char *format, ...)
 //unsupported int printfDx(char *format, ...)
 //unsupported int FileRead_scanf(int fileHandle, char *format, ...)

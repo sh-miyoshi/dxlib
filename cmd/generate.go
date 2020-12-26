@@ -129,9 +129,26 @@ func parse(line string) (*dxFunc, error) {
 	return &res, nil
 }
 
-func generate(w io.Writer, packageName string, funcs []dxFunc) {
+func parseExtraFunc(line string) *dxFunc {
+	if !strings.HasPrefix(line, "//ext_dxlib") {
+		return nil
+	}
+
+	// valid format is only function name
+	//ext_dxlib <FuncName>
+
+	res := &dxFunc{
+		Name: strings.TrimPrefix(line, "//ext_dxlib "),
+	}
+	return res
+}
+
+func generate(w io.Writer, packageName string, funcs, extra []dxFunc) {
 	procs := []string{}
 	for _, f := range funcs {
+		procs = append(procs, f.Name)
+	}
+	for _, f := range extra {
 		procs = append(procs, f.Name)
 	}
 
@@ -143,6 +160,20 @@ func generate(w io.Writer, packageName string, funcs []dxFunc) {
 
 	t := template.Must(template.New("main").Parse(outTemplate))
 	t.Execute(w, data)
+}
+
+func generateExtFunc(w io.Writer) {
+	io.WriteString(w, `
+func DrawFormatString(x int, y int, color uint, format string, a ...interface{}) int {
+	str := fmt.Sprintf(format, a...)
+	return DrawString(x, y, str, color)
+}
+
+func DrawFormatStringToHandle(x int, y int, color uint, fontHandle int, format string, a ...interface{}) int {
+	str := fmt.Sprintf(format, a...)
+	return DrawStringToHandle(x, y, str, color, fontHandle)
+}
+`)
 }
 
 func main() {
@@ -166,7 +197,7 @@ func main() {
 	}
 	defer fp.Close()
 
-	data := []dxFunc{}
+	var data, extra []dxFunc
 	packageName := ""
 	scanner := bufio.NewScanner(fp)
 	for scanner.Scan() {
@@ -182,11 +213,16 @@ func main() {
 		}
 		if d != nil {
 			data = append(data, *d)
+		} else {
+			if d := parseExtraFunc(line); d != nil {
+				extra = append(extra, *d)
+			}
 		}
 	}
 
 	var buf bytes.Buffer
-	generate(&buf, packageName, data)
+	generate(&buf, packageName, data, extra)
+	generateExtFunc(&buf)
 	ioutil.WriteFile(output, buf.Bytes(), 0644)
 }
 
@@ -196,6 +232,7 @@ const outTemplate = `
 package {{ .Package }}
 
 import (
+	"fmt"
 	"syscall"
 	"unsafe"
 

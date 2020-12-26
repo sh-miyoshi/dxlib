@@ -3,6 +3,7 @@
 package dxlib
 
 import (
+	"fmt"
 	"syscall"
 	"unsafe"
 
@@ -238,6 +239,8 @@ var (
 	dx_ReloadFileGraphAll                   *syscall.LazyProc
 	dx_SetCreateSoundDataType               *syscall.LazyProc
 	dx_SelectMidiMode                       *syscall.LazyProc
+	dx_DrawFormatString                     *syscall.LazyProc
+	dx_DrawFormatStringToHandle             *syscall.LazyProc
 )
 
 func Init(dllFile string) {
@@ -470,6 +473,8 @@ func Init(dllFile string) {
 	dx_ReloadFileGraphAll = mod.NewProc("dx_ReloadFileGraphAll")
 	dx_SetCreateSoundDataType = mod.NewProc("dx_SetCreateSoundDataType")
 	dx_SelectMidiMode = mod.NewProc("dx_SelectMidiMode")
+	dx_DrawFormatString = mod.NewProc("dx_DrawFormatString")
+	dx_DrawFormatStringToHandle = mod.NewProc("dx_DrawFormatStringToHandle")
 
 }
 
@@ -2558,4 +2563,14 @@ func parraybyte(b []byte) uintptr {
 
 func parrayint(i []int) uintptr {
 	return uintptr(unsafe.Pointer(&i[0]))
+}
+
+func DrawFormatString(x int, y int, color uint, format string, a ...interface{}) int {
+	str := fmt.Sprintf(format, a...)
+	return DrawString(x, y, str, color)
+}
+
+func DrawFormatStringToHandle(x int, y int, color uint, fontHandle int, format string, a ...interface{}) int {
+	str := fmt.Sprintf(format, a...)
+	return DrawStringToHandle(x, y, str, color, fontHandle)
 }
