@@ -50,7 +50,7 @@ func parseArg(argStr string) ([]argument, error) {
 	for _, arg := range strings.Split(argStr, ",") {
 		arg = strings.TrimSpace(arg)
 		if arg == "..." {
-			return nil, errors.New("TODO ... is not implemented yet")
+			return nil, errors.New("... is not implemented yet")
 		}
 
 		ok := false

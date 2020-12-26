@@ -58,18 +58,10 @@ package dxlib
 //dxlib int SetTransColor(int red, int green, int blue)
 //dxlib int LoadBlendGraph(char *fileName)
 //dxlib int DrawBlendGraph(int x, int y, int grHandle, int transFlag, int blendGraph, int borderParam, int borderRange)
-//TODO int GraphFilter(int grHandle, int filterType, ...)
-//TODO int GraphFilterBlt(int srcGrHandle, int destGrHandle, int filterType, ...)
-//TODO int GraphFilterRectBlt(int srcGrHandle, int destGrHandle, int srcX1, int srcY1, int srcX2, int srcY2, int destX, int destY, int filterType, ...)
-//TODO int GraphBlend(int grHandle, int blendGrHandle, int blendRatio, int blendType, ...)
-//TODO int GraphBlendBlt(int srcGrHandle, int blendGrHandle, int destGrHandle, int blendRatio, int blendType, ...)
-//TODO int GraphBlendRectBlt( int srcGrHandle, int blendGrHandle, int destGrHandle, int srcX1, int srcY1, int srcX2, int srcY2, int blendX, int blendY, int destX, int destY, int blendRatio, int blendType, ...)
 
 // 文字描画関係関数
 //dxlib int DrawString(int x, int y, char *str, unsigned int color)
-//TODO int DrawFormatString(int x, int y, unsigned int color, char *format, ...)
 //dxlib int GetDrawStringWidth(char *str, int strLen)
-//TODO int GetDrawFormatStringWidth(char *format, ...)
 //dxlib int SetFontSize(int fontSize)
 //dxlib int SetFontThickness(int tinckPal)
 //dxlib int ChangeFont(char *fontName)
@@ -79,14 +71,11 @@ package dxlib
 //dxlib int DeleteFontToHandle(int fontHandle)
 //dxlib int SetFontCacheUsePremulAlphaFlag(int flag)
 //dxlib int DrawStringToHandle(int x, int y, char *str, unsigned int color, int fontHandle)
-//TODO int DrawFormatStringToHandle(int x, int y, unsigned int color, int fonthandle, char *format, ...)
 //dxlib int GetDrawStringWidthToHandle(char *str, int strLen, int fontHandle)
-//TODO int GetDrawFormatStringWidthToHandle(int fontHandle, char *format, ...)
 //dxlib int GetFontStateToHandle(char *fontName, int *size, int *thick, int fontHandle)
 //dxlib int InitFontToHandle()
 
 // 簡易画面出力関数
-//TODO int printfDx(char *format, ...)
 //dxlib int clsDx()
 
 // その他画面操作系関数
@@ -123,9 +112,6 @@ package dxlib
 //dxlib int SetUseMaskScreenFlag(int validFlag)
 //dxlib int MakeMask(int width, int height)
 //dxlib int GetMaskSize(int *widthBuf, int *heightBuf, int maskHandle)
-//TODO int SetDataToMask(int width, int height, void *maskData, int maskHandle)
-//TODO int DrawMaskToDirectData(int x, int y, int width, int height, void *maskData, int transMode)
-//TODO int DrawFillMaskToDirectData(int x1, int y1, int x2, int y2, int width, int height, void *maskData)
 
 // 入力関係の関数
 //dxlib int GetJoypadNum()
@@ -236,19 +222,14 @@ package dxlib
 //dxlib int CloseNetWork(int netHandle)
 //dxlib int PreparationListenNetWork(int port)
 //dxlib int StopListenNetWork()
-//TODO int NetWorkSend(int netHandle, void *buffer, int length)
 //dxlib int GetNetWorkDataLength(int netHandle)
 //dxlib int GetNetWorkSendDataLength(int netHandle)
-//TODO int NetWorkRecv(int netHandle, void *buffer, int length)
-//TODO int NetWorkRecvToPeek(int netHandle, void *buffer, int length)
 //dxlib int GetNewAcceptNetWork()
 //dxlib int GetLostNetWork()
 //dxlib int GetNetWorkAcceptState(int netHandle)
 //TODO int GetNetWorkIP(int netHandle, IPDATA *ipBuf)
 //dxlib int MakeUDPSocket(int recvPort)
 //dxlib int DeleteUDPSocket(int netUDPHandle)
-//TODO int NetWorkSendUDP(int netUDPHandle, IPDATA sendIP, int sendPort, void *buffer, int length)
-//TODO int NetWorkRecvUDP(int netUDPHandle, IPDATA *recvIP, int *recvPort, void *buffer, int length, int peek)
 //dxlib int CheckNetWorkRecvUDP(int netUDPHandle)
 
 // ファイル読み込み関係
@@ -257,19 +238,14 @@ package dxlib
 //dxlib int FileRead_close(int fileHandle)
 //dxlib LONGLONG FileRead_tell(int fileHandle)
 //dxlib int FileRead_seek(int fileHandle, LONGLONG offset, int origin)
-//TODO int FileRead_read(void *buffer, int readSize, int fileHandle)
 //dxlib int FileRead_eof(int fileHandle)
 //dxlib int FileRead_gets(arraychar buffer, int num, int fileHandle)
 //dxlib int FileRead_getc(int fileHandle)
-//TODO int FileRead_scanf(int fileHandle, char *format, ...)
 
 // ドット単位で画像にアクセスしたい関係
 //dxlib int LoadSoftImage(char *fileName)
 //dxlib int LoadARGB8ColorSoftImage(char *fileName)
 //dxlib int LoadXRGB8ColorSoftImage(char *fileName)
-//TODO int LoadSoftImageToMem(void *fileImage, int fileImageSize)
-//TODO int LoadARGB8ColorSoftImageToMem(void *fileImage, int fileImageSize)
-//TODO int LoadXRGB8ColorSoftImageToMem(void *fileImage, int fileImageSize)
 //dxlib int MakeARGB8ColorSoftImage(int sizeX, int sizeY)
 //dxlib int MakeXRGB8ColorSoftImage(int sizeX, int sizeY)
 //dxlib int MakePAL8ColorSoftImage(int sizeX, int sizeY)
@@ -295,7 +271,6 @@ package dxlib
 
 // 文字関係関数
 //dxlib int SetUseCharCodeFormat(int charCodeFormat)
-//TODO int GetCharBytes(int charCodeFormat, void *str)
 
 // マイナー関数
 //dxlib int SetAlwaysRunFlag(int flag)
@@ -314,10 +289,40 @@ package dxlib
 //dxlib int EnumFontName(arraychar nameBuffer, int nameBufferNum)
 //dxlib int DrawVString(int x, int y, char *str, int color)
 //dxlib int DrawVStringToHandle(int x, int y, char *str, int color, int fontHandle)
-//TODO int CreateGraphFromMem(void *memImage, int memImageSize)
-//TODO int ReCreateGraphFromMem(void *memImage, int memImageSize, int grHandle)
 //dxlib int ReloadFileGraphAll()
-//TODO int SetRestoreGraphCallback(void (* callback)())
 //dxlib int SetCreateSoundDataType(int soundDataType)
-//TODO int LoadSoundMemByMemImage(void *fileImageBuffer, int imageSize)
 //dxlib int SelectMidiMode(int mode)
+
+// Unsupported functions
+// 公式のreadme.txtより
+// > 基本的に「可変引数の関数」「void 型のポインタを引数で取る関数」「コールバック関数を引数で取る関数」が使えません。
+// > また、ポインタを返す関数やポインタが含まれている構造体を扱う関数も使えません
+//unsupported int GraphFilter(int grHandle, int filterType, ...)
+//unsupported int GraphFilterBlt(int srcGrHandle, int destGrHandle, int filterType, ...)
+//unsupported int GraphFilterRectBlt(int srcGrHandle, int destGrHandle, int srcX1, int srcY1, int srcX2, int srcY2, int destX, int destY, int filterType, ...)
+//unsupported int GraphBlend(int grHandle, int blendGrHandle, int blendRatio, int blendType, ...)
+//unsupported int GraphBlendBlt(int srcGrHandle, int blendGrHandle, int destGrHandle, int blendRatio, int blendType, ...)
+//unsupported int GraphBlendRectBlt( int srcGrHandle, int blendGrHandle, int destGrHandle, int srcX1, int srcY1, int srcX2, int srcY2, int blendX, int blendY, int destX, int destY, int blendRatio, int blendType, ...)
+//unsupported int DrawFormatString(int x, int y, unsigned int color, char *format, ...)
+//unsupported int GetDrawFormatStringWidth(char *format, ...)
+//unsupported int DrawFormatStringToHandle(int x, int y, unsigned int color, int fonthandle, char *format, ...)
+//unsupported int GetDrawFormatStringWidthToHandle(int fontHandle, char *format, ...)
+//unsupported int printfDx(char *format, ...)
+//unsupported int FileRead_scanf(int fileHandle, char *format, ...)
+//unsupported int SetDataToMask(int width, int height, void *maskData, int maskHandle)
+//unsupported int DrawMaskToDirectData(int x, int y, int width, int height, void *maskData, int transMode)
+//unsupported int DrawFillMaskToDirectData(int x1, int y1, int x2, int y2, int width, int height, void *maskData)
+//unsupported int NetWorkSend(int netHandle, void *buffer, int length)
+//unsupported int NetWorkRecv(int netHandle, void *buffer, int length)
+//unsupported int NetWorkRecvToPeek(int netHandle, void *buffer, int length)
+//unsupported int NetWorkSendUDP(int netUDPHandle, IPDATA sendIP, int sendPort, void *buffer, int length)
+//unsupported int NetWorkRecvUDP(int netUDPHandle, IPDATA *recvIP, int *recvPort, void *buffer, int length, int peek)
+//unsupported int FileRead_read(void *buffer, int readSize, int fileHandle)
+//unsupported int LoadSoftImageToMem(void *fileImage, int fileImageSize)
+//unsupported int LoadARGB8ColorSoftImageToMem(void *fileImage, int fileImageSize)
+//unsupported int LoadXRGB8ColorSoftImageToMem(void *fileImage, int fileImageSize)
+//unsupported int GetCharBytes(int charCodeFormat, void *str)
+//unsupported int CreateGraphFromMem(void *memImage, int memImageSize)
+//unsupported int ReCreateGraphFromMem(void *memImage, int memImageSize, int grHandle)
+//unsupported int SetRestoreGraphCallback(void (* callback)())
+//unsupported int LoadSoundMemByMemImage(void *fileImageBuffer, int imageSize)
