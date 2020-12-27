@@ -4,6 +4,7 @@ package dxlib
 
 import (
 	"fmt"
+	"math"
 	"syscall"
 	"unsafe"
 
@@ -2546,11 +2547,11 @@ func pstring(str string) uintptr {
 }
 
 func pfloat32(f float32) uintptr {
-	return uintptr(f)
+	return uintptr(math.Float32bits(f))
 }
 
 func pfloat64(f float64) uintptr {
-	return uintptr(f)
+	return uintptr(math.Float64bits(f))
 }
 
 func pint64(i int64) uintptr {
