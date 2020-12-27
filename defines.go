@@ -8,11 +8,11 @@ const (
 
 // 描画先画面指定用定義
 const (
-	DX_SCREEN_FRONT     = 0xfffffffc
-	DX_SCREEN_BACK      = 0xfffffffe
-	DX_SCREEN_WORK      = 0xfffffffd
-	DX_SCREEN_TEMPFRONT = 0xfffffff0
-	DX_SCREEN_OTHER     = 0xfffffffa
+	DX_SCREEN_FRONT     = -4
+	DX_SCREEN_BACK      = -2
+	DX_SCREEN_WORK      = -3
+	DX_SCREEN_TEMPFRONT = -16
+	DX_SCREEN_OTHER     = -6
 
-	DX_NONE_GRAPH = 0xfffffffb // グラフィックなしハンドル
+	DX_NONE_GRAPH = -5 // グラフィックなしハンドル
 )

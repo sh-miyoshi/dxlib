@@ -479,1417 +479,1417 @@ func Init(dllFile string) {
 
 }
 
-func DxLib_Init() int {
+func DxLib_Init() int32 {
 	if dx_DxLib_Init == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
 	res, _, _ := dx_DxLib_Init.Call()
-	return int(res)
+	return int32(res)
 }
 
-func DxLib_End() int {
+func DxLib_End() int32 {
 	if dx_DxLib_End == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
 	res, _, _ := dx_DxLib_End.Call()
-	return int(res)
+	return int32(res)
 }
 
-func ProcessMessage() int {
+func ProcessMessage() int32 {
 	if dx_ProcessMessage == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
 	res, _, _ := dx_ProcessMessage.Call()
-	return int(res)
+	return int32(res)
 }
 
-func DrawLine(x1 int, y1 int, x2 int, y2 int, color uint) int {
+func DrawLine(x1 int32, y1 int32, x2 int32, y2 int32, color uint32) int32 {
 	if dx_DrawLine == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_DrawLine.Call(pint(x1), pint(y1), pint(x2), pint(y2), puint(color))
-	return int(res)
+	res, _, _ := dx_DrawLine.Call(pint32(x1), pint32(y1), pint32(x2), pint32(y2), puint32(color))
+	return int32(res)
 }
 
-func DrawLineAA(x1 float32, y1 float32, x2 float32, y2 float32, color uint) int {
+func DrawLineAA(x1 float32, y1 float32, x2 float32, y2 float32, color uint32) int32 {
 	if dx_DrawLineAA == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_DrawLineAA.Call(pfloat32(x1), pfloat32(y1), pfloat32(x2), pfloat32(y2), puint(color))
-	return int(res)
+	res, _, _ := dx_DrawLineAA.Call(pfloat32(x1), pfloat32(y1), pfloat32(x2), pfloat32(y2), puint32(color))
+	return int32(res)
 }
 
-func DrawBox(x1 int, y1 int, x2 int, y2 int, color uint, fillFlag int) int {
+func DrawBox(x1 int32, y1 int32, x2 int32, y2 int32, color uint32, fillFlag int32) int32 {
 	if dx_DrawBox == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_DrawBox.Call(pint(x1), pint(y1), pint(x2), pint(y2), puint(color), pint(fillFlag))
-	return int(res)
+	res, _, _ := dx_DrawBox.Call(pint32(x1), pint32(y1), pint32(x2), pint32(y2), puint32(color), pint32(fillFlag))
+	return int32(res)
 }
 
-func DrawBoxAA(x1 float32, y1 float32, x2 float32, y2 float32, color uint, fillFlag int) int {
+func DrawBoxAA(x1 float32, y1 float32, x2 float32, y2 float32, color uint32, fillFlag int32) int32 {
 	if dx_DrawBoxAA == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_DrawBoxAA.Call(pfloat32(x1), pfloat32(y1), pfloat32(x2), pfloat32(y2), puint(color), pint(fillFlag))
-	return int(res)
+	res, _, _ := dx_DrawBoxAA.Call(pfloat32(x1), pfloat32(y1), pfloat32(x2), pfloat32(y2), puint32(color), pint32(fillFlag))
+	return int32(res)
 }
 
-func DrawCircle(x int, y int, r int, color uint, fillFlag int) int {
+func DrawCircle(x int32, y int32, r int32, color uint32, fillFlag int32) int32 {
 	if dx_DrawCircle == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_DrawCircle.Call(pint(x), pint(y), pint(r), puint(color), pint(fillFlag))
-	return int(res)
+	res, _, _ := dx_DrawCircle.Call(pint32(x), pint32(y), pint32(r), puint32(color), pint32(fillFlag))
+	return int32(res)
 }
 
-func DrawCircleAA(x float32, y float32, r float32, posnum int, color uint, fillFlag int) int {
+func DrawCircleAA(x float32, y float32, r float32, posnum int32, color uint32, fillFlag int32) int32 {
 	if dx_DrawCircleAA == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_DrawCircleAA.Call(pfloat32(x), pfloat32(y), pfloat32(r), pint(posnum), puint(color), pint(fillFlag))
-	return int(res)
+	res, _, _ := dx_DrawCircleAA.Call(pfloat32(x), pfloat32(y), pfloat32(r), pint32(posnum), puint32(color), pint32(fillFlag))
+	return int32(res)
 }
 
-func DrawOval(x int, y int, rx int, ry int, color uint, fillFlag int) int {
+func DrawOval(x int32, y int32, rx int32, ry int32, color uint32, fillFlag int32) int32 {
 	if dx_DrawOval == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_DrawOval.Call(pint(x), pint(y), pint(rx), pint(ry), puint(color), pint(fillFlag))
-	return int(res)
+	res, _, _ := dx_DrawOval.Call(pint32(x), pint32(y), pint32(rx), pint32(ry), puint32(color), pint32(fillFlag))
+	return int32(res)
 }
 
-func DrawOvalAA(x float32, y float32, rx float32, ry float32, posnum int, color uint, fillFlag int) int {
+func DrawOvalAA(x float32, y float32, rx float32, ry float32, posnum int32, color uint32, fillFlag int32) int32 {
 	if dx_DrawOvalAA == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_DrawOvalAA.Call(pfloat32(x), pfloat32(y), pfloat32(rx), pfloat32(ry), pint(posnum), puint(color), pint(fillFlag))
-	return int(res)
+	res, _, _ := dx_DrawOvalAA.Call(pfloat32(x), pfloat32(y), pfloat32(rx), pfloat32(ry), pint32(posnum), puint32(color), pint32(fillFlag))
+	return int32(res)
 }
 
-func DrawTriangle(x1 int, y1 int, x2 int, y2 int, x3 int, y3 int, color uint, fillFlag int) int {
+func DrawTriangle(x1 int32, y1 int32, x2 int32, y2 int32, x3 int32, y3 int32, color uint32, fillFlag int32) int32 {
 	if dx_DrawTriangle == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_DrawTriangle.Call(pint(x1), pint(y1), pint(x2), pint(y2), pint(x3), pint(y3), puint(color), pint(fillFlag))
-	return int(res)
+	res, _, _ := dx_DrawTriangle.Call(pint32(x1), pint32(y1), pint32(x2), pint32(y2), pint32(x3), pint32(y3), puint32(color), pint32(fillFlag))
+	return int32(res)
 }
 
-func DrawTriangleAA(x1 float32, y1 float32, x2 float32, y2 float32, x3 float32, y3 float32, color uint, fillFlag int) int {
+func DrawTriangleAA(x1 float32, y1 float32, x2 float32, y2 float32, x3 float32, y3 float32, color uint32, fillFlag int32) int32 {
 	if dx_DrawTriangleAA == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_DrawTriangleAA.Call(pfloat32(x1), pfloat32(y1), pfloat32(x2), pfloat32(y2), pfloat32(x3), pfloat32(y3), puint(color), pint(fillFlag))
-	return int(res)
+	res, _, _ := dx_DrawTriangleAA.Call(pfloat32(x1), pfloat32(y1), pfloat32(x2), pfloat32(y2), pfloat32(x3), pfloat32(y3), puint32(color), pint32(fillFlag))
+	return int32(res)
 }
 
-func DrawPixel(x int, y int, color uint) int {
+func DrawPixel(x int32, y int32, color uint32) int32 {
 	if dx_DrawPixel == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_DrawPixel.Call(pint(x), pint(y), puint(color))
-	return int(res)
+	res, _, _ := dx_DrawPixel.Call(pint32(x), pint32(y), puint32(color))
+	return int32(res)
 }
 
-func GetPixel(x int, y int) uint {
+func GetPixel(x int32, y int32) uint32 {
 	if dx_GetPixel == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_GetPixel.Call(pint(x), pint(y))
-	return uint(res)
+	res, _, _ := dx_GetPixel.Call(pint32(x), pint32(y))
+	return uint32(res)
 }
 
-func LoadGraphScreen(x int, y int, graphName string, transFlag int) int {
+func LoadGraphScreen(x int32, y int32, graphName string, transFlag int32) int32 {
 	if dx_LoadGraphScreen == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_LoadGraphScreen.Call(pint(x), pint(y), pstring(graphName), pint(transFlag))
-	return int(res)
+	res, _, _ := dx_LoadGraphScreen.Call(pint32(x), pint32(y), pstring(graphName), pint32(transFlag))
+	return int32(res)
 }
 
-func LoadGraph(fileName string) int {
+func LoadGraph(fileName string) int32 {
 	if dx_LoadGraph == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
 	res, _, _ := dx_LoadGraph.Call(pstring(fileName))
-	return int(res)
+	return int32(res)
 }
 
-func LoadDivGraph(fileName string, allnum int, xnum int, ynum int, xsize int, ysize int, handleBuf []int) int {
+func LoadDivGraph(fileName string, allnum int32, xnum int32, ynum int32, xsize int32, ysize int32, handleBuf []int32) int32 {
 	if dx_LoadDivGraph == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_LoadDivGraph.Call(pstring(fileName), pint(allnum), pint(xnum), pint(ynum), pint(xsize), pint(ysize), parrayint(handleBuf))
-	return int(res)
+	res, _, _ := dx_LoadDivGraph.Call(pstring(fileName), pint32(allnum), pint32(xnum), pint32(ynum), pint32(xsize), pint32(ysize), parrayint32(handleBuf))
+	return int32(res)
 }
 
-func MakeGraph(sizeX int, sizeY int) int {
+func MakeGraph(sizeX int32, sizeY int32) int32 {
 	if dx_MakeGraph == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_MakeGraph.Call(pint(sizeX), pint(sizeY))
-	return int(res)
+	res, _, _ := dx_MakeGraph.Call(pint32(sizeX), pint32(sizeY))
+	return int32(res)
 }
 
-func MakeScreen(sizeX int, sizeY int, useAlphaChannel int) int {
+func MakeScreen(sizeX int32, sizeY int32, useAlphaChannel int32) int32 {
 	if dx_MakeScreen == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_MakeScreen.Call(pint(sizeX), pint(sizeY), pint(useAlphaChannel))
-	return int(res)
+	res, _, _ := dx_MakeScreen.Call(pint32(sizeX), pint32(sizeY), pint32(useAlphaChannel))
+	return int32(res)
 }
 
-func SetCreateDrawValidGraphMultiSample(samples int, quality int) int {
+func SetCreateDrawValidGraphMultiSample(samples int32, quality int32) int32 {
 	if dx_SetCreateDrawValidGraphMultiSample == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_SetCreateDrawValidGraphMultiSample.Call(pint(samples), pint(quality))
-	return int(res)
+	res, _, _ := dx_SetCreateDrawValidGraphMultiSample.Call(pint32(samples), pint32(quality))
+	return int32(res)
 }
 
-func SetCreateGraphColorBitDepth(bitDepth int) int {
+func SetCreateGraphColorBitDepth(bitDepth int32) int32 {
 	if dx_SetCreateGraphColorBitDepth == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_SetCreateGraphColorBitDepth.Call(pint(bitDepth))
-	return int(res)
+	res, _, _ := dx_SetCreateGraphColorBitDepth.Call(pint32(bitDepth))
+	return int32(res)
 }
 
-func SetDrawValidFloatTypeGraphCreateFlag(flag int) int {
+func SetDrawValidFloatTypeGraphCreateFlag(flag int32) int32 {
 	if dx_SetDrawValidFloatTypeGraphCreateFlag == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_SetDrawValidFloatTypeGraphCreateFlag.Call(pint(flag))
-	return int(res)
+	res, _, _ := dx_SetDrawValidFloatTypeGraphCreateFlag.Call(pint32(flag))
+	return int32(res)
 }
 
-func SetCreateDrawValidGraphChannelNum(channelNum int) int {
+func SetCreateDrawValidGraphChannelNum(channelNum int32) int32 {
 	if dx_SetCreateDrawValidGraphChannelNum == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_SetCreateDrawValidGraphChannelNum.Call(pint(channelNum))
-	return int(res)
+	res, _, _ := dx_SetCreateDrawValidGraphChannelNum.Call(pint32(channelNum))
+	return int32(res)
 }
 
-func SetUsePremulAlphaConvertLoad(useFlag int) int {
+func SetUsePremulAlphaConvertLoad(useFlag int32) int32 {
 	if dx_SetUsePremulAlphaConvertLoad == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_SetUsePremulAlphaConvertLoad.Call(pint(useFlag))
-	return int(res)
+	res, _, _ := dx_SetUsePremulAlphaConvertLoad.Call(pint32(useFlag))
+	return int32(res)
 }
 
-func DrawGraph(x int, y int, grHandle int, transFlag int) int {
+func DrawGraph(x int32, y int32, grHandle int32, transFlag int32) int32 {
 	if dx_DrawGraph == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_DrawGraph.Call(pint(x), pint(y), pint(grHandle), pint(transFlag))
-	return int(res)
+	res, _, _ := dx_DrawGraph.Call(pint32(x), pint32(y), pint32(grHandle), pint32(transFlag))
+	return int32(res)
 }
 
-func DrawTurnGraph(x int, y int, grHandle int, transFlag int) int {
+func DrawTurnGraph(x int32, y int32, grHandle int32, transFlag int32) int32 {
 	if dx_DrawTurnGraph == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_DrawTurnGraph.Call(pint(x), pint(y), pint(grHandle), pint(transFlag))
-	return int(res)
+	res, _, _ := dx_DrawTurnGraph.Call(pint32(x), pint32(y), pint32(grHandle), pint32(transFlag))
+	return int32(res)
 }
 
-func DrawExtendGraph(x1 int, y1 int, x2 int, y2 int, grHandle int, transFlag int) int {
+func DrawExtendGraph(x1 int32, y1 int32, x2 int32, y2 int32, grHandle int32, transFlag int32) int32 {
 	if dx_DrawExtendGraph == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_DrawExtendGraph.Call(pint(x1), pint(y1), pint(x2), pint(y2), pint(grHandle), pint(transFlag))
-	return int(res)
+	res, _, _ := dx_DrawExtendGraph.Call(pint32(x1), pint32(y1), pint32(x2), pint32(y2), pint32(grHandle), pint32(transFlag))
+	return int32(res)
 }
 
-func DrawRotaGraph(x int, y int, extRate float64, angle float64, grHandle int, transFlag int, turnFlag int) int {
+func DrawRotaGraph(x int32, y int32, extRate float64, angle float64, grHandle int32, transFlag int32, turnFlag int32) int32 {
 	if dx_DrawRotaGraph == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_DrawRotaGraph.Call(pint(x), pint(y), pfloat64(extRate), pfloat64(angle), pint(grHandle), pint(transFlag), pint(turnFlag))
-	return int(res)
+	res, _, _ := dx_DrawRotaGraph.Call(pint32(x), pint32(y), pfloat64(extRate), pfloat64(angle), pint32(grHandle), pint32(transFlag), pint32(turnFlag))
+	return int32(res)
 }
 
-func DrawRotaGraph2(x int, y int, cx int, cy int, extRate float64, angle float64, grHandle int, transFlag int, turnFlag int) int {
+func DrawRotaGraph2(x int32, y int32, cx int32, cy int32, extRate float64, angle float64, grHandle int32, transFlag int32, turnFlag int32) int32 {
 	if dx_DrawRotaGraph2 == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_DrawRotaGraph2.Call(pint(x), pint(y), pint(cx), pint(cy), pfloat64(extRate), pfloat64(angle), pint(grHandle), pint(transFlag), pint(turnFlag))
-	return int(res)
+	res, _, _ := dx_DrawRotaGraph2.Call(pint32(x), pint32(y), pint32(cx), pint32(cy), pfloat64(extRate), pfloat64(angle), pint32(grHandle), pint32(transFlag), pint32(turnFlag))
+	return int32(res)
 }
 
-func DrawRotaGraph3(x int, y int, cx int, cy int, extRateX float64, extRateY float64, angle float64, grHandle int, transFlag int, turnFlag int) int {
+func DrawRotaGraph3(x int32, y int32, cx int32, cy int32, extRateX float64, extRateY float64, angle float64, grHandle int32, transFlag int32, turnFlag int32) int32 {
 	if dx_DrawRotaGraph3 == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_DrawRotaGraph3.Call(pint(x), pint(y), pint(cx), pint(cy), pfloat64(extRateX), pfloat64(extRateY), pfloat64(angle), pint(grHandle), pint(transFlag), pint(turnFlag))
-	return int(res)
+	res, _, _ := dx_DrawRotaGraph3.Call(pint32(x), pint32(y), pint32(cx), pint32(cy), pfloat64(extRateX), pfloat64(extRateY), pfloat64(angle), pint32(grHandle), pint32(transFlag), pint32(turnFlag))
+	return int32(res)
 }
 
-func DrawModiGraph(x1 int, y1 int, x2 int, y2 int, x3 int, y3 int, x4 int, y4 int, grHandle int, transFlag int) int {
+func DrawModiGraph(x1 int32, y1 int32, x2 int32, y2 int32, x3 int32, y3 int32, x4 int32, y4 int32, grHandle int32, transFlag int32) int32 {
 	if dx_DrawModiGraph == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_DrawModiGraph.Call(pint(x1), pint(y1), pint(x2), pint(y2), pint(x3), pint(y3), pint(x4), pint(y4), pint(grHandle), pint(transFlag))
-	return int(res)
+	res, _, _ := dx_DrawModiGraph.Call(pint32(x1), pint32(y1), pint32(x2), pint32(y2), pint32(x3), pint32(y3), pint32(x4), pint32(y4), pint32(grHandle), pint32(transFlag))
+	return int32(res)
 }
 
-func DrawRectGraph(destX int, destY int, srcX int, srcY int, width int, height int, graphHandle int, transFlag int, turnFlag int) int {
+func DrawRectGraph(destX int32, destY int32, srcX int32, srcY int32, width int32, height int32, graphHandle int32, transFlag int32, turnFlag int32) int32 {
 	if dx_DrawRectGraph == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_DrawRectGraph.Call(pint(destX), pint(destY), pint(srcX), pint(srcY), pint(width), pint(height), pint(graphHandle), pint(transFlag), pint(turnFlag))
-	return int(res)
+	res, _, _ := dx_DrawRectGraph.Call(pint32(destX), pint32(destY), pint32(srcX), pint32(srcY), pint32(width), pint32(height), pint32(graphHandle), pint32(transFlag), pint32(turnFlag))
+	return int32(res)
 }
 
-func DerivationGraph(srcX int, srcY int, width int, height int, srcGraphHandle int) int {
+func DerivationGraph(srcX int32, srcY int32, width int32, height int32, srcGraphHandle int32) int32 {
 	if dx_DerivationGraph == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_DerivationGraph.Call(pint(srcX), pint(srcY), pint(width), pint(height), pint(srcGraphHandle))
-	return int(res)
+	res, _, _ := dx_DerivationGraph.Call(pint32(srcX), pint32(srcY), pint32(width), pint32(height), pint32(srcGraphHandle))
+	return int32(res)
 }
 
-func GetDrawScreenGraph(x1 int, y1 int, x2 int, y2 int, grHandle int) int {
+func GetDrawScreenGraph(x1 int32, y1 int32, x2 int32, y2 int32, grHandle int32) int32 {
 	if dx_GetDrawScreenGraph == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_GetDrawScreenGraph.Call(pint(x1), pint(y1), pint(x2), pint(y2), pint(grHandle))
-	return int(res)
+	res, _, _ := dx_GetDrawScreenGraph.Call(pint32(x1), pint32(y1), pint32(x2), pint32(y2), pint32(grHandle))
+	return int32(res)
 }
 
-func GetGraphiteSize(grHandle int, sizeXBuf *int, sizeYBuf *int) int {
+func GetGraphiteSize(grHandle int32, sizeXBuf *int32, sizeYBuf *int32) int32 {
 	if dx_GetGraphiteSize == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_GetGraphiteSize.Call(pint(grHandle), ppint(sizeXBuf), ppint(sizeYBuf))
-	return int(res)
+	res, _, _ := dx_GetGraphiteSize.Call(pint32(grHandle), ppint32(sizeXBuf), ppint32(sizeYBuf))
+	return int32(res)
 }
 
-func InitGraph() int {
+func InitGraph() int32 {
 	if dx_InitGraph == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
 	res, _, _ := dx_InitGraph.Call()
-	return int(res)
+	return int32(res)
 }
 
-func DeleteGraph(grHandle int) int {
+func DeleteGraph(grHandle int32) int32 {
 	if dx_DeleteGraph == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_DeleteGraph.Call(pint(grHandle))
-	return int(res)
+	res, _, _ := dx_DeleteGraph.Call(pint32(grHandle))
+	return int32(res)
 }
 
-func SetDrawMode(drawMode int) int {
+func SetDrawMode(drawMode int32) int32 {
 	if dx_SetDrawMode == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_SetDrawMode.Call(pint(drawMode))
-	return int(res)
+	res, _, _ := dx_SetDrawMode.Call(pint32(drawMode))
+	return int32(res)
 }
 
-func SetDrawBlendMode(blendMode int, pal int) int {
+func SetDrawBlendMode(blendMode int32, pal int32) int32 {
 	if dx_SetDrawBlendMode == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_SetDrawBlendMode.Call(pint(blendMode), pint(pal))
-	return int(res)
+	res, _, _ := dx_SetDrawBlendMode.Call(pint32(blendMode), pint32(pal))
+	return int32(res)
 }
 
-func SetDrawBright(redBright int, greenBright int, blueBright int) int {
+func SetDrawBright(redBright int32, greenBright int32, blueBright int32) int32 {
 	if dx_SetDrawBright == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_SetDrawBright.Call(pint(redBright), pint(greenBright), pint(blueBright))
-	return int(res)
+	res, _, _ := dx_SetDrawBright.Call(pint32(redBright), pint32(greenBright), pint32(blueBright))
+	return int32(res)
 }
 
-func SetTransColor(red int, green int, blue int) int {
+func SetTransColor(red int32, green int32, blue int32) int32 {
 	if dx_SetTransColor == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_SetTransColor.Call(pint(red), pint(green), pint(blue))
-	return int(res)
+	res, _, _ := dx_SetTransColor.Call(pint32(red), pint32(green), pint32(blue))
+	return int32(res)
 }
 
-func LoadBlendGraph(fileName string) int {
+func LoadBlendGraph(fileName string) int32 {
 	if dx_LoadBlendGraph == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
 	res, _, _ := dx_LoadBlendGraph.Call(pstring(fileName))
-	return int(res)
+	return int32(res)
 }
 
-func DrawBlendGraph(x int, y int, grHandle int, transFlag int, blendGraph int, borderParam int, borderRange int) int {
+func DrawBlendGraph(x int32, y int32, grHandle int32, transFlag int32, blendGraph int32, borderParam int32, borderRange int32) int32 {
 	if dx_DrawBlendGraph == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_DrawBlendGraph.Call(pint(x), pint(y), pint(grHandle), pint(transFlag), pint(blendGraph), pint(borderParam), pint(borderRange))
-	return int(res)
+	res, _, _ := dx_DrawBlendGraph.Call(pint32(x), pint32(y), pint32(grHandle), pint32(transFlag), pint32(blendGraph), pint32(borderParam), pint32(borderRange))
+	return int32(res)
 }
 
-func DrawString(x int, y int, str string, color uint) int {
+func DrawString(x int32, y int32, str string, color uint32) int32 {
 	if dx_DrawString == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_DrawString.Call(pint(x), pint(y), pstring(str), puint(color))
-	return int(res)
+	res, _, _ := dx_DrawString.Call(pint32(x), pint32(y), pstring(str), puint32(color))
+	return int32(res)
 }
 
-func GetDrawStringWidth(str string, strLen int) int {
+func GetDrawStringWidth(str string, strLen int32) int32 {
 	if dx_GetDrawStringWidth == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_GetDrawStringWidth.Call(pstring(str), pint(strLen))
-	return int(res)
+	res, _, _ := dx_GetDrawStringWidth.Call(pstring(str), pint32(strLen))
+	return int32(res)
 }
 
-func SetFontSize(fontSize int) int {
+func SetFontSize(fontSize int32) int32 {
 	if dx_SetFontSize == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_SetFontSize.Call(pint(fontSize))
-	return int(res)
+	res, _, _ := dx_SetFontSize.Call(pint32(fontSize))
+	return int32(res)
 }
 
-func SetFontThickness(tinckPal int) int {
+func SetFontThickness(tinckPal int32) int32 {
 	if dx_SetFontThickness == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_SetFontThickness.Call(pint(tinckPal))
-	return int(res)
+	res, _, _ := dx_SetFontThickness.Call(pint32(tinckPal))
+	return int32(res)
 }
 
-func ChangeFont(fontName string) int {
+func ChangeFont(fontName string) int32 {
 	if dx_ChangeFont == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
 	res, _, _ := dx_ChangeFont.Call(pstring(fontName))
-	return int(res)
+	return int32(res)
 }
 
-func ChangeFontType(fontType int) int {
+func ChangeFontType(fontType int32) int32 {
 	if dx_ChangeFontType == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_ChangeFontType.Call(pint(fontType))
-	return int(res)
+	res, _, _ := dx_ChangeFontType.Call(pint32(fontType))
+	return int32(res)
 }
 
-func CreateFontToHandle(fontName string, size int, thick int, fontType int) int {
+func CreateFontToHandle(fontName string, size int32, thick int32, fontType int32) int32 {
 	if dx_CreateFontToHandle == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_CreateFontToHandle.Call(pstring(fontName), pint(size), pint(thick), pint(fontType))
-	return int(res)
+	res, _, _ := dx_CreateFontToHandle.Call(pstring(fontName), pint32(size), pint32(thick), pint32(fontType))
+	return int32(res)
 }
 
-func LoadFontDataToHandle(fileName string, edgeSize int) int {
+func LoadFontDataToHandle(fileName string, edgeSize int32) int32 {
 	if dx_LoadFontDataToHandle == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_LoadFontDataToHandle.Call(pstring(fileName), pint(edgeSize))
-	return int(res)
+	res, _, _ := dx_LoadFontDataToHandle.Call(pstring(fileName), pint32(edgeSize))
+	return int32(res)
 }
 
-func DeleteFontToHandle(fontHandle int) int {
+func DeleteFontToHandle(fontHandle int32) int32 {
 	if dx_DeleteFontToHandle == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_DeleteFontToHandle.Call(pint(fontHandle))
-	return int(res)
+	res, _, _ := dx_DeleteFontToHandle.Call(pint32(fontHandle))
+	return int32(res)
 }
 
-func SetFontCacheUsePremulAlphaFlag(flag int) int {
+func SetFontCacheUsePremulAlphaFlag(flag int32) int32 {
 	if dx_SetFontCacheUsePremulAlphaFlag == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_SetFontCacheUsePremulAlphaFlag.Call(pint(flag))
-	return int(res)
+	res, _, _ := dx_SetFontCacheUsePremulAlphaFlag.Call(pint32(flag))
+	return int32(res)
 }
 
-func DrawStringToHandle(x int, y int, str string, color uint, fontHandle int) int {
+func DrawStringToHandle(x int32, y int32, str string, color uint32, fontHandle int32) int32 {
 	if dx_DrawStringToHandle == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_DrawStringToHandle.Call(pint(x), pint(y), pstring(str), puint(color), pint(fontHandle))
-	return int(res)
+	res, _, _ := dx_DrawStringToHandle.Call(pint32(x), pint32(y), pstring(str), puint32(color), pint32(fontHandle))
+	return int32(res)
 }
 
-func GetDrawStringWidthToHandle(str string, strLen int, fontHandle int) int {
+func GetDrawStringWidthToHandle(str string, strLen int32, fontHandle int32) int32 {
 	if dx_GetDrawStringWidthToHandle == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_GetDrawStringWidthToHandle.Call(pstring(str), pint(strLen), pint(fontHandle))
-	return int(res)
+	res, _, _ := dx_GetDrawStringWidthToHandle.Call(pstring(str), pint32(strLen), pint32(fontHandle))
+	return int32(res)
 }
 
-func GetFontStateToHandle(fontName string, size *int, thick *int, fontHandle int) int {
+func GetFontStateToHandle(fontName string, size *int32, thick *int32, fontHandle int32) int32 {
 	if dx_GetFontStateToHandle == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_GetFontStateToHandle.Call(pstring(fontName), ppint(size), ppint(thick), pint(fontHandle))
-	return int(res)
+	res, _, _ := dx_GetFontStateToHandle.Call(pstring(fontName), ppint32(size), ppint32(thick), pint32(fontHandle))
+	return int32(res)
 }
 
-func InitFontToHandle() int {
+func InitFontToHandle() int32 {
 	if dx_InitFontToHandle == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
 	res, _, _ := dx_InitFontToHandle.Call()
-	return int(res)
+	return int32(res)
 }
 
-func clsDx() int {
+func clsDx() int32 {
 	if dx_clsDx == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
 	res, _, _ := dx_clsDx.Call()
-	return int(res)
+	return int32(res)
 }
 
-func SetGraphMode(sizeX int, sizeY int, colorBitNum int) int {
+func SetGraphMode(sizeX int32, sizeY int32, colorBitNum int32) int32 {
 	if dx_SetGraphMode == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_SetGraphMode.Call(pint(sizeX), pint(sizeY), pint(colorBitNum))
-	return int(res)
+	res, _, _ := dx_SetGraphMode.Call(pint32(sizeX), pint32(sizeY), pint32(colorBitNum))
+	return int32(res)
 }
 
-func SetFullScreenResolutionMode(resolutionMode int) int {
+func SetFullScreenResolutionMode(resolutionMode int32) int32 {
 	if dx_SetFullScreenResolutionMode == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_SetFullScreenResolutionMode.Call(pint(resolutionMode))
-	return int(res)
+	res, _, _ := dx_SetFullScreenResolutionMode.Call(pint32(resolutionMode))
+	return int32(res)
 }
 
-func SetFullScreenScalingMode(scalingMode int) int {
+func SetFullScreenScalingMode(scalingMode int32) int32 {
 	if dx_SetFullScreenScalingMode == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_SetFullScreenScalingMode.Call(pint(scalingMode))
-	return int(res)
+	res, _, _ := dx_SetFullScreenScalingMode.Call(pint32(scalingMode))
+	return int32(res)
 }
 
-func GetScreenState(sizeX *int, sizeY *int, colorBitDepth *int) int {
+func GetScreenState(sizeX *int32, sizeY *int32, colorBitDepth *int32) int32 {
 	if dx_GetScreenState == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_GetScreenState.Call(ppint(sizeX), ppint(sizeY), ppint(colorBitDepth))
-	return int(res)
+	res, _, _ := dx_GetScreenState.Call(ppint32(sizeX), ppint32(sizeY), ppint32(colorBitDepth))
+	return int32(res)
 }
 
-func SetDrawArea(x1 int, y1 int, x2 int, y2 int) int {
+func SetDrawArea(x1 int32, y1 int32, x2 int32, y2 int32) int32 {
 	if dx_SetDrawArea == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_SetDrawArea.Call(pint(x1), pint(y1), pint(x2), pint(y2))
-	return int(res)
+	res, _, _ := dx_SetDrawArea.Call(pint32(x1), pint32(y1), pint32(x2), pint32(y2))
+	return int32(res)
 }
 
-func ClearDrawScreen() int {
+func ClearDrawScreen() int32 {
 	if dx_ClearDrawScreen == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
 	res, _, _ := dx_ClearDrawScreen.Call()
-	return int(res)
+	return int32(res)
 }
 
-func SetBackgroundColor(red int, green int, blue int) int {
+func SetBackgroundColor(red int32, green int32, blue int32) int32 {
 	if dx_SetBackgroundColor == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_SetBackgroundColor.Call(pint(red), pint(green), pint(blue))
-	return int(res)
+	res, _, _ := dx_SetBackgroundColor.Call(pint32(red), pint32(green), pint32(blue))
+	return int32(res)
 }
 
-func GetColor(red int, green int, blue int) uint {
+func GetColor(red int32, green int32, blue int32) uint32 {
 	if dx_GetColor == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_GetColor.Call(pint(red), pint(green), pint(blue))
-	return uint(res)
+	res, _, _ := dx_GetColor.Call(pint32(red), pint32(green), pint32(blue))
+	return uint32(res)
 }
 
-func SetDrawScreen(drawScreen int) int {
+func SetDrawScreen(drawScreen int32) int32 {
 	if dx_SetDrawScreen == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_SetDrawScreen.Call(pint(drawScreen))
-	return int(res)
+	res, _, _ := dx_SetDrawScreen.Call(pint32(drawScreen))
+	return int32(res)
 }
 
-func ScreenFlip() int {
+func ScreenFlip() int32 {
 	if dx_ScreenFlip == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
 	res, _, _ := dx_ScreenFlip.Call()
-	return int(res)
+	return int32(res)
 }
 
-func SetFullSceneAntiAliasingMode(samples int, quality int) int {
+func SetFullSceneAntiAliasingMode(samples int32, quality int32) int32 {
 	if dx_SetFullSceneAntiAliasingMode == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_SetFullSceneAntiAliasingMode.Call(pint(samples), pint(quality))
-	return int(res)
+	res, _, _ := dx_SetFullSceneAntiAliasingMode.Call(pint32(samples), pint32(quality))
+	return int32(res)
 }
 
-func PlayMovie(fileName string, exRate int, playType int) int {
+func PlayMovie(fileName string, exRate int32, playType int32) int32 {
 	if dx_PlayMovie == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_PlayMovie.Call(pstring(fileName), pint(exRate), pint(playType))
-	return int(res)
+	res, _, _ := dx_PlayMovie.Call(pstring(fileName), pint32(exRate), pint32(playType))
+	return int32(res)
 }
 
-func PlayMovieToGraph(graphHandle int) int {
+func PlayMovieToGraph(graphHandle int32) int32 {
 	if dx_PlayMovieToGraph == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_PlayMovieToGraph.Call(pint(graphHandle))
-	return int(res)
+	res, _, _ := dx_PlayMovieToGraph.Call(pint32(graphHandle))
+	return int32(res)
 }
 
-func PauseMovieToGraph(graphHandle int) int {
+func PauseMovieToGraph(graphHandle int32) int32 {
 	if dx_PauseMovieToGraph == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_PauseMovieToGraph.Call(pint(graphHandle))
-	return int(res)
+	res, _, _ := dx_PauseMovieToGraph.Call(pint32(graphHandle))
+	return int32(res)
 }
 
-func SeekMovieToGraph(graphHandle int, time int) int {
+func SeekMovieToGraph(graphHandle int32, time int32) int32 {
 	if dx_SeekMovieToGraph == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_SeekMovieToGraph.Call(pint(graphHandle), pint(time))
-	return int(res)
+	res, _, _ := dx_SeekMovieToGraph.Call(pint32(graphHandle), pint32(time))
+	return int32(res)
 }
 
-func TellMovieToGraph(graphHandle int) int {
+func TellMovieToGraph(graphHandle int32) int32 {
 	if dx_TellMovieToGraph == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_TellMovieToGraph.Call(pint(graphHandle))
-	return int(res)
+	res, _, _ := dx_TellMovieToGraph.Call(pint32(graphHandle))
+	return int32(res)
 }
 
-func GetMovieStateToGraph(graphHandle int) int {
+func GetMovieStateToGraph(graphHandle int32) int32 {
 	if dx_GetMovieStateToGraph == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_GetMovieStateToGraph.Call(pint(graphHandle))
-	return int(res)
+	res, _, _ := dx_GetMovieStateToGraph.Call(pint32(graphHandle))
+	return int32(res)
 }
 
-func CreateMaskScreen() int {
+func CreateMaskScreen() int32 {
 	if dx_CreateMaskScreen == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
 	res, _, _ := dx_CreateMaskScreen.Call()
-	return int(res)
+	return int32(res)
 }
 
-func DeleteMaskScreen() int {
+func DeleteMaskScreen() int32 {
 	if dx_DeleteMaskScreen == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
 	res, _, _ := dx_DeleteMaskScreen.Call()
-	return int(res)
+	return int32(res)
 }
 
-func LoadMask(fileName string) int {
+func LoadMask(fileName string) int32 {
 	if dx_LoadMask == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
 	res, _, _ := dx_LoadMask.Call(pstring(fileName))
-	return int(res)
+	return int32(res)
 }
 
-func LoadDivMask(fileName string, allnum int, xnum int, ynum int, xsize int, ysize int, handleBuf []int) int {
+func LoadDivMask(fileName string, allnum int32, xnum int32, ynum int32, xsize int32, ysize int32, handleBuf []int32) int32 {
 	if dx_LoadDivMask == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_LoadDivMask.Call(pstring(fileName), pint(allnum), pint(xnum), pint(ynum), pint(xsize), pint(ysize), parrayint(handleBuf))
-	return int(res)
+	res, _, _ := dx_LoadDivMask.Call(pstring(fileName), pint32(allnum), pint32(xnum), pint32(ynum), pint32(xsize), pint32(ysize), parrayint32(handleBuf))
+	return int32(res)
 }
 
-func DrawMask(x int, y int, maskHandle int, transMode int) int {
+func DrawMask(x int32, y int32, maskHandle int32, transMode int32) int32 {
 	if dx_DrawMask == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_DrawMask.Call(pint(x), pint(y), pint(maskHandle), pint(transMode))
-	return int(res)
+	res, _, _ := dx_DrawMask.Call(pint32(x), pint32(y), pint32(maskHandle), pint32(transMode))
+	return int32(res)
 }
 
-func DrawFillMask(x1 int, y1 int, x2 int, y2 int, maskHandle int) int {
+func DrawFillMask(x1 int32, y1 int32, x2 int32, y2 int32, maskHandle int32) int32 {
 	if dx_DrawFillMask == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_DrawFillMask.Call(pint(x1), pint(y1), pint(x2), pint(y2), pint(maskHandle))
-	return int(res)
+	res, _, _ := dx_DrawFillMask.Call(pint32(x1), pint32(y1), pint32(x2), pint32(y2), pint32(maskHandle))
+	return int32(res)
 }
 
-func DeleteMask(maskHandle int) int {
+func DeleteMask(maskHandle int32) int32 {
 	if dx_DeleteMask == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_DeleteMask.Call(pint(maskHandle))
-	return int(res)
+	res, _, _ := dx_DeleteMask.Call(pint32(maskHandle))
+	return int32(res)
 }
 
-func InitMask() int {
+func InitMask() int32 {
 	if dx_InitMask == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
 	res, _, _ := dx_InitMask.Call()
-	return int(res)
+	return int32(res)
 }
 
-func FillMaskScreen(flag int) int {
+func FillMaskScreen(flag int32) int32 {
 	if dx_FillMaskScreen == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_FillMaskScreen.Call(pint(flag))
-	return int(res)
+	res, _, _ := dx_FillMaskScreen.Call(pint32(flag))
+	return int32(res)
 }
 
-func SetUseMaskScreenFlag(validFlag int) int {
+func SetUseMaskScreenFlag(validFlag int32) int32 {
 	if dx_SetUseMaskScreenFlag == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_SetUseMaskScreenFlag.Call(pint(validFlag))
-	return int(res)
+	res, _, _ := dx_SetUseMaskScreenFlag.Call(pint32(validFlag))
+	return int32(res)
 }
 
-func MakeMask(width int, height int) int {
+func MakeMask(width int32, height int32) int32 {
 	if dx_MakeMask == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_MakeMask.Call(pint(width), pint(height))
-	return int(res)
+	res, _, _ := dx_MakeMask.Call(pint32(width), pint32(height))
+	return int32(res)
 }
 
-func GetMaskSize(widthBuf *int, heightBuf *int, maskHandle int) int {
+func GetMaskSize(widthBuf *int32, heightBuf *int32, maskHandle int32) int32 {
 	if dx_GetMaskSize == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_GetMaskSize.Call(ppint(widthBuf), ppint(heightBuf), pint(maskHandle))
-	return int(res)
+	res, _, _ := dx_GetMaskSize.Call(ppint32(widthBuf), ppint32(heightBuf), pint32(maskHandle))
+	return int32(res)
 }
 
-func GetJoypadNum() int {
+func GetJoypadNum() int32 {
 	if dx_GetJoypadNum == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
 	res, _, _ := dx_GetJoypadNum.Call()
-	return int(res)
+	return int32(res)
 }
 
-func GetJoypadInputState(inputType int) int {
+func GetJoypadInputState(inputType int32) int32 {
 	if dx_GetJoypadInputState == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_GetJoypadInputState.Call(pint(inputType))
-	return int(res)
+	res, _, _ := dx_GetJoypadInputState.Call(pint32(inputType))
+	return int32(res)
 }
 
-func GetJoypadAnalogInput(xbuf *int, ybuf *int, inputType int) int {
+func GetJoypadAnalogInput(xbuf *int32, ybuf *int32, inputType int32) int32 {
 	if dx_GetJoypadAnalogInput == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_GetJoypadAnalogInput.Call(ppint(xbuf), ppint(ybuf), pint(inputType))
-	return int(res)
+	res, _, _ := dx_GetJoypadAnalogInput.Call(ppint32(xbuf), ppint32(ybuf), pint32(inputType))
+	return int32(res)
 }
 
-func SetJoypadDeadZone(inputType int, zone float64) int {
+func SetJoypadDeadZone(inputType int32, zone float64) int32 {
 	if dx_SetJoypadDeadZone == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_SetJoypadDeadZone.Call(pint(inputType), pfloat64(zone))
-	return int(res)
+	res, _, _ := dx_SetJoypadDeadZone.Call(pint32(inputType), pfloat64(zone))
+	return int32(res)
 }
 
-func StartJoypadVibration(inputType int, power int, time int) int {
+func StartJoypadVibration(inputType int32, power int32, time int32) int32 {
 	if dx_StartJoypadVibration == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_StartJoypadVibration.Call(pint(inputType), pint(power), pint(time))
-	return int(res)
+	res, _, _ := dx_StartJoypadVibration.Call(pint32(inputType), pint32(power), pint32(time))
+	return int32(res)
 }
 
-func StopJoypadVibration(inputType int) int {
+func StopJoypadVibration(inputType int32) int32 {
 	if dx_StopJoypadVibration == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_StopJoypadVibration.Call(pint(inputType))
-	return int(res)
+	res, _, _ := dx_StopJoypadVibration.Call(pint32(inputType))
+	return int32(res)
 }
 
-func SetMouseDispFlag(dispFlag int) int {
+func SetMouseDispFlag(dispFlag int32) int32 {
 	if dx_SetMouseDispFlag == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_SetMouseDispFlag.Call(pint(dispFlag))
-	return int(res)
+	res, _, _ := dx_SetMouseDispFlag.Call(pint32(dispFlag))
+	return int32(res)
 }
 
-func GetMousePoint(xbuf *int, ybuf *int) int {
+func GetMousePoint(xbuf *int32, ybuf *int32) int32 {
 	if dx_GetMousePoint == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_GetMousePoint.Call(ppint(xbuf), ppint(ybuf))
-	return int(res)
+	res, _, _ := dx_GetMousePoint.Call(ppint32(xbuf), ppint32(ybuf))
+	return int32(res)
 }
 
-func SetMousePoint(pointX int, pointY int) int {
+func SetMousePoint(pointX int32, pointY int32) int32 {
 	if dx_SetMousePoint == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_SetMousePoint.Call(pint(pointX), pint(pointY))
-	return int(res)
+	res, _, _ := dx_SetMousePoint.Call(pint32(pointX), pint32(pointY))
+	return int32(res)
 }
 
-func GetMouseInput() int {
+func GetMouseInput() int32 {
 	if dx_GetMouseInput == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
 	res, _, _ := dx_GetMouseInput.Call()
-	return int(res)
+	return int32(res)
 }
 
-func GetMouseInputLog2(button *int, clickX *int, clickY *int, logType *int, logDelete int) int {
+func GetMouseInputLog2(button *int32, clickX *int32, clickY *int32, logType *int32, logDelete int32) int32 {
 	if dx_GetMouseInputLog2 == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_GetMouseInputLog2.Call(ppint(button), ppint(clickX), ppint(clickY), ppint(logType), pint(logDelete))
-	return int(res)
+	res, _, _ := dx_GetMouseInputLog2.Call(ppint32(button), ppint32(clickX), ppint32(clickY), ppint32(logType), pint32(logDelete))
+	return int32(res)
 }
 
-func GetMouseWheelRotVol() int {
+func GetMouseWheelRotVol() int32 {
 	if dx_GetMouseWheelRotVol == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
 	res, _, _ := dx_GetMouseWheelRotVol.Call()
-	return int(res)
+	return int32(res)
 }
 
-func GetTouchInputNum() int {
+func GetTouchInputNum() int32 {
 	if dx_GetTouchInputNum == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
 	res, _, _ := dx_GetTouchInputNum.Call()
-	return int(res)
+	return int32(res)
 }
 
-func GetTouchInput(inputNo int, positionX *int, positionY *int, id *int, device *int) int {
+func GetTouchInput(inputNo int32, positionX *int32, positionY *int32, id *int32, device *int32) int32 {
 	if dx_GetTouchInput == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_GetTouchInput.Call(pint(inputNo), ppint(positionX), ppint(positionY), ppint(id), ppint(device))
-	return int(res)
+	res, _, _ := dx_GetTouchInput.Call(pint32(inputNo), ppint32(positionX), ppint32(positionY), ppint32(id), ppint32(device))
+	return int32(res)
 }
 
-func CheckHitKeyAll(checkType int) int {
+func CheckHitKeyAll(checkType int32) int32 {
 	if dx_CheckHitKeyAll == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_CheckHitKeyAll.Call(pint(checkType))
-	return int(res)
+	res, _, _ := dx_CheckHitKeyAll.Call(pint32(checkType))
+	return int32(res)
 }
 
-func CheckHitKey(keyCode int) int {
+func CheckHitKey(keyCode int32) int32 {
 	if dx_CheckHitKey == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_CheckHitKey.Call(pint(keyCode))
-	return int(res)
+	res, _, _ := dx_CheckHitKey.Call(pint32(keyCode))
+	return int32(res)
 }
 
-func GetHitKeyStateAll(keyStateBuf []byte) int {
+func GetHitKeyStateAll(keyStateBuf []byte) int32 {
 	if dx_GetHitKeyStateAll == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
 	res, _, _ := dx_GetHitKeyStateAll.Call(parraybyte(keyStateBuf))
-	return int(res)
+	return int32(res)
 }
 
-func GetInputChar(deleteFlag int) byte {
+func GetInputChar(deleteFlag int32) byte {
 	if dx_GetInputChar == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_GetInputChar.Call(pint(deleteFlag))
+	res, _, _ := dx_GetInputChar.Call(pint32(deleteFlag))
 	return byte(res)
 }
 
-func GetInputCharWait(deleteFlag int) byte {
+func GetInputCharWait(deleteFlag int32) byte {
 	if dx_GetInputCharWait == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_GetInputCharWait.Call(pint(deleteFlag))
+	res, _, _ := dx_GetInputCharWait.Call(pint32(deleteFlag))
 	return byte(res)
 }
 
-func ClearInputCharBuf() int {
+func ClearInputCharBuf() int32 {
 	if dx_ClearInputCharBuf == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
 	res, _, _ := dx_ClearInputCharBuf.Call()
-	return int(res)
+	return int32(res)
 }
 
-func KeyInputString(x int, y int, charMaxLength int, strBuffer string, cancelValidFlag int) int {
+func KeyInputString(x int32, y int32, charMaxLength int32, strBuffer string, cancelValidFlag int32) int32 {
 	if dx_KeyInputString == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_KeyInputString.Call(pint(x), pint(y), pint(charMaxLength), pstring(strBuffer), pint(cancelValidFlag))
-	return int(res)
+	res, _, _ := dx_KeyInputString.Call(pint32(x), pint32(y), pint32(charMaxLength), pstring(strBuffer), pint32(cancelValidFlag))
+	return int32(res)
 }
 
-func KeyInputSingleCharString(x int, y int, charMaxLength int, strBuffer string, cancelValidFlag int) int {
+func KeyInputSingleCharString(x int32, y int32, charMaxLength int32, strBuffer string, cancelValidFlag int32) int32 {
 	if dx_KeyInputSingleCharString == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_KeyInputSingleCharString.Call(pint(x), pint(y), pint(charMaxLength), pstring(strBuffer), pint(cancelValidFlag))
-	return int(res)
+	res, _, _ := dx_KeyInputSingleCharString.Call(pint32(x), pint32(y), pint32(charMaxLength), pstring(strBuffer), pint32(cancelValidFlag))
+	return int32(res)
 }
 
-func KeyInputNumber(x int, y int, maxNum int, minNum int, cancelValidFlag int) int {
+func KeyInputNumber(x int32, y int32, maxNum int32, minNum int32, cancelValidFlag int32) int32 {
 	if dx_KeyInputNumber == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_KeyInputNumber.Call(pint(x), pint(y), pint(maxNum), pint(minNum), pint(cancelValidFlag))
-	return int(res)
+	res, _, _ := dx_KeyInputNumber.Call(pint32(x), pint32(y), pint32(maxNum), pint32(minNum), pint32(cancelValidFlag))
+	return int32(res)
 }
 
-func SetKeyInputStringColor(nmlStr int, nmlCur int, imeStrBack int, imeCur int, imeLine int, imeSelectStr int, imeModeStr int, nmlStrE int, imeSelectStrE int, imeModeStrE int, imeSelectWinE int, imeSelectWinF int, selectStrBackColor int, selectStrColor int, selectStrEdgeColor int, imeStr int, imeStrE int) int {
+func SetKeyInputStringColor(nmlStr int32, nmlCur int32, imeStrBack int32, imeCur int32, imeLine int32, imeSelectStr int32, imeModeStr int32, nmlStrE int32, imeSelectStrE int32, imeModeStrE int32, imeSelectWinE int32, imeSelectWinF int32, selectStrBackColor int32, selectStrColor int32, selectStrEdgeColor int32, imeStr int32, imeStrE int32) int32 {
 	if dx_SetKeyInputStringColor == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_SetKeyInputStringColor.Call(pint(nmlStr), pint(nmlCur), pint(imeStrBack), pint(imeCur), pint(imeLine), pint(imeSelectStr), pint(imeModeStr), pint(nmlStrE), pint(imeSelectStrE), pint(imeModeStrE), pint(imeSelectWinE), pint(imeSelectWinF), pint(selectStrBackColor), pint(selectStrColor), pint(selectStrEdgeColor), pint(imeStr), pint(imeStrE))
-	return int(res)
+	res, _, _ := dx_SetKeyInputStringColor.Call(pint32(nmlStr), pint32(nmlCur), pint32(imeStrBack), pint32(imeCur), pint32(imeLine), pint32(imeSelectStr), pint32(imeModeStr), pint32(nmlStrE), pint32(imeSelectStrE), pint32(imeModeStrE), pint32(imeSelectWinE), pint32(imeSelectWinF), pint32(selectStrBackColor), pint32(selectStrColor), pint32(selectStrEdgeColor), pint32(imeStr), pint32(imeStrE))
+	return int32(res)
 }
 
-func MakeKeyInput(maxStrLength int, cancelValidFlag int, singleCharOnlyFlag int, numCharOnlyFlag int) int {
+func MakeKeyInput(maxStrLength int32, cancelValidFlag int32, singleCharOnlyFlag int32, numCharOnlyFlag int32) int32 {
 	if dx_MakeKeyInput == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_MakeKeyInput.Call(pint(maxStrLength), pint(cancelValidFlag), pint(singleCharOnlyFlag), pint(numCharOnlyFlag))
-	return int(res)
+	res, _, _ := dx_MakeKeyInput.Call(pint32(maxStrLength), pint32(cancelValidFlag), pint32(singleCharOnlyFlag), pint32(numCharOnlyFlag))
+	return int32(res)
 }
 
-func DeleteKeyInput(inputHandle int) int {
+func DeleteKeyInput(inputHandle int32) int32 {
 	if dx_DeleteKeyInput == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_DeleteKeyInput.Call(pint(inputHandle))
-	return int(res)
+	res, _, _ := dx_DeleteKeyInput.Call(pint32(inputHandle))
+	return int32(res)
 }
 
-func InitKeyInput() int {
+func InitKeyInput() int32 {
 	if dx_InitKeyInput == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
 	res, _, _ := dx_InitKeyInput.Call()
-	return int(res)
+	return int32(res)
 }
 
-func SetActiveKeyInput(inputHandle int) int {
+func SetActiveKeyInput(inputHandle int32) int32 {
 	if dx_SetActiveKeyInput == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_SetActiveKeyInput.Call(pint(inputHandle))
-	return int(res)
+	res, _, _ := dx_SetActiveKeyInput.Call(pint32(inputHandle))
+	return int32(res)
 }
 
-func CheckKeyInput(inputHandle int) int {
+func CheckKeyInput(inputHandle int32) int32 {
 	if dx_CheckKeyInput == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_CheckKeyInput.Call(pint(inputHandle))
-	return int(res)
+	res, _, _ := dx_CheckKeyInput.Call(pint32(inputHandle))
+	return int32(res)
 }
 
-func DrawKeyInputString(x int, y int, inputHandle int) int {
+func DrawKeyInputString(x int32, y int32, inputHandle int32) int32 {
 	if dx_DrawKeyInputString == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_DrawKeyInputString.Call(pint(x), pint(y), pint(inputHandle))
-	return int(res)
+	res, _, _ := dx_DrawKeyInputString.Call(pint32(x), pint32(y), pint32(inputHandle))
+	return int32(res)
 }
 
-func DrawKeyInputModeString(x int, y int) int {
+func DrawKeyInputModeString(x int32, y int32) int32 {
 	if dx_DrawKeyInputModeString == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_DrawKeyInputModeString.Call(pint(x), pint(y))
-	return int(res)
+	res, _, _ := dx_DrawKeyInputModeString.Call(pint32(x), pint32(y))
+	return int32(res)
 }
 
-func SetKeyInputString(str string, inputHandle int) int {
+func SetKeyInputString(str string, inputHandle int32) int32 {
 	if dx_SetKeyInputString == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_SetKeyInputString.Call(pstring(str), pint(inputHandle))
-	return int(res)
+	res, _, _ := dx_SetKeyInputString.Call(pstring(str), pint32(inputHandle))
+	return int32(res)
 }
 
-func SetKeyInputNumber(number int, inputHandle int) int {
+func SetKeyInputNumber(number int32, inputHandle int32) int32 {
 	if dx_SetKeyInputNumber == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_SetKeyInputNumber.Call(pint(number), pint(inputHandle))
-	return int(res)
+	res, _, _ := dx_SetKeyInputNumber.Call(pint32(number), pint32(inputHandle))
+	return int32(res)
 }
 
-func GetKeyInputNumber(inputHandle int) int {
+func GetKeyInputNumber(inputHandle int32) int32 {
 	if dx_GetKeyInputNumber == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_GetKeyInputNumber.Call(pint(inputHandle))
-	return int(res)
+	res, _, _ := dx_GetKeyInputNumber.Call(pint32(inputHandle))
+	return int32(res)
 }
 
-func PlaySoundFile(fileName string, playType int) int {
+func PlaySoundFile(fileName string, playType int32) int32 {
 	if dx_PlaySoundFile == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_PlaySoundFile.Call(pstring(fileName), pint(playType))
-	return int(res)
+	res, _, _ := dx_PlaySoundFile.Call(pstring(fileName), pint32(playType))
+	return int32(res)
 }
 
-func CheckSoundFile() int {
+func CheckSoundFile() int32 {
 	if dx_CheckSoundFile == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
 	res, _, _ := dx_CheckSoundFile.Call()
-	return int(res)
+	return int32(res)
 }
 
-func StopSoundFile() int {
+func StopSoundFile() int32 {
 	if dx_StopSoundFile == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
 	res, _, _ := dx_StopSoundFile.Call()
-	return int(res)
+	return int32(res)
 }
 
-func LoadSoundMem(fileName string) int {
+func LoadSoundMem(fileName string) int32 {
 	if dx_LoadSoundMem == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
 	res, _, _ := dx_LoadSoundMem.Call(pstring(fileName))
-	return int(res)
+	return int32(res)
 }
 
-func PlaySoundMem(soundHandle int, playType int, topPositionFlag int) int {
+func PlaySoundMem(soundHandle int32, playType int32, topPositionFlag int32) int32 {
 	if dx_PlaySoundMem == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_PlaySoundMem.Call(pint(soundHandle), pint(playType), pint(topPositionFlag))
-	return int(res)
+	res, _, _ := dx_PlaySoundMem.Call(pint32(soundHandle), pint32(playType), pint32(topPositionFlag))
+	return int32(res)
 }
 
-func CheckSoundMem(soundHandle int) int {
+func CheckSoundMem(soundHandle int32) int32 {
 	if dx_CheckSoundMem == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_CheckSoundMem.Call(pint(soundHandle))
-	return int(res)
+	res, _, _ := dx_CheckSoundMem.Call(pint32(soundHandle))
+	return int32(res)
 }
 
-func StopSoundMem(soundHandle int) int {
+func StopSoundMem(soundHandle int32) int32 {
 	if dx_StopSoundMem == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_StopSoundMem.Call(pint(soundHandle))
-	return int(res)
+	res, _, _ := dx_StopSoundMem.Call(pint32(soundHandle))
+	return int32(res)
 }
 
-func DeleteSoundMem(soundHandle int) int {
+func DeleteSoundMem(soundHandle int32) int32 {
 	if dx_DeleteSoundMem == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_DeleteSoundMem.Call(pint(soundHandle))
-	return int(res)
+	res, _, _ := dx_DeleteSoundMem.Call(pint32(soundHandle))
+	return int32(res)
 }
 
-func InitSoundMem() int {
+func InitSoundMem() int32 {
 	if dx_InitSoundMem == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
 	res, _, _ := dx_InitSoundMem.Call()
-	return int(res)
+	return int32(res)
 }
 
-func ChangePanSoundMem(panPal int, soundHandle int) int {
+func ChangePanSoundMem(panPal int32, soundHandle int32) int32 {
 	if dx_ChangePanSoundMem == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_ChangePanSoundMem.Call(pint(panPal), pint(soundHandle))
-	return int(res)
+	res, _, _ := dx_ChangePanSoundMem.Call(pint32(panPal), pint32(soundHandle))
+	return int32(res)
 }
 
-func ChangeVolumeSoundMem(volumePan int, soundHandle int) int {
+func ChangeVolumeSoundMem(volumePan int32, soundHandle int32) int32 {
 	if dx_ChangeVolumeSoundMem == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_ChangeVolumeSoundMem.Call(pint(volumePan), pint(soundHandle))
-	return int(res)
+	res, _, _ := dx_ChangeVolumeSoundMem.Call(pint32(volumePan), pint32(soundHandle))
+	return int32(res)
 }
 
-func ChangeNextPlayPanSoundMem(panPal int, soundHandle int) int {
+func ChangeNextPlayPanSoundMem(panPal int32, soundHandle int32) int32 {
 	if dx_ChangeNextPlayPanSoundMem == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_ChangeNextPlayPanSoundMem.Call(pint(panPal), pint(soundHandle))
-	return int(res)
+	res, _, _ := dx_ChangeNextPlayPanSoundMem.Call(pint32(panPal), pint32(soundHandle))
+	return int32(res)
 }
 
-func ChangeNextPlayVolumeSoundMem(volumePal int, soundHandle int) int {
+func ChangeNextPlayVolumeSoundMem(volumePal int32, soundHandle int32) int32 {
 	if dx_ChangeNextPlayVolumeSoundMem == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_ChangeNextPlayVolumeSoundMem.Call(pint(volumePal), pint(soundHandle))
-	return int(res)
+	res, _, _ := dx_ChangeNextPlayVolumeSoundMem.Call(pint32(volumePal), pint32(soundHandle))
+	return int32(res)
 }
 
-func SetFrequencySoundMem(frequencyPal int, soundHandle int) int {
+func SetFrequencySoundMem(frequencyPal int32, soundHandle int32) int32 {
 	if dx_SetFrequencySoundMem == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_SetFrequencySoundMem.Call(pint(frequencyPal), pint(soundHandle))
-	return int(res)
+	res, _, _ := dx_SetFrequencySoundMem.Call(pint32(frequencyPal), pint32(soundHandle))
+	return int32(res)
 }
 
-func SetLoopPosSoundMem(loopTime int, soundHandle int) int {
+func SetLoopPosSoundMem(loopTime int32, soundHandle int32) int32 {
 	if dx_SetLoopPosSoundMem == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_SetLoopPosSoundMem.Call(pint(loopTime), pint(soundHandle))
-	return int(res)
+	res, _, _ := dx_SetLoopPosSoundMem.Call(pint32(loopTime), pint32(soundHandle))
+	return int32(res)
 }
 
-func SetLoopSamplePosSoundMem(loopSamplePosition int, soundHandle int) int {
+func SetLoopSamplePosSoundMem(loopSamplePosition int32, soundHandle int32) int32 {
 	if dx_SetLoopSamplePosSoundMem == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_SetLoopSamplePosSoundMem.Call(pint(loopSamplePosition), pint(soundHandle))
-	return int(res)
+	res, _, _ := dx_SetLoopSamplePosSoundMem.Call(pint32(loopSamplePosition), pint32(soundHandle))
+	return int32(res)
 }
 
-func SetCurrentPositionSoundMem(samplePosition int, soundHandle int) int {
+func SetCurrentPositionSoundMem(samplePosition int32, soundHandle int32) int32 {
 	if dx_SetCurrentPositionSoundMem == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_SetCurrentPositionSoundMem.Call(pint(samplePosition), pint(soundHandle))
-	return int(res)
+	res, _, _ := dx_SetCurrentPositionSoundMem.Call(pint32(samplePosition), pint32(soundHandle))
+	return int32(res)
 }
 
-func DuplicateSoundMem(srcSoundHandle int) int {
+func DuplicateSoundMem(srcSoundHandle int32) int32 {
 	if dx_DuplicateSoundMem == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_DuplicateSoundMem.Call(pint(srcSoundHandle))
-	return int(res)
+	res, _, _ := dx_DuplicateSoundMem.Call(pint32(srcSoundHandle))
+	return int32(res)
 }
 
-func SetCreateSoundPitchRate(cents float32) int {
+func SetCreateSoundPitchRate(cents float32) int32 {
 	if dx_SetCreateSoundPitchRate == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
 	res, _, _ := dx_SetCreateSoundPitchRate.Call(pfloat32(cents))
-	return int(res)
+	return int32(res)
 }
 
-func SetCreateSoundTimeStretchRate(rate float32) int {
+func SetCreateSoundTimeStretchRate(rate float32) int32 {
 	if dx_SetCreateSoundTimeStretchRate == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
 	res, _, _ := dx_SetCreateSoundTimeStretchRate.Call(pfloat32(rate))
-	return int(res)
+	return int32(res)
 }
 
-func Set3DRadiusSoundMem(radius float32, soundHandle int) int {
+func Set3DRadiusSoundMem(radius float32, soundHandle int32) int32 {
 	if dx_Set3DRadiusSoundMem == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_Set3DRadiusSoundMem.Call(pfloat32(radius), pint(soundHandle))
-	return int(res)
+	res, _, _ := dx_Set3DRadiusSoundMem.Call(pfloat32(radius), pint32(soundHandle))
+	return int32(res)
 }
 
-func SetNextPlay3DRadiusSoundMem(radius float32, soundHandle int) int {
+func SetNextPlay3DRadiusSoundMem(radius float32, soundHandle int32) int32 {
 	if dx_SetNextPlay3DRadiusSoundMem == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_SetNextPlay3DRadiusSoundMem.Call(pfloat32(radius), pint(soundHandle))
-	return int(res)
+	res, _, _ := dx_SetNextPlay3DRadiusSoundMem.Call(pfloat32(radius), pint32(soundHandle))
+	return int32(res)
 }
 
-func Set3DPresetReverbParamSoundMem(presetNo int, soundHandle int) int {
+func Set3DPresetReverbParamSoundMem(presetNo int32, soundHandle int32) int32 {
 	if dx_Set3DPresetReverbParamSoundMem == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_Set3DPresetReverbParamSoundMem.Call(pint(presetNo), pint(soundHandle))
-	return int(res)
+	res, _, _ := dx_Set3DPresetReverbParamSoundMem.Call(pint32(presetNo), pint32(soundHandle))
+	return int32(res)
 }
 
-func Set3DPresetReverbParamSoundMemAll(presetNo int, playSoundOnly int) int {
+func Set3DPresetReverbParamSoundMemAll(presetNo int32, playSoundOnly int32) int32 {
 	if dx_Set3DPresetReverbParamSoundMemAll == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_Set3DPresetReverbParamSoundMemAll.Call(pint(presetNo), pint(playSoundOnly))
-	return int(res)
+	res, _, _ := dx_Set3DPresetReverbParamSoundMemAll.Call(pint32(presetNo), pint32(playSoundOnly))
+	return int32(res)
 }
 
-func SetCreate3DSoundFlag(flag int) int {
+func SetCreate3DSoundFlag(flag int32) int32 {
 	if dx_SetCreate3DSoundFlag == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_SetCreate3DSoundFlag.Call(pint(flag))
-	return int(res)
+	res, _, _ := dx_SetCreate3DSoundFlag.Call(pint32(flag))
+	return int32(res)
 }
 
-func SetEnableXAudioFlag(flag int) int {
+func SetEnableXAudioFlag(flag int32) int32 {
 	if dx_SetEnableXAudioFlag == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_SetEnableXAudioFlag.Call(pint(flag))
-	return int(res)
+	res, _, _ := dx_SetEnableXAudioFlag.Call(pint32(flag))
+	return int32(res)
 }
 
-func Set3DSoundOneMetre(distance float32) int {
+func Set3DSoundOneMetre(distance float32) int32 {
 	if dx_Set3DSoundOneMetre == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
 	res, _, _ := dx_Set3DSoundOneMetre.Call(pfloat32(distance))
-	return int(res)
+	return int32(res)
 }
 
-func PlayMusic(fileName string, playType int) int {
+func PlayMusic(fileName string, playType int32) int32 {
 	if dx_PlayMusic == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_PlayMusic.Call(pstring(fileName), pint(playType))
-	return int(res)
+	res, _, _ := dx_PlayMusic.Call(pstring(fileName), pint32(playType))
+	return int32(res)
 }
 
-func CheckMusic() int {
+func CheckMusic() int32 {
 	if dx_CheckMusic == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
 	res, _, _ := dx_CheckMusic.Call()
-	return int(res)
+	return int32(res)
 }
 
-func StopMusic() int {
+func StopMusic() int32 {
 	if dx_StopMusic == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
 	res, _, _ := dx_StopMusic.Call()
-	return int(res)
+	return int32(res)
 }
 
-func SetVolumeMusic(volume int) int {
+func SetVolumeMusic(volume int32) int32 {
 	if dx_SetVolumeMusic == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_SetVolumeMusic.Call(pint(volume))
-	return int(res)
+	res, _, _ := dx_SetVolumeMusic.Call(pint32(volume))
+	return int32(res)
 }
 
-func WaitTimer(waitTime int) int {
+func WaitTimer(waitTime int32) int32 {
 	if dx_WaitTimer == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_WaitTimer.Call(pint(waitTime))
-	return int(res)
+	res, _, _ := dx_WaitTimer.Call(pint32(waitTime))
+	return int32(res)
 }
 
-func WaitVSync(syncNum int) int {
+func WaitVSync(syncNum int32) int32 {
 	if dx_WaitVSync == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_WaitVSync.Call(pint(syncNum))
-	return int(res)
+	res, _, _ := dx_WaitVSync.Call(pint32(syncNum))
+	return int32(res)
 }
 
-func WaitKey() int {
+func WaitKey() int32 {
 	if dx_WaitKey == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
 	res, _, _ := dx_WaitKey.Call()
-	return int(res)
+	return int32(res)
 }
 
-func GetNowCount() int {
+func GetNowCount() int32 {
 	if dx_GetNowCount == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
 	res, _, _ := dx_GetNowCount.Call()
-	return int(res)
+	return int32(res)
 }
 
 func GetNowHiPerformanceCount() int64 {
@@ -1901,175 +1901,175 @@ func GetNowHiPerformanceCount() int64 {
 	return int64(res)
 }
 
-func GetRand(randMax int) int {
+func GetRand(randMax int32) int32 {
 	if dx_GetRand == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_GetRand.Call(pint(randMax))
-	return int(res)
+	res, _, _ := dx_GetRand.Call(pint32(randMax))
+	return int32(res)
 }
 
-func SRand(seed int) int {
+func SRand(seed int32) int32 {
 	if dx_SRand == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_SRand.Call(pint(seed))
-	return int(res)
+	res, _, _ := dx_SRand.Call(pint32(seed))
+	return int32(res)
 }
 
-func ChangeWindowMode(flag int) int {
+func ChangeWindowMode(flag int32) int32 {
 	if dx_ChangeWindowMode == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_ChangeWindowMode.Call(pint(flag))
-	return int(res)
+	res, _, _ := dx_ChangeWindowMode.Call(pint32(flag))
+	return int32(res)
 }
 
-func SetMainWindowText(windowText string) int {
+func SetMainWindowText(windowText string) int32 {
 	if dx_SetMainWindowText == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
 	res, _, _ := dx_SetMainWindowText.Call(pstring(windowText))
-	return int(res)
+	return int32(res)
 }
 
-func SetWindowIconID(id int) int {
+func SetWindowIconID(id int32) int32 {
 	if dx_SetWindowIconID == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_SetWindowIconID.Call(pint(id))
-	return int(res)
+	res, _, _ := dx_SetWindowIconID.Call(pint32(id))
+	return int32(res)
 }
 
-func SetWindowSizeChangeEnableFlag(flag int) int {
+func SetWindowSizeChangeEnableFlag(flag int32) int32 {
 	if dx_SetWindowSizeChangeEnableFlag == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_SetWindowSizeChangeEnableFlag.Call(pint(flag))
-	return int(res)
+	res, _, _ := dx_SetWindowSizeChangeEnableFlag.Call(pint32(flag))
+	return int32(res)
 }
 
-func SetWindowSizeExtendRate(exRate float64) int {
+func SetWindowSizeExtendRate(exRate float64) int32 {
 	if dx_SetWindowSizeExtendRate == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
 	res, _, _ := dx_SetWindowSizeExtendRate.Call(pfloat64(exRate))
-	return int(res)
+	return int32(res)
 }
 
-func CloseNetWork(netHandle int) int {
+func CloseNetWork(netHandle int32) int32 {
 	if dx_CloseNetWork == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_CloseNetWork.Call(pint(netHandle))
-	return int(res)
+	res, _, _ := dx_CloseNetWork.Call(pint32(netHandle))
+	return int32(res)
 }
 
-func PreparationListenNetWork(port int) int {
+func PreparationListenNetWork(port int32) int32 {
 	if dx_PreparationListenNetWork == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_PreparationListenNetWork.Call(pint(port))
-	return int(res)
+	res, _, _ := dx_PreparationListenNetWork.Call(pint32(port))
+	return int32(res)
 }
 
-func StopListenNetWork() int {
+func StopListenNetWork() int32 {
 	if dx_StopListenNetWork == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
 	res, _, _ := dx_StopListenNetWork.Call()
-	return int(res)
+	return int32(res)
 }
 
-func GetNetWorkDataLength(netHandle int) int {
+func GetNetWorkDataLength(netHandle int32) int32 {
 	if dx_GetNetWorkDataLength == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_GetNetWorkDataLength.Call(pint(netHandle))
-	return int(res)
+	res, _, _ := dx_GetNetWorkDataLength.Call(pint32(netHandle))
+	return int32(res)
 }
 
-func GetNetWorkSendDataLength(netHandle int) int {
+func GetNetWorkSendDataLength(netHandle int32) int32 {
 	if dx_GetNetWorkSendDataLength == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_GetNetWorkSendDataLength.Call(pint(netHandle))
-	return int(res)
+	res, _, _ := dx_GetNetWorkSendDataLength.Call(pint32(netHandle))
+	return int32(res)
 }
 
-func GetNewAcceptNetWork() int {
+func GetNewAcceptNetWork() int32 {
 	if dx_GetNewAcceptNetWork == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
 	res, _, _ := dx_GetNewAcceptNetWork.Call()
-	return int(res)
+	return int32(res)
 }
 
-func GetLostNetWork() int {
+func GetLostNetWork() int32 {
 	if dx_GetLostNetWork == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
 	res, _, _ := dx_GetLostNetWork.Call()
-	return int(res)
+	return int32(res)
 }
 
-func GetNetWorkAcceptState(netHandle int) int {
+func GetNetWorkAcceptState(netHandle int32) int32 {
 	if dx_GetNetWorkAcceptState == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_GetNetWorkAcceptState.Call(pint(netHandle))
-	return int(res)
+	res, _, _ := dx_GetNetWorkAcceptState.Call(pint32(netHandle))
+	return int32(res)
 }
 
-func MakeUDPSocket(recvPort int) int {
+func MakeUDPSocket(recvPort int32) int32 {
 	if dx_MakeUDPSocket == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_MakeUDPSocket.Call(pint(recvPort))
-	return int(res)
+	res, _, _ := dx_MakeUDPSocket.Call(pint32(recvPort))
+	return int32(res)
 }
 
-func DeleteUDPSocket(netUDPHandle int) int {
+func DeleteUDPSocket(netUDPHandle int32) int32 {
 	if dx_DeleteUDPSocket == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_DeleteUDPSocket.Call(pint(netUDPHandle))
-	return int(res)
+	res, _, _ := dx_DeleteUDPSocket.Call(pint32(netUDPHandle))
+	return int32(res)
 }
 
-func CheckNetWorkRecvUDP(netUDPHandle int) int {
+func CheckNetWorkRecvUDP(netUDPHandle int32) int32 {
 	if dx_CheckNetWorkRecvUDP == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_CheckNetWorkRecvUDP.Call(pint(netUDPHandle))
-	return int(res)
+	res, _, _ := dx_CheckNetWorkRecvUDP.Call(pint32(netUDPHandle))
+	return int32(res)
 }
 
-func FileRead_open(filePath string, async int) int {
+func FileRead_open(filePath string, async int32) int32 {
 	if dx_FileRead_open == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_FileRead_open.Call(pstring(filePath), pint(async))
-	return int(res)
+	res, _, _ := dx_FileRead_open.Call(pstring(filePath), pint32(async))
+	return int32(res)
 }
 
 func FileRead_size(filePath string) int64 {
@@ -2081,456 +2081,456 @@ func FileRead_size(filePath string) int64 {
 	return int64(res)
 }
 
-func FileRead_close(fileHandle int) int {
+func FileRead_close(fileHandle int32) int32 {
 	if dx_FileRead_close == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_FileRead_close.Call(pint(fileHandle))
-	return int(res)
+	res, _, _ := dx_FileRead_close.Call(pint32(fileHandle))
+	return int32(res)
 }
 
-func FileRead_tell(fileHandle int) int64 {
+func FileRead_tell(fileHandle int32) int64 {
 	if dx_FileRead_tell == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_FileRead_tell.Call(pint(fileHandle))
+	res, _, _ := dx_FileRead_tell.Call(pint32(fileHandle))
 	return int64(res)
 }
 
-func FileRead_seek(fileHandle int, offset int64, origin int) int {
+func FileRead_seek(fileHandle int32, offset int64, origin int32) int32 {
 	if dx_FileRead_seek == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_FileRead_seek.Call(pint(fileHandle), pint64(offset), pint(origin))
-	return int(res)
+	res, _, _ := dx_FileRead_seek.Call(pint32(fileHandle), pint64(offset), pint32(origin))
+	return int32(res)
 }
 
-func FileRead_eof(fileHandle int) int {
+func FileRead_eof(fileHandle int32) int32 {
 	if dx_FileRead_eof == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_FileRead_eof.Call(pint(fileHandle))
-	return int(res)
+	res, _, _ := dx_FileRead_eof.Call(pint32(fileHandle))
+	return int32(res)
 }
 
-func FileRead_gets(buffer []byte, num int, fileHandle int) int {
+func FileRead_gets(buffer []byte, num int32, fileHandle int32) int32 {
 	if dx_FileRead_gets == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_FileRead_gets.Call(parraybyte(buffer), pint(num), pint(fileHandle))
-	return int(res)
+	res, _, _ := dx_FileRead_gets.Call(parraybyte(buffer), pint32(num), pint32(fileHandle))
+	return int32(res)
 }
 
-func FileRead_getc(fileHandle int) int {
+func FileRead_getc(fileHandle int32) int32 {
 	if dx_FileRead_getc == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_FileRead_getc.Call(pint(fileHandle))
-	return int(res)
+	res, _, _ := dx_FileRead_getc.Call(pint32(fileHandle))
+	return int32(res)
 }
 
-func LoadSoftImage(fileName string) int {
+func LoadSoftImage(fileName string) int32 {
 	if dx_LoadSoftImage == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
 	res, _, _ := dx_LoadSoftImage.Call(pstring(fileName))
-	return int(res)
+	return int32(res)
 }
 
-func LoadARGB8ColorSoftImage(fileName string) int {
+func LoadARGB8ColorSoftImage(fileName string) int32 {
 	if dx_LoadARGB8ColorSoftImage == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
 	res, _, _ := dx_LoadARGB8ColorSoftImage.Call(pstring(fileName))
-	return int(res)
+	return int32(res)
 }
 
-func LoadXRGB8ColorSoftImage(fileName string) int {
+func LoadXRGB8ColorSoftImage(fileName string) int32 {
 	if dx_LoadXRGB8ColorSoftImage == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
 	res, _, _ := dx_LoadXRGB8ColorSoftImage.Call(pstring(fileName))
-	return int(res)
+	return int32(res)
 }
 
-func MakeARGB8ColorSoftImage(sizeX int, sizeY int) int {
+func MakeARGB8ColorSoftImage(sizeX int32, sizeY int32) int32 {
 	if dx_MakeARGB8ColorSoftImage == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_MakeARGB8ColorSoftImage.Call(pint(sizeX), pint(sizeY))
-	return int(res)
+	res, _, _ := dx_MakeARGB8ColorSoftImage.Call(pint32(sizeX), pint32(sizeY))
+	return int32(res)
 }
 
-func MakeXRGB8ColorSoftImage(sizeX int, sizeY int) int {
+func MakeXRGB8ColorSoftImage(sizeX int32, sizeY int32) int32 {
 	if dx_MakeXRGB8ColorSoftImage == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_MakeXRGB8ColorSoftImage.Call(pint(sizeX), pint(sizeY))
-	return int(res)
+	res, _, _ := dx_MakeXRGB8ColorSoftImage.Call(pint32(sizeX), pint32(sizeY))
+	return int32(res)
 }
 
-func MakePAL8ColorSoftImage(sizeX int, sizeY int) int {
+func MakePAL8ColorSoftImage(sizeX int32, sizeY int32) int32 {
 	if dx_MakePAL8ColorSoftImage == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_MakePAL8ColorSoftImage.Call(pint(sizeX), pint(sizeY))
-	return int(res)
+	res, _, _ := dx_MakePAL8ColorSoftImage.Call(pint32(sizeX), pint32(sizeY))
+	return int32(res)
 }
 
-func DeleteSoftImage(siHandle int) int {
+func DeleteSoftImage(siHandle int32) int32 {
 	if dx_DeleteSoftImage == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_DeleteSoftImage.Call(pint(siHandle))
-	return int(res)
+	res, _, _ := dx_DeleteSoftImage.Call(pint32(siHandle))
+	return int32(res)
 }
 
-func InitSoftImage() int {
+func InitSoftImage() int32 {
 	if dx_InitSoftImage == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
 	res, _, _ := dx_InitSoftImage.Call()
-	return int(res)
+	return int32(res)
 }
 
-func GetSoftImageSize(siHandle int, width *int, height *int) int {
+func GetSoftImageSize(siHandle int32, width *int32, height *int32) int32 {
 	if dx_GetSoftImageSize == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_GetSoftImageSize.Call(pint(siHandle), ppint(width), ppint(height))
-	return int(res)
+	res, _, _ := dx_GetSoftImageSize.Call(pint32(siHandle), ppint32(width), ppint32(height))
+	return int32(res)
 }
 
-func FillSoftImage(siHandle int, r int, g int, b int, a int) int {
+func FillSoftImage(siHandle int32, r int32, g int32, b int32, a int32) int32 {
 	if dx_FillSoftImage == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_FillSoftImage.Call(pint(siHandle), pint(r), pint(g), pint(b), pint(a))
-	return int(res)
+	res, _, _ := dx_FillSoftImage.Call(pint32(siHandle), pint32(r), pint32(g), pint32(b), pint32(a))
+	return int32(res)
 }
 
-func SetPaletteSoftImage(siHandle int, paletteNo int, r int, g int, b int, a int) int {
+func SetPaletteSoftImage(siHandle int32, paletteNo int32, r int32, g int32, b int32, a int32) int32 {
 	if dx_SetPaletteSoftImage == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_SetPaletteSoftImage.Call(pint(siHandle), pint(paletteNo), pint(r), pint(g), pint(b), pint(a))
-	return int(res)
+	res, _, _ := dx_SetPaletteSoftImage.Call(pint32(siHandle), pint32(paletteNo), pint32(r), pint32(g), pint32(b), pint32(a))
+	return int32(res)
 }
 
-func GetPaletteSoftImage(siHandle int, paletteNo int, r *int, g *int, b *int, a *int) int {
+func GetPaletteSoftImage(siHandle int32, paletteNo int32, r *int32, g *int32, b *int32, a *int32) int32 {
 	if dx_GetPaletteSoftImage == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_GetPaletteSoftImage.Call(pint(siHandle), pint(paletteNo), ppint(r), ppint(g), ppint(b), ppint(a))
-	return int(res)
+	res, _, _ := dx_GetPaletteSoftImage.Call(pint32(siHandle), pint32(paletteNo), ppint32(r), ppint32(g), ppint32(b), ppint32(a))
+	return int32(res)
 }
 
-func DrawPixelPalCodeSoftImage(siHandle int, x int, y int, palNo int) int {
+func DrawPixelPalCodeSoftImage(siHandle int32, x int32, y int32, palNo int32) int32 {
 	if dx_DrawPixelPalCodeSoftImage == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_DrawPixelPalCodeSoftImage.Call(pint(siHandle), pint(x), pint(y), pint(palNo))
-	return int(res)
+	res, _, _ := dx_DrawPixelPalCodeSoftImage.Call(pint32(siHandle), pint32(x), pint32(y), pint32(palNo))
+	return int32(res)
 }
 
-func GetPixelPalCodeSoftImage(siHandle int, x int, y int) int {
+func GetPixelPalCodeSoftImage(siHandle int32, x int32, y int32) int32 {
 	if dx_GetPixelPalCodeSoftImage == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_GetPixelPalCodeSoftImage.Call(pint(siHandle), pint(x), pint(y))
-	return int(res)
+	res, _, _ := dx_GetPixelPalCodeSoftImage.Call(pint32(siHandle), pint32(x), pint32(y))
+	return int32(res)
 }
 
-func DrawPixelSoftImage(siHandle int, x int, y int, r int, g int, b int, a int) int {
+func DrawPixelSoftImage(siHandle int32, x int32, y int32, r int32, g int32, b int32, a int32) int32 {
 	if dx_DrawPixelSoftImage == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_DrawPixelSoftImage.Call(pint(siHandle), pint(x), pint(y), pint(r), pint(g), pint(b), pint(a))
-	return int(res)
+	res, _, _ := dx_DrawPixelSoftImage.Call(pint32(siHandle), pint32(x), pint32(y), pint32(r), pint32(g), pint32(b), pint32(a))
+	return int32(res)
 }
 
-func GetPixelSoftImage(siHandle int, x int, y int, r *int, g *int, b *int, a *int) int {
+func GetPixelSoftImage(siHandle int32, x int32, y int32, r *int32, g *int32, b *int32, a *int32) int32 {
 	if dx_GetPixelSoftImage == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_GetPixelSoftImage.Call(pint(siHandle), pint(x), pint(y), ppint(r), ppint(g), ppint(b), ppint(a))
-	return int(res)
+	res, _, _ := dx_GetPixelSoftImage.Call(pint32(siHandle), pint32(x), pint32(y), ppint32(r), ppint32(g), ppint32(b), ppint32(a))
+	return int32(res)
 }
 
-func BltSoftImage(srcX int, srcY int, srcSizeX int, srcSizeY int, srcSIHandle int, destX int, destY int, destSIHandle int) int {
+func BltSoftImage(srcX int32, srcY int32, srcSizeX int32, srcSizeY int32, srcSIHandle int32, destX int32, destY int32, destSIHandle int32) int32 {
 	if dx_BltSoftImage == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_BltSoftImage.Call(pint(srcX), pint(srcY), pint(srcSizeX), pint(srcSizeY), pint(srcSIHandle), pint(destX), pint(destY), pint(destSIHandle))
-	return int(res)
+	res, _, _ := dx_BltSoftImage.Call(pint32(srcX), pint32(srcY), pint32(srcSizeX), pint32(srcSizeY), pint32(srcSIHandle), pint32(destX), pint32(destY), pint32(destSIHandle))
+	return int32(res)
 }
 
-func DrawSoftImage(x int, y int, siHandle int) int {
+func DrawSoftImage(x int32, y int32, siHandle int32) int32 {
 	if dx_DrawSoftImage == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_DrawSoftImage.Call(pint(x), pint(y), pint(siHandle))
-	return int(res)
+	res, _, _ := dx_DrawSoftImage.Call(pint32(x), pint32(y), pint32(siHandle))
+	return int32(res)
 }
 
-func CreateGraphFromSoftImage(siHandle int) int {
+func CreateGraphFromSoftImage(siHandle int32) int32 {
 	if dx_CreateGraphFromSoftImage == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_CreateGraphFromSoftImage.Call(pint(siHandle))
-	return int(res)
+	res, _, _ := dx_CreateGraphFromSoftImage.Call(pint32(siHandle))
+	return int32(res)
 }
 
-func CreateDivGraphFromSoftImage(siHandle int, allnum int, xnum int, ynum int, sizeX int, sizeY int, handleBuf []int) int {
+func CreateDivGraphFromSoftImage(siHandle int32, allnum int32, xnum int32, ynum int32, sizeX int32, sizeY int32, handleBuf []int32) int32 {
 	if dx_CreateDivGraphFromSoftImage == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_CreateDivGraphFromSoftImage.Call(pint(siHandle), pint(allnum), pint(xnum), pint(ynum), pint(sizeX), pint(sizeY), parrayint(handleBuf))
-	return int(res)
+	res, _, _ := dx_CreateDivGraphFromSoftImage.Call(pint32(siHandle), pint32(allnum), pint32(xnum), pint32(ynum), pint32(sizeX), pint32(sizeY), parrayint32(handleBuf))
+	return int32(res)
 }
 
-func SetUseASyncLoadFlag(flag int) int {
+func SetUseASyncLoadFlag(flag int32) int32 {
 	if dx_SetUseASyncLoadFlag == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_SetUseASyncLoadFlag.Call(pint(flag))
-	return int(res)
+	res, _, _ := dx_SetUseASyncLoadFlag.Call(pint32(flag))
+	return int32(res)
 }
 
-func CheckHandleASyncLoad(handle int) int {
+func CheckHandleASyncLoad(handle int32) int32 {
 	if dx_CheckHandleASyncLoad == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_CheckHandleASyncLoad.Call(pint(handle))
-	return int(res)
+	res, _, _ := dx_CheckHandleASyncLoad.Call(pint32(handle))
+	return int32(res)
 }
 
-func GetASyncLoadNum() int {
+func GetASyncLoadNum() int32 {
 	if dx_GetASyncLoadNum == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
 	res, _, _ := dx_GetASyncLoadNum.Call()
-	return int(res)
+	return int32(res)
 }
 
-func SetUseCharCodeFormat(charCodeFormat int) int {
+func SetUseCharCodeFormat(charCodeFormat int32) int32 {
 	if dx_SetUseCharCodeFormat == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_SetUseCharCodeFormat.Call(pint(charCodeFormat))
-	return int(res)
+	res, _, _ := dx_SetUseCharCodeFormat.Call(pint32(charCodeFormat))
+	return int32(res)
 }
 
-func SetAlwaysRunFlag(flag int) int {
+func SetAlwaysRunFlag(flag int32) int32 {
 	if dx_SetAlwaysRunFlag == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_SetAlwaysRunFlag.Call(pint(flag))
-	return int(res)
+	res, _, _ := dx_SetAlwaysRunFlag.Call(pint32(flag))
+	return int32(res)
 }
 
-func SetOutApplicationLogValidFlag(flag int) int {
+func SetOutApplicationLogValidFlag(flag int32) int32 {
 	if dx_SetOutApplicationLogValidFlag == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_SetOutApplicationLogValidFlag.Call(pint(flag))
-	return int(res)
+	res, _, _ := dx_SetOutApplicationLogValidFlag.Call(pint32(flag))
+	return int32(res)
 }
 
-func SetUseDXArchiveFlag(flag int) int {
+func SetUseDXArchiveFlag(flag int32) int32 {
 	if dx_SetUseDXArchiveFlag == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_SetUseDXArchiveFlag.Call(pint(flag))
-	return int(res)
+	res, _, _ := dx_SetUseDXArchiveFlag.Call(pint32(flag))
+	return int32(res)
 }
 
-func SetDXArchiveExtension(extension string) int {
+func SetDXArchiveExtension(extension string) int32 {
 	if dx_SetDXArchiveExtension == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
 	res, _, _ := dx_SetDXArchiveExtension.Call(pstring(extension))
-	return int(res)
+	return int32(res)
 }
 
-func SetDXArchiveKeyString(keyString string) int {
+func SetDXArchiveKeyString(keyString string) int32 {
 	if dx_SetDXArchiveKeyString == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
 	res, _, _ := dx_SetDXArchiveKeyString.Call(pstring(keyString))
-	return int(res)
+	return int32(res)
 }
 
-func SetEmulation320x240(flag int) int {
+func SetEmulation320x240(flag int32) int32 {
 	if dx_SetEmulation320x240 == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_SetEmulation320x240.Call(pint(flag))
-	return int(res)
+	res, _, _ := dx_SetEmulation320x240.Call(pint32(flag))
+	return int32(res)
 }
 
-func SetUse3DFlag(flag int) int {
+func SetUse3DFlag(flag int32) int32 {
 	if dx_SetUse3DFlag == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_SetUse3DFlag.Call(pint(flag))
-	return int(res)
+	res, _, _ := dx_SetUse3DFlag.Call(pint32(flag))
+	return int32(res)
 }
 
-func SetWaitVSyncFlag(flag int) int {
+func SetWaitVSyncFlag(flag int32) int32 {
 	if dx_SetWaitVSyncFlag == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_SetWaitVSyncFlag.Call(pint(flag))
-	return int(res)
+	res, _, _ := dx_SetWaitVSyncFlag.Call(pint32(flag))
+	return int32(res)
 }
 
-func SetUseDivGraphFlag(flag int) int {
+func SetUseDivGraphFlag(flag int32) int32 {
 	if dx_SetUseDivGraphFlag == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_SetUseDivGraphFlag.Call(pint(flag))
-	return int(res)
+	res, _, _ := dx_SetUseDivGraphFlag.Call(pint32(flag))
+	return int32(res)
 }
 
-func LoadPauseGraph(fileName string) int {
+func LoadPauseGraph(fileName string) int32 {
 	if dx_LoadPauseGraph == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
 	res, _, _ := dx_LoadPauseGraph.Call(pstring(fileName))
-	return int(res)
+	return int32(res)
 }
 
-func ScreenCopy() int {
+func ScreenCopy() int32 {
 	if dx_ScreenCopy == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
 	res, _, _ := dx_ScreenCopy.Call()
-	return int(res)
+	return int32(res)
 }
 
-func GetColorBitDepth() int {
+func GetColorBitDepth() int32 {
 	if dx_GetColorBitDepth == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
 	res, _, _ := dx_GetColorBitDepth.Call()
-	return int(res)
+	return int32(res)
 }
 
-func SaveDrawScreen(x1 int, y1 int, x2 int, y2 int, fileName string) int {
+func SaveDrawScreen(x1 int32, y1 int32, x2 int32, y2 int32, fileName string) int32 {
 	if dx_SaveDrawScreen == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_SaveDrawScreen.Call(pint(x1), pint(y1), pint(x2), pint(y2), pstring(fileName))
-	return int(res)
+	res, _, _ := dx_SaveDrawScreen.Call(pint32(x1), pint32(y1), pint32(x2), pint32(y2), pstring(fileName))
+	return int32(res)
 }
 
-func EnumFontName(nameBuffer []byte, nameBufferNum int) int {
+func EnumFontName(nameBuffer []byte, nameBufferNum int32) int32 {
 	if dx_EnumFontName == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_EnumFontName.Call(parraybyte(nameBuffer), pint(nameBufferNum))
-	return int(res)
+	res, _, _ := dx_EnumFontName.Call(parraybyte(nameBuffer), pint32(nameBufferNum))
+	return int32(res)
 }
 
-func DrawVString(x int, y int, str string, color int) int {
+func DrawVString(x int32, y int32, str string, color int32) int32 {
 	if dx_DrawVString == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_DrawVString.Call(pint(x), pint(y), pstring(str), pint(color))
-	return int(res)
+	res, _, _ := dx_DrawVString.Call(pint32(x), pint32(y), pstring(str), pint32(color))
+	return int32(res)
 }
 
-func DrawVStringToHandle(x int, y int, str string, color int, fontHandle int) int {
+func DrawVStringToHandle(x int32, y int32, str string, color int32, fontHandle int32) int32 {
 	if dx_DrawVStringToHandle == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_DrawVStringToHandle.Call(pint(x), pint(y), pstring(str), pint(color), pint(fontHandle))
-	return int(res)
+	res, _, _ := dx_DrawVStringToHandle.Call(pint32(x), pint32(y), pstring(str), pint32(color), pint32(fontHandle))
+	return int32(res)
 }
 
-func ReloadFileGraphAll() int {
+func ReloadFileGraphAll() int32 {
 	if dx_ReloadFileGraphAll == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
 	res, _, _ := dx_ReloadFileGraphAll.Call()
-	return int(res)
+	return int32(res)
 }
 
-func SetCreateSoundDataType(soundDataType int) int {
+func SetCreateSoundDataType(soundDataType int32) int32 {
 	if dx_SetCreateSoundDataType == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_SetCreateSoundDataType.Call(pint(soundDataType))
-	return int(res)
+	res, _, _ := dx_SetCreateSoundDataType.Call(pint32(soundDataType))
+	return int32(res)
 }
 
-func SelectMidiMode(mode int) int {
+func SelectMidiMode(mode int32) int32 {
 	if dx_SelectMidiMode == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_SelectMidiMode.Call(pint(mode))
-	return int(res)
+	res, _, _ := dx_SelectMidiMode.Call(pint32(mode))
+	return int32(res)
 }
 
-func ppint(i *int) uintptr {
+func ppint32(i *int32) uintptr {
 	return uintptr(unsafe.Pointer(i))
 }
 
-func pint(i int) uintptr {
+func pint32(i int32) uintptr {
 	return uintptr(i)
 }
 
-func puint(ui uint) uintptr {
+func puint32(ui uint32) uintptr {
 	return uintptr(ui)
 }
 
@@ -2562,16 +2562,16 @@ func parraybyte(b []byte) uintptr {
 	return uintptr(unsafe.Pointer(&b[0]))
 }
 
-func parrayint(i []int) uintptr {
+func parrayint32(i []int32) uintptr {
 	return uintptr(unsafe.Pointer(&i[0]))
 }
 
-func DrawFormatString(x int, y int, color uint, format string, a ...interface{}) int {
+func DrawFormatString(x int32, y int32, color uint32, format string, a ...interface{}) int32 {
 	str := fmt.Sprintf(format, a...)
 	return DrawString(x, y, str, color)
 }
 
-func DrawFormatStringToHandle(x int, y int, color uint, fontHandle int, format string, a ...interface{}) int {
+func DrawFormatStringToHandle(x int32, y int32, color uint32, fontHandle int32, format string, a ...interface{}) int32 {
 	str := fmt.Sprintf(format, a...)
 	return DrawStringToHandle(x, y, str, color, fontHandle)
 }

@@ -17,7 +17,7 @@ var (
 	cTypes = []string{"arrayint", "arraychar", "int *", "int", "unsigned int", "char *", "char", "double", "float", "LONGLONG"}
 
 	// Sort in the same order as cTypes
-	goTypes = []string{"[]int", "[]byte", "*int", "int", "uint", "string", "byte", "float64", "float32", "int64"}
+	goTypes = []string{"[]int32", "[]byte", "*int32", "int32", "uint32", "string", "byte", "float64", "float32", "int64"}
 )
 
 type dxFunc struct {
@@ -164,12 +164,12 @@ func generate(w io.Writer, packageName string, funcs, extra []dxFunc) {
 
 func generateExtFunc(w io.Writer) {
 	io.WriteString(w, `
-func DrawFormatString(x int, y int, color uint, format string, a ...interface{}) int {
+func DrawFormatString(x int32, y int32, color uint32, format string, a ...interface{}) int32 {
 	str := fmt.Sprintf(format, a...)
 	return DrawString(x, y, str, color)
 }
 
-func DrawFormatStringToHandle(x int, y int, color uint, fontHandle int, format string, a ...interface{}) int {
+func DrawFormatStringToHandle(x int32, y int32, color uint32, fontHandle int32, format string, a ...interface{}) int32 {
 	str := fmt.Sprintf(format, a...)
 	return DrawStringToHandle(x, y, str, color, fontHandle)
 }
@@ -266,15 +266,15 @@ func {{ $func.Name }}({{ $func.GoArgs }}) {{ $func.Response }} {
 }
 {{ end }}
 
-func ppint(i *int) uintptr {
+func ppint32(i *int32) uintptr {
 	return uintptr(unsafe.Pointer(i))
 }
 
-func pint(i int) uintptr {
+func pint32(i int32) uintptr {
 	return uintptr(i)
 }
 
-func puint(ui uint) uintptr {
+func puint32(ui uint32) uintptr {
 	return uintptr(ui)
 }
 
@@ -306,7 +306,7 @@ func parraybyte(b []byte) uintptr {
 	return uintptr(unsafe.Pointer(&b[0]))
 }
 
-func parrayint(i []int) uintptr {
+func parrayint32(i []int32) uintptr {
 	return uintptr(unsafe.Pointer(&i[0]))
 }
 `
