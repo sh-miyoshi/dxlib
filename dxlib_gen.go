@@ -731,30 +731,30 @@ func DrawExtendGraph(x1 int32, y1 int32, x2 int32, y2 int32, grHandle int32, tra
 	return int32(res)
 }
 
-func DrawRotaGraph(x int32, y int32, extRate float64, angle float64, grHandle int32, transFlag int32, turnFlag int32) int32 {
+func DrawRotaGraph(x int32, y int32, extRate float64, angle float64, grHandle int32, transFlag int32, reverseXFlag int32, reverseYFlag int32) int32 {
 	if dx_DrawRotaGraph == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_DrawRotaGraph.Call(pint32(x), pint32(y), pfloat64(extRate), pfloat64(angle), pint32(grHandle), pint32(transFlag), pint32(turnFlag))
+	res, _, _ := dx_DrawRotaGraph.Call(pint32(x), pint32(y), pfloat64(extRate), pfloat64(angle), pint32(grHandle), pint32(transFlag), pint32(reverseXFlag), pint32(reverseYFlag))
 	return int32(res)
 }
 
-func DrawRotaGraph2(x int32, y int32, cx int32, cy int32, extRate float64, angle float64, grHandle int32, transFlag int32, turnFlag int32) int32 {
+func DrawRotaGraph2(x int32, y int32, cx int32, cy int32, extRate float64, angle float64, grHandle int32, transFlag int32, reverseXFlag int32, reverseYFlag int32) int32 {
 	if dx_DrawRotaGraph2 == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_DrawRotaGraph2.Call(pint32(x), pint32(y), pint32(cx), pint32(cy), pfloat64(extRate), pfloat64(angle), pint32(grHandle), pint32(transFlag), pint32(turnFlag))
+	res, _, _ := dx_DrawRotaGraph2.Call(pint32(x), pint32(y), pint32(cx), pint32(cy), pfloat64(extRate), pfloat64(angle), pint32(grHandle), pint32(transFlag), pint32(reverseXFlag), pint32(reverseYFlag))
 	return int32(res)
 }
 
-func DrawRotaGraph3(x int32, y int32, cx int32, cy int32, extRateX float64, extRateY float64, angle float64, grHandle int32, transFlag int32, turnFlag int32) int32 {
+func DrawRotaGraph3(x int32, y int32, cx int32, cy int32, extRateX float64, extRateY float64, angle float64, grHandle int32, transFlag int32, reverseXFlag int32, reverseYFlag int32) int32 {
 	if dx_DrawRotaGraph3 == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_DrawRotaGraph3.Call(pint32(x), pint32(y), pint32(cx), pint32(cy), pfloat64(extRateX), pfloat64(extRateY), pfloat64(angle), pint32(grHandle), pint32(transFlag), pint32(turnFlag))
+	res, _, _ := dx_DrawRotaGraph3.Call(pint32(x), pint32(y), pint32(cx), pint32(cy), pfloat64(extRateX), pfloat64(extRateY), pfloat64(angle), pint32(grHandle), pint32(transFlag), pint32(reverseXFlag), pint32(reverseYFlag))
 	return int32(res)
 }
 
@@ -767,12 +767,12 @@ func DrawModiGraph(x1 int32, y1 int32, x2 int32, y2 int32, x3 int32, y3 int32, x
 	return int32(res)
 }
 
-func DrawRectGraph(destX int32, destY int32, srcX int32, srcY int32, width int32, height int32, graphHandle int32, transFlag int32, turnFlag int32) int32 {
+func DrawRectGraph(destX int32, destY int32, srcX int32, srcY int32, width int32, height int32, graphHandle int32, transFlag int32, reverseXFlag int32, reverseYFlag int32) int32 {
 	if dx_DrawRectGraph == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_DrawRectGraph.Call(pint32(destX), pint32(destY), pint32(srcX), pint32(srcY), pint32(width), pint32(height), pint32(graphHandle), pint32(transFlag), pint32(turnFlag))
+	res, _, _ := dx_DrawRectGraph.Call(pint32(destX), pint32(destY), pint32(srcX), pint32(srcY), pint32(width), pint32(height), pint32(graphHandle), pint32(transFlag), pint32(reverseXFlag), pint32(reverseYFlag))
 	return int32(res)
 }
 
