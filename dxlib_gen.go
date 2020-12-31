@@ -511,6 +511,7 @@ func ProcessMessage() int32 {
 //   x1, y1: 線の起点座標
 //   x2, y2: 線の終点座標
 //   color: 線の色
+//   thickness: 文字の太さ(デフォルト: 6)
 func DrawLine(x1 int32, y1 int32, x2 int32, y2 int32, color uint32, thickness int32) int32 {
 	if dx_DrawLine == nil {
 		panic("Please call dxlib.Init() at first")
@@ -520,6 +521,12 @@ func DrawLine(x1 int32, y1 int32, x2 int32, y2 int32, color uint32, thickness in
 	return int32(res)
 }
 
+// DrawLineAA 線を描画(アンチエイリアス効果付き)
+// 引数
+//   x1, y1: 線の起点座標
+//   x2, y2: 線の終点座標
+//   color: 線の色
+//   thickness: 文字の太さ(デフォルト: 6)
 func DrawLineAA(x1 float32, y1 float32, x2 float32, y2 float32, color uint32, thickness float32) int32 {
 	if dx_DrawLineAA == nil {
 		panic("Please call dxlib.Init() at first")
@@ -529,6 +536,12 @@ func DrawLineAA(x1 float32, y1 float32, x2 float32, y2 float32, color uint32, th
 	return int32(res)
 }
 
+// DrawBox 四角形を描画
+// 引数
+//   x1, y1: 四角形の左上の頂点座標
+//   x2, y2: 四角形の右下＋１の頂点座標
+//   color: 四角形の色
+//   fillFlag: 四角の中身を塗りつぶすか(TRUEで塗りつぶし)
 func DrawBox(x1 int32, y1 int32, x2 int32, y2 int32, color uint32, fillFlag int32) int32 {
 	if dx_DrawBox == nil {
 		panic("Please call dxlib.Init() at first")

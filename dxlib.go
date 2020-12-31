@@ -8,6 +8,8 @@ package dxlib
 
 // 基本は先頭にdxlibをつけてC言語の関数名を書く
 // ただし、配列を扱いたい場合はarray<型>(arrayintなど)のように書く
+// commentから始まる行はコメント、ext_dxlibから始まる行はgenerator側で関数の作成が必要
+// そのほかの行は無視される
 
 // 使用必須関数
 //dxlib int DxLib_Init()
@@ -15,9 +17,11 @@ package dxlib
 //dxlib int ProcessMessage()
 
 // 図形描画関数
-//comment; DrawLine; 線を描画\n引数\n  x1, y1: 線の起点座標\n  x2, y2: 線の終点座標\n  color: 線の色
+//comment; DrawLine; 線を描画\n引数\n  x1, y1: 線の起点座標\n  x2, y2: 線の終点座標\n  color: 線の色\n  thickness: 文字の太さ(デフォルト: 6)
 //dxlib int DrawLine(int x1, int y1, int x2, int y2, unsigned int color, int thickness)
+//comment; DrawLineAA; 線を描画(アンチエイリアス効果付き)\n引数\n  x1, y1: 線の起点座標\n  x2, y2: 線の終点座標\n  color: 線の色\n  thickness: 文字の太さ(デフォルト: 6)
 //dxlib int DrawLineAA(float x1, float y1, float x2, float y2, unsigned int color, float thickness)
+//comment; DrawBox; 四角形を描画\n引数\n  x1, y1: 四角形の左上の頂点座標\n  x2, y2: 四角形の右下＋１の頂点座標\n  color: 四角形の色\n  fillFlag: 四角の中身を塗りつぶすか(TRUEで塗りつぶし)
 //dxlib int DrawBox(int x1, int y1, int x2, int y2, unsigned int color, int fillFlag)
 //dxlib int DrawBoxAA(float x1, float y1, float x2, float y2, unsigned int color, int fillFlag, float lineThickness)
 //dxlib int DrawCircle(int x, int y, int r, unsigned int color, int fillFlag, int lineThickness)
