@@ -15,6 +15,7 @@ package dxlib
 //dxlib int ProcessMessage()
 
 // 図形描画関数
+//comment; DrawLine; 線を描画\n引数\n  x1, y1: 線の起点座標\n  x2, y2: 線の終点座標\n  color: 線の色
 //dxlib int DrawLine(int x1, int y1, int x2, int y2, unsigned int color, int thickness)
 //dxlib int DrawLineAA(float x1, float y1, float x2, float y2, unsigned int color, float thickness)
 //dxlib int DrawBox(int x1, int y1, int x2, int y2, unsigned int color, int fillFlag)

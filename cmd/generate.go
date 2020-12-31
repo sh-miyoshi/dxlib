@@ -13,13 +13,6 @@ import (
 	"text/template"
 )
 
-var (
-	cTypes = []string{"arrayint", "arraychar", "int *", "int", "unsigned int", "char *", "char", "double", "float", "LONGLONG"}
-
-	// Sort in the same order as cTypes
-	goTypes = []string{"[]int32", "[]byte", "*int32", "int32", "uint32", "string", "byte", "float64", "float32", "int64"}
-)
-
 type dxFunc struct {
 	Name     string
 	Response string
@@ -31,6 +24,20 @@ type argument struct {
 	Name   string
 	GoType string
 }
+
+type comment struct {
+	funcName string
+	comments []string
+}
+
+var (
+	cTypes = []string{"arrayint", "arraychar", "int *", "int", "unsigned int", "char *", "char", "double", "float", "LONGLONG"}
+
+	// Sort in the same order as cTypes
+	goTypes = []string{"[]int32", "[]byte", "*int32", "int32", "uint32", "string", "byte", "float64", "float32", "int64"}
+
+	comments = []comment{}
+)
 
 func convToGoType(cType string) (string, bool) {
 	for i, t := range cTypes {
@@ -143,6 +150,39 @@ func parseExtraFunc(line string) *dxFunc {
 	return res
 }
 
+func parseComment(line string) error {
+	if !strings.HasPrefix(line, "//comment") {
+		return nil
+	}
+
+	// valid format
+	//comment; <FuncName>; <comments>
+	data := strings.Split(line, ";")
+	if len(data) != 3 {
+		return fmt.Errorf("invalid comment format")
+	}
+
+	comments = append(comments, comment{
+		funcName: strings.TrimSpace(data[1]),
+		comments: strings.Split(strings.TrimSpace(data[2]), "\\n"),
+	})
+
+	return nil
+}
+
+func getComment(funcName string) string {
+	for _, c := range comments {
+		if c.funcName == funcName {
+			res := "// " + funcName + " "
+			for _, msg := range c.comments {
+				res += msg + "\n// "
+			}
+			return strings.TrimSuffix(res, "// ")
+		}
+	}
+	return ""
+}
+
 func generate(w io.Writer, packageName string, funcs, extra []dxFunc) {
 	procs := []string{}
 	for _, f := range funcs {
@@ -158,7 +198,11 @@ func generate(w io.Writer, packageName string, funcs, extra []dxFunc) {
 		"Functions": funcs,
 	}
 
-	t := template.Must(template.New("main").Parse(outTemplate))
+	funcMap := map[string]interface{}{
+		"getComment": getComment,
+	}
+
+	t := template.Must(template.New("main").Funcs(funcMap).Parse(outTemplate))
 	t.Execute(w, data)
 }
 
@@ -206,6 +250,8 @@ func main() {
 			packageName = strings.Split(line, " ")[1]
 			continue
 		}
+
+		// Parse function
 		d, err := parse(line)
 		if err != nil {
 			fmt.Printf("Failed to parse line %s: %v\n", line, err)
@@ -213,10 +259,19 @@ func main() {
 		}
 		if d != nil {
 			data = append(data, *d)
-		} else {
-			if d := parseExtraFunc(line); d != nil {
-				extra = append(extra, *d)
-			}
+			continue
+		}
+
+		// Parse  extra function
+		if d := parseExtraFunc(line); d != nil {
+			extra = append(extra, *d)
+			continue
+		}
+
+		// Parse command
+		if err := parseComment(line); err != nil {
+			fmt.Printf("Failed to parse line %s: %v\n", line, err)
+			os.Exit(1)
 		}
 	}
 
@@ -256,6 +311,7 @@ func Init(dllFile string) {
 }
 
 {{ range $i, $func := .Functions }}
+{{ getComment $func.Name -}}
 func {{ $func.Name }}({{ $func.GoArgs }}) {{ $func.Response }} {
 	if dx_{{ $func.Name }} == nil {
 		panic("Please call dxlib.Init() at first")

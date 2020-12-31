@@ -506,6 +506,11 @@ func ProcessMessage() int32 {
 	return int32(res)
 }
 
+// DrawLine 線を描画
+// 引数
+//   x1, y1: 線の起点座標
+//   x2, y2: 線の終点座標
+//   color: 線の色
 func DrawLine(x1 int32, y1 int32, x2 int32, y2 int32, color uint32, thickness int32) int32 {
 	if dx_DrawLine == nil {
 		panic("Please call dxlib.Init() at first")
