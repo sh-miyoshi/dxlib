@@ -166,12 +166,12 @@ func generateExtFunc(w io.Writer) {
 	io.WriteString(w, `
 func DrawFormatString(x int32, y int32, color uint32, format string, a ...interface{}) int32 {
 	str := fmt.Sprintf(format, a...)
-	return DrawString(x, y, str, color)
+	return DrawString(x, y, str, color, 0)
 }
 
 func DrawFormatStringToHandle(x int32, y int32, color uint32, fontHandle int32, format string, a ...interface{}) int32 {
 	str := fmt.Sprintf(format, a...)
-	return DrawStringToHandle(x, y, str, color, fontHandle)
+	return DrawStringToHandle(x, y, str, color, fontHandle, 0, FALSE)
 }
 `)
 }
