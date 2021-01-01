@@ -17,24 +17,34 @@ package dxlib
 //dxlib int ProcessMessage()
 
 // 図形描画関数
-//comment; DrawLine; 線を描画\n引数\n  x1, y1: 線の起点座標\n  x2, y2: 線の終点座標\n  color: 線の色\n  thickness: 文字の太さ(デフォルト: 6)
+//comment; DrawLine; 線を描画\n引数\n  x1, y1: 線の起点座標\n  x2, y2: 線の終点座標\n  color: 線の色\n  thickness: 文字の太さ(デフォルト: 1)
 //dxlib int DrawLine(int x1, int y1, int x2, int y2, unsigned int color, int thickness)
-//comment; DrawLineAA; 線を描画(アンチエイリアス効果付き)\n引数\n  x1, y1: 線の起点座標\n  x2, y2: 線の終点座標\n  color: 線の色\n  thickness: 文字の太さ(デフォルト: 6)
+//comment; DrawLineAA; 線を描画(アンチエイリアス効果付き)\n引数\n  x1, y1: 線の起点座標\n  x2, y2: 線の終点座標\n  color: 線の色\n  thickness: 文字の太さ(デフォルト: 1.0)
 //dxlib int DrawLineAA(float x1, float y1, float x2, float y2, unsigned int color, float thickness)
 //comment; DrawBox; 四角形を描画\n引数\n  x1, y1: 四角形の左上の頂点座標\n  x2, y2: 四角形の右下＋１の頂点座標\n  color: 四角形の色\n  fillFlag: 四角の中身を塗りつぶすか(TRUEで塗りつぶし)
 //dxlib int DrawBox(int x1, int y1, int x2, int y2, unsigned int color, int fillFlag)
+//comment; DrawBoxAA; 四角形を描画(アンチエイリアス効果付き)\n引数\n  x1, y1: 四角形の左上の頂点座標\n  x2, y2: 四角形の右下＋１の頂点座標\n  color: 四角形の色\n  fillFlag: 四角の中身を塗りつぶすか(TRUEで塗りつぶし)\n  lineThickness: 文字の太さ(デフォルト: 1.0)
 //dxlib int DrawBoxAA(float x1, float y1, float x2, float y2, unsigned int color, int fillFlag, float lineThickness)
+//comment; DrawCircle; 円を描画\n引数\n  x, y: 円の中心座標\n  r: 半径\n  color: 円の色\n  fillFlag: 塗りつぶすか(TRUEで塗りつぶし)\n  lineThickness: 文字の太さ(デフォルト: 1)
 //dxlib int DrawCircle(int x, int y, int r, unsigned int color, int fillFlag, int lineThickness)
+//comment; DrawCircleAA; 円を描画(アンチエイリアス効果付き)\n引数\n  x, y: 円の中心座標\n  r: 半径\n  posnum: 円を形成する頂点の数\n  color: 円の色\n  fillFlag: 塗りつぶすか(TRUEで塗りつぶし)\n  lineThickness: 文字の太さ(デフォルト: 1.0)
 //dxlib int DrawCircleAA(float x, float y, float r, int posnum, unsigned int color, int fillFlag, float lineThickness)
+//comment; DrawOval; 楕円を描画\n引数\n  x, y: 楕円の中心座標\n  rx, ry: 描く楕円のX軸に対する半径とY軸に対する半径\n  color: 円の色\n  fillFlag: 塗りつぶすか(TRUEで塗りつぶし)\n  lineThickness: 文字の太さ(デフォルト: 1.0)
 //dxlib int DrawOval(int x, int y, int rx, int ry, unsigned int color, int fillFlag, int lineThickness)
+//comment; DrawOvalAA; 楕円を描画(アンチエイリアス効果付き)\n引数\n  x, y: 楕円の中心座標\n  rx, ry: 描く楕円のX軸に対する半径とY軸に対する半径\n  posnum: 円を形成する頂点の数\n  color: 円の色\n  fillFlag: 塗りつぶすか(TRUEで塗りつぶし)\n  lineThickness: 文字の太さ(デフォルト: 1.0)
 //dxlib int DrawOvalAA(float x, float y, float rx, float ry, int posnum, unsigned int color, int fillFlag, float lineThickness)
-//dxlib int DrawTriangle(int x1, int y1, int x2, int y2, int x3, int y3, unsigned int color, int fillFlag, int  writeZMode)
+//comment; DrawTriangle; 三角形の描画\n引数\n  x1, y1, x2, y2, x3, y3: 三角形を描く３つの座標\n  color: 三角形の色\n  fillFlag: 塗りつぶすか(TRUEで塗りつぶし)
+//dxlib int DrawTriangle(int x1, int y1, int x2, int y2, int x3, int y3, unsigned int color, int fillFlag)
+//comment; DrawTriangle; 三角形の描画(アンチエイリアス効果付き)\n引数\n  x1, y1, x2, y2, x3, y3: 三角形を描く３つの座標\n  color: 三角形の色\n  fillFlag: 塗りつぶすか(TRUEで塗りつぶし)\n  lineThickness: 文字の太さ(デフォルト: 1.0)
 //dxlib int DrawTriangleAA(float x1, float y1, float x2, float y2, float x3, float y3, unsigned int color, int fillFlag, float lineThickness)
+//comment; DrawPixel; 点を描画\n引数\n  x, y: 座標\n  color: 点の色
 //dxlib int DrawPixel(int x, int y, unsigned int color)
+//comment; DrawPixel; 指定点の色を取得\n引数\n  x, y: 座標
 //dxlib unsigned int GetPixel(int x, int y)
 
 // グラフィックデータ制御関数
 //dxlib int LoadGraphScreen(int x, int y, char *graphName, int transFlag)
+// TODO notUse3DFlag false
 //dxlib int LoadGraph(char *fileName, int notUse3DFlag)
 //dxlib int LoadDivGraph(char *fileName, int allnum, int xnum, int ynum, int xsize, int ysize, arrayint handleBuf, int notUse3DFlag)
 //dxlib int MakeGraph(int sizeX, int sizeY, int notUse3DFlag)
@@ -53,6 +63,7 @@ package dxlib
 //dxlib int DrawModiGraph(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, int grHandle, int transFlag)
 //dxlib int DrawRectGraph(int destX, int destY, int srcX, int srcY, int width, int height, int graphHandle, int transFlag, int reverseXFlag, int reverseYFlag)
 //dxlib int DerivationGraph(int srcX, int srcY, int width, int height, int srcGraphHandle)
+// UseClientFlag = TRUE
 //dxlib int GetDrawScreenGraph(int x1, int y1, int x2, int y2, int grHandle, int useClientFlag)
 //dxlib int GetGraphiteSize(int grHandle, int *sizeXBuf, int *sizeYBuf)
 //dxlib int InitGraph(int logOutFlag)
@@ -65,10 +76,13 @@ package dxlib
 //dxlib int DrawBlendGraph(int x, int y, int grHandle, int transFlag, int blendGraph, int borderParam, int borderRange)
 
 // 文字描画関係関数
+// edgeColor = 0
 //dxlib int DrawString(int x, int y, char *str, unsigned int color, unsigned int edgeColor)
+// vericalFlag = FALSE
 //dxlib int GetDrawStringWidth(char *str, int strLen, int vericalFlag)
 //dxlib int SetFontSize(int fontSize)
 //dxlib int SetFontThickness(int tinckPal)
+// charSet = -1
 //dxlib int ChangeFont(char *fontName, int charSet)
 //dxlib int ChangeFontType(int fontType)
 //dxlib int CreateFontToHandle(char *fontName, int size, int thick, int fontType, int charSet, int edgeSize, int italic, int handle)
@@ -84,6 +98,7 @@ package dxlib
 //dxlib int clsDx()
 
 // その他画面操作系関数
+// refreshRate = 60
 //dxlib int SetGraphMode(int sizeX, int sizeY, int colorBitNum, int refreshRate)
 //dxlib int SetFullScreenResolutionMode(int resolutionMode)
 //dxlib int SetFullScreenScalingMode(int scalingMode, int fitScaling)

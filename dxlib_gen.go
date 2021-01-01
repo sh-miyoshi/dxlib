@@ -511,7 +511,7 @@ func ProcessMessage() int32 {
 //   x1, y1: 線の起点座標
 //   x2, y2: 線の終点座標
 //   color: 線の色
-//   thickness: 文字の太さ(デフォルト: 6)
+//   thickness: 文字の太さ(デフォルト: 1)
 func DrawLine(x1 int32, y1 int32, x2 int32, y2 int32, color uint32, thickness int32) int32 {
 	if dx_DrawLine == nil {
 		panic("Please call dxlib.Init() at first")
@@ -526,7 +526,7 @@ func DrawLine(x1 int32, y1 int32, x2 int32, y2 int32, color uint32, thickness in
 //   x1, y1: 線の起点座標
 //   x2, y2: 線の終点座標
 //   color: 線の色
-//   thickness: 文字の太さ(デフォルト: 6)
+//   thickness: 文字の太さ(デフォルト: 1.0)
 func DrawLineAA(x1 float32, y1 float32, x2 float32, y2 float32, color uint32, thickness float32) int32 {
 	if dx_DrawLineAA == nil {
 		panic("Please call dxlib.Init() at first")
@@ -551,6 +551,13 @@ func DrawBox(x1 int32, y1 int32, x2 int32, y2 int32, color uint32, fillFlag int3
 	return int32(res)
 }
 
+// DrawBoxAA 四角形を描画(アンチエイリアス効果付き)
+// 引数
+//   x1, y1: 四角形の左上の頂点座標
+//   x2, y2: 四角形の右下＋１の頂点座標
+//   color: 四角形の色
+//   fillFlag: 四角の中身を塗りつぶすか(TRUEで塗りつぶし)
+//   lineThickness: 文字の太さ(デフォルト: 1.0)
 func DrawBoxAA(x1 float32, y1 float32, x2 float32, y2 float32, color uint32, fillFlag int32, lineThickness float32) int32 {
 	if dx_DrawBoxAA == nil {
 		panic("Please call dxlib.Init() at first")
@@ -560,6 +567,13 @@ func DrawBoxAA(x1 float32, y1 float32, x2 float32, y2 float32, color uint32, fil
 	return int32(res)
 }
 
+// DrawCircle 円を描画
+// 引数
+//   x, y: 円の中心座標
+//   r: 半径
+//   color: 円の色
+//   fillFlag: 塗りつぶすか(TRUEで塗りつぶし)
+//   lineThickness: 文字の太さ(デフォルト: 1)
 func DrawCircle(x int32, y int32, r int32, color uint32, fillFlag int32, lineThickness int32) int32 {
 	if dx_DrawCircle == nil {
 		panic("Please call dxlib.Init() at first")
@@ -569,6 +583,14 @@ func DrawCircle(x int32, y int32, r int32, color uint32, fillFlag int32, lineThi
 	return int32(res)
 }
 
+// DrawCircleAA 円を描画(アンチエイリアス効果付き)
+// 引数
+//   x, y: 円の中心座標
+//   r: 半径
+//   posnum: 円を形成する頂点の数
+//   color: 円の色
+//   fillFlag: 塗りつぶすか(TRUEで塗りつぶし)
+//   lineThickness: 文字の太さ(デフォルト: 1.0)
 func DrawCircleAA(x float32, y float32, r float32, posnum int32, color uint32, fillFlag int32, lineThickness float32) int32 {
 	if dx_DrawCircleAA == nil {
 		panic("Please call dxlib.Init() at first")
@@ -578,6 +600,13 @@ func DrawCircleAA(x float32, y float32, r float32, posnum int32, color uint32, f
 	return int32(res)
 }
 
+// DrawOval 楕円を描画
+// 引数
+//   x, y: 楕円の中心座標
+//   rx, ry: 描く楕円のX軸に対する半径とY軸に対する半径
+//   color: 円の色
+//   fillFlag: 塗りつぶすか(TRUEで塗りつぶし)
+//   lineThickness: 文字の太さ(デフォルト: 1.0)
 func DrawOval(x int32, y int32, rx int32, ry int32, color uint32, fillFlag int32, lineThickness int32) int32 {
 	if dx_DrawOval == nil {
 		panic("Please call dxlib.Init() at first")
@@ -587,6 +616,14 @@ func DrawOval(x int32, y int32, rx int32, ry int32, color uint32, fillFlag int32
 	return int32(res)
 }
 
+// DrawOvalAA 楕円を描画(アンチエイリアス効果付き)
+// 引数
+//   x, y: 楕円の中心座標
+//   rx, ry: 描く楕円のX軸に対する半径とY軸に対する半径
+//   posnum: 円を形成する頂点の数
+//   color: 円の色
+//   fillFlag: 塗りつぶすか(TRUEで塗りつぶし)
+//   lineThickness: 文字の太さ(デフォルト: 1.0)
 func DrawOvalAA(x float32, y float32, rx float32, ry float32, posnum int32, color uint32, fillFlag int32, lineThickness float32) int32 {
 	if dx_DrawOvalAA == nil {
 		panic("Please call dxlib.Init() at first")
@@ -596,12 +633,17 @@ func DrawOvalAA(x float32, y float32, rx float32, ry float32, posnum int32, colo
 	return int32(res)
 }
 
-func DrawTriangle(x1 int32, y1 int32, x2 int32, y2 int32, x3 int32, y3 int32, color uint32, fillFlag int32, writeZMode int32) int32 {
+// DrawTriangle 三角形の描画
+// 引数
+//   x1, y1, x2, y2, x3, y3: 三角形を描く３つの座標
+//   color: 三角形の色
+//   fillFlag: 塗りつぶすか(TRUEで塗りつぶし)
+func DrawTriangle(x1 int32, y1 int32, x2 int32, y2 int32, x3 int32, y3 int32, color uint32, fillFlag int32) int32 {
 	if dx_DrawTriangle == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_DrawTriangle.Call(pint32(x1), pint32(y1), pint32(x2), pint32(y2), pint32(x3), pint32(y3), puint32(color), pint32(fillFlag), pint32(writeZMode))
+	res, _, _ := dx_DrawTriangle.Call(pint32(x1), pint32(y1), pint32(x2), pint32(y2), pint32(x3), pint32(y3), puint32(color), pint32(fillFlag))
 	return int32(res)
 }
 
@@ -614,6 +656,10 @@ func DrawTriangleAA(x1 float32, y1 float32, x2 float32, y2 float32, x3 float32, 
 	return int32(res)
 }
 
+// DrawPixel 点を描画
+// 引数
+//   x, y: 座標
+//   color: 点の色
 func DrawPixel(x int32, y int32, color uint32) int32 {
 	if dx_DrawPixel == nil {
 		panic("Please call dxlib.Init() at first")
