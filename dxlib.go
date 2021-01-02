@@ -103,22 +103,33 @@ package dxlib
 //dxlib int DrawBlendGraph(int x, int y, int grHandle, int transFlag, int blendGraph, int borderParam, int borderRange)
 
 // 文字描画関係関数
-// edgeColor = 0
+//comment; DrawString; 文字列を描画\n引数\n  x, y: 文字列を描画する領域の左上の座標\n  str: 文字列\n  color: 文字列の色\n  edgeColor: デフォルト 0
 //dxlib int DrawString(int x, int y, char *str, unsigned int color, unsigned int edgeColor)
-// vericalFlag = FALSE
+//comment; GetDrawStringWidth; 描画した時の文字列の幅(ドット単位)を得る\n引数\n str: 文字列\n  strLen: 文字列長\n  vericalFlag: デフォルト FALSE
 //dxlib int GetDrawStringWidth(char *str, int strLen, int vericalFlag)
+//comment; SetFontSize; フォントのサイズをセットする
 //dxlib int SetFontSize(int fontSize)
-//dxlib int SetFontThickness(int tinckPal)
-// charSet = -1
+//comment; SetFontThickness; 描画する文字列の文字の太さをセットする\n引数\n  thickPal: 文字の太さ(0~9, デフォルト 6)
+//dxlib int SetFontThickness(int thickPal)
+//comment; ChangeFont; 文字列描画に使用するフォントを変更する\n引数\n  fontName: フォント名\n  charSet: デフォルト -1
 //dxlib int ChangeFont(char *fontName, int charSet)
+//comment; ChangeFontType; 文字列描画に使用するフォントのタイプを変更する
 //dxlib int ChangeFontType(int fontType)
+//comment; CreateFontToHandle; 新しいフォントデータを作成\n引数\n  fontName: 作成するフォント名(NULLにするとデフォルトのフォント)\n  size: サイズ(デフォルト -1)\n  thick:  太さ(デフォルト -1)\n  fontType: フォントタイプ(デフォルト -1)\n  charSet: デフォルト -1\n  edgeSize: デフォルト -1\n  italic: デフォルト FALSE\n  handle: デフォルト -1
 //dxlib int CreateFontToHandle(char *fontName, int size, int thick, int fontType, int charSet, int edgeSize, int italic, int handle)
+//comment; LoadFontDataToHandle; ＤＸフォントデータファイルを読み込む\n引数\n  fileName: ファイル名\n  edgeSize: 成するフォントの縁の太さ(0を指定すると縁無し)
 //dxlib int LoadFontDataToHandle(char *fileName, int edgeSize)
+//comment; DeleteFontToHandle; フォントデータを削除する
 //dxlib int DeleteFontToHandle(int fontHandle)
+//comment; SetFontCacheUsePremulAlphaFlag; 作成するフォントデータを『乗算済みα』用にするかどうかを設定する
 //dxlib int SetFontCacheUsePremulAlphaFlag(int flag)
+//comment; DrawStringToHandle; 指定のフォントデータで文字列を描画する\n引数\n  x, y: 文字列を描画する起点座標\n  str: 文字列\n  color: 文字の色\n  fontHandle: 描画に使用するフォントハンドル\n  edgeColor: 縁の色(デフォルト 0)\n  verticalFlag: デフォルト FALSE
 //dxlib int DrawStringToHandle(int x, int y, char *str, unsigned int color, int fontHandle, int edgeColor, int verticalFlag)
+//comment; GetDrawStringWidthToHandle; 指定のフォントデータで描画する文字列の幅(ドット単位)を得る\n引数\n  str: 文字列\n  strLen: 文字列長\n  fontHandle: フォントハンドル\n  verticalFlag: デフォルト FALSE
 //dxlib int GetDrawStringWidthToHandle(char *str, int strLen, int fontHandle, int verticalFlag)
+//comment; GetFontStateToHandle; 指定のフォントデータの情報を得る
 //dxlib int GetFontStateToHandle(char *fontName, int *size, int *thick, int fontHandle, int *fontType, int *charSet, int *edgeSize, int *italic)
+//comment; InitFontToHandle; フォントデータを全て初期化する
 //dxlib int InitFontToHandle()
 
 // 簡易画面出力関数

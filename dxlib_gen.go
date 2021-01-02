@@ -1063,6 +1063,12 @@ func DrawBlendGraph(x int32, y int32, grHandle int32, transFlag int32, blendGrap
 	return int32(res)
 }
 
+// DrawString 文字列を描画
+// 引数
+//   x, y: 文字列を描画する領域の左上の座標
+//   str: 文字列
+//   color: 文字列の色
+//   edgeColor: デフォルト 0
 func DrawString(x int32, y int32, str string, color uint32, edgeColor uint32) int32 {
 	if dx_DrawString == nil {
 		panic("Please call dxlib.Init() at first")
@@ -1072,6 +1078,11 @@ func DrawString(x int32, y int32, str string, color uint32, edgeColor uint32) in
 	return int32(res)
 }
 
+// GetDrawStringWidth 描画した時の文字列の幅(ドット単位)を得る
+// 引数
+//  str: 文字列
+//   strLen: 文字列長
+//   vericalFlag: デフォルト FALSE
 func GetDrawStringWidth(str string, strLen int32, vericalFlag int32) int32 {
 	if dx_GetDrawStringWidth == nil {
 		panic("Please call dxlib.Init() at first")
@@ -1081,6 +1092,7 @@ func GetDrawStringWidth(str string, strLen int32, vericalFlag int32) int32 {
 	return int32(res)
 }
 
+// SetFontSize フォントのサイズをセットする
 func SetFontSize(fontSize int32) int32 {
 	if dx_SetFontSize == nil {
 		panic("Please call dxlib.Init() at first")
@@ -1090,15 +1102,22 @@ func SetFontSize(fontSize int32) int32 {
 	return int32(res)
 }
 
-func SetFontThickness(tinckPal int32) int32 {
+// SetFontThickness 描画する文字列の文字の太さをセットする
+// 引数
+//   thickPal: 文字の太さ(0~9, デフォルト 6)
+func SetFontThickness(thickPal int32) int32 {
 	if dx_SetFontThickness == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_SetFontThickness.Call(pint32(tinckPal))
+	res, _, _ := dx_SetFontThickness.Call(pint32(thickPal))
 	return int32(res)
 }
 
+// ChangeFont 文字列描画に使用するフォントを変更する
+// 引数
+//   fontName: フォント名
+//   charSet: デフォルト -1
 func ChangeFont(fontName string, charSet int32) int32 {
 	if dx_ChangeFont == nil {
 		panic("Please call dxlib.Init() at first")
@@ -1108,6 +1127,7 @@ func ChangeFont(fontName string, charSet int32) int32 {
 	return int32(res)
 }
 
+// ChangeFontType 文字列描画に使用するフォントのタイプを変更する
 func ChangeFontType(fontType int32) int32 {
 	if dx_ChangeFontType == nil {
 		panic("Please call dxlib.Init() at first")
@@ -1117,6 +1137,16 @@ func ChangeFontType(fontType int32) int32 {
 	return int32(res)
 }
 
+// CreateFontToHandle 新しいフォントデータを作成
+// 引数
+//   fontName: 作成するフォント名(NULLにするとデフォルトのフォント)
+//   size: サイズ(デフォルト -1)
+//   thick:  太さ(デフォルト -1)
+//   fontType: フォントタイプ(デフォルト -1)
+//   charSet: デフォルト -1
+//   edgeSize: デフォルト -1
+//   italic: デフォルト FALSE
+//   handle: デフォルト -1
 func CreateFontToHandle(fontName string, size int32, thick int32, fontType int32, charSet int32, edgeSize int32, italic int32, handle int32) int32 {
 	if dx_CreateFontToHandle == nil {
 		panic("Please call dxlib.Init() at first")
@@ -1126,6 +1156,10 @@ func CreateFontToHandle(fontName string, size int32, thick int32, fontType int32
 	return int32(res)
 }
 
+// LoadFontDataToHandle ＤＸフォントデータファイルを読み込む
+// 引数
+//   fileName: ファイル名
+//   edgeSize: 成するフォントの縁の太さ(0を指定すると縁無し)
 func LoadFontDataToHandle(fileName string, edgeSize int32) int32 {
 	if dx_LoadFontDataToHandle == nil {
 		panic("Please call dxlib.Init() at first")
@@ -1135,6 +1169,7 @@ func LoadFontDataToHandle(fileName string, edgeSize int32) int32 {
 	return int32(res)
 }
 
+// DeleteFontToHandle フォントデータを削除する
 func DeleteFontToHandle(fontHandle int32) int32 {
 	if dx_DeleteFontToHandle == nil {
 		panic("Please call dxlib.Init() at first")
@@ -1144,6 +1179,7 @@ func DeleteFontToHandle(fontHandle int32) int32 {
 	return int32(res)
 }
 
+// SetFontCacheUsePremulAlphaFlag 作成するフォントデータを『乗算済みα』用にするかどうかを設定する
 func SetFontCacheUsePremulAlphaFlag(flag int32) int32 {
 	if dx_SetFontCacheUsePremulAlphaFlag == nil {
 		panic("Please call dxlib.Init() at first")
@@ -1153,6 +1189,14 @@ func SetFontCacheUsePremulAlphaFlag(flag int32) int32 {
 	return int32(res)
 }
 
+// DrawStringToHandle 指定のフォントデータで文字列を描画する
+// 引数
+//   x, y: 文字列を描画する起点座標
+//   str: 文字列
+//   color: 文字の色
+//   fontHandle: 描画に使用するフォントハンドル
+//   edgeColor: 縁の色(デフォルト 0)
+//   verticalFlag: デフォルト FALSE
 func DrawStringToHandle(x int32, y int32, str string, color uint32, fontHandle int32, edgeColor int32, verticalFlag int32) int32 {
 	if dx_DrawStringToHandle == nil {
 		panic("Please call dxlib.Init() at first")
@@ -1162,6 +1206,12 @@ func DrawStringToHandle(x int32, y int32, str string, color uint32, fontHandle i
 	return int32(res)
 }
 
+// GetDrawStringWidthToHandle 指定のフォントデータで描画する文字列の幅(ドット単位)を得る
+// 引数
+//   str: 文字列
+//   strLen: 文字列長
+//   fontHandle: フォントハンドル
+//   verticalFlag: デフォルト FALSE
 func GetDrawStringWidthToHandle(str string, strLen int32, fontHandle int32, verticalFlag int32) int32 {
 	if dx_GetDrawStringWidthToHandle == nil {
 		panic("Please call dxlib.Init() at first")
@@ -1171,6 +1221,7 @@ func GetDrawStringWidthToHandle(str string, strLen int32, fontHandle int32, vert
 	return int32(res)
 }
 
+// GetFontStateToHandle 指定のフォントデータの情報を得る
 func GetFontStateToHandle(fontName string, size *int32, thick *int32, fontHandle int32, fontType *int32, charSet *int32, edgeSize *int32, italic *int32) int32 {
 	if dx_GetFontStateToHandle == nil {
 		panic("Please call dxlib.Init() at first")
@@ -1180,6 +1231,7 @@ func GetFontStateToHandle(fontName string, size *int32, thick *int32, fontHandle
 	return int32(res)
 }
 
+// InitFontToHandle フォントデータを全て初期化する
 func InitFontToHandle() int32 {
 	if dx_InitFontToHandle == nil {
 		panic("Please call dxlib.Init() at first")
