@@ -43,36 +43,63 @@ package dxlib
 //dxlib unsigned int GetPixel(int x, int y)
 
 // グラフィックデータ制御関数
+//comment; LoadGraphScreen; 画像ファイルを読みこんで画面に表示する\n引数\n  x, y: ロードした画像を描画する矩形の左上頂点の座標\n  graphName: ロードする画像ファイルパス\n  transFlag: 画像の透明度を有効にするかどうか(TRUE: 有効)
 //dxlib int LoadGraphScreen(int x, int y, char *graphName, int transFlag)
-// TODO notUse3DFlag false
+//comment; LoadGraph; 画像ファイルのメモリへの読みこみ、及び動画ファイルのロード\n引数\n  fileName: ファイルパス\n  notUse3DFlag: 3D機能を制限するか(デフォルト: FALSE)
 //dxlib int LoadGraph(char *fileName, int notUse3DFlag)
+//comment; LoadDivGraph; 画像ファイルのメモリへの分割読みこみ\n引数\n  fileName: 画像ファイルパス\n  allnum: 画像の分割総数\n  xnum, ynum: 画像の横向きに対する分割数と縦に対する分割数\n  xsize, ysize: 分割された画像一つの大きさ\n  handleBuf: グラフィックハンドルを保存するバッファ\n  notUse3DFlag: 3D機能を制限するか(デフォルト: FALSE)
 //dxlib int LoadDivGraph(char *fileName, int allnum, int xnum, int ynum, int xsize, int ysize, arrayint handleBuf, int notUse3DFlag)
+//comment; MakeGraph; 空のグラフィックを作成する\n引数\n  sizeX, sizeY: 作成する空グラフィックのサイズ\n  notUse3DFlag: 3D機能を制限するか(デフォルト: FALSE)
 //dxlib int MakeGraph(int sizeX, int sizeY, int notUse3DFlag)
+//comment; MakeScreen; 描画対象にできるグラフィックを作成する\n引数\n  sizeX, sizeY: 作成するグラフィックのサイズ\n useAlphaChannel: 作成するグラフィックにアルファチャンネルを付けるかどうか(TRUE: つける)
 //dxlib int MakeScreen(int sizeX, int sizeY, int useAlphaChannel)
+//comment; SetCreateDrawValidGraphMultiSample; 描画対象にできるグラフィックのマルチサンプリング設定を行う
 //dxlib int SetCreateDrawValidGraphMultiSample(int samples, int quality)
+//comment; SetCreateGraphColorBitDepth; 作成するグラフィックのビット深度を設定\n引数\n  bitDepth: ビット震度(16 or 32)
 //dxlib int SetCreateGraphColorBitDepth(int bitDepth)
+//comment; SetDrawValidFloatTypeGraphCreateFlag; 描画可能な浮動小数点型のグラフィックを作成するかどうかの設定(デフォルト: FALSE)
 //dxlib int SetDrawValidFloatTypeGraphCreateFlag(int flag)
+//comment; SetCreateDrawValidGraphChannelNum; 作成する描画可能なグラフィックのチャンネル数の設定\n引数\n  channelNum: 作成する描画可能なグラフィックのチャンネル数(1, 2, or 4)
 //dxlib int SetCreateDrawValidGraphChannelNum(int channelNum)
+//comment; SetUsePremulAlphaConvertLoad; 読み込み時に画像を乗算済みα画像に変換するかを設定(デフォルト: FALSE)
 //dxlib int SetUsePremulAlphaConvertLoad(int useFlag)
+//comment; DrawGraph; メモリに読みこんだグラフィックの描画\n引数\n  x, y: グラフィックを描画する領域の左上頂点の座標\n  grHandle: グラフィックハンドル\n  transFlag: 画像の透明度を有効にするかどうか(TRUE: 有効にする)
 //dxlib int DrawGraph(int x, int y, int grHandle, int transFlag)
+//comment; DrawTurnGraph; メモリに読みこんだグラフィックのＬＲ反転描画\n引数\n  x, y: グラフィックを描画する領域の左上頂点の座標\n  grHandle: グラフィックハンドル\n  transFlag: 画像の透明度を有効にするかどうか(TRUE: 有効にする)
 //dxlib int DrawTurnGraph(int x, int y, int grHandle, int transFlag)
+//comment; DrawExtendGraph; メモリに読みこんだグラフィックの拡大縮小描画\n引数\n
 //dxlib int DrawExtendGraph(int x1, int y1, int x2, int y2, int grHandle, int transFlag)
+//comment; DrawRotaGraph; メモリに読みこんだグラフィックの回転描画\n引数\n  x, y: グラフィックを描画する領域の中心座標\n  extRate: 拡大率(1.0で等倍)\n  angle: 描画角度(ラジアン指定)\n  grHandle: グラフィックハンドル\n  transFlag: 画像の透明度を有効にするかどうか(TRUE: 有効にする)\n  reverseXFlag: 画像の左右反転を行うか\n  reverseYFlag: 画像の上下反転を行うか
 //dxlib int DrawRotaGraph(int x, int y, double extRate, double angle, int grHandle, int transFlag, int reverseXFlag, int reverseYFlag)
+//comment; DrawRotaGraph2; メモリに読みこんだグラフィックの回転描画(回転中心指定あり)\n引数\n  x, y: グラフィックを描画する領域の中心座標\n  cx, cy: 画像を回転描画する画像上の中心座標\n  extRate: 拡大率(1.0で等倍)\n  angle: 描画角度(ラジアン指定)\n  grHandle: グラフィックハンドル\n  transFlag: 画像の透明度を有効にするかどうか(TRUE: 有効にする)\n  reverseXFlag: 画像の左右反転を行うか\n  reverseYFlag: 画像の上下反転を行うか
 //dxlib int DrawRotaGraph2(int x, int y, int cx, int cy, double extRate, double angle, int grHandle, int transFlag, int reverseXFlag, int reverseYFlag)
+//comment; DrawRotaGraph3; メモリに読みこんだグラフィックの回転描画(回転中心指定あり)\n引数\n  x, y: グラフィックを描画する領域の中心座標\n  cx, cy: 画像を回転描画する画像上の中心座標\n  extRateX, exRateY: 拡大率(1.0で等倍)\n  angle: 描画角度(ラジアン指定)\n  grHandle: グラフィックハンドル\n  transFlag: 画像の透明度を有効にするかどうか(TRUE: 有効にする)\n  reverseXFlag: 画像の左右反転を行うか\n  reverseYFlag: 画像の上下反転を行うか
 //dxlib int DrawRotaGraph3(int x, int y, int cx, int cy, double extRateX, double extRateY, double angle, int grHandle, int transFlag, int reverseXFlag, int reverseYFlag)
+//comment; DrawModiGraph; メモリに読みこんだグラフィックの自由変形描画\n引数\n  x1, y1, x2, y2, x3, y3, x4, y4: x1から順に描画する画像の左上、右上、右下、左下の頂点の座標\n  grHandle: グラフィックハンドル\n  transFlag: 画像の透明度を有効にするかどうか(TRUE: 有効にする)
 //dxlib int DrawModiGraph(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, int grHandle, int transFlag)
-//dxlib int DrawRectGraph(int destX, int destY, int srcX, int srcY, int width, int height, int graphHandle, int transFlag, int reverseXFlag, int reverseYFlag)
+//comment; DrawRectGraph; グラフィックの指定矩形部分のみを描画\n引数\n  destX, destY: グラフィックを描画する座標\n  srcX, srcY: 描画するグラフィック上の描画したい矩形の左上座標\n  width, height: 描画するグラフィックのサイズ\n  grHandle: グラフィックハンドル\n  transFlag: 画像の透明度を有効にするかどうか(TRUE: 有効にする)\n  reverseXFlag: 画像の左右反転を行うか\n  reverseYFlag: 画像の上下反転を行うか
+//dxlib int DrawRectGraph(int destX, int destY, int srcX, int srcY, int width, int height, int grHandle, int transFlag, int reverseXFlag, int reverseYFlag)
+//comment; DerivationGraph; 指定のグラフィックの指定部分だけを抜き出して新たなグラフィックを作成する\n引数\n  srcX, secY: グラフィック中の抜き出したい矩形の左上座標\n  width, height: 抜き出すグラフィックのサイズ\n  srcGraphHandle: グラフィックハンドル
 //dxlib int DerivationGraph(int srcX, int srcY, int width, int height, int srcGraphHandle)
-// UseClientFlag = TRUE
+//comment; GetDrawScreenGraph; 描画先に設定されているグラフィック領域から指定領域のグラフィックを読みこむ\n引数\n  x1, y1: 取得するグラフィック領域（矩形）の左上頂点の座標\n  x2, y2: 取得するグラフィック領域の右下頂点＋１の座標\n  grHandle: 取り込んだグラフィックを保存出来るサイズのグラフィックを持つハンドル\n  useClientFlag: デフォルト TRUE
 //dxlib int GetDrawScreenGraph(int x1, int y1, int x2, int y2, int grHandle, int useClientFlag)
+//comment; GetGraphiteSize; グラフィックのサイズを得る
 //dxlib int GetGraphiteSize(int grHandle, int *sizeXBuf, int *sizeYBuf)
+//comment; InitGraph; 読みこんだグラフィックデータをすべて削除する\n引数\n  logOutFlag: デフォルト FALSE
 //dxlib int InitGraph(int logOutFlag)
+//comment; DeleteGraph; 指定のグラフィックをメモリ上から削除する
 //dxlib int DeleteGraph(int grHandle)
+//comment; SetDrawMode; 描画モードをセットする\n引数\n  drawMode: 描画モード(DX_DRAWMODE_NEAREST: 標準 or DX_DRAWMODE_BILINEAR)
 //dxlib int SetDrawMode(int drawMode)
+//comment; SetDrawBlendMode; 描画の際のブレンドモードをセット\n引数\n  blendMode: 描画ブレンドモード\n  pal: 描画ブレンドモードのパラメータ(0~255)
 //dxlib int SetDrawBlendMode(int blendMode, int pal)
+//comment; SetDrawBright; 描画輝度をセット
 //dxlib int SetDrawBright(int redBright, int greenBright, int blueBright)
+//comment; SetTransColor; グラフィックに設定する透過色をセットする
 //dxlib int SetTransColor(int red, int green, int blue)
+//comment; LoadBlendGraph; 画像ファイルからブレンド画像を読み込む
 //dxlib int LoadBlendGraph(char *fileName)
+//comment; DrawBlendGraph; ブレンド画像と通常画像を合成して描画する\n引数\n  x, y: 画像を描画する領域の左上端座標\n  grHandle: グラフィックハンドル\n  transFlag: 画像の透明度を有効にするかどうか(TRUE: 有効にする)\n  blendGraph: ブレンド画像ハンドル\n  borderParam: 境界位置(0~255)\n  borderRange: 境界幅(指定できる値は1, 64, 128, 255の４つ)
 //dxlib int DrawBlendGraph(int x, int y, int grHandle, int transFlag, int blendGraph, int borderParam, int borderRange)
 
 // 文字描画関係関数
