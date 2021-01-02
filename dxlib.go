@@ -261,7 +261,9 @@ package dxlib
 //dxlib int WaitKey()
 
 // 時間関係の関数
+//comment; GetNowCount; ミリ秒単位の精度を持つカウンタの現在値を得る\n引数\n  useRDTSCFlag: デフォルト FALSE
 //dxlib int GetNowCount(int useRDTSCFlag)
+//comment; GetNowHiPerformanceCount; GetNowCountの高精度バージョン\n引数\n  useRDTSCFlag: デフォルト FALSE
 //dxlib LONGLONG GetNowHiPerformanceCount(int useRDTSCFlag)
 //TODO int GetDateTime(DATEDATA *dataBuf)
 

@@ -2128,6 +2128,9 @@ func WaitKey() int32 {
 	return int32(res)
 }
 
+// GetNowCount ミリ秒単位の精度を持つカウンタの現在値を得る
+// 引数
+//   useRDTSCFlag: デフォルト FALSE
 func GetNowCount(useRDTSCFlag int32) int32 {
 	if dx_GetNowCount == nil {
 		panic("Please call dxlib.Init() at first")
@@ -2137,6 +2140,9 @@ func GetNowCount(useRDTSCFlag int32) int32 {
 	return int32(res)
 }
 
+// GetNowHiPerformanceCount GetNowCountの高精度バージョン
+// 引数
+//   useRDTSCFlag: デフォルト FALSE
 func GetNowHiPerformanceCount(useRDTSCFlag int32) int64 {
 	if dx_GetNowHiPerformanceCount == nil {
 		panic("Please call dxlib.Init() at first")
