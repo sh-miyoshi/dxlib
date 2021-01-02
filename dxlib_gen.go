@@ -1250,6 +1250,11 @@ func clsDx() int32 {
 	return int32(res)
 }
 
+// SetGraphMode 画面モードの変更
+// 引数
+//   sizeX, sizeY: 画面の解像度(デフォルト 640x480)
+//   colorButNum: カラービット数(DXライブラリの標準色ビット数: 16)
+//   refreshRate: デフォルト 60
 func SetGraphMode(sizeX int32, sizeY int32, colorBitNum int32, refreshRate int32) int32 {
 	if dx_SetGraphMode == nil {
 		panic("Please call dxlib.Init() at first")

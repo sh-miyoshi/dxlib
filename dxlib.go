@@ -136,7 +136,7 @@ package dxlib
 //dxlib int clsDx()
 
 // その他画面操作系関数
-// refreshRate = 60
+//comment; SetGraphMode; 画面モードの変更\n引数\n  sizeX, sizeY: 画面の解像度(デフォルト 640x480)\n  colorButNum: カラービット数(DXライブラリの標準色ビット数: 16)\n  refreshRate: デフォルト 60
 //dxlib int SetGraphMode(int sizeX, int sizeY, int colorBitNum, int refreshRate)
 //dxlib int SetFullScreenResolutionMode(int resolutionMode)
 //dxlib int SetFullScreenScalingMode(int scalingMode, int fitScaling)
