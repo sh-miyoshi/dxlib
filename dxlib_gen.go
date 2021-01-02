@@ -1844,6 +1844,11 @@ func StopSoundFile() int32 {
 	return int32(res)
 }
 
+// LoadSoundMem 音ファイルをメモリに読みこむ
+// 引数
+//   fileName: ファイル名
+//   bufferNum: デフォルト 3
+//   unionHandle: デフォルト -1
 func LoadSoundMem(fileName string, bufferNum int32, unionHandle int32) int32 {
 	if dx_LoadSoundMem == nil {
 		panic("Please call dxlib.Init() at first")

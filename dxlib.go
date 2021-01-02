@@ -213,6 +213,7 @@ package dxlib
 //dxlib int PlaySoundFile(char *fileName, int playType)
 //dxlib int CheckSoundFile()
 //dxlib int StopSoundFile()
+//comment; LoadSoundMem; 音ファイルをメモリに読みこむ\n引数\n  fileName: ファイル名\n  bufferNum: デフォルト 3\n  unionHandle: デフォルト -1
 //dxlib int LoadSoundMem(char *fileName, int bufferNum, int unionHandle)
 //dxlib int PlaySoundMem(int soundHandle, int playType, int topPositionFlag)
 //dxlib int CheckSoundMem(int soundHandle)
