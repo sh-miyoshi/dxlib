@@ -83,8 +83,8 @@ package dxlib
 //dxlib int DerivationGraph(int srcX, int srcY, int width, int height, int srcGraphHandle)
 //comment; GetDrawScreenGraph; 描画先に設定されているグラフィック領域から指定領域のグラフィックを読みこむ\n引数\n  x1, y1: 取得するグラフィック領域（矩形）の左上頂点の座標\n  x2, y2: 取得するグラフィック領域の右下頂点＋１の座標\n  grHandle: 取り込んだグラフィックを保存出来るサイズのグラフィックを持つハンドル\n  useClientFlag: デフォルト TRUE
 //dxlib int GetDrawScreenGraph(int x1, int y1, int x2, int y2, int grHandle, int useClientFlag)
-//comment; GetGraphiteSize; グラフィックのサイズを得る
-//dxlib int GetGraphiteSize(int grHandle, int *sizeXBuf, int *sizeYBuf)
+//comment; GetGraphSize; グラフィックのサイズを得る
+//dxlib int GetGraphSize(int grHandle, int *sizeXBuf, int *sizeYBuf)
 //comment; InitGraph; 読みこんだグラフィックデータをすべて削除する\n引数\n  logOutFlag: デフォルト FALSE
 //dxlib int InitGraph(int logOutFlag)
 //comment; DeleteGraph; 指定のグラフィックをメモリ上から削除する

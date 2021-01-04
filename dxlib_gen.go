@@ -48,7 +48,7 @@ var (
 	dx_DrawRectGraph                        *syscall.LazyProc
 	dx_DerivationGraph                      *syscall.LazyProc
 	dx_GetDrawScreenGraph                   *syscall.LazyProc
-	dx_GetGraphiteSize                      *syscall.LazyProc
+	dx_GetGraphSize                         *syscall.LazyProc
 	dx_InitGraph                            *syscall.LazyProc
 	dx_DeleteGraph                          *syscall.LazyProc
 	dx_SetDrawMode                          *syscall.LazyProc
@@ -282,7 +282,7 @@ func Init(dllFile string) {
 	dx_DrawRectGraph = mod.NewProc("dx_DrawRectGraph")
 	dx_DerivationGraph = mod.NewProc("dx_DerivationGraph")
 	dx_GetDrawScreenGraph = mod.NewProc("dx_GetDrawScreenGraph")
-	dx_GetGraphiteSize = mod.NewProc("dx_GetGraphiteSize")
+	dx_GetGraphSize = mod.NewProc("dx_GetGraphSize")
 	dx_InitGraph = mod.NewProc("dx_InitGraph")
 	dx_DeleteGraph = mod.NewProc("dx_DeleteGraph")
 	dx_SetDrawMode = mod.NewProc("dx_SetDrawMode")
@@ -959,13 +959,13 @@ func GetDrawScreenGraph(x1 int32, y1 int32, x2 int32, y2 int32, grHandle int32, 
 	return int32(res)
 }
 
-// GetGraphiteSize グラフィックのサイズを得る
-func GetGraphiteSize(grHandle int32, sizeXBuf *int32, sizeYBuf *int32) int32 {
-	if dx_GetGraphiteSize == nil {
+// GetGraphSize グラフィックのサイズを得る
+func GetGraphSize(grHandle int32, sizeXBuf *int32, sizeYBuf *int32) int32 {
+	if dx_GetGraphSize == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_GetGraphiteSize.Call(pint32(grHandle), ppint32(sizeXBuf), ppint32(sizeYBuf))
+	res, _, _ := dx_GetGraphSize.Call(pint32(grHandle), ppint32(sizeXBuf), ppint32(sizeYBuf))
 	return int32(res)
 }
 
