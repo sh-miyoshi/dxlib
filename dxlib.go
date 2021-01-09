@@ -142,7 +142,6 @@ package dxlib
 //dxlib int SetFullScreenScalingMode(int scalingMode, int fitScaling)
 //dxlib int GetScreenState(int *sizeX, int *sizeY, int *colorBitDepth)
 //dxlib int SetDrawArea(int x1, int y1, int x2, int y2)
-//dxlib int ClearDrawScreen()
 //dxlib int SetBackgroundColor(int red, int green, int blue, int alpha)
 //dxlib unsigned int GetColor(int red, int green, int blue)
 //dxlib int SetDrawScreen(int drawScreen)
@@ -358,6 +357,7 @@ package dxlib
 // 直接DXライブラリの関数を呼ばずにGo言語側で処理することで呼べる関数
 //ext_dxlib DrawFormatString
 //ext_dxlib DrawFormatStringToHandle
+//ext_dxlib ClearDrawScreen
 
 // Unsupported functions
 // 公式のreadme.txtより

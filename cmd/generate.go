@@ -217,6 +217,18 @@ func DrawFormatStringToHandle(x int32, y int32, color uint32, fontHandle int32, 
 	str := fmt.Sprintf(format, a...)
 	return DrawStringToHandle(x, y, str, color, fontHandle, 0, FALSE)
 }
+
+func ClearDrawScreen() int32 {
+	temp := RECT{
+		left: -1,
+		top: -1,
+		right: -1,
+		bottom: -1,
+	}
+
+	res, _, _ := dx_ClearDrawScreen.Call(uintptr(unsafe.Pointer(&temp)))
+	return int32(res)
+}
 `)
 }
 

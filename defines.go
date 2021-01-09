@@ -179,3 +179,10 @@ const (
 	DX_BLENDMODE_LIVE2D_MASK   = 27
 	DX_BLENDMODE_NUM           = 28
 )
+
+type RECT struct {
+	left   int32
+	top    int32
+	right  int32
+	bottom int32
+}

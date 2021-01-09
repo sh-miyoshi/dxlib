@@ -77,7 +77,6 @@ var (
 	dx_SetFullScreenScalingMode             *syscall.LazyProc
 	dx_GetScreenState                       *syscall.LazyProc
 	dx_SetDrawArea                          *syscall.LazyProc
-	dx_ClearDrawScreen                      *syscall.LazyProc
 	dx_SetBackgroundColor                   *syscall.LazyProc
 	dx_GetColor                             *syscall.LazyProc
 	dx_SetDrawScreen                        *syscall.LazyProc
@@ -242,6 +241,7 @@ var (
 	dx_SelectMidiMode                       *syscall.LazyProc
 	dx_DrawFormatString                     *syscall.LazyProc
 	dx_DrawFormatStringToHandle             *syscall.LazyProc
+	dx_ClearDrawScreen                      *syscall.LazyProc
 )
 
 func Init(dllFile string) {
@@ -311,7 +311,6 @@ func Init(dllFile string) {
 	dx_SetFullScreenScalingMode = mod.NewProc("dx_SetFullScreenScalingMode")
 	dx_GetScreenState = mod.NewProc("dx_GetScreenState")
 	dx_SetDrawArea = mod.NewProc("dx_SetDrawArea")
-	dx_ClearDrawScreen = mod.NewProc("dx_ClearDrawScreen")
 	dx_SetBackgroundColor = mod.NewProc("dx_SetBackgroundColor")
 	dx_GetColor = mod.NewProc("dx_GetColor")
 	dx_SetDrawScreen = mod.NewProc("dx_SetDrawScreen")
@@ -476,6 +475,7 @@ func Init(dllFile string) {
 	dx_SelectMidiMode = mod.NewProc("dx_SelectMidiMode")
 	dx_DrawFormatString = mod.NewProc("dx_DrawFormatString")
 	dx_DrawFormatStringToHandle = mod.NewProc("dx_DrawFormatStringToHandle")
+	dx_ClearDrawScreen = mod.NewProc("dx_ClearDrawScreen")
 
 }
 
@@ -1297,15 +1297,6 @@ func SetDrawArea(x1 int32, y1 int32, x2 int32, y2 int32) int32 {
 	}
 
 	res, _, _ := dx_SetDrawArea.Call(pint32(x1), pint32(y1), pint32(x2), pint32(y2))
-	return int32(res)
-}
-
-func ClearDrawScreen() int32 {
-	if dx_ClearDrawScreen == nil {
-		panic("Please call dxlib.Init() at first")
-	}
-
-	res, _, _ := dx_ClearDrawScreen.Call()
 	return int32(res)
 }
 
@@ -2830,4 +2821,16 @@ func DrawFormatString(x int32, y int32, color uint32, format string, a ...interf
 func DrawFormatStringToHandle(x int32, y int32, color uint32, fontHandle int32, format string, a ...interface{}) int32 {
 	str := fmt.Sprintf(format, a...)
 	return DrawStringToHandle(x, y, str, color, fontHandle, 0, FALSE)
+}
+
+func ClearDrawScreen() int32 {
+	temp := RECT{
+		left:   -1,
+		top:    -1,
+		right:  -1,
+		bottom: -1,
+	}
+
+	res, _, _ := dx_ClearDrawScreen.Call(uintptr(unsafe.Pointer(&temp)))
+	return int32(res)
 }
