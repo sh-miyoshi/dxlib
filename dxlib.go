@@ -75,6 +75,9 @@ package dxlib
 //dxlib int DrawRotaGraph2(int x, int y, int cx, int cy, double extRate, double angle, int grHandle, int transFlag, int reverseXFlag, int reverseYFlag)
 //comment; DrawRotaGraph3; メモリに読みこんだグラフィックの回転描画(回転中心指定あり)\n引数\n  x, y: グラフィックを描画する領域の中心座標\n  cx, cy: 画像を回転描画する画像上の中心座標\n  extRateX, exRateY: 拡大率(1.0で等倍)\n  angle: 描画角度(ラジアン指定)\n  grHandle: グラフィックハンドル\n  transFlag: 画像の透明度を有効にするかどうか(TRUE: 有効にする)\n  reverseXFlag: 画像の左右反転を行うか\n  reverseYFlag: 画像の上下反転を行うか
 //dxlib int DrawRotaGraph3(int x, int y, int cx, int cy, double extRateX, double extRateY, double angle, int grHandle, int transFlag, int reverseXFlag, int reverseYFlag)
+//dxlib int DrawRotaGraphFast(int x, int y, float extRate, float angle, int grHandle, int transFlag, int reverseXFlag, int reverseYFlag)
+//dxlib int DrawRotaGraphFast2(int x, int y, int cx, int cy, float extRate, float angle, int grHandle, int transFlag, int reverseXFlag, int reverseYFlag)
+//dxlib int DrawRotaGraphFast3(int x, int y, int cx, int cy, float extRateX, float extRateY, float angle, int grHandle, int transFlag, int reverseXFlag, int reverseYFlag)
 //comment; DrawModiGraph; メモリに読みこんだグラフィックの自由変形描画\n引数\n  x1, y1, x2, y2, x3, y3, x4, y4: x1から順に描画する画像の左上、右上、右下、左下の頂点の座標\n  grHandle: グラフィックハンドル\n  transFlag: 画像の透明度を有効にするかどうか(TRUE: 有効にする)
 //dxlib int DrawModiGraph(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, int grHandle, int transFlag)
 //comment; DrawRectGraph; グラフィックの指定矩形部分のみを描画\n引数\n  destX, destY: グラフィックを描画する座標\n  srcX, srcY: 描画するグラフィック上の描画したい矩形の左上座標\n  width, height: 描画するグラフィックのサイズ\n  grHandle: グラフィックハンドル\n  transFlag: 画像の透明度を有効にするかどうか(TRUE: 有効にする)\n  reverseXFlag: 画像の左右反転を行うか\n  reverseYFlag: 画像の上下反転を行うか
