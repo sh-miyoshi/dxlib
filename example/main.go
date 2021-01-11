@@ -1,8 +1,14 @@
 package main
 
 import (
+	"runtime"
+
 	"github.com/sh-miyoshi/dxlib"
 )
+
+func init() {
+	runtime.LockOSThread()
+}
 
 func main() {
 	dxlib.Init("DxLib.dll")
