@@ -303,6 +303,9 @@ import (
 	"syscall"
 	"unsafe"
 	"math"
+
+	"golang.org/x/text/encoding/japanese"
+	"golang.org/x/text/transform"
 )
 
 var (
@@ -345,11 +348,6 @@ func puint32(ui uint32) uintptr {
 	return uintptr(ui)
 }
 
-func pstring(str string) uintptr {
-	pbyte := append([]byte(str), 0)
-	return uintptr(unsafe.Pointer(&pbyte[0]))
-}
-
 func pfloat32(f float32) uintptr {
 	return uintptr(math.Float32bits(f))
 }
@@ -368,5 +366,17 @@ func parraybyte(b []byte) uintptr {
 
 func parrayint32(i []int32) uintptr {
 	return uintptr(unsafe.Pointer(&i[0]))
+}
+
+func pstring(str string) uintptr {
+	sjisStr, _, err := transform.String(japanese.ShiftJIS.NewEncoder(), str)
+	if err != nil {
+		panic(err)
+	}
+	pbyte, err := syscall.BytePtrFromString(sjisStr)
+	if err != nil {
+		panic(err)
+	}
+	return uintptr(unsafe.Pointer(pbyte))
 }
 `

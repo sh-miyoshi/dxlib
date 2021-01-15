@@ -23,6 +23,7 @@ go get -u "github.com/sh-miyoshi/dxlib"
 package main
 
 import (
+    "runtime"
     "github.com/sh-miyoshi/dxlib"
 )
 
