@@ -274,7 +274,7 @@ func main() {
 			continue
 		}
 
-		// Parse  extra function
+		// Parse extra function
 		if d := parseExtraFunc(line); d != nil {
 			extra = append(extra, *d)
 			continue
@@ -311,6 +311,8 @@ var (
 	{{ end }}
 )
 
+// Init method set procs from dllFile.
+// This method must be called at first.
 func Init(dllFile string) {
 	mod := syscall.NewLazyDLL(dllFile)
 

@@ -244,6 +244,8 @@ var (
 	dx_ClearDrawScreen                      *syscall.LazyProc
 )
 
+// Init method set procs from dllFile.
+// This method must be called at first.
 func Init(dllFile string) {
 	mod := syscall.NewLazyDLL(dllFile)
 
