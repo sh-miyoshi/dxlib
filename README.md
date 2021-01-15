@@ -1,6 +1,7 @@
 # go-dxlib
 
-go言語で[DXライブラリ](https://dxlib.xsrv.jp/)を使用するためのパッケージです。
+go言語で[DXライブラリ](https://dxlib.xsrv.jp/)を使用するためのパッケージです。  
+DXライブラリを使うことで簡単にWindowsデスクトップアプリを制作できます。
 
 ## インストール方法
 
