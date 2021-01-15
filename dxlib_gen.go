@@ -510,6 +510,7 @@ func ProcessMessage() int32 {
 }
 
 // DrawLine 線を描画
+//
 // 引数
 //   x1, y1: 線の起点座標
 //   x2, y2: 線の終点座標
@@ -525,6 +526,7 @@ func DrawLine(x1 int32, y1 int32, x2 int32, y2 int32, color uint32, thickness in
 }
 
 // DrawLineAA 線を描画(アンチエイリアス効果付き)
+//
 // 引数
 //   x1, y1: 線の起点座標
 //   x2, y2: 線の終点座標
@@ -540,6 +542,7 @@ func DrawLineAA(x1 float32, y1 float32, x2 float32, y2 float32, color uint32, th
 }
 
 // DrawBox 四角形を描画
+//
 // 引数
 //   x1, y1: 四角形の左上の頂点座標
 //   x2, y2: 四角形の右下＋１の頂点座標
@@ -555,6 +558,7 @@ func DrawBox(x1 int32, y1 int32, x2 int32, y2 int32, color uint32, fillFlag int3
 }
 
 // DrawBoxAA 四角形を描画(アンチエイリアス効果付き)
+//
 // 引数
 //   x1, y1: 四角形の左上の頂点座標
 //   x2, y2: 四角形の右下＋１の頂点座標
@@ -571,6 +575,7 @@ func DrawBoxAA(x1 float32, y1 float32, x2 float32, y2 float32, color uint32, fil
 }
 
 // DrawCircle 円を描画
+//
 // 引数
 //   x, y: 円の中心座標
 //   r: 半径
@@ -587,6 +592,7 @@ func DrawCircle(x int32, y int32, r int32, color uint32, fillFlag int32, lineThi
 }
 
 // DrawCircleAA 円を描画(アンチエイリアス効果付き)
+//
 // 引数
 //   x, y: 円の中心座標
 //   r: 半径
@@ -604,6 +610,7 @@ func DrawCircleAA(x float32, y float32, r float32, posnum int32, color uint32, f
 }
 
 // DrawOval 楕円を描画
+//
 // 引数
 //   x, y: 楕円の中心座標
 //   rx, ry: 描く楕円のX軸に対する半径とY軸に対する半径
@@ -620,6 +627,7 @@ func DrawOval(x int32, y int32, rx int32, ry int32, color uint32, fillFlag int32
 }
 
 // DrawOvalAA 楕円を描画(アンチエイリアス効果付き)
+//
 // 引数
 //   x, y: 楕円の中心座標
 //   rx, ry: 描く楕円のX軸に対する半径とY軸に対する半径
@@ -637,6 +645,7 @@ func DrawOvalAA(x float32, y float32, rx float32, ry float32, posnum int32, colo
 }
 
 // DrawTriangle 三角形の描画
+//
 // 引数
 //   x1, y1, x2, y2, x3, y3: 三角形を描く３つの座標
 //   color: 三角形の色
@@ -660,6 +669,7 @@ func DrawTriangleAA(x1 float32, y1 float32, x2 float32, y2 float32, x3 float32, 
 }
 
 // DrawPixel 点を描画
+//
 // 引数
 //   x, y: 座標
 //   color: 点の色
@@ -682,6 +692,7 @@ func GetPixel(x int32, y int32) uint32 {
 }
 
 // LoadGraphScreen 画像ファイルを読みこんで画面に表示する
+//
 // 引数
 //   x, y: ロードした画像を描画する矩形の左上頂点の座標
 //   graphName: ロードする画像ファイルパス
@@ -696,6 +707,7 @@ func LoadGraphScreen(x int32, y int32, graphName string, transFlag int32) int32 
 }
 
 // LoadGraph 画像ファイルのメモリへの読みこみ、及び動画ファイルのロード
+//
 // 引数
 //   fileName: ファイルパス
 //   notUse3DFlag: 3D機能を制限するか(デフォルト: FALSE)
@@ -709,6 +721,7 @@ func LoadGraph(fileName string, notUse3DFlag int32) int32 {
 }
 
 // LoadDivGraph 画像ファイルのメモリへの分割読みこみ
+//
 // 引数
 //   fileName: 画像ファイルパス
 //   allnum: 画像の分割総数
@@ -726,6 +739,7 @@ func LoadDivGraph(fileName string, allnum int32, xnum int32, ynum int32, xsize i
 }
 
 // MakeGraph 空のグラフィックを作成する
+//
 // 引数
 //   sizeX, sizeY: 作成する空グラフィックのサイズ
 //   notUse3DFlag: 3D機能を制限するか(デフォルト: FALSE)
@@ -739,6 +753,7 @@ func MakeGraph(sizeX int32, sizeY int32, notUse3DFlag int32) int32 {
 }
 
 // MakeScreen 描画対象にできるグラフィックを作成する
+//
 // 引数
 //   sizeX, sizeY: 作成するグラフィックのサイズ
 //  useAlphaChannel: 作成するグラフィックにアルファチャンネルを付けるかどうか(TRUE: つける)
@@ -762,6 +777,7 @@ func SetCreateDrawValidGraphMultiSample(samples int32, quality int32) int32 {
 }
 
 // SetCreateGraphColorBitDepth 作成するグラフィックのビット深度を設定
+//
 // 引数
 //   bitDepth: ビット震度(16 or 32)
 func SetCreateGraphColorBitDepth(bitDepth int32) int32 {
@@ -784,6 +800,7 @@ func SetDrawValidFloatTypeGraphCreateFlag(flag int32) int32 {
 }
 
 // SetCreateDrawValidGraphChannelNum 作成する描画可能なグラフィックのチャンネル数の設定
+//
 // 引数
 //   channelNum: 作成する描画可能なグラフィックのチャンネル数(1, 2, or 4)
 func SetCreateDrawValidGraphChannelNum(channelNum int32) int32 {
@@ -806,6 +823,7 @@ func SetUsePremulAlphaConvertLoad(useFlag int32) int32 {
 }
 
 // DrawGraph メモリに読みこんだグラフィックの描画
+//
 // 引数
 //   x, y: グラフィックを描画する領域の左上頂点の座標
 //   grHandle: グラフィックハンドル
@@ -820,6 +838,7 @@ func DrawGraph(x int32, y int32, grHandle int32, transFlag int32) int32 {
 }
 
 // DrawTurnGraph メモリに読みこんだグラフィックのＬＲ反転描画
+//
 // 引数
 //   x, y: グラフィックを描画する領域の左上頂点の座標
 //   grHandle: グラフィックハンドル
@@ -834,8 +853,6 @@ func DrawTurnGraph(x int32, y int32, grHandle int32, transFlag int32) int32 {
 }
 
 // DrawExtendGraph メモリに読みこんだグラフィックの拡大縮小描画
-// 引数
-//
 func DrawExtendGraph(x1 int32, y1 int32, x2 int32, y2 int32, grHandle int32, transFlag int32) int32 {
 	if dx_DrawExtendGraph == nil {
 		panic("Please call dxlib.Init() at first")
@@ -846,6 +863,7 @@ func DrawExtendGraph(x1 int32, y1 int32, x2 int32, y2 int32, grHandle int32, tra
 }
 
 // DrawRotaGraph メモリに読みこんだグラフィックの回転描画
+//
 // 引数
 //   x, y: グラフィックを描画する領域の中心座標
 //   extRate: 拡大率(1.0で等倍)
@@ -864,6 +882,7 @@ func DrawRotaGraph(x int32, y int32, extRate float64, angle float64, grHandle in
 }
 
 // DrawRotaGraph2 メモリに読みこんだグラフィックの回転描画(回転中心指定あり)
+//
 // 引数
 //   x, y: グラフィックを描画する領域の中心座標
 //   cx, cy: 画像を回転描画する画像上の中心座標
@@ -883,6 +902,7 @@ func DrawRotaGraph2(x int32, y int32, cx int32, cy int32, extRate float64, angle
 }
 
 // DrawRotaGraph3 メモリに読みこんだグラフィックの回転描画(回転中心指定あり)
+//
 // 引数
 //   x, y: グラフィックを描画する領域の中心座標
 //   cx, cy: 画像を回転描画する画像上の中心座標
@@ -929,6 +949,7 @@ func DrawRotaGraphFast3(x int32, y int32, cx int32, cy int32, extRateX float32, 
 }
 
 // DrawModiGraph メモリに読みこんだグラフィックの自由変形描画
+//
 // 引数
 //   x1, y1, x2, y2, x3, y3, x4, y4: x1から順に描画する画像の左上、右上、右下、左下の頂点の座標
 //   grHandle: グラフィックハンドル
@@ -943,6 +964,7 @@ func DrawModiGraph(x1 int32, y1 int32, x2 int32, y2 int32, x3 int32, y3 int32, x
 }
 
 // DrawRectGraph グラフィックの指定矩形部分のみを描画
+//
 // 引数
 //   destX, destY: グラフィックを描画する座標
 //   srcX, srcY: 描画するグラフィック上の描画したい矩形の左上座標
@@ -961,6 +983,7 @@ func DrawRectGraph(destX int32, destY int32, srcX int32, srcY int32, width int32
 }
 
 // DerivationGraph 指定のグラフィックの指定部分だけを抜き出して新たなグラフィックを作成する
+//
 // 引数
 //   srcX, secY: グラフィック中の抜き出したい矩形の左上座標
 //   width, height: 抜き出すグラフィックのサイズ
@@ -975,6 +998,7 @@ func DerivationGraph(srcX int32, srcY int32, width int32, height int32, srcGraph
 }
 
 // GetDrawScreenGraph 描画先に設定されているグラフィック領域から指定領域のグラフィックを読みこむ
+//
 // 引数
 //   x1, y1: 取得するグラフィック領域（矩形）の左上頂点の座標
 //   x2, y2: 取得するグラフィック領域の右下頂点＋１の座標
@@ -1000,6 +1024,7 @@ func GetGraphSize(grHandle int32, sizeXBuf *int32, sizeYBuf *int32) int32 {
 }
 
 // InitGraph 読みこんだグラフィックデータをすべて削除する
+//
 // 引数
 //   logOutFlag: デフォルト FALSE
 func InitGraph(logOutFlag int32) int32 {
@@ -1022,6 +1047,7 @@ func DeleteGraph(grHandle int32) int32 {
 }
 
 // SetDrawMode 描画モードをセットする
+//
 // 引数
 //   drawMode: 描画モード(DX_DRAWMODE_NEAREST: 標準 or DX_DRAWMODE_BILINEAR)
 func SetDrawMode(drawMode int32) int32 {
@@ -1034,6 +1060,7 @@ func SetDrawMode(drawMode int32) int32 {
 }
 
 // SetDrawBlendMode 描画の際のブレンドモードをセット
+//
 // 引数
 //   blendMode: 描画ブレンドモード
 //   pal: 描画ブレンドモードのパラメータ(0~255)
@@ -1077,6 +1104,7 @@ func LoadBlendGraph(fileName string) int32 {
 }
 
 // DrawBlendGraph ブレンド画像と通常画像を合成して描画する
+//
 // 引数
 //   x, y: 画像を描画する領域の左上端座標
 //   grHandle: グラフィックハンドル
@@ -1094,6 +1122,7 @@ func DrawBlendGraph(x int32, y int32, grHandle int32, transFlag int32, blendGrap
 }
 
 // DrawString 文字列を描画
+//
 // 引数
 //   x, y: 文字列を描画する領域の左上の座標
 //   str: 文字列
@@ -1109,6 +1138,7 @@ func DrawString(x int32, y int32, str string, color uint32, edgeColor uint32) in
 }
 
 // GetDrawStringWidth 描画した時の文字列の幅(ドット単位)を得る
+//
 // 引数
 //  str: 文字列
 //   strLen: 文字列長
@@ -1133,6 +1163,7 @@ func SetFontSize(fontSize int32) int32 {
 }
 
 // SetFontThickness 描画する文字列の文字の太さをセットする
+//
 // 引数
 //   thickPal: 文字の太さ(0~9, デフォルト 6)
 func SetFontThickness(thickPal int32) int32 {
@@ -1145,6 +1176,7 @@ func SetFontThickness(thickPal int32) int32 {
 }
 
 // ChangeFont 文字列描画に使用するフォントを変更する
+//
 // 引数
 //   fontName: フォント名
 //   charSet: デフォルト -1
@@ -1168,6 +1200,7 @@ func ChangeFontType(fontType int32) int32 {
 }
 
 // CreateFontToHandle 新しいフォントデータを作成
+//
 // 引数
 //   fontName: 作成するフォント名(NULLにするとデフォルトのフォント)
 //   size: サイズ(デフォルト -1)
@@ -1187,6 +1220,7 @@ func CreateFontToHandle(fontName string, size int32, thick int32, fontType int32
 }
 
 // LoadFontDataToHandle ＤＸフォントデータファイルを読み込む
+//
 // 引数
 //   fileName: ファイル名
 //   edgeSize: 成するフォントの縁の太さ(0を指定すると縁無し)
@@ -1220,6 +1254,7 @@ func SetFontCacheUsePremulAlphaFlag(flag int32) int32 {
 }
 
 // DrawStringToHandle 指定のフォントデータで文字列を描画する
+//
 // 引数
 //   x, y: 文字列を描画する起点座標
 //   str: 文字列
@@ -1237,6 +1272,7 @@ func DrawStringToHandle(x int32, y int32, str string, color uint32, fontHandle i
 }
 
 // GetDrawStringWidthToHandle 指定のフォントデータで描画する文字列の幅(ドット単位)を得る
+//
 // 引数
 //   str: 文字列
 //   strLen: 文字列長
@@ -1281,6 +1317,7 @@ func clsDx() int32 {
 }
 
 // SetGraphMode 画面モードの変更
+//
 // 引数
 //   sizeX, sizeY: 画面の解像度(デフォルト 640x480)
 //   colorButNum: カラービット数(DXライブラリの標準色ビット数: 16)
@@ -1871,6 +1908,7 @@ func StopSoundFile() int32 {
 }
 
 // LoadSoundMem 音ファイルをメモリに読みこむ
+//
 // 引数
 //   fileName: ファイル名
 //   bufferNum: デフォルト 3
@@ -2155,6 +2193,7 @@ func WaitKey() int32 {
 }
 
 // GetNowCount ミリ秒単位の精度を持つカウンタの現在値を得る
+//
 // 引数
 //   useRDTSCFlag: デフォルト FALSE
 func GetNowCount(useRDTSCFlag int32) int32 {
@@ -2167,6 +2206,7 @@ func GetNowCount(useRDTSCFlag int32) int32 {
 }
 
 // GetNowHiPerformanceCount GetNowCountの高精度バージョン
+//
 // 引数
 //   useRDTSCFlag: デフォルト FALSE
 func GetNowHiPerformanceCount(useRDTSCFlag int32) int64 {
