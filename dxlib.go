@@ -135,9 +135,6 @@ package dxlib
 //comment; InitFontToHandle; フォントデータを全て初期化する
 //dxlib int InitFontToHandle()
 
-// 簡易画面出力関数
-//dxlib int clsDx()
-
 // その他画面操作系関数
 //comment; SetGraphMode; 画面モードの変更\n\n引数\n  sizeX, sizeY: 画面の解像度(デフォルト 640x480)\n  colorButNum: カラービット数(DXライブラリの標準色ビット数: 16)\n  refreshRate: デフォルト 60
 //dxlib int SetGraphMode(int sizeX, int sizeY, int colorBitNum, int refreshRate)
@@ -280,21 +277,6 @@ package dxlib
 //dxlib int SetWindowSizeChangeEnableFlag(int flag, int fitScreen)
 //dxlib int SetWindowSizeExtendRate(double exRateX, double exRateY)
 
-// 通信関係
-//TODO int ConnectNetWork(IPDATA ipData, int port)
-//dxlib int CloseNetWork(int netHandle)
-//dxlib int PreparationListenNetWork(int port)
-//dxlib int StopListenNetWork()
-//dxlib int GetNetWorkDataLength(int netHandle)
-//dxlib int GetNetWorkSendDataLength(int netHandle)
-//dxlib int GetNewAcceptNetWork()
-//dxlib int GetLostNetWork()
-//dxlib int GetNetWorkAcceptState(int netHandle)
-//TODO int GetNetWorkIP(int netHandle, IPDATA *ipBuf)
-//dxlib int MakeUDPSocket(int recvPort)
-//dxlib int DeleteUDPSocket(int netUDPHandle)
-//dxlib int CheckNetWorkRecvUDP(int netUDPHandle)
-
 // ファイル読み込み関係
 //dxlib int FileRead_open(char *filePath, int async)
 //dxlib LONGLONG FileRead_size(char *filePath)
@@ -379,11 +361,6 @@ package dxlib
 //unsupported int SetDataToMask(int width, int height, void *maskData, int maskHandle)
 //unsupported int DrawMaskToDirectData(int x, int y, int width, int height, void *maskData, int transMode)
 //unsupported int DrawFillMaskToDirectData(int x1, int y1, int x2, int y2, int width, int height, void *maskData)
-//unsupported int NetWorkSend(int netHandle, void *buffer, int length)
-//unsupported int NetWorkRecv(int netHandle, void *buffer, int length)
-//unsupported int NetWorkRecvToPeek(int netHandle, void *buffer, int length)
-//unsupported int NetWorkSendUDP(int netUDPHandle, IPDATA sendIP, int sendPort, void *buffer, int length)
-//unsupported int NetWorkRecvUDP(int netUDPHandle, IPDATA *recvIP, int *recvPort, void *buffer, int length, int peek)
 //unsupported int FileRead_read(void *buffer, int readSize, int fileHandle)
 //unsupported int LoadSoftImageToMem(void *fileImage, int fileImageSize)
 //unsupported int LoadARGB8ColorSoftImageToMem(void *fileImage, int fileImageSize)
