@@ -17,6 +17,14 @@ const (
 	DX_NONE_GRAPH = -5 // グラフィックなしハンドル
 )
 
+// 入力タイプ
+const (
+	DX_CHECKINPUT_KEY   = 1
+	DX_CHECKINPUT_PAD   = 2
+	DX_CHECKINPUT_MOUSE = 4
+	DX_CHECKINPUT_ALL   = DX_CHECKINPUT_KEY
+)
+
 // キー入力
 const (
 	KEY_INPUT_BACK        = 14
@@ -130,6 +138,145 @@ const (
 	KEY_INPUT_9           = 10
 )
 
+// パッド入力
+const (
+	DX_INPUT_PAD1       = 1
+	DX_INPUT_PAD2       = 2
+	DX_INPUT_PAD3       = 3
+	DX_INPUT_PAD4       = 4
+	DX_INPUT_PAD5       = 5
+	DX_INPUT_PAD6       = 6
+	DX_INPUT_PAD7       = 7
+	DX_INPUT_PAD8       = 8
+	DX_INPUT_PAD9       = 9
+	DX_INPUT_PAD10      = 10
+	DX_INPUT_PAD11      = 11
+	DX_INPUT_PAD12      = 12
+	DX_INPUT_PAD13      = 13
+	DX_INPUT_PAD14      = 14
+	DX_INPUT_PAD15      = 15
+	DX_INPUT_PAD16      = 16
+	DX_INPUT_KEY        = 4096
+	TOUCHINPUTPOINT_MAX = 16
+	PAD_INPUT_DOWN      = 1
+	PAD_INPUT_LEFT      = 2
+	PAD_INPUT_RIGHT     = 4
+	PAD_INPUT_UP        = 8
+	PAD_INPUT_A         = 16
+	PAD_INPUT_B         = 32
+	PAD_INPUT_C         = 64
+	PAD_INPUT_X         = 128
+	PAD_INPUT_Y         = 256
+	PAD_INPUT_Z         = 512
+	PAD_INPUT_L         = 1024
+	PAD_INPUT_R         = 2048
+	PAD_INPUT_START     = 4096
+	PAD_INPUT_M         = 8192
+	PAD_INPUT_D         = 16384
+	PAD_INPUT_F         = 32768
+	PAD_INPUT_G         = 65536
+	PAD_INPUT_H         = 131072
+	PAD_INPUT_I         = 262144
+	PAD_INPUT_J         = 524288
+	PAD_INPUT_K         = 1048576
+	PAD_INPUT_LL        = 2097152
+	PAD_INPUT_N         = 4194304
+	PAD_INPUT_O         = 8388608
+	PAD_INPUT_P         = 16777216
+	PAD_INPUT_RR        = 33554432
+	PAD_INPUT_S         = 67108864
+	PAD_INPUT_T         = 134217728
+	PAD_INPUT_U         = 268435456
+	PAD_INPUT_V         = 536870912
+	PAD_INPUT_W         = 1073741824
+	PAD_INPUT_XX        = -2147483648
+	PAD_INPUT_1         = 16
+	PAD_INPUT_2         = 32
+	PAD_INPUT_3         = 64
+	PAD_INPUT_4         = 128
+	PAD_INPUT_5         = 256
+	PAD_INPUT_6         = 512
+	PAD_INPUT_7         = 1024
+	PAD_INPUT_8         = 2048
+	PAD_INPUT_9         = 4096
+	PAD_INPUT_10        = 8192
+	PAD_INPUT_11        = 16384
+	PAD_INPUT_12        = 32768
+	PAD_INPUT_13        = 65536
+	PAD_INPUT_14        = 131072
+	PAD_INPUT_15        = 262144
+	PAD_INPUT_16        = 524288
+	PAD_INPUT_17        = 1048576
+	PAD_INPUT_18        = 2097152
+	PAD_INPUT_19        = 4194304
+	PAD_INPUT_20        = 8388608
+	PAD_INPUT_21        = 16777216
+	PAD_INPUT_22        = 33554432
+	PAD_INPUT_23        = 67108864
+	PAD_INPUT_24        = 134217728
+	PAD_INPUT_25        = 268435456
+	PAD_INPUT_26        = 536870912
+	PAD_INPUT_27        = 1073741824
+	PAD_INPUT_28        = -2147483648
+)
+
+// XInput
+const (
+	XINPUT_BUTTON_DPAD_UP        = 0
+	XINPUT_BUTTON_DPAD_DOWN      = 1
+	XINPUT_BUTTON_DPAD_LEFT      = 2
+	XINPUT_BUTTON_DPAD_RIGHT     = 3
+	XINPUT_BUTTON_START          = 4
+	XINPUT_BUTTON_BACK           = 5
+	XINPUT_BUTTON_LEFT_THUMB     = 6
+	XINPUT_BUTTON_RIGHT_THUMB    = 7
+	XINPUT_BUTTON_LEFT_SHOULDER  = 8
+	XINPUT_BUTTON_RIGHT_SHOULDER = 9
+	XINPUT_BUTTON_A              = 12
+	XINPUT_BUTTON_B              = 13
+	XINPUT_BUTTON_X              = 14
+	XINPUT_BUTTON_Y              = 15
+)
+
+// マウス入力
+const (
+	MOUSE_INPUT_LEFT     = 1
+	MOUSE_INPUT_RIGHT    = 2
+	MOUSE_INPUT_MIDDLE   = 4
+	MOUSE_INPUT_1        = 1
+	MOUSE_INPUT_2        = 2
+	MOUSE_INPUT_3        = 4
+	MOUSE_INPUT_4        = 8
+	MOUSE_INPUT_5        = 16
+	MOUSE_INPUT_6        = 32
+	MOUSE_INPUT_7        = 64
+	MOUSE_INPUT_8        = 128
+	MOUSE_INPUT_LOG_DOWN = 0
+	MOUSE_INPUT_LOG_UP   = 1
+)
+
+// 操作コード ...
+const (
+	CTRL_CODE_BS        = 8
+	CTRL_CODE_TAB       = 9
+	CTRL_CODE_CR        = 13
+	CTRL_CODE_DEL       = 16
+	CTRL_CODE_COPY      = 3
+	CTRL_CODE_PASTE     = 22
+	CTRL_CODE_CUT       = 24
+	CTRL_CODE_ALL       = 1
+	CTRL_CODE_LEFT      = 29
+	CTRL_CODE_RIGHT     = 28
+	CTRL_CODE_UP        = 30
+	CTRL_CODE_DOWN      = 31
+	CTRL_CODE_HOME      = 26
+	CTRL_CODE_END       = 25
+	CTRL_CODE_PAGE_UP   = 23
+	CTRL_CODE_PAGE_DOWN = 21
+	CTRL_CODE_ESC       = 27
+	CTRL_CODE_CMP       = 32
+)
+
 // 音楽プレイタイプ
 const (
 	DX_PLAYTYPE_LOOPBIT = 2
@@ -146,6 +293,12 @@ const (
 	DX_DRAWMODE_ANISOTROPIC = 2
 	DX_DRAWMODE_OTHER       = 3
 	DX_DRAWMODE_NUM         = 4
+)
+
+// 動画再生タイプ
+const (
+	DX_MOVIEPLAYTYPE_BCANCEL = 0
+	DX_MOVIEPLAYTYPE_NORMAL  = 1
 )
 
 // ブレンドモード
@@ -178,6 +331,18 @@ const (
 	DX_BLENDMODE_LIVE2D_MULT   = 26
 	DX_BLENDMODE_LIVE2D_MASK   = 27
 	DX_BLENDMODE_NUM           = 28
+)
+
+// フォントタイプ
+const (
+	DX_FONTTYPE_NORMAL                = 0
+	DX_FONTTYPE_EDGE                  = 1
+	DX_FONTTYPE_ANTIALIASING          = 2
+	DX_FONTTYPE_ANTIALIASING_4X4      = 18
+	DX_FONTTYPE_ANTIALIASING_8X8      = 34
+	DX_FONTTYPE_ANTIALIASING_EDGE     = 3
+	DX_FONTTYPE_ANTIALIASING_EDGE_4X4 = 19
+	DX_FONTTYPE_ANTIALIASING_EDGE_8X8 = 35
 )
 
 type RECT struct {
