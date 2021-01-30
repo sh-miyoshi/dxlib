@@ -640,6 +640,13 @@ func DrawTriangle(x1 int32, y1 int32, x2 int32, y2 int32, x3 int32, y3 int32, co
 	return int32(res)
 }
 
+// DrawTriangleAA 三角形の描画(アンチエイリアス効果付き)
+//
+// 引数
+//   x1, y1, x2, y2, x3, y3: 三角形を描く３つの座標
+//   color: 三角形の色
+//   fillFlag: 塗りつぶすか(TRUEで塗りつぶし)
+//   lineThickness: 文字の太さ(デフォルト: 1.0)
 func DrawTriangleAA(x1 float32, y1 float32, x2 float32, y2 float32, x3 float32, y3 float32, color uint32, fillFlag int32, lineThickness float32) int32 {
 	if dx_DrawTriangleAA == nil {
 		panic("Please call dxlib.Init() at first")
@@ -663,6 +670,10 @@ func DrawPixel(x int32, y int32, color uint32) int32 {
 	return int32(res)
 }
 
+// GetPixel 指定点の色を取得
+//
+// 引数
+//   x, y: 座標
 func GetPixel(x int32, y int32) uint32 {
 	if dx_GetPixel == nil {
 		panic("Please call dxlib.Init() at first")
@@ -2712,6 +2723,28 @@ func SelectMidiMode(mode int32) int32 {
 	return int32(res)
 }
 
+func DrawFormatString(x int32, y int32, color uint32, format string, a ...interface{}) int32 {
+	str := fmt.Sprintf(format, a...)
+	return DrawString(x, y, str, color, 0)
+}
+
+func DrawFormatStringToHandle(x int32, y int32, color uint32, fontHandle int32, format string, a ...interface{}) int32 {
+	str := fmt.Sprintf(format, a...)
+	return DrawStringToHandle(x, y, str, color, fontHandle, 0, FALSE)
+}
+
+func ClearDrawScreen() int32 {
+	temp := RECT{
+		left:   -1,
+		top:    -1,
+		right:  -1,
+		bottom: -1,
+	}
+
+	res, _, _ := dx_ClearDrawScreen.Call(uintptr(unsafe.Pointer(&temp)))
+	return int32(res)
+}
+
 func ppint32(i *int32) uintptr {
 	return uintptr(unsafe.Pointer(i))
 }
@@ -2754,26 +2787,4 @@ func pstring(str string) uintptr {
 		panic(err)
 	}
 	return uintptr(unsafe.Pointer(pbyte))
-}
-
-func DrawFormatString(x int32, y int32, color uint32, format string, a ...interface{}) int32 {
-	str := fmt.Sprintf(format, a...)
-	return DrawString(x, y, str, color, 0)
-}
-
-func DrawFormatStringToHandle(x int32, y int32, color uint32, fontHandle int32, format string, a ...interface{}) int32 {
-	str := fmt.Sprintf(format, a...)
-	return DrawStringToHandle(x, y, str, color, fontHandle, 0, FALSE)
-}
-
-func ClearDrawScreen() int32 {
-	temp := RECT{
-		left:   -1,
-		top:    -1,
-		right:  -1,
-		bottom: -1,
-	}
-
-	res, _, _ := dx_ClearDrawScreen.Call(uintptr(unsafe.Pointer(&temp)))
-	return int32(res)
 }

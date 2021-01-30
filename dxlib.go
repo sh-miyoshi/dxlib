@@ -1,6 +1,6 @@
 package dxlib
 
-//go:generate go run cmd/generate.go -i dxlib.go -o dxlib_gen.go
+//go:generate go run cmd/generate/main.go -i dxlib.go -o dxlib_gen.go
 //go:generate gofmt -w dxlib_gen.go
 
 // DXライブラリリファレンス
@@ -35,11 +35,11 @@ package dxlib
 //dxlib int DrawOvalAA(float x, float y, float rx, float ry, int posnum, unsigned int color, int fillFlag, float lineThickness)
 //comment; DrawTriangle; 三角形の描画\n\n引数\n  x1, y1, x2, y2, x3, y3: 三角形を描く３つの座標\n  color: 三角形の色\n  fillFlag: 塗りつぶすか(TRUEで塗りつぶし)
 //dxlib int DrawTriangle(int x1, int y1, int x2, int y2, int x3, int y3, unsigned int color, int fillFlag)
-//comment; DrawTriangle; 三角形の描画(アンチエイリアス効果付き)\n\n引数\n  x1, y1, x2, y2, x3, y3: 三角形を描く３つの座標\n  color: 三角形の色\n  fillFlag: 塗りつぶすか(TRUEで塗りつぶし)\n  lineThickness: 文字の太さ(デフォルト: 1.0)
+//comment; DrawTriangleAA; 三角形の描画(アンチエイリアス効果付き)\n\n引数\n  x1, y1, x2, y2, x3, y3: 三角形を描く３つの座標\n  color: 三角形の色\n  fillFlag: 塗りつぶすか(TRUEで塗りつぶし)\n  lineThickness: 文字の太さ(デフォルト: 1.0)
 //dxlib int DrawTriangleAA(float x1, float y1, float x2, float y2, float x3, float y3, unsigned int color, int fillFlag, float lineThickness)
 //comment; DrawPixel; 点を描画\n\n引数\n  x, y: 座標\n  color: 点の色
 //dxlib int DrawPixel(int x, int y, unsigned int color)
-//comment; DrawPixel; 指定点の色を取得\n\n引数\n  x, y: 座標
+//comment; GetPixel; 指定点の色を取得\n\n引数\n  x, y: 座標
 //dxlib unsigned int GetPixel(int x, int y)
 
 // グラフィックデータ制御関数
