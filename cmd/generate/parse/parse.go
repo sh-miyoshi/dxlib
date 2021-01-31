@@ -17,22 +17,31 @@ type DxFunc struct {
 	Comment  string
 }
 
+// Argument ...
+type Argument struct {
+	Name    string
+	GoType  string
+	Default string
+}
+
+// Option ...
+type Option struct {
+	FuncName string
+	Args     []Argument
+}
+
 // Data ...
 type Data struct {
 	PackageName string
 
 	Funcs    []DxFunc
 	ExtFuncs []DxFunc
+	Options  []Option
 }
 
 // Parser ...
 type Parser struct {
 	fp *os.File
-}
-
-type argument struct {
-	Name   string
-	GoType string
 }
 
 var (
@@ -82,11 +91,12 @@ func (p *Parser) Parse() (*Data, error) {
 			continue
 		}
 		if strings.HasPrefix(line, "//dxlib") {
-			d, err := parseFunc(line)
+			d, opt, err := parseFunc(line)
 			if err != nil {
 				return nil, err
 			}
 			res.Funcs = append(res.Funcs, *d)
+			res.Options = append(res.Options, *opt)
 			continue
 		}
 		if strings.HasPrefix(line, "//ext_dxlib") {
@@ -124,7 +134,7 @@ COMMENT:
 	return &res, nil
 }
 
-func parseFunc(line string) (*DxFunc, error) {
+func parseFunc(line string) (*DxFunc, *Option, error) {
 	res := DxFunc{}
 	raw := strings.TrimPrefix(line, "//dxlib ")
 
@@ -132,7 +142,7 @@ func parseFunc(line string) (*DxFunc, error) {
 	//dxlib <response> <FuncName>(<arg1> interface{}, <arg2> ...)
 	v1 := strings.Split(raw, " ")
 	if len(v1) < 2 {
-		return nil, fmt.Errorf("Failed to get response and function")
+		return nil, nil, fmt.Errorf("Failed to get response and function")
 	}
 	res.Response = v1[0]
 	index := 1
@@ -143,7 +153,7 @@ func parseFunc(line string) (*DxFunc, error) {
 	var ok bool
 	res.Response, ok = convToGoType(res.Response)
 	if !ok {
-		return nil, fmt.Errorf("Invalid response type")
+		return nil, nil, fmt.Errorf("Invalid response type")
 	}
 
 	raw = ""
@@ -153,17 +163,18 @@ func parseFunc(line string) (*DxFunc, error) {
 
 	v2 := strings.Split(raw, "(")
 	if len(v2) != 2 {
-		return nil, fmt.Errorf("Failed to find func start (")
+		return nil, nil, fmt.Errorf("Failed to find func start (")
 	}
 	res.Name = v2[0]
 
 	argStr := strings.TrimSuffix(strings.TrimSpace(v2[1]), ")")
 	args, err := parseArg(argStr)
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
+
+	opt := Option{}
 	for _, arg := range args {
-		res.GoArgs += arg.Name + " " + arg.GoType + ", "
 		if strings.Contains(arg.GoType, "[]") {
 			res.PArgs += "parray" + strings.Trim(arg.GoType, "[]") + "(" + arg.Name + "), "
 		} else if strings.Contains(arg.GoType, "*") {
@@ -171,11 +182,23 @@ func parseFunc(line string) (*DxFunc, error) {
 		} else {
 			res.PArgs += "p" + arg.GoType + "(" + arg.Name + "), "
 		}
+
+		if arg.Default != "" {
+			opt.Args = append(opt.Args, arg)
+			continue
+		}
+
+		res.GoArgs += arg.Name + " " + arg.GoType + ", "
 	}
+	if len(opt.Args) > 0 {
+		opt.FuncName = res.Name
+		res.GoArgs += "opt ..." + opt.FuncName + "Option"
+	}
+
 	res.GoArgs = strings.TrimSuffix(res.GoArgs, ", ")
 	res.PArgs = strings.TrimSuffix(res.PArgs, ", ")
 
-	return &res, nil
+	return &res, &opt, nil
 }
 
 func parseExtraFunc(line string) *DxFunc {
@@ -202,8 +225,8 @@ func parseComment(line string) (string, string, error) {
 	return funcName, comment, nil
 }
 
-func parseArg(argStr string) ([]argument, error) {
-	res := []argument{}
+func parseArg(argStr string) ([]Argument, error) {
+	res := []Argument{}
 	if argStr == "" {
 		return res, nil
 	}
@@ -219,8 +242,16 @@ func parseArg(argStr string) ([]argument, error) {
 			if strings.HasPrefix(arg, typ) {
 				ok = true
 				name := strings.TrimPrefix(arg, typ)
+				val := ""
+				if strings.Contains(name, "=") {
+					// The argument has default value
+					t := strings.Split(name, "=")
+					name = strings.TrimSpace(t[0])
+					val = strings.TrimSpace(t[1])
+				}
+
 				typ, _ = convToGoType(typ)
-				res = append(res, argument{Name: name, GoType: typ})
+				res = append(res, Argument{Name: name, GoType: typ, Default: val})
 				break
 			}
 		}

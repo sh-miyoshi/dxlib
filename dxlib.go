@@ -18,13 +18,13 @@ package dxlib
 
 // 図形描画関数
 //comment; DrawLine; 線を描画\n\n引数\n  x1, y1: 線の起点座標\n  x2, y2: 線の終点座標\n  color: 線の色\n  thickness: 文字の太さ(デフォルト: 1)
-//dxlib int DrawLine(int x1, int y1, int x2, int y2, unsigned int color, int thickness)
+//dxlib int DrawLine(int x1, int y1, int x2, int y2, unsigned int color, int thickness = 1)
 //comment; DrawLineAA; 線を描画(アンチエイリアス効果付き)\n\n引数\n  x1, y1: 線の起点座標\n  x2, y2: 線の終点座標\n  color: 線の色\n  thickness: 文字の太さ(デフォルト: 1.0)
-//dxlib int DrawLineAA(float x1, float y1, float x2, float y2, unsigned int color, float thickness)
+//dxlib int DrawLineAA(float x1, float y1, float x2, float y2, unsigned int color, float thickness = 1.0)
 //comment; DrawBox; 四角形を描画\n\n引数\n  x1, y1: 四角形の左上の頂点座標\n  x2, y2: 四角形の右下＋１の頂点座標\n  color: 四角形の色\n  fillFlag: 四角の中身を塗りつぶすか(TRUEで塗りつぶし)
 //dxlib int DrawBox(int x1, int y1, int x2, int y2, unsigned int color, int fillFlag)
 //comment; DrawBoxAA; 四角形を描画(アンチエイリアス効果付き)\n\n引数\n  x1, y1: 四角形の左上の頂点座標\n  x2, y2: 四角形の右下＋１の頂点座標\n  color: 四角形の色\n  fillFlag: 四角の中身を塗りつぶすか(TRUEで塗りつぶし)\n  lineThickness: 文字の太さ(デフォルト: 1.0)
-//dxlib int DrawBoxAA(float x1, float y1, float x2, float y2, unsigned int color, int fillFlag, float lineThickness)
+//dxlib int DrawBoxAA(float x1, float y1, float x2, float y2, unsigned int color, int fillFlag, float lineThickness = 1.0)
 //comment; DrawCircle; 円を描画\n\n引数\n  x, y: 円の中心座標\n  r: 半径\n  color: 円の色\n  fillFlag: 塗りつぶすか(TRUEで塗りつぶし)\n  lineThickness: 文字の太さ(デフォルト: 1)
 //dxlib int DrawCircle(int x, int y, int r, unsigned int color, int fillFlag, int lineThickness)
 //comment; DrawCircleAA; 円を描画(アンチエイリアス効果付き)\n\n引数\n  x, y: 円の中心座標\n  r: 半径\n  posnum: 円を形成する頂点の数\n  color: 円の色\n  fillFlag: 塗りつぶすか(TRUEで塗りつぶし)\n  lineThickness: 文字の太さ(デフォルト: 1.0)

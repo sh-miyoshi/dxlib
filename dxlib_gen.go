@@ -12,6 +12,18 @@ import (
 	"golang.org/x/text/transform"
 )
 
+type DrawLineOption struct {
+	Thickness *int32
+}
+
+type DrawLineAAOption struct {
+	Thickness *float32
+}
+
+type DrawBoxAAOption struct {
+	LineThickness *float32
+}
+
 var (
 	dx_DxLib_Init                           *syscall.LazyProc
 	dx_DxLib_End                            *syscall.LazyProc
@@ -497,9 +509,14 @@ func ProcessMessage() int32 {
 //   x2, y2: 線の終点座標
 //   color: 線の色
 //   thickness: 文字の太さ(デフォルト: 1)
-func DrawLine(x1 int32, y1 int32, x2 int32, y2 int32, color uint32, thickness int32) int32 {
+func DrawLine(x1 int32, y1 int32, x2 int32, y2 int32, color uint32, opt ...DrawLineOption) int32 {
 	if dx_DrawLine == nil {
 		panic("Please call dxlib.Init() at first")
+	}
+
+	thickness := int32(1)
+	if len(opt) > 0 && opt[0].Thickness != nil {
+		thickness = *opt[0].Thickness
 	}
 
 	res, _, _ := dx_DrawLine.Call(pint32(x1), pint32(y1), pint32(x2), pint32(y2), puint32(color), pint32(thickness))
@@ -513,9 +530,14 @@ func DrawLine(x1 int32, y1 int32, x2 int32, y2 int32, color uint32, thickness in
 //   x2, y2: 線の終点座標
 //   color: 線の色
 //   thickness: 文字の太さ(デフォルト: 1.0)
-func DrawLineAA(x1 float32, y1 float32, x2 float32, y2 float32, color uint32, thickness float32) int32 {
+func DrawLineAA(x1 float32, y1 float32, x2 float32, y2 float32, color uint32, opt ...DrawLineAAOption) int32 {
 	if dx_DrawLineAA == nil {
 		panic("Please call dxlib.Init() at first")
+	}
+
+	thickness := float32(1.0)
+	if len(opt) > 0 && opt[0].Thickness != nil {
+		thickness = *opt[0].Thickness
 	}
 
 	res, _, _ := dx_DrawLineAA.Call(pfloat32(x1), pfloat32(y1), pfloat32(x2), pfloat32(y2), puint32(color), pfloat32(thickness))
@@ -546,9 +568,14 @@ func DrawBox(x1 int32, y1 int32, x2 int32, y2 int32, color uint32, fillFlag int3
 //   color: 四角形の色
 //   fillFlag: 四角の中身を塗りつぶすか(TRUEで塗りつぶし)
 //   lineThickness: 文字の太さ(デフォルト: 1.0)
-func DrawBoxAA(x1 float32, y1 float32, x2 float32, y2 float32, color uint32, fillFlag int32, lineThickness float32) int32 {
+func DrawBoxAA(x1 float32, y1 float32, x2 float32, y2 float32, color uint32, fillFlag int32, opt ...DrawBoxAAOption) int32 {
 	if dx_DrawBoxAA == nil {
 		panic("Please call dxlib.Init() at first")
+	}
+
+	lineThickness := float32(1.0)
+	if len(opt) > 0 && opt[0].LineThickness != nil {
+		lineThickness = *opt[0].LineThickness
 	}
 
 	res, _, _ := dx_DrawBoxAA.Call(pfloat32(x1), pfloat32(y1), pfloat32(x2), pfloat32(y2), puint32(color), pint32(fillFlag), pfloat32(lineThickness))
