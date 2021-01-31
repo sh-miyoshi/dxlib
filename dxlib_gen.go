@@ -24,6 +24,117 @@ type DrawBoxAAOption struct {
 	LineThickness *float32
 }
 
+type DrawCircleOption struct {
+	LineThickness *int32
+}
+
+type DrawCircleAAOption struct {
+	LineThickness *float32
+}
+
+type DrawOvalOption struct {
+	LineThickness *int32
+}
+
+type DrawOvalAAOption struct {
+	LineThickness *float32
+}
+
+type DrawTriangleAAOption struct {
+	LineThickness *float32
+}
+
+type LoadGraphOption struct {
+	NotUse3DFlag *int32
+}
+
+type LoadDivGraphOption struct {
+	NotUse3DFlag *int32
+}
+
+type MakeGraphOption struct {
+	NotUse3DFlag *int32
+}
+
+type DrawRotaGraphOption struct {
+	ReverseXFlag *int32
+	ReverseYFlag *int32
+}
+
+type DrawRotaGraph2Option struct {
+	ReverseXFlag *int32
+	ReverseYFlag *int32
+}
+
+type DrawRotaGraph3Option struct {
+	ReverseXFlag *int32
+	ReverseYFlag *int32
+}
+
+type DrawRotaGraphFastOption struct {
+	ReverseXFlag *int32
+	ReverseYFlag *int32
+}
+
+type DrawRotaGraphFast2Option struct {
+	ReverseXFlag *int32
+	ReverseYFlag *int32
+}
+
+type DrawRotaGraphFast3Option struct {
+	ReverseXFlag *int32
+	ReverseYFlag *int32
+}
+
+type DrawRectGraphOption struct {
+	ReverseXFlag *int32
+	ReverseYFlag *int32
+}
+
+type GetDrawScreenGraphOption struct {
+	UseClientFlag *int32
+}
+
+type InitGraphOption struct {
+	LogOutFlag *int32
+}
+
+type DrawStringOption struct {
+	EdgeColor *uint32
+}
+
+type GetDrawStringWidthOption struct {
+	VericalFlag *int32
+}
+
+type ChangeFontOption struct {
+	CharSet *int32
+}
+
+type CreateFontToHandleOption struct {
+	FontName *string
+	Size     *int32
+	Thick    *int32
+	FontType *int32
+	CharSet  *int32
+	EdgeSize *int32
+	Italic   *int32
+	Handle   *int32
+}
+
+type LoadFontDataToHandleOption struct {
+	EdgeSize *int32
+}
+
+type DrawStringToHandleOption struct {
+	EdgeColor    *int32
+	VerticalFlag *int32
+}
+
+type GetDrawStringWidthToHandleOption struct {
+	VerticalFlag *int32
+}
+
 var (
 	dx_DxLib_Init                           *syscall.LazyProc
 	dx_DxLib_End                            *syscall.LazyProc
@@ -590,9 +701,14 @@ func DrawBoxAA(x1 float32, y1 float32, x2 float32, y2 float32, color uint32, fil
 //   color: 円の色
 //   fillFlag: 塗りつぶすか(TRUEで塗りつぶし)
 //   lineThickness: 文字の太さ(デフォルト: 1)
-func DrawCircle(x int32, y int32, r int32, color uint32, fillFlag int32, lineThickness int32) int32 {
+func DrawCircle(x int32, y int32, r int32, color uint32, fillFlag int32, opt ...DrawCircleOption) int32 {
 	if dx_DrawCircle == nil {
 		panic("Please call dxlib.Init() at first")
+	}
+
+	lineThickness := int32(1)
+	if len(opt) > 0 && opt[0].LineThickness != nil {
+		lineThickness = *opt[0].LineThickness
 	}
 
 	res, _, _ := dx_DrawCircle.Call(pint32(x), pint32(y), pint32(r), puint32(color), pint32(fillFlag), pint32(lineThickness))
@@ -608,9 +724,14 @@ func DrawCircle(x int32, y int32, r int32, color uint32, fillFlag int32, lineThi
 //   color: 円の色
 //   fillFlag: 塗りつぶすか(TRUEで塗りつぶし)
 //   lineThickness: 文字の太さ(デフォルト: 1.0)
-func DrawCircleAA(x float32, y float32, r float32, posnum int32, color uint32, fillFlag int32, lineThickness float32) int32 {
+func DrawCircleAA(x float32, y float32, r float32, posnum int32, color uint32, fillFlag int32, opt ...DrawCircleAAOption) int32 {
 	if dx_DrawCircleAA == nil {
 		panic("Please call dxlib.Init() at first")
+	}
+
+	lineThickness := float32(1.0)
+	if len(opt) > 0 && opt[0].LineThickness != nil {
+		lineThickness = *opt[0].LineThickness
 	}
 
 	res, _, _ := dx_DrawCircleAA.Call(pfloat32(x), pfloat32(y), pfloat32(r), pint32(posnum), puint32(color), pint32(fillFlag), pfloat32(lineThickness))
@@ -625,9 +746,14 @@ func DrawCircleAA(x float32, y float32, r float32, posnum int32, color uint32, f
 //   color: 円の色
 //   fillFlag: 塗りつぶすか(TRUEで塗りつぶし)
 //   lineThickness: 文字の太さ(デフォルト: 1.0)
-func DrawOval(x int32, y int32, rx int32, ry int32, color uint32, fillFlag int32, lineThickness int32) int32 {
+func DrawOval(x int32, y int32, rx int32, ry int32, color uint32, fillFlag int32, opt ...DrawOvalOption) int32 {
 	if dx_DrawOval == nil {
 		panic("Please call dxlib.Init() at first")
+	}
+
+	lineThickness := int32(1.0)
+	if len(opt) > 0 && opt[0].LineThickness != nil {
+		lineThickness = *opt[0].LineThickness
 	}
 
 	res, _, _ := dx_DrawOval.Call(pint32(x), pint32(y), pint32(rx), pint32(ry), puint32(color), pint32(fillFlag), pint32(lineThickness))
@@ -643,9 +769,14 @@ func DrawOval(x int32, y int32, rx int32, ry int32, color uint32, fillFlag int32
 //   color: 円の色
 //   fillFlag: 塗りつぶすか(TRUEで塗りつぶし)
 //   lineThickness: 文字の太さ(デフォルト: 1.0)
-func DrawOvalAA(x float32, y float32, rx float32, ry float32, posnum int32, color uint32, fillFlag int32, lineThickness float32) int32 {
+func DrawOvalAA(x float32, y float32, rx float32, ry float32, posnum int32, color uint32, fillFlag int32, opt ...DrawOvalAAOption) int32 {
 	if dx_DrawOvalAA == nil {
 		panic("Please call dxlib.Init() at first")
+	}
+
+	lineThickness := float32(1.0)
+	if len(opt) > 0 && opt[0].LineThickness != nil {
+		lineThickness = *opt[0].LineThickness
 	}
 
 	res, _, _ := dx_DrawOvalAA.Call(pfloat32(x), pfloat32(y), pfloat32(rx), pfloat32(ry), pint32(posnum), puint32(color), pint32(fillFlag), pfloat32(lineThickness))
@@ -674,9 +805,14 @@ func DrawTriangle(x1 int32, y1 int32, x2 int32, y2 int32, x3 int32, y3 int32, co
 //   color: 三角形の色
 //   fillFlag: 塗りつぶすか(TRUEで塗りつぶし)
 //   lineThickness: 文字の太さ(デフォルト: 1.0)
-func DrawTriangleAA(x1 float32, y1 float32, x2 float32, y2 float32, x3 float32, y3 float32, color uint32, fillFlag int32, lineThickness float32) int32 {
+func DrawTriangleAA(x1 float32, y1 float32, x2 float32, y2 float32, x3 float32, y3 float32, color uint32, fillFlag int32, opt ...DrawTriangleAAOption) int32 {
 	if dx_DrawTriangleAA == nil {
 		panic("Please call dxlib.Init() at first")
+	}
+
+	lineThickness := float32(1.0)
+	if len(opt) > 0 && opt[0].LineThickness != nil {
+		lineThickness = *opt[0].LineThickness
 	}
 
 	res, _, _ := dx_DrawTriangleAA.Call(pfloat32(x1), pfloat32(y1), pfloat32(x2), pfloat32(y2), pfloat32(x3), pfloat32(y3), puint32(color), pint32(fillFlag), pfloat32(lineThickness))
@@ -730,9 +866,14 @@ func LoadGraphScreen(x int32, y int32, graphName string, transFlag int32) int32 
 // 引数
 //   fileName: ファイルパス
 //   notUse3DFlag: 3D機能を制限するか(デフォルト: FALSE)
-func LoadGraph(fileName string, notUse3DFlag int32) int32 {
+func LoadGraph(fileName string, opt ...LoadGraphOption) int32 {
 	if dx_LoadGraph == nil {
 		panic("Please call dxlib.Init() at first")
+	}
+
+	notUse3DFlag := int32(FALSE)
+	if len(opt) > 0 && opt[0].NotUse3DFlag != nil {
+		notUse3DFlag = *opt[0].NotUse3DFlag
 	}
 
 	res, _, _ := dx_LoadGraph.Call(pstring(fileName), pint32(notUse3DFlag))
@@ -748,9 +889,14 @@ func LoadGraph(fileName string, notUse3DFlag int32) int32 {
 //   xsize, ysize: 分割された画像一つの大きさ
 //   handleBuf: グラフィックハンドルを保存するバッファ
 //   notUse3DFlag: 3D機能を制限するか(デフォルト: FALSE)
-func LoadDivGraph(fileName string, allnum int32, xnum int32, ynum int32, xsize int32, ysize int32, handleBuf []int32, notUse3DFlag int32) int32 {
+func LoadDivGraph(fileName string, allnum int32, xnum int32, ynum int32, xsize int32, ysize int32, handleBuf []int32, opt ...LoadDivGraphOption) int32 {
 	if dx_LoadDivGraph == nil {
 		panic("Please call dxlib.Init() at first")
+	}
+
+	notUse3DFlag := int32(FALSE)
+	if len(opt) > 0 && opt[0].NotUse3DFlag != nil {
+		notUse3DFlag = *opt[0].NotUse3DFlag
 	}
 
 	res, _, _ := dx_LoadDivGraph.Call(pstring(fileName), pint32(allnum), pint32(xnum), pint32(ynum), pint32(xsize), pint32(ysize), parrayint32(handleBuf), pint32(notUse3DFlag))
@@ -762,9 +908,14 @@ func LoadDivGraph(fileName string, allnum int32, xnum int32, ynum int32, xsize i
 // 引数
 //   sizeX, sizeY: 作成する空グラフィックのサイズ
 //   notUse3DFlag: 3D機能を制限するか(デフォルト: FALSE)
-func MakeGraph(sizeX int32, sizeY int32, notUse3DFlag int32) int32 {
+func MakeGraph(sizeX int32, sizeY int32, opt ...MakeGraphOption) int32 {
 	if dx_MakeGraph == nil {
 		panic("Please call dxlib.Init() at first")
+	}
+
+	notUse3DFlag := int32(FALSE)
+	if len(opt) > 0 && opt[0].NotUse3DFlag != nil {
+		notUse3DFlag = *opt[0].NotUse3DFlag
 	}
 
 	res, _, _ := dx_MakeGraph.Call(pint32(sizeX), pint32(sizeY), pint32(notUse3DFlag))
@@ -891,9 +1042,18 @@ func DrawExtendGraph(x1 int32, y1 int32, x2 int32, y2 int32, grHandle int32, tra
 //   transFlag: 画像の透明度を有効にするかどうか(TRUE: 有効にする)
 //   reverseXFlag: 画像の左右反転を行うか
 //   reverseYFlag: 画像の上下反転を行うか
-func DrawRotaGraph(x int32, y int32, extRate float64, angle float64, grHandle int32, transFlag int32, reverseXFlag int32, reverseYFlag int32) int32 {
+func DrawRotaGraph(x int32, y int32, extRate float64, angle float64, grHandle int32, transFlag int32, opt ...DrawRotaGraphOption) int32 {
 	if dx_DrawRotaGraph == nil {
 		panic("Please call dxlib.Init() at first")
+	}
+
+	reverseXFlag := int32(FALSE)
+	if len(opt) > 0 && opt[0].ReverseXFlag != nil {
+		reverseXFlag = *opt[0].ReverseXFlag
+	}
+	reverseYFlag := int32(FALSE)
+	if len(opt) > 0 && opt[0].ReverseYFlag != nil {
+		reverseYFlag = *opt[0].ReverseYFlag
 	}
 
 	res, _, _ := dx_DrawRotaGraph.Call(pint32(x), pint32(y), pfloat64(extRate), pfloat64(angle), pint32(grHandle), pint32(transFlag), pint32(reverseXFlag), pint32(reverseYFlag))
@@ -911,9 +1071,18 @@ func DrawRotaGraph(x int32, y int32, extRate float64, angle float64, grHandle in
 //   transFlag: 画像の透明度を有効にするかどうか(TRUE: 有効にする)
 //   reverseXFlag: 画像の左右反転を行うか
 //   reverseYFlag: 画像の上下反転を行うか
-func DrawRotaGraph2(x int32, y int32, cx int32, cy int32, extRate float64, angle float64, grHandle int32, transFlag int32, reverseXFlag int32, reverseYFlag int32) int32 {
+func DrawRotaGraph2(x int32, y int32, cx int32, cy int32, extRate float64, angle float64, grHandle int32, transFlag int32, opt ...DrawRotaGraph2Option) int32 {
 	if dx_DrawRotaGraph2 == nil {
 		panic("Please call dxlib.Init() at first")
+	}
+
+	reverseXFlag := int32(FALSE)
+	if len(opt) > 0 && opt[0].ReverseXFlag != nil {
+		reverseXFlag = *opt[0].ReverseXFlag
+	}
+	reverseYFlag := int32(FALSE)
+	if len(opt) > 0 && opt[0].ReverseYFlag != nil {
+		reverseYFlag = *opt[0].ReverseYFlag
 	}
 
 	res, _, _ := dx_DrawRotaGraph2.Call(pint32(x), pint32(y), pint32(cx), pint32(cy), pfloat64(extRate), pfloat64(angle), pint32(grHandle), pint32(transFlag), pint32(reverseXFlag), pint32(reverseYFlag))
@@ -931,36 +1100,72 @@ func DrawRotaGraph2(x int32, y int32, cx int32, cy int32, extRate float64, angle
 //   transFlag: 画像の透明度を有効にするかどうか(TRUE: 有効にする)
 //   reverseXFlag: 画像の左右反転を行うか
 //   reverseYFlag: 画像の上下反転を行うか
-func DrawRotaGraph3(x int32, y int32, cx int32, cy int32, extRateX float64, extRateY float64, angle float64, grHandle int32, transFlag int32, reverseXFlag int32, reverseYFlag int32) int32 {
+func DrawRotaGraph3(x int32, y int32, cx int32, cy int32, extRateX float64, extRateY float64, angle float64, grHandle int32, transFlag int32, opt ...DrawRotaGraph3Option) int32 {
 	if dx_DrawRotaGraph3 == nil {
 		panic("Please call dxlib.Init() at first")
+	}
+
+	reverseXFlag := int32(FALSE)
+	if len(opt) > 0 && opt[0].ReverseXFlag != nil {
+		reverseXFlag = *opt[0].ReverseXFlag
+	}
+	reverseYFlag := int32(FALSE)
+	if len(opt) > 0 && opt[0].ReverseYFlag != nil {
+		reverseYFlag = *opt[0].ReverseYFlag
 	}
 
 	res, _, _ := dx_DrawRotaGraph3.Call(pint32(x), pint32(y), pint32(cx), pint32(cy), pfloat64(extRateX), pfloat64(extRateY), pfloat64(angle), pint32(grHandle), pint32(transFlag), pint32(reverseXFlag), pint32(reverseYFlag))
 	return int32(res)
 }
 
-func DrawRotaGraphFast(x int32, y int32, extRate float32, angle float32, grHandle int32, transFlag int32, reverseXFlag int32, reverseYFlag int32) int32 {
+func DrawRotaGraphFast(x int32, y int32, extRate float32, angle float32, grHandle int32, transFlag int32, opt ...DrawRotaGraphFastOption) int32 {
 	if dx_DrawRotaGraphFast == nil {
 		panic("Please call dxlib.Init() at first")
+	}
+
+	reverseXFlag := int32(FALSE)
+	if len(opt) > 0 && opt[0].ReverseXFlag != nil {
+		reverseXFlag = *opt[0].ReverseXFlag
+	}
+	reverseYFlag := int32(FALSE)
+	if len(opt) > 0 && opt[0].ReverseYFlag != nil {
+		reverseYFlag = *opt[0].ReverseYFlag
 	}
 
 	res, _, _ := dx_DrawRotaGraphFast.Call(pint32(x), pint32(y), pfloat32(extRate), pfloat32(angle), pint32(grHandle), pint32(transFlag), pint32(reverseXFlag), pint32(reverseYFlag))
 	return int32(res)
 }
 
-func DrawRotaGraphFast2(x int32, y int32, cx int32, cy int32, extRate float32, angle float32, grHandle int32, transFlag int32, reverseXFlag int32, reverseYFlag int32) int32 {
+func DrawRotaGraphFast2(x int32, y int32, cx int32, cy int32, extRate float32, angle float32, grHandle int32, transFlag int32, opt ...DrawRotaGraphFast2Option) int32 {
 	if dx_DrawRotaGraphFast2 == nil {
 		panic("Please call dxlib.Init() at first")
+	}
+
+	reverseXFlag := int32(FALSE)
+	if len(opt) > 0 && opt[0].ReverseXFlag != nil {
+		reverseXFlag = *opt[0].ReverseXFlag
+	}
+	reverseYFlag := int32(FALSE)
+	if len(opt) > 0 && opt[0].ReverseYFlag != nil {
+		reverseYFlag = *opt[0].ReverseYFlag
 	}
 
 	res, _, _ := dx_DrawRotaGraphFast2.Call(pint32(x), pint32(y), pint32(cx), pint32(cy), pfloat32(extRate), pfloat32(angle), pint32(grHandle), pint32(transFlag), pint32(reverseXFlag), pint32(reverseYFlag))
 	return int32(res)
 }
 
-func DrawRotaGraphFast3(x int32, y int32, cx int32, cy int32, extRateX float32, extRateY float32, angle float32, grHandle int32, transFlag int32, reverseXFlag int32, reverseYFlag int32) int32 {
+func DrawRotaGraphFast3(x int32, y int32, cx int32, cy int32, extRateX float32, extRateY float32, angle float32, grHandle int32, transFlag int32, opt ...DrawRotaGraphFast3Option) int32 {
 	if dx_DrawRotaGraphFast3 == nil {
 		panic("Please call dxlib.Init() at first")
+	}
+
+	reverseXFlag := int32(FALSE)
+	if len(opt) > 0 && opt[0].ReverseXFlag != nil {
+		reverseXFlag = *opt[0].ReverseXFlag
+	}
+	reverseYFlag := int32(FALSE)
+	if len(opt) > 0 && opt[0].ReverseYFlag != nil {
+		reverseYFlag = *opt[0].ReverseYFlag
 	}
 
 	res, _, _ := dx_DrawRotaGraphFast3.Call(pint32(x), pint32(y), pint32(cx), pint32(cy), pfloat32(extRateX), pfloat32(extRateY), pfloat32(angle), pint32(grHandle), pint32(transFlag), pint32(reverseXFlag), pint32(reverseYFlag))
@@ -992,9 +1197,18 @@ func DrawModiGraph(x1 int32, y1 int32, x2 int32, y2 int32, x3 int32, y3 int32, x
 //   transFlag: 画像の透明度を有効にするかどうか(TRUE: 有効にする)
 //   reverseXFlag: 画像の左右反転を行うか
 //   reverseYFlag: 画像の上下反転を行うか
-func DrawRectGraph(destX int32, destY int32, srcX int32, srcY int32, width int32, height int32, grHandle int32, transFlag int32, reverseXFlag int32, reverseYFlag int32) int32 {
+func DrawRectGraph(destX int32, destY int32, srcX int32, srcY int32, width int32, height int32, grHandle int32, transFlag int32, opt ...DrawRectGraphOption) int32 {
 	if dx_DrawRectGraph == nil {
 		panic("Please call dxlib.Init() at first")
+	}
+
+	reverseXFlag := int32(FALSE)
+	if len(opt) > 0 && opt[0].ReverseXFlag != nil {
+		reverseXFlag = *opt[0].ReverseXFlag
+	}
+	reverseYFlag := int32(FALSE)
+	if len(opt) > 0 && opt[0].ReverseYFlag != nil {
+		reverseYFlag = *opt[0].ReverseYFlag
 	}
 
 	res, _, _ := dx_DrawRectGraph.Call(pint32(destX), pint32(destY), pint32(srcX), pint32(srcY), pint32(width), pint32(height), pint32(grHandle), pint32(transFlag), pint32(reverseXFlag), pint32(reverseYFlag))
@@ -1023,9 +1237,14 @@ func DerivationGraph(srcX int32, srcY int32, width int32, height int32, srcGraph
 //   x2, y2: 取得するグラフィック領域の右下頂点＋１の座標
 //   grHandle: 取り込んだグラフィックを保存出来るサイズのグラフィックを持つハンドル
 //   useClientFlag: デフォルト TRUE
-func GetDrawScreenGraph(x1 int32, y1 int32, x2 int32, y2 int32, grHandle int32, useClientFlag int32) int32 {
+func GetDrawScreenGraph(x1 int32, y1 int32, x2 int32, y2 int32, grHandle int32, opt ...GetDrawScreenGraphOption) int32 {
 	if dx_GetDrawScreenGraph == nil {
 		panic("Please call dxlib.Init() at first")
+	}
+
+	useClientFlag := int32(TRUE)
+	if len(opt) > 0 && opt[0].UseClientFlag != nil {
+		useClientFlag = *opt[0].UseClientFlag
 	}
 
 	res, _, _ := dx_GetDrawScreenGraph.Call(pint32(x1), pint32(y1), pint32(x2), pint32(y2), pint32(grHandle), pint32(useClientFlag))
@@ -1046,9 +1265,14 @@ func GetGraphSize(grHandle int32, sizeXBuf *int32, sizeYBuf *int32) int32 {
 //
 // 引数
 //   logOutFlag: デフォルト FALSE
-func InitGraph(logOutFlag int32) int32 {
+func InitGraph(opt ...InitGraphOption) int32 {
 	if dx_InitGraph == nil {
 		panic("Please call dxlib.Init() at first")
+	}
+
+	logOutFlag := int32(FALSE)
+	if len(opt) > 0 && opt[0].LogOutFlag != nil {
+		logOutFlag = *opt[0].LogOutFlag
 	}
 
 	res, _, _ := dx_InitGraph.Call(pint32(logOutFlag))
@@ -1147,9 +1371,14 @@ func DrawBlendGraph(x int32, y int32, grHandle int32, transFlag int32, blendGrap
 //   str: 文字列
 //   color: 文字列の色
 //   edgeColor: デフォルト 0
-func DrawString(x int32, y int32, str string, color uint32, edgeColor uint32) int32 {
+func DrawString(x int32, y int32, str string, color uint32, opt ...DrawStringOption) int32 {
 	if dx_DrawString == nil {
 		panic("Please call dxlib.Init() at first")
+	}
+
+	edgeColor := uint32(0)
+	if len(opt) > 0 && opt[0].EdgeColor != nil {
+		edgeColor = *opt[0].EdgeColor
 	}
 
 	res, _, _ := dx_DrawString.Call(pint32(x), pint32(y), pstring(str), puint32(color), puint32(edgeColor))
@@ -1162,9 +1391,14 @@ func DrawString(x int32, y int32, str string, color uint32, edgeColor uint32) in
 //  str: 文字列
 //   strLen: 文字列長
 //   vericalFlag: デフォルト FALSE
-func GetDrawStringWidth(str string, strLen int32, vericalFlag int32) int32 {
+func GetDrawStringWidth(str string, strLen int32, opt ...GetDrawStringWidthOption) int32 {
 	if dx_GetDrawStringWidth == nil {
 		panic("Please call dxlib.Init() at first")
+	}
+
+	vericalFlag := int32(FALSE)
+	if len(opt) > 0 && opt[0].VericalFlag != nil {
+		vericalFlag = *opt[0].VericalFlag
 	}
 
 	res, _, _ := dx_GetDrawStringWidth.Call(pstring(str), pint32(strLen), pint32(vericalFlag))
@@ -1199,9 +1433,14 @@ func SetFontThickness(thickPal int32) int32 {
 // 引数
 //   fontName: フォント名
 //   charSet: デフォルト -1
-func ChangeFont(fontName string, charSet int32) int32 {
+func ChangeFont(fontName string, opt ...ChangeFontOption) int32 {
 	if dx_ChangeFont == nil {
 		panic("Please call dxlib.Init() at first")
+	}
+
+	charSet := int32(-1)
+	if len(opt) > 0 && opt[0].CharSet != nil {
+		charSet = *opt[0].CharSet
 	}
 
 	res, _, _ := dx_ChangeFont.Call(pstring(fontName), pint32(charSet))
@@ -1229,23 +1468,61 @@ func ChangeFontType(fontType int32) int32 {
 //   edgeSize: デフォルト -1
 //   italic: デフォルト FALSE
 //   handle: デフォルト -1
-func CreateFontToHandle(fontName string, size int32, thick int32, fontType int32, charSet int32, edgeSize int32, italic int32, handle int32) int32 {
+func CreateFontToHandle(opt ...CreateFontToHandleOption) int32 {
 	if dx_CreateFontToHandle == nil {
 		panic("Please call dxlib.Init() at first")
+	}
+
+	fontName := string("")
+	if len(opt) > 0 && opt[0].FontName != nil {
+		fontName = *opt[0].FontName
+	}
+	size := int32(-1)
+	if len(opt) > 0 && opt[0].Size != nil {
+		size = *opt[0].Size
+	}
+	thick := int32(-1)
+	if len(opt) > 0 && opt[0].Thick != nil {
+		thick = *opt[0].Thick
+	}
+	fontType := int32(-1)
+	if len(opt) > 0 && opt[0].FontType != nil {
+		fontType = *opt[0].FontType
+	}
+	charSet := int32(-1)
+	if len(opt) > 0 && opt[0].CharSet != nil {
+		charSet = *opt[0].CharSet
+	}
+	edgeSize := int32(-1)
+	if len(opt) > 0 && opt[0].EdgeSize != nil {
+		edgeSize = *opt[0].EdgeSize
+	}
+	italic := int32(FALSE)
+	if len(opt) > 0 && opt[0].Italic != nil {
+		italic = *opt[0].Italic
+	}
+	handle := int32(-1)
+	if len(opt) > 0 && opt[0].Handle != nil {
+		handle = *opt[0].Handle
 	}
 
 	res, _, _ := dx_CreateFontToHandle.Call(pstring(fontName), pint32(size), pint32(thick), pint32(fontType), pint32(charSet), pint32(edgeSize), pint32(italic), pint32(handle))
 	return int32(res)
 }
 
-// LoadFontDataToHandle ＤＸフォントデータファイルを読み込む
+// LoadFontDataToHandle DXフォントデータファイルを読み込む
 //
 // 引数
 //   fileName: ファイル名
 //   edgeSize: 成するフォントの縁の太さ(0を指定すると縁無し)
-func LoadFontDataToHandle(fileName string, edgeSize int32) int32 {
+func LoadFontDataToHandle(fileName string, opt ...LoadFontDataToHandleOption) int32 {
 	if dx_LoadFontDataToHandle == nil {
 		panic("Please call dxlib.Init() at first")
+	}
+
+	edgeSize := int32(0)
+	if len(opt) > 0 && opt[0].EdgeSize != nil {
+		edgeSize = *opt[0].EdgeSize
 	}
 
 	res, _, _ := dx_LoadFontDataToHandle.Call(pstring(fileName), pint32(edgeSize))
@@ -1281,9 +1558,18 @@ func SetFontCacheUsePremulAlphaFlag(flag int32) int32 {
 //   fontHandle: 描画に使用するフォントハンドル
 //   edgeColor: 縁の色(デフォルト 0)
 //   verticalFlag: デフォルト FALSE
-func DrawStringToHandle(x int32, y int32, str string, color uint32, fontHandle int32, edgeColor int32, verticalFlag int32) int32 {
+func DrawStringToHandle(x int32, y int32, str string, color uint32, fontHandle int32, opt ...DrawStringToHandleOption) int32 {
 	if dx_DrawStringToHandle == nil {
 		panic("Please call dxlib.Init() at first")
+	}
+
+	edgeColor := int32(0)
+	if len(opt) > 0 && opt[0].EdgeColor != nil {
+		edgeColor = *opt[0].EdgeColor
+	}
+	verticalFlag := int32(FALSE)
+	if len(opt) > 0 && opt[0].VerticalFlag != nil {
+		verticalFlag = *opt[0].VerticalFlag
 	}
 
 	res, _, _ := dx_DrawStringToHandle.Call(pint32(x), pint32(y), pstring(str), puint32(color), pint32(fontHandle), pint32(edgeColor), pint32(verticalFlag))
@@ -1297,9 +1583,14 @@ func DrawStringToHandle(x int32, y int32, str string, color uint32, fontHandle i
 //   strLen: 文字列長
 //   fontHandle: フォントハンドル
 //   verticalFlag: デフォルト FALSE
-func GetDrawStringWidthToHandle(str string, strLen int32, fontHandle int32, verticalFlag int32) int32 {
+func GetDrawStringWidthToHandle(str string, strLen int32, fontHandle int32, opt ...GetDrawStringWidthToHandleOption) int32 {
 	if dx_GetDrawStringWidthToHandle == nil {
 		panic("Please call dxlib.Init() at first")
+	}
+
+	verticalFlag := int32(FALSE)
+	if len(opt) > 0 && opt[0].VerticalFlag != nil {
+		verticalFlag = *opt[0].VerticalFlag
 	}
 
 	res, _, _ := dx_GetDrawStringWidthToHandle.Call(pstring(str), pint32(strLen), pint32(fontHandle), pint32(verticalFlag))
@@ -2752,12 +3043,12 @@ func SelectMidiMode(mode int32) int32 {
 
 func DrawFormatString(x int32, y int32, color uint32, format string, a ...interface{}) int32 {
 	str := fmt.Sprintf(format, a...)
-	return DrawString(x, y, str, color, 0)
+	return DrawString(x, y, str, color)
 }
 
 func DrawFormatStringToHandle(x int32, y int32, color uint32, fontHandle int32, format string, a ...interface{}) int32 {
 	str := fmt.Sprintf(format, a...)
-	return DrawStringToHandle(x, y, str, color, fontHandle, 0, FALSE)
+	return DrawStringToHandle(x, y, str, color, fontHandle)
 }
 
 func ClearDrawScreen() int32 {

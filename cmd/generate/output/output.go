@@ -49,9 +49,9 @@ func writeOpt(w io.Writer, opts []parse.Option) {
 	const outTemplate = `
 {{ range $i, $opt := .Options }}
 type {{ $opt.FuncName }}Option struct {
-	{{ range $j, $arg := $opt.Args }}
+	{{ range $j, $arg := $opt.Args -}}
 	{{ $arg.Name }} *{{ $arg.GoType }}
-	{{ end }}
+	{{ end -}}
 }
 {{ end }}
 `
@@ -154,12 +154,12 @@ func writeExtFunc(w io.Writer) {
 	io.WriteString(w, `
 func DrawFormatString(x int32, y int32, color uint32, format string, a ...interface{}) int32 {
 	str := fmt.Sprintf(format, a...)
-	return DrawString(x, y, str, color, 0)
+	return DrawString(x, y, str, color)
 }
 
 func DrawFormatStringToHandle(x int32, y int32, color uint32, fontHandle int32, format string, a ...interface{}) int32 {
 	str := fmt.Sprintf(format, a...)
-	return DrawStringToHandle(x, y, str, color, fontHandle, 0, FALSE)
+	return DrawStringToHandle(x, y, str, color, fontHandle)
 }
 
 func ClearDrawScreen() int32 {
