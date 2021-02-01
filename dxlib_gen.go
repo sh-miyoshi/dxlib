@@ -135,6 +135,24 @@ type GetDrawStringWidthToHandleOption struct {
 	VerticalFlag *int32
 }
 
+type SetGraphModeOption struct {
+	ColorBitNum *int32
+	RefreshRate *int32
+}
+
+type LoadSoundMemOption struct {
+	BufferNum   *int32
+	UnionHandle *int32
+}
+
+type GetNowCountOption struct {
+	UseRDTSCFlag *int32
+}
+
+type GetNowHiPerformanceCountOption struct {
+	UseRDTSCFlag *int32
+}
+
 var (
 	dx_DxLib_Init                           *syscall.LazyProc
 	dx_DxLib_End                            *syscall.LazyProc
@@ -1623,9 +1641,18 @@ func InitFontToHandle() int32 {
 //   sizeX, sizeY: 画面の解像度(デフォルト 640x480)
 //   colorButNum: カラービット数(DXライブラリの標準色ビット数: 16)
 //   refreshRate: デフォルト 60
-func SetGraphMode(sizeX int32, sizeY int32, colorBitNum int32, refreshRate int32) int32 {
+func SetGraphMode(sizeX int32, sizeY int32, opt ...SetGraphModeOption) int32 {
 	if dx_SetGraphMode == nil {
 		panic("Please call dxlib.Init() at first")
+	}
+
+	colorBitNum := int32(16)
+	if len(opt) > 0 && opt[0].ColorBitNum != nil {
+		colorBitNum = *opt[0].ColorBitNum
+	}
+	refreshRate := int32(60)
+	if len(opt) > 0 && opt[0].RefreshRate != nil {
+		refreshRate = *opt[0].RefreshRate
 	}
 
 	res, _, _ := dx_SetGraphMode.Call(pint32(sizeX), pint32(sizeY), pint32(colorBitNum), pint32(refreshRate))
@@ -2214,9 +2241,18 @@ func StopSoundFile() int32 {
 //   fileName: ファイル名
 //   bufferNum: デフォルト 3
 //   unionHandle: デフォルト -1
-func LoadSoundMem(fileName string, bufferNum int32, unionHandle int32) int32 {
+func LoadSoundMem(fileName string, opt ...LoadSoundMemOption) int32 {
 	if dx_LoadSoundMem == nil {
 		panic("Please call dxlib.Init() at first")
+	}
+
+	bufferNum := int32(3)
+	if len(opt) > 0 && opt[0].BufferNum != nil {
+		bufferNum = *opt[0].BufferNum
+	}
+	unionHandle := int32(-1)
+	if len(opt) > 0 && opt[0].UnionHandle != nil {
+		unionHandle = *opt[0].UnionHandle
 	}
 
 	res, _, _ := dx_LoadSoundMem.Call(pstring(fileName), pint32(bufferNum), pint32(unionHandle))
@@ -2497,9 +2533,14 @@ func WaitKey() int32 {
 //
 // 引数
 //   useRDTSCFlag: デフォルト FALSE
-func GetNowCount(useRDTSCFlag int32) int32 {
+func GetNowCount(opt ...GetNowCountOption) int32 {
 	if dx_GetNowCount == nil {
 		panic("Please call dxlib.Init() at first")
+	}
+
+	useRDTSCFlag := int32(FALSE)
+	if len(opt) > 0 && opt[0].UseRDTSCFlag != nil {
+		useRDTSCFlag = *opt[0].UseRDTSCFlag
 	}
 
 	res, _, _ := dx_GetNowCount.Call(pint32(useRDTSCFlag))
@@ -2510,9 +2551,14 @@ func GetNowCount(useRDTSCFlag int32) int32 {
 //
 // 引数
 //   useRDTSCFlag: デフォルト FALSE
-func GetNowHiPerformanceCount(useRDTSCFlag int32) int64 {
+func GetNowHiPerformanceCount(opt ...GetNowHiPerformanceCountOption) int64 {
 	if dx_GetNowHiPerformanceCount == nil {
 		panic("Please call dxlib.Init() at first")
+	}
+
+	useRDTSCFlag := int32(FALSE)
+	if len(opt) > 0 && opt[0].UseRDTSCFlag != nil {
+		useRDTSCFlag = *opt[0].UseRDTSCFlag
 	}
 
 	res, _, _ := dx_GetNowHiPerformanceCount.Call(pint32(useRDTSCFlag))

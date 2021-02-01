@@ -17,9 +17,14 @@ func main() {
 	// Initialize dxlib functions with DxLib.dll
 	dxlib.Init("DxLib.dll")
 
-	dxlib.ChangeWindowMode(dxlib.TRUE)              // Run as window mode
-	dxlib.SetGraphMode(640, 480, 16, 60)            // Set screen size: 640 * 480, 16bit, 60 FPS
-	dxlib.SetOutApplicationLogValidFlag(dxlib.TRUE) // Output DxLib log
+	// Run as window mode
+	dxlib.ChangeWindowMode(dxlib.TRUE)
+	// Set screen size: 640 * 480 and color bit num: 16
+	// optional argumentcan set by struct
+	colBitNum := int32(16)
+	dxlib.SetGraphMode(640, 480, dxlib.SetGraphModeOption{ColorBitNum: &colBitNum})
+	// Output DxLib log
+	dxlib.SetOutApplicationLogValidFlag(dxlib.TRUE)
 
 	dxlib.DxLib_Init()
 	dxlib.SetDrawScreen(dxlib.DX_SCREEN_BACK)

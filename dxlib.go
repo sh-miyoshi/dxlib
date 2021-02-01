@@ -137,7 +137,7 @@ package dxlib
 
 // その他画面操作系関数
 //comment; SetGraphMode; 画面モードの変更\n\n引数\n  sizeX, sizeY: 画面の解像度(デフォルト 640x480)\n  colorButNum: カラービット数(DXライブラリの標準色ビット数: 16)\n  refreshRate: デフォルト 60
-//dxlib int SetGraphMode(int sizeX, int sizeY, int colorBitNum, int refreshRate)
+//dxlib int SetGraphMode(int sizeX, int sizeY, int colorBitNum = 16, int refreshRate = 60)
 //dxlib int SetFullScreenResolutionMode(int resolutionMode)
 //dxlib int SetFullScreenScalingMode(int scalingMode, int fitScaling)
 //dxlib int GetScreenState(int *sizeX, int *sizeY, int *colorBitDepth)
@@ -213,7 +213,7 @@ package dxlib
 //dxlib int CheckSoundFile()
 //dxlib int StopSoundFile()
 //comment; LoadSoundMem; 音ファイルをメモリに読みこむ\n\n引数\n  fileName: ファイル名\n  bufferNum: デフォルト 3\n  unionHandle: デフォルト -1
-//dxlib int LoadSoundMem(char *fileName, int bufferNum, int unionHandle)
+//dxlib int LoadSoundMem(char *fileName, int bufferNum = 3, int unionHandle = -1)
 //dxlib int PlaySoundMem(int soundHandle, int playType, int topPositionFlag)
 //dxlib int CheckSoundMem(int soundHandle)
 //dxlib int StopSoundMem(int soundHandle)
@@ -261,9 +261,9 @@ package dxlib
 
 // 時間関係の関数
 //comment; GetNowCount; ミリ秒単位の精度を持つカウンタの現在値を得る\n\n引数\n  useRDTSCFlag: デフォルト FALSE
-//dxlib int GetNowCount(int useRDTSCFlag)
+//dxlib int GetNowCount(int useRDTSCFlag = FALSE)
 //comment; GetNowHiPerformanceCount; GetNowCountの高精度バージョン\n\n引数\n  useRDTSCFlag: デフォルト FALSE
-//dxlib LONGLONG GetNowHiPerformanceCount(int useRDTSCFlag)
+//dxlib LONGLONG GetNowHiPerformanceCount(int useRDTSCFlag = FALSE)
 //TODO int GetDateTime(DATEDATA *dataBuf)
 
 // 乱数取得関数
