@@ -45,9 +45,9 @@ type Parser struct {
 }
 
 var (
-	cTypes = []string{"arrayint", "arraychar", "int *", "int", "unsigned int", "char *", "char", "double", "float", "LONGLONG"}
+	cTypes = []string{"arrayint", "arraychar", "int *", "int", "unsigned int", "char *", "char", "double", "float", "LONGLONG", "VECTOR"}
 	// Sort in the same order as cTypes
-	goTypes = []string{"[]int32", "[]byte", "*int32", "int32", "uint32", "string", "byte", "float64", "float32", "int64"}
+	goTypes = []string{"[]int32", "[]byte", "*int32", "int32", "uint32", "string", "byte", "float64", "float32", "int64", "VECTOR"}
 )
 
 func convToGoType(cType string) (string, bool) {

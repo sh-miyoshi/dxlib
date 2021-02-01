@@ -154,226 +154,233 @@ type GetNowHiPerformanceCountOption struct {
 }
 
 var (
-	dx_DxLib_Init                           *syscall.LazyProc
-	dx_DxLib_End                            *syscall.LazyProc
-	dx_ProcessMessage                       *syscall.LazyProc
-	dx_DrawLine                             *syscall.LazyProc
-	dx_DrawLineAA                           *syscall.LazyProc
-	dx_DrawBox                              *syscall.LazyProc
-	dx_DrawBoxAA                            *syscall.LazyProc
-	dx_DrawCircle                           *syscall.LazyProc
-	dx_DrawCircleAA                         *syscall.LazyProc
-	dx_DrawOval                             *syscall.LazyProc
-	dx_DrawOvalAA                           *syscall.LazyProc
-	dx_DrawTriangle                         *syscall.LazyProc
-	dx_DrawTriangleAA                       *syscall.LazyProc
-	dx_DrawPixel                            *syscall.LazyProc
-	dx_GetPixel                             *syscall.LazyProc
-	dx_LoadGraphScreen                      *syscall.LazyProc
-	dx_LoadGraph                            *syscall.LazyProc
-	dx_LoadDivGraph                         *syscall.LazyProc
-	dx_MakeGraph                            *syscall.LazyProc
-	dx_MakeScreen                           *syscall.LazyProc
-	dx_SetCreateDrawValidGraphMultiSample   *syscall.LazyProc
-	dx_SetCreateGraphColorBitDepth          *syscall.LazyProc
-	dx_SetDrawValidFloatTypeGraphCreateFlag *syscall.LazyProc
-	dx_SetCreateDrawValidGraphChannelNum    *syscall.LazyProc
-	dx_SetUsePremulAlphaConvertLoad         *syscall.LazyProc
-	dx_DrawGraph                            *syscall.LazyProc
-	dx_DrawTurnGraph                        *syscall.LazyProc
-	dx_DrawExtendGraph                      *syscall.LazyProc
-	dx_DrawRotaGraph                        *syscall.LazyProc
-	dx_DrawRotaGraph2                       *syscall.LazyProc
-	dx_DrawRotaGraph3                       *syscall.LazyProc
-	dx_DrawRotaGraphFast                    *syscall.LazyProc
-	dx_DrawRotaGraphFast2                   *syscall.LazyProc
-	dx_DrawRotaGraphFast3                   *syscall.LazyProc
-	dx_DrawModiGraph                        *syscall.LazyProc
-	dx_DrawRectGraph                        *syscall.LazyProc
-	dx_DerivationGraph                      *syscall.LazyProc
-	dx_GetDrawScreenGraph                   *syscall.LazyProc
-	dx_GetGraphSize                         *syscall.LazyProc
-	dx_InitGraph                            *syscall.LazyProc
-	dx_DeleteGraph                          *syscall.LazyProc
-	dx_SetDrawMode                          *syscall.LazyProc
-	dx_SetDrawBlendMode                     *syscall.LazyProc
-	dx_SetDrawBright                        *syscall.LazyProc
-	dx_SetTransColor                        *syscall.LazyProc
-	dx_LoadBlendGraph                       *syscall.LazyProc
-	dx_DrawBlendGraph                       *syscall.LazyProc
-	dx_DrawString                           *syscall.LazyProc
-	dx_GetDrawStringWidth                   *syscall.LazyProc
-	dx_SetFontSize                          *syscall.LazyProc
-	dx_SetFontThickness                     *syscall.LazyProc
-	dx_ChangeFont                           *syscall.LazyProc
-	dx_ChangeFontType                       *syscall.LazyProc
-	dx_CreateFontToHandle                   *syscall.LazyProc
-	dx_LoadFontDataToHandle                 *syscall.LazyProc
-	dx_DeleteFontToHandle                   *syscall.LazyProc
-	dx_SetFontCacheUsePremulAlphaFlag       *syscall.LazyProc
-	dx_DrawStringToHandle                   *syscall.LazyProc
-	dx_GetDrawStringWidthToHandle           *syscall.LazyProc
-	dx_GetFontStateToHandle                 *syscall.LazyProc
-	dx_InitFontToHandle                     *syscall.LazyProc
-	dx_SetGraphMode                         *syscall.LazyProc
-	dx_SetFullScreenResolutionMode          *syscall.LazyProc
-	dx_SetFullScreenScalingMode             *syscall.LazyProc
-	dx_GetScreenState                       *syscall.LazyProc
-	dx_SetDrawArea                          *syscall.LazyProc
-	dx_SetBackgroundColor                   *syscall.LazyProc
-	dx_GetColor                             *syscall.LazyProc
-	dx_SetDrawScreen                        *syscall.LazyProc
-	dx_ScreenFlip                           *syscall.LazyProc
-	dx_SetFullSceneAntiAliasingMode         *syscall.LazyProc
-	dx_PlayMovie                            *syscall.LazyProc
-	dx_PlayMovieToGraph                     *syscall.LazyProc
-	dx_PauseMovieToGraph                    *syscall.LazyProc
-	dx_SeekMovieToGraph                     *syscall.LazyProc
-	dx_TellMovieToGraph                     *syscall.LazyProc
-	dx_GetMovieStateToGraph                 *syscall.LazyProc
-	dx_CreateMaskScreen                     *syscall.LazyProc
-	dx_DeleteMaskScreen                     *syscall.LazyProc
-	dx_LoadMask                             *syscall.LazyProc
-	dx_LoadDivMask                          *syscall.LazyProc
-	dx_DrawMask                             *syscall.LazyProc
-	dx_DrawFillMask                         *syscall.LazyProc
-	dx_DeleteMask                           *syscall.LazyProc
-	dx_InitMask                             *syscall.LazyProc
-	dx_FillMaskScreen                       *syscall.LazyProc
-	dx_SetUseMaskScreenFlag                 *syscall.LazyProc
-	dx_MakeMask                             *syscall.LazyProc
-	dx_GetMaskSize                          *syscall.LazyProc
-	dx_GetJoypadNum                         *syscall.LazyProc
-	dx_GetJoypadInputState                  *syscall.LazyProc
-	dx_GetJoypadAnalogInput                 *syscall.LazyProc
-	dx_SetJoypadDeadZone                    *syscall.LazyProc
-	dx_StartJoypadVibration                 *syscall.LazyProc
-	dx_StopJoypadVibration                  *syscall.LazyProc
-	dx_SetMouseDispFlag                     *syscall.LazyProc
-	dx_GetMousePoint                        *syscall.LazyProc
-	dx_SetMousePoint                        *syscall.LazyProc
-	dx_GetMouseInput                        *syscall.LazyProc
-	dx_GetMouseInputLog2                    *syscall.LazyProc
-	dx_GetMouseWheelRotVol                  *syscall.LazyProc
-	dx_GetTouchInputNum                     *syscall.LazyProc
-	dx_GetTouchInput                        *syscall.LazyProc
-	dx_CheckHitKeyAll                       *syscall.LazyProc
-	dx_CheckHitKey                          *syscall.LazyProc
-	dx_GetHitKeyStateAll                    *syscall.LazyProc
-	dx_GetInputChar                         *syscall.LazyProc
-	dx_GetInputCharWait                     *syscall.LazyProc
-	dx_ClearInputCharBuf                    *syscall.LazyProc
-	dx_KeyInputString                       *syscall.LazyProc
-	dx_KeyInputSingleCharString             *syscall.LazyProc
-	dx_KeyInputNumber                       *syscall.LazyProc
-	dx_SetKeyInputStringColor               *syscall.LazyProc
-	dx_MakeKeyInput                         *syscall.LazyProc
-	dx_DeleteKeyInput                       *syscall.LazyProc
-	dx_InitKeyInput                         *syscall.LazyProc
-	dx_SetActiveKeyInput                    *syscall.LazyProc
-	dx_CheckKeyInput                        *syscall.LazyProc
-	dx_DrawKeyInputString                   *syscall.LazyProc
-	dx_DrawKeyInputModeString               *syscall.LazyProc
-	dx_SetKeyInputString                    *syscall.LazyProc
-	dx_SetKeyInputNumber                    *syscall.LazyProc
-	dx_GetKeyInputNumber                    *syscall.LazyProc
-	dx_PlaySoundFile                        *syscall.LazyProc
-	dx_CheckSoundFile                       *syscall.LazyProc
-	dx_StopSoundFile                        *syscall.LazyProc
-	dx_LoadSoundMem                         *syscall.LazyProc
-	dx_PlaySoundMem                         *syscall.LazyProc
-	dx_CheckSoundMem                        *syscall.LazyProc
-	dx_StopSoundMem                         *syscall.LazyProc
-	dx_DeleteSoundMem                       *syscall.LazyProc
-	dx_InitSoundMem                         *syscall.LazyProc
-	dx_ChangePanSoundMem                    *syscall.LazyProc
-	dx_ChangeVolumeSoundMem                 *syscall.LazyProc
-	dx_ChangeNextPlayPanSoundMem            *syscall.LazyProc
-	dx_ChangeNextPlayVolumeSoundMem         *syscall.LazyProc
-	dx_SetFrequencySoundMem                 *syscall.LazyProc
-	dx_SetLoopPosSoundMem                   *syscall.LazyProc
-	dx_SetLoopSamplePosSoundMem             *syscall.LazyProc
-	dx_SetCurrentPositionSoundMem           *syscall.LazyProc
-	dx_DuplicateSoundMem                    *syscall.LazyProc
-	dx_SetCreateSoundPitchRate              *syscall.LazyProc
-	dx_SetCreateSoundTimeStretchRate        *syscall.LazyProc
-	dx_Set3DRadiusSoundMem                  *syscall.LazyProc
-	dx_SetNextPlay3DRadiusSoundMem          *syscall.LazyProc
-	dx_Set3DPresetReverbParamSoundMem       *syscall.LazyProc
-	dx_Set3DPresetReverbParamSoundMemAll    *syscall.LazyProc
-	dx_SetCreate3DSoundFlag                 *syscall.LazyProc
-	dx_SetEnableXAudioFlag                  *syscall.LazyProc
-	dx_Set3DSoundOneMetre                   *syscall.LazyProc
-	dx_PlayMusic                            *syscall.LazyProc
-	dx_CheckMusic                           *syscall.LazyProc
-	dx_StopMusic                            *syscall.LazyProc
-	dx_SetVolumeMusic                       *syscall.LazyProc
-	dx_WaitTimer                            *syscall.LazyProc
-	dx_WaitVSync                            *syscall.LazyProc
-	dx_WaitKey                              *syscall.LazyProc
-	dx_GetNowCount                          *syscall.LazyProc
-	dx_GetNowHiPerformanceCount             *syscall.LazyProc
-	dx_GetRand                              *syscall.LazyProc
-	dx_SRand                                *syscall.LazyProc
-	dx_ChangeWindowMode                     *syscall.LazyProc
-	dx_SetMainWindowText                    *syscall.LazyProc
-	dx_SetWindowIconID                      *syscall.LazyProc
-	dx_SetWindowSizeChangeEnableFlag        *syscall.LazyProc
-	dx_SetWindowSizeExtendRate              *syscall.LazyProc
-	dx_FileRead_open                        *syscall.LazyProc
-	dx_FileRead_size                        *syscall.LazyProc
-	dx_FileRead_close                       *syscall.LazyProc
-	dx_FileRead_tell                        *syscall.LazyProc
-	dx_FileRead_seek                        *syscall.LazyProc
-	dx_FileRead_eof                         *syscall.LazyProc
-	dx_FileRead_gets                        *syscall.LazyProc
-	dx_FileRead_getc                        *syscall.LazyProc
-	dx_LoadSoftImage                        *syscall.LazyProc
-	dx_LoadARGB8ColorSoftImage              *syscall.LazyProc
-	dx_LoadXRGB8ColorSoftImage              *syscall.LazyProc
-	dx_MakeARGB8ColorSoftImage              *syscall.LazyProc
-	dx_MakeXRGB8ColorSoftImage              *syscall.LazyProc
-	dx_MakePAL8ColorSoftImage               *syscall.LazyProc
-	dx_DeleteSoftImage                      *syscall.LazyProc
-	dx_InitSoftImage                        *syscall.LazyProc
-	dx_GetSoftImageSize                     *syscall.LazyProc
-	dx_FillSoftImage                        *syscall.LazyProc
-	dx_SetPaletteSoftImage                  *syscall.LazyProc
-	dx_GetPaletteSoftImage                  *syscall.LazyProc
-	dx_DrawPixelPalCodeSoftImage            *syscall.LazyProc
-	dx_GetPixelPalCodeSoftImage             *syscall.LazyProc
-	dx_DrawPixelSoftImage                   *syscall.LazyProc
-	dx_GetPixelSoftImage                    *syscall.LazyProc
-	dx_BltSoftImage                         *syscall.LazyProc
-	dx_DrawSoftImage                        *syscall.LazyProc
-	dx_CreateGraphFromSoftImage             *syscall.LazyProc
-	dx_CreateDivGraphFromSoftImage          *syscall.LazyProc
-	dx_SetUseASyncLoadFlag                  *syscall.LazyProc
-	dx_CheckHandleASyncLoad                 *syscall.LazyProc
-	dx_GetASyncLoadNum                      *syscall.LazyProc
-	dx_SetUseCharCodeFormat                 *syscall.LazyProc
-	dx_SetAlwaysRunFlag                     *syscall.LazyProc
-	dx_SetOutApplicationLogValidFlag        *syscall.LazyProc
-	dx_SetUseDXArchiveFlag                  *syscall.LazyProc
-	dx_SetDXArchiveExtension                *syscall.LazyProc
-	dx_SetDXArchiveKeyString                *syscall.LazyProc
-	dx_SetEmulation320x240                  *syscall.LazyProc
-	dx_SetUse3DFlag                         *syscall.LazyProc
-	dx_SetWaitVSyncFlag                     *syscall.LazyProc
-	dx_SetUseDivGraphFlag                   *syscall.LazyProc
-	dx_LoadPauseGraph                       *syscall.LazyProc
-	dx_ScreenCopy                           *syscall.LazyProc
-	dx_GetColorBitDepth                     *syscall.LazyProc
-	dx_SaveDrawScreen                       *syscall.LazyProc
-	dx_EnumFontName                         *syscall.LazyProc
-	dx_DrawVString                          *syscall.LazyProc
-	dx_DrawVStringToHandle                  *syscall.LazyProc
-	dx_ReloadFileGraphAll                   *syscall.LazyProc
-	dx_SetCreateSoundDataType               *syscall.LazyProc
-	dx_SelectMidiMode                       *syscall.LazyProc
-	dx_DrawFormatString                     *syscall.LazyProc
-	dx_DrawFormatStringToHandle             *syscall.LazyProc
-	dx_ClearDrawScreen                      *syscall.LazyProc
+	dx_DxLib_Init                               *syscall.LazyProc
+	dx_DxLib_End                                *syscall.LazyProc
+	dx_ProcessMessage                           *syscall.LazyProc
+	dx_DrawLine                                 *syscall.LazyProc
+	dx_DrawLineAA                               *syscall.LazyProc
+	dx_DrawBox                                  *syscall.LazyProc
+	dx_DrawBoxAA                                *syscall.LazyProc
+	dx_DrawCircle                               *syscall.LazyProc
+	dx_DrawCircleAA                             *syscall.LazyProc
+	dx_DrawOval                                 *syscall.LazyProc
+	dx_DrawOvalAA                               *syscall.LazyProc
+	dx_DrawTriangle                             *syscall.LazyProc
+	dx_DrawTriangleAA                           *syscall.LazyProc
+	dx_DrawPixel                                *syscall.LazyProc
+	dx_GetPixel                                 *syscall.LazyProc
+	dx_LoadGraphScreen                          *syscall.LazyProc
+	dx_LoadGraph                                *syscall.LazyProc
+	dx_LoadDivGraph                             *syscall.LazyProc
+	dx_MakeGraph                                *syscall.LazyProc
+	dx_MakeScreen                               *syscall.LazyProc
+	dx_SetCreateDrawValidGraphMultiSample       *syscall.LazyProc
+	dx_SetCreateGraphColorBitDepth              *syscall.LazyProc
+	dx_SetDrawValidFloatTypeGraphCreateFlag     *syscall.LazyProc
+	dx_SetCreateDrawValidGraphChannelNum        *syscall.LazyProc
+	dx_SetUsePremulAlphaConvertLoad             *syscall.LazyProc
+	dx_DrawGraph                                *syscall.LazyProc
+	dx_DrawTurnGraph                            *syscall.LazyProc
+	dx_DrawExtendGraph                          *syscall.LazyProc
+	dx_DrawRotaGraph                            *syscall.LazyProc
+	dx_DrawRotaGraph2                           *syscall.LazyProc
+	dx_DrawRotaGraph3                           *syscall.LazyProc
+	dx_DrawRotaGraphFast                        *syscall.LazyProc
+	dx_DrawRotaGraphFast2                       *syscall.LazyProc
+	dx_DrawRotaGraphFast3                       *syscall.LazyProc
+	dx_DrawModiGraph                            *syscall.LazyProc
+	dx_DrawRectGraph                            *syscall.LazyProc
+	dx_DerivationGraph                          *syscall.LazyProc
+	dx_GetDrawScreenGraph                       *syscall.LazyProc
+	dx_GetGraphSize                             *syscall.LazyProc
+	dx_InitGraph                                *syscall.LazyProc
+	dx_DeleteGraph                              *syscall.LazyProc
+	dx_SetDrawMode                              *syscall.LazyProc
+	dx_SetDrawBlendMode                         *syscall.LazyProc
+	dx_SetDrawBright                            *syscall.LazyProc
+	dx_SetTransColor                            *syscall.LazyProc
+	dx_LoadBlendGraph                           *syscall.LazyProc
+	dx_DrawBlendGraph                           *syscall.LazyProc
+	dx_DrawString                               *syscall.LazyProc
+	dx_GetDrawStringWidth                       *syscall.LazyProc
+	dx_SetFontSize                              *syscall.LazyProc
+	dx_SetFontThickness                         *syscall.LazyProc
+	dx_ChangeFont                               *syscall.LazyProc
+	dx_ChangeFontType                           *syscall.LazyProc
+	dx_CreateFontToHandle                       *syscall.LazyProc
+	dx_LoadFontDataToHandle                     *syscall.LazyProc
+	dx_DeleteFontToHandle                       *syscall.LazyProc
+	dx_SetFontCacheUsePremulAlphaFlag           *syscall.LazyProc
+	dx_DrawStringToHandle                       *syscall.LazyProc
+	dx_GetDrawStringWidthToHandle               *syscall.LazyProc
+	dx_GetFontStateToHandle                     *syscall.LazyProc
+	dx_InitFontToHandle                         *syscall.LazyProc
+	dx_SetGraphMode                             *syscall.LazyProc
+	dx_SetFullScreenResolutionMode              *syscall.LazyProc
+	dx_SetFullScreenScalingMode                 *syscall.LazyProc
+	dx_GetScreenState                           *syscall.LazyProc
+	dx_SetDrawArea                              *syscall.LazyProc
+	dx_SetBackgroundColor                       *syscall.LazyProc
+	dx_GetColor                                 *syscall.LazyProc
+	dx_SetDrawScreen                            *syscall.LazyProc
+	dx_ScreenFlip                               *syscall.LazyProc
+	dx_SetFullSceneAntiAliasingMode             *syscall.LazyProc
+	dx_PlayMovie                                *syscall.LazyProc
+	dx_PlayMovieToGraph                         *syscall.LazyProc
+	dx_PauseMovieToGraph                        *syscall.LazyProc
+	dx_SeekMovieToGraph                         *syscall.LazyProc
+	dx_TellMovieToGraph                         *syscall.LazyProc
+	dx_GetMovieStateToGraph                     *syscall.LazyProc
+	dx_CreateMaskScreen                         *syscall.LazyProc
+	dx_DeleteMaskScreen                         *syscall.LazyProc
+	dx_LoadMask                                 *syscall.LazyProc
+	dx_LoadDivMask                              *syscall.LazyProc
+	dx_DrawMask                                 *syscall.LazyProc
+	dx_DrawFillMask                             *syscall.LazyProc
+	dx_DeleteMask                               *syscall.LazyProc
+	dx_InitMask                                 *syscall.LazyProc
+	dx_FillMaskScreen                           *syscall.LazyProc
+	dx_SetUseMaskScreenFlag                     *syscall.LazyProc
+	dx_MakeMask                                 *syscall.LazyProc
+	dx_GetMaskSize                              *syscall.LazyProc
+	dx_GetJoypadNum                             *syscall.LazyProc
+	dx_GetJoypadInputState                      *syscall.LazyProc
+	dx_GetJoypadAnalogInput                     *syscall.LazyProc
+	dx_SetJoypadDeadZone                        *syscall.LazyProc
+	dx_StartJoypadVibration                     *syscall.LazyProc
+	dx_StopJoypadVibration                      *syscall.LazyProc
+	dx_SetMouseDispFlag                         *syscall.LazyProc
+	dx_GetMousePoint                            *syscall.LazyProc
+	dx_SetMousePoint                            *syscall.LazyProc
+	dx_GetMouseInput                            *syscall.LazyProc
+	dx_GetMouseInputLog2                        *syscall.LazyProc
+	dx_GetMouseWheelRotVol                      *syscall.LazyProc
+	dx_GetTouchInputNum                         *syscall.LazyProc
+	dx_GetTouchInput                            *syscall.LazyProc
+	dx_CheckHitKeyAll                           *syscall.LazyProc
+	dx_CheckHitKey                              *syscall.LazyProc
+	dx_GetHitKeyStateAll                        *syscall.LazyProc
+	dx_GetInputChar                             *syscall.LazyProc
+	dx_GetInputCharWait                         *syscall.LazyProc
+	dx_ClearInputCharBuf                        *syscall.LazyProc
+	dx_KeyInputString                           *syscall.LazyProc
+	dx_KeyInputSingleCharString                 *syscall.LazyProc
+	dx_KeyInputNumber                           *syscall.LazyProc
+	dx_SetKeyInputStringColor                   *syscall.LazyProc
+	dx_MakeKeyInput                             *syscall.LazyProc
+	dx_DeleteKeyInput                           *syscall.LazyProc
+	dx_InitKeyInput                             *syscall.LazyProc
+	dx_SetActiveKeyInput                        *syscall.LazyProc
+	dx_CheckKeyInput                            *syscall.LazyProc
+	dx_DrawKeyInputString                       *syscall.LazyProc
+	dx_DrawKeyInputModeString                   *syscall.LazyProc
+	dx_SetKeyInputString                        *syscall.LazyProc
+	dx_SetKeyInputNumber                        *syscall.LazyProc
+	dx_GetKeyInputNumber                        *syscall.LazyProc
+	dx_PlaySoundFile                            *syscall.LazyProc
+	dx_CheckSoundFile                           *syscall.LazyProc
+	dx_StopSoundFile                            *syscall.LazyProc
+	dx_LoadSoundMem                             *syscall.LazyProc
+	dx_PlaySoundMem                             *syscall.LazyProc
+	dx_CheckSoundMem                            *syscall.LazyProc
+	dx_StopSoundMem                             *syscall.LazyProc
+	dx_DeleteSoundMem                           *syscall.LazyProc
+	dx_InitSoundMem                             *syscall.LazyProc
+	dx_ChangePanSoundMem                        *syscall.LazyProc
+	dx_ChangeVolumeSoundMem                     *syscall.LazyProc
+	dx_ChangeNextPlayPanSoundMem                *syscall.LazyProc
+	dx_ChangeNextPlayVolumeSoundMem             *syscall.LazyProc
+	dx_SetFrequencySoundMem                     *syscall.LazyProc
+	dx_SetLoopPosSoundMem                       *syscall.LazyProc
+	dx_SetLoopSamplePosSoundMem                 *syscall.LazyProc
+	dx_SetCurrentPositionSoundMem               *syscall.LazyProc
+	dx_DuplicateSoundMem                        *syscall.LazyProc
+	dx_SetCreateSoundPitchRate                  *syscall.LazyProc
+	dx_SetCreateSoundTimeStretchRate            *syscall.LazyProc
+	dx_Set3DPositionSoundMem                    *syscall.LazyProc
+	dx_Set3DRadiusSoundMem                      *syscall.LazyProc
+	dx_Set3DVelocitySoundMem                    *syscall.LazyProc
+	dx_SetNextPlay3DPositionSoundMem            *syscall.LazyProc
+	dx_SetNextPlay3DRadiusSoundMem              *syscall.LazyProc
+	dx_SetNextPlay3DVelocitySoundMem            *syscall.LazyProc
+	dx_Set3DPresetReverbParamSoundMem           *syscall.LazyProc
+	dx_Set3DPresetReverbParamSoundMemAll        *syscall.LazyProc
+	dx_SetCreate3DSoundFlag                     *syscall.LazyProc
+	dx_SetEnableXAudioFlag                      *syscall.LazyProc
+	dx_Set3DSoundOneMetre                       *syscall.LazyProc
+	dx_Set3DSoundListenerPosAndFrontPos_UpVecY  *syscall.LazyProc
+	dx_Set3DSoundListenerPosAndFrontPosAndUpVec *syscall.LazyProc
+	dx_Set3DSoundListenerVelocity               *syscall.LazyProc
+	dx_PlayMusic                                *syscall.LazyProc
+	dx_CheckMusic                               *syscall.LazyProc
+	dx_StopMusic                                *syscall.LazyProc
+	dx_SetVolumeMusic                           *syscall.LazyProc
+	dx_WaitTimer                                *syscall.LazyProc
+	dx_WaitVSync                                *syscall.LazyProc
+	dx_WaitKey                                  *syscall.LazyProc
+	dx_GetNowCount                              *syscall.LazyProc
+	dx_GetNowHiPerformanceCount                 *syscall.LazyProc
+	dx_GetRand                                  *syscall.LazyProc
+	dx_SRand                                    *syscall.LazyProc
+	dx_ChangeWindowMode                         *syscall.LazyProc
+	dx_SetMainWindowText                        *syscall.LazyProc
+	dx_SetWindowIconID                          *syscall.LazyProc
+	dx_SetWindowSizeChangeEnableFlag            *syscall.LazyProc
+	dx_SetWindowSizeExtendRate                  *syscall.LazyProc
+	dx_FileRead_open                            *syscall.LazyProc
+	dx_FileRead_size                            *syscall.LazyProc
+	dx_FileRead_close                           *syscall.LazyProc
+	dx_FileRead_tell                            *syscall.LazyProc
+	dx_FileRead_seek                            *syscall.LazyProc
+	dx_FileRead_eof                             *syscall.LazyProc
+	dx_FileRead_gets                            *syscall.LazyProc
+	dx_FileRead_getc                            *syscall.LazyProc
+	dx_LoadSoftImage                            *syscall.LazyProc
+	dx_LoadARGB8ColorSoftImage                  *syscall.LazyProc
+	dx_LoadXRGB8ColorSoftImage                  *syscall.LazyProc
+	dx_MakeARGB8ColorSoftImage                  *syscall.LazyProc
+	dx_MakeXRGB8ColorSoftImage                  *syscall.LazyProc
+	dx_MakePAL8ColorSoftImage                   *syscall.LazyProc
+	dx_DeleteSoftImage                          *syscall.LazyProc
+	dx_InitSoftImage                            *syscall.LazyProc
+	dx_GetSoftImageSize                         *syscall.LazyProc
+	dx_FillSoftImage                            *syscall.LazyProc
+	dx_SetPaletteSoftImage                      *syscall.LazyProc
+	dx_GetPaletteSoftImage                      *syscall.LazyProc
+	dx_DrawPixelPalCodeSoftImage                *syscall.LazyProc
+	dx_GetPixelPalCodeSoftImage                 *syscall.LazyProc
+	dx_DrawPixelSoftImage                       *syscall.LazyProc
+	dx_GetPixelSoftImage                        *syscall.LazyProc
+	dx_BltSoftImage                             *syscall.LazyProc
+	dx_DrawSoftImage                            *syscall.LazyProc
+	dx_CreateGraphFromSoftImage                 *syscall.LazyProc
+	dx_CreateDivGraphFromSoftImage              *syscall.LazyProc
+	dx_SetUseASyncLoadFlag                      *syscall.LazyProc
+	dx_CheckHandleASyncLoad                     *syscall.LazyProc
+	dx_GetASyncLoadNum                          *syscall.LazyProc
+	dx_SetUseCharCodeFormat                     *syscall.LazyProc
+	dx_SetAlwaysRunFlag                         *syscall.LazyProc
+	dx_SetOutApplicationLogValidFlag            *syscall.LazyProc
+	dx_SetUseDXArchiveFlag                      *syscall.LazyProc
+	dx_SetDXArchiveExtension                    *syscall.LazyProc
+	dx_SetDXArchiveKeyString                    *syscall.LazyProc
+	dx_SetEmulation320x240                      *syscall.LazyProc
+	dx_SetUse3DFlag                             *syscall.LazyProc
+	dx_SetWaitVSyncFlag                         *syscall.LazyProc
+	dx_SetUseDivGraphFlag                       *syscall.LazyProc
+	dx_LoadPauseGraph                           *syscall.LazyProc
+	dx_ScreenCopy                               *syscall.LazyProc
+	dx_GetColorBitDepth                         *syscall.LazyProc
+	dx_SaveDrawScreen                           *syscall.LazyProc
+	dx_EnumFontName                             *syscall.LazyProc
+	dx_DrawVString                              *syscall.LazyProc
+	dx_DrawVStringToHandle                      *syscall.LazyProc
+	dx_ReloadFileGraphAll                       *syscall.LazyProc
+	dx_SetCreateSoundDataType                   *syscall.LazyProc
+	dx_SelectMidiMode                           *syscall.LazyProc
+	dx_DrawFormatString                         *syscall.LazyProc
+	dx_DrawFormatStringToHandle                 *syscall.LazyProc
+	dx_ClearDrawScreen                          *syscall.LazyProc
 )
 
 // Init method set procs from dllFile.
@@ -524,13 +531,20 @@ func Init(dllFile string) {
 	dx_DuplicateSoundMem = mod.NewProc("dx_DuplicateSoundMem")
 	dx_SetCreateSoundPitchRate = mod.NewProc("dx_SetCreateSoundPitchRate")
 	dx_SetCreateSoundTimeStretchRate = mod.NewProc("dx_SetCreateSoundTimeStretchRate")
+	dx_Set3DPositionSoundMem = mod.NewProc("dx_Set3DPositionSoundMem")
 	dx_Set3DRadiusSoundMem = mod.NewProc("dx_Set3DRadiusSoundMem")
+	dx_Set3DVelocitySoundMem = mod.NewProc("dx_Set3DVelocitySoundMem")
+	dx_SetNextPlay3DPositionSoundMem = mod.NewProc("dx_SetNextPlay3DPositionSoundMem")
 	dx_SetNextPlay3DRadiusSoundMem = mod.NewProc("dx_SetNextPlay3DRadiusSoundMem")
+	dx_SetNextPlay3DVelocitySoundMem = mod.NewProc("dx_SetNextPlay3DVelocitySoundMem")
 	dx_Set3DPresetReverbParamSoundMem = mod.NewProc("dx_Set3DPresetReverbParamSoundMem")
 	dx_Set3DPresetReverbParamSoundMemAll = mod.NewProc("dx_Set3DPresetReverbParamSoundMemAll")
 	dx_SetCreate3DSoundFlag = mod.NewProc("dx_SetCreate3DSoundFlag")
 	dx_SetEnableXAudioFlag = mod.NewProc("dx_SetEnableXAudioFlag")
 	dx_Set3DSoundOneMetre = mod.NewProc("dx_Set3DSoundOneMetre")
+	dx_Set3DSoundListenerPosAndFrontPos_UpVecY = mod.NewProc("dx_Set3DSoundListenerPosAndFrontPos_UpVecY")
+	dx_Set3DSoundListenerPosAndFrontPosAndUpVec = mod.NewProc("dx_Set3DSoundListenerPosAndFrontPosAndUpVec")
+	dx_Set3DSoundListenerVelocity = mod.NewProc("dx_Set3DSoundListenerVelocity")
 	dx_PlayMusic = mod.NewProc("dx_PlayMusic")
 	dx_CheckMusic = mod.NewProc("dx_CheckMusic")
 	dx_StopMusic = mod.NewProc("dx_StopMusic")
@@ -2403,6 +2417,15 @@ func SetCreateSoundTimeStretchRate(rate float32) int32 {
 	return int32(res)
 }
 
+func Set3DPositionSoundMem(position VECTOR, soundHandle int32) int32 {
+	if dx_Set3DPositionSoundMem == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_Set3DPositionSoundMem.Call(pVECTOR(position), pint32(soundHandle))
+	return int32(res)
+}
+
 func Set3DRadiusSoundMem(radius float32, soundHandle int32) int32 {
 	if dx_Set3DRadiusSoundMem == nil {
 		panic("Please call dxlib.Init() at first")
@@ -2412,12 +2435,39 @@ func Set3DRadiusSoundMem(radius float32, soundHandle int32) int32 {
 	return int32(res)
 }
 
+func Set3DVelocitySoundMem(velocity VECTOR, soundHandle int32) int32 {
+	if dx_Set3DVelocitySoundMem == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_Set3DVelocitySoundMem.Call(pVECTOR(velocity), pint32(soundHandle))
+	return int32(res)
+}
+
+func SetNextPlay3DPositionSoundMem(position VECTOR, soundHandle int32) int32 {
+	if dx_SetNextPlay3DPositionSoundMem == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_SetNextPlay3DPositionSoundMem.Call(pVECTOR(position), pint32(soundHandle))
+	return int32(res)
+}
+
 func SetNextPlay3DRadiusSoundMem(radius float32, soundHandle int32) int32 {
 	if dx_SetNextPlay3DRadiusSoundMem == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
 	res, _, _ := dx_SetNextPlay3DRadiusSoundMem.Call(pfloat32(radius), pint32(soundHandle))
+	return int32(res)
+}
+
+func SetNextPlay3DVelocitySoundMem(velocity VECTOR, soundHandle int32) int32 {
+	if dx_SetNextPlay3DVelocitySoundMem == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_SetNextPlay3DVelocitySoundMem.Call(pVECTOR(velocity), pint32(soundHandle))
 	return int32(res)
 }
 
@@ -2463,6 +2513,33 @@ func Set3DSoundOneMetre(distance float32) int32 {
 	}
 
 	res, _, _ := dx_Set3DSoundOneMetre.Call(pfloat32(distance))
+	return int32(res)
+}
+
+func Set3DSoundListenerPosAndFrontPos_UpVecY(position VECTOR, frontPosition VECTOR) int32 {
+	if dx_Set3DSoundListenerPosAndFrontPos_UpVecY == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_Set3DSoundListenerPosAndFrontPos_UpVecY.Call(pVECTOR(position), pVECTOR(frontPosition))
+	return int32(res)
+}
+
+func Set3DSoundListenerPosAndFrontPosAndUpVec(position VECTOR, frontPosition VECTOR, upVector VECTOR) int32 {
+	if dx_Set3DSoundListenerPosAndFrontPosAndUpVec == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_Set3DSoundListenerPosAndFrontPosAndUpVec.Call(pVECTOR(position), pVECTOR(frontPosition), pVECTOR(upVector))
+	return int32(res)
+}
+
+func Set3DSoundListenerVelocity(velocity VECTOR) int32 {
+	if dx_Set3DSoundListenerVelocity == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_Set3DSoundListenerVelocity.Call(pVECTOR(velocity))
 	return int32(res)
 }
 
@@ -3151,4 +3228,8 @@ func pstring(str string) uintptr {
 		panic(err)
 	}
 	return uintptr(unsafe.Pointer(pbyte))
+}
+
+func pVECTOR(vec VECTOR) uintptr {
+	return uintptr(unsafe.Pointer(&vec))
 }

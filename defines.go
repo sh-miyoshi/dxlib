@@ -351,3 +351,7 @@ type RECT struct {
 	right  int32
 	bottom int32
 }
+
+type VECTOR struct {
+	X, Y, Z float64
+}

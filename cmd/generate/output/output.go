@@ -221,6 +221,10 @@ func pstring(str string) uintptr {
 	}
 	return uintptr(unsafe.Pointer(pbyte))
 }
+
+func pVECTOR(vec VECTOR) uintptr {
+	return uintptr(unsafe.Pointer(&vec))
+}
 `)
 }
 
