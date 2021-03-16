@@ -21,8 +21,7 @@ func main() {
 	dxlib.ChangeWindowMode(dxlib.TRUE)
 	// Set screen size: 640 * 480 and color bit num: 16
 	// optional argumentcan set by struct
-	colBitNum := int32(16)
-	dxlib.SetGraphMode(640, 480, dxlib.SetGraphModeOption{ColorBitNum: &colBitNum})
+	dxlib.SetGraphMode(640, 480, dxlib.SetGraphModeOption{ColorBitNum: dxlib.Int32Ptr(16)})
 	// Output DxLib log
 	dxlib.SetOutApplicationLogValidFlag(dxlib.TRUE)
 
