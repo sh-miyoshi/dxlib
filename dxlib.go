@@ -337,12 +337,14 @@ package dxlib
 //dxlib int ReloadFileGraphAll()
 //dxlib int SetCreateSoundDataType(int soundDataType)
 //dxlib int SelectMidiMode(int mode)
+//dxlib int RemoveFontFile(HANDLE fontHandle)
 
 // Extra functions
 // 直接DXライブラリの関数を呼ばずにGo言語側で処理することで呼べる関数
 //ext_dxlib DrawFormatString
 //ext_dxlib DrawFormatStringToHandle
 //ext_dxlib ClearDrawScreen
+//ext_dxlib AddFontFile
 
 // Unsupported functions
 // 公式のreadme.txtより

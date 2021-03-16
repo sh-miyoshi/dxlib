@@ -173,6 +173,18 @@ func ClearDrawScreen() int32 {
 	res, _, _ := dx_ClearDrawScreen.Call(uintptr(unsafe.Pointer(&temp)))
 	return int32(res)
 }
+
+func AddFontFile(fontFilePath string) *int32 {
+	if dx_AddFontFile == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_AddFontFile.Call(pstring(fontFilePath))
+	if res == 0 {
+		return nil
+	}
+	return (*int32)(unsafe.Pointer(&res))
+}
 `)
 }
 

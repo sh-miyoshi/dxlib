@@ -378,9 +378,11 @@ var (
 	dx_ReloadFileGraphAll                       *syscall.LazyProc
 	dx_SetCreateSoundDataType                   *syscall.LazyProc
 	dx_SelectMidiMode                           *syscall.LazyProc
+	dx_RemoveFontFile                           *syscall.LazyProc
 	dx_DrawFormatString                         *syscall.LazyProc
 	dx_DrawFormatStringToHandle                 *syscall.LazyProc
 	dx_ClearDrawScreen                          *syscall.LazyProc
+	dx_AddFontFile                              *syscall.LazyProc
 )
 
 // Init method set procs from dllFile.
@@ -612,9 +614,11 @@ func Init(dllFile string) {
 	dx_ReloadFileGraphAll = mod.NewProc("dx_ReloadFileGraphAll")
 	dx_SetCreateSoundDataType = mod.NewProc("dx_SetCreateSoundDataType")
 	dx_SelectMidiMode = mod.NewProc("dx_SelectMidiMode")
+	dx_RemoveFontFile = mod.NewProc("dx_RemoveFontFile")
 	dx_DrawFormatString = mod.NewProc("dx_DrawFormatString")
 	dx_DrawFormatStringToHandle = mod.NewProc("dx_DrawFormatStringToHandle")
 	dx_ClearDrawScreen = mod.NewProc("dx_ClearDrawScreen")
+	dx_AddFontFile = mod.NewProc("dx_AddFontFile")
 
 }
 
@@ -3164,6 +3168,15 @@ func SelectMidiMode(mode int32) int32 {
 	return int32(res)
 }
 
+func RemoveFontFile(fontHandle *int32) int32 {
+	if dx_RemoveFontFile == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_RemoveFontFile.Call(ppint32(fontHandle))
+	return int32(res)
+}
+
 func DrawFormatString(x int32, y int32, color uint32, format string, a ...interface{}) int32 {
 	str := fmt.Sprintf(format, a...)
 	return DrawString(x, y, str, color)
@@ -3184,6 +3197,18 @@ func ClearDrawScreen() int32 {
 
 	res, _, _ := dx_ClearDrawScreen.Call(uintptr(unsafe.Pointer(&temp)))
 	return int32(res)
+}
+
+func AddFontFile(fontFilePath string) *int32 {
+	if dx_AddFontFile == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_AddFontFile.Call(pstring(fontFilePath))
+	if res == 0 {
+		return nil
+	}
+	return (*int32)(unsafe.Pointer(&res))
 }
 
 func ppint32(i *int32) uintptr {
