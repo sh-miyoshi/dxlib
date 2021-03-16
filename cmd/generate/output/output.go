@@ -15,6 +15,7 @@ func Output(filePath string, data parse.Data) {
 	var buf bytes.Buffer
 	writeHeader(&buf, data.PackageName)
 	writeOpt(&buf, data.Options)
+	writeUtilFuncs(&buf)
 	writeFunc(&buf, data.Funcs, data.ExtFuncs, data.Options)
 	writeExtFunc(&buf)
 	writePFuncs(&buf)
@@ -236,6 +237,26 @@ func pstring(str string) uintptr {
 
 func pVECTOR(vec VECTOR) uintptr {
 	return uintptr(unsafe.Pointer(&vec))
+}
+`)
+}
+
+func writeUtilFuncs(w io.Writer) {
+	io.WriteString(w, `
+func Int32Ptr(a int32) *int32 {
+	return &a
+}
+
+func Uint32Ptr(a uint32) *uint32 {
+	return &a
+}
+
+func Float32Ptr(a float32) *float32 {
+	return &a
+}
+
+func StringPtr(a string) *string {
+	return &a
 }
 `)
 }

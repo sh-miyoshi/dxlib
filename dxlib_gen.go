@@ -153,6 +153,22 @@ type GetNowHiPerformanceCountOption struct {
 	UseRDTSCFlag *int32
 }
 
+func Int32Ptr(a int32) *int32 {
+	return &a
+}
+
+func Uint32Ptr(a uint32) *uint32 {
+	return &a
+}
+
+func Float32Ptr(a float32) *float32 {
+	return &a
+}
+
+func StringPtr(a string) *string {
+	return &a
+}
+
 var (
 	dx_DxLib_Init                               *syscall.LazyProc
 	dx_DxLib_End                                *syscall.LazyProc
