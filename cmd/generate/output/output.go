@@ -153,17 +153,17 @@ func {{ $func.Name }}({{ $func.GoArgs }}) {{ $func.Response }} {
 
 func writeExtFunc(w io.Writer) {
 	io.WriteString(w, `
-func DrawFormatString(x int32, y int32, color uint32, format string, a ...interface{}) int32 {
+func DrawFormatString(x int, y int, color uint, format string, a ...interface{}) int {
 	str := fmt.Sprintf(format, a...)
 	return DrawString(x, y, str, color)
 }
 
-func DrawFormatStringToHandle(x int32, y int32, color uint32, fontHandle int32, format string, a ...interface{}) int32 {
+func DrawFormatStringToHandle(x int, y int, color uint, fontHandle int, format string, a ...interface{}) int {
 	str := fmt.Sprintf(format, a...)
 	return DrawStringToHandle(x, y, str, color, fontHandle)
 }
 
-func ClearDrawScreen() int32 {
+func ClearDrawScreen() int {
 	temp := RECT{
 		left: -1,
 		top: -1,
@@ -172,10 +172,10 @@ func ClearDrawScreen() int32 {
 	}
 
 	res, _, _ := dx_ClearDrawScreen.Call(uintptr(unsafe.Pointer(&temp)))
-	return int32(res)
+	return int(res)
 }
 
-func AddFontFile(fontFilePath string) *int32 {
+func AddFontFile(fontFilePath string) *int {
 	if dx_AddFontFile == nil {
 		panic("Please call dxlib.Init() at first")
 	}
@@ -184,22 +184,22 @@ func AddFontFile(fontFilePath string) *int32 {
 	if res == 0 {
 		return nil
 	}
-	return (*int32)(unsafe.Pointer(&res))
+	return (*int)(unsafe.Pointer(&res))
 }
 `)
 }
 
 func writePFuncs(w io.Writer) {
 	io.WriteString(w, `
-func ppint32(i *int32) uintptr {
+func ppint(i *int) uintptr {
 	return uintptr(unsafe.Pointer(i))
 }
 
-func pint32(i int32) uintptr {
+func pint(i int) uintptr {
 	return uintptr(i)
 }
 
-func puint32(ui uint32) uintptr {
+func puint(ui uint) uintptr {
 	return uintptr(ui)
 }
 
@@ -219,7 +219,7 @@ func parraybyte(b []byte) uintptr {
 	return uintptr(unsafe.Pointer(&b[0]))
 }
 
-func parrayint32(i []int32) uintptr {
+func parrayint(i []int) uintptr {
 	return uintptr(unsafe.Pointer(&i[0]))
 }
 
@@ -243,11 +243,11 @@ func pVECTOR(vec VECTOR) uintptr {
 
 func writeUtilFuncs(w io.Writer) {
 	io.WriteString(w, `
-func Int32Ptr(a int32) *int32 {
+func IntPtr(a int) *int {
 	return &a
 }
 
-func Uint32Ptr(a uint32) *uint32 {
+func UintPtr(a uint) *uint {
 	return &a
 }
 
