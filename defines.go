@@ -346,10 +346,10 @@ const (
 )
 
 type RECT struct {
-	left   int
-	top    int
-	right  int
-	bottom int
+	left   int32
+	top    int32
+	right  int32
+	bottom int32
 }
 
 type VECTOR struct {
