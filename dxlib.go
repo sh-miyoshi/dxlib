@@ -338,6 +338,7 @@ package dxlib
 //dxlib int SetCreateSoundDataType(int soundDataType)
 //dxlib int SelectMidiMode(int mode)
 //dxlib int RemoveFontFile(HANDLE fontHandle)
+//dxlib int SetDoubleStartValidFlag(int flag)
 
 // Extra functions
 // 直接DXライブラリの関数を呼ばずにGo言語側で処理することで呼べる関数

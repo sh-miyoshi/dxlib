@@ -395,6 +395,7 @@ var (
 	dx_SetCreateSoundDataType                   *syscall.LazyProc
 	dx_SelectMidiMode                           *syscall.LazyProc
 	dx_RemoveFontFile                           *syscall.LazyProc
+	dx_SetDoubleStartValidFlag                  *syscall.LazyProc
 	dx_DrawFormatString                         *syscall.LazyProc
 	dx_DrawFormatStringToHandle                 *syscall.LazyProc
 	dx_ClearDrawScreen                          *syscall.LazyProc
@@ -631,6 +632,7 @@ func Init(dllFile string) {
 	dx_SetCreateSoundDataType = mod.NewProc("dx_SetCreateSoundDataType")
 	dx_SelectMidiMode = mod.NewProc("dx_SelectMidiMode")
 	dx_RemoveFontFile = mod.NewProc("dx_RemoveFontFile")
+	dx_SetDoubleStartValidFlag = mod.NewProc("dx_SetDoubleStartValidFlag")
 	dx_DrawFormatString = mod.NewProc("dx_DrawFormatString")
 	dx_DrawFormatStringToHandle = mod.NewProc("dx_DrawFormatStringToHandle")
 	dx_ClearDrawScreen = mod.NewProc("dx_ClearDrawScreen")
@@ -3190,6 +3192,15 @@ func RemoveFontFile(fontHandle *int32) int32 {
 	}
 
 	res, _, _ := dx_RemoveFontFile.Call(ppint32(fontHandle))
+	return int32(res)
+}
+
+func SetDoubleStartValidFlag(flag int32) int32 {
+	if dx_SetDoubleStartValidFlag == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_SetDoubleStartValidFlag.Call(pint32(flag))
 	return int32(res)
 }
 
