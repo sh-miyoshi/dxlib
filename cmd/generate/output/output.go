@@ -186,6 +186,16 @@ func AddFontFile(fontFilePath string) *int32 {
 	}
 	return (*int32)(unsafe.Pointer(&res))
 }
+
+func DrawExtendFormatString(x int32, y int32, exRateX float64, exRateY float64, color uint32, format string, a ...interface{}) int32 {
+	str := fmt.Sprintf(format, a...)
+	return DrawExtendString(x, y, exRateX, exRateY, str, color)
+}
+
+func DrawExtendFormatStringToHandle(x int32, y int32, exRateX float64, exRateY float64, color uint32, fontHandle int32, format string, a ...interface{}) int32 {
+	str := fmt.Sprintf(format, a...)
+	return DrawExtendStringToHandle(x, y, exRateX, exRateY, str, color, fontHandle)
+}
 `)
 }
 

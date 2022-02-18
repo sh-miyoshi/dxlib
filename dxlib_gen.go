@@ -153,6 +153,15 @@ type GetNowHiPerformanceCountOption struct {
 	UseRDTSCFlag *int32
 }
 
+type DrawExtendStringOption struct {
+	EdgeColor *uint32
+}
+
+type DrawExtendStringToHandleOption struct {
+	EdgeColor    *uint32
+	VerticalFlag *int32
+}
+
 func Int32Ptr(a int32) *int32 {
 	return &a
 }
@@ -396,10 +405,14 @@ var (
 	dx_SelectMidiMode                           *syscall.LazyProc
 	dx_RemoveFontFile                           *syscall.LazyProc
 	dx_SetDoubleStartValidFlag                  *syscall.LazyProc
+	dx_DrawExtendString                         *syscall.LazyProc
+	dx_DrawExtendStringToHandle                 *syscall.LazyProc
 	dx_DrawFormatString                         *syscall.LazyProc
 	dx_DrawFormatStringToHandle                 *syscall.LazyProc
 	dx_ClearDrawScreen                          *syscall.LazyProc
 	dx_AddFontFile                              *syscall.LazyProc
+	dx_DrawExtendFormatString                   *syscall.LazyProc
+	dx_DrawExtendFormatStringToHandle           *syscall.LazyProc
 )
 
 // Init method set procs from dllFile.
@@ -633,10 +646,14 @@ func Init(dllFile string) {
 	dx_SelectMidiMode = mod.NewProc("dx_SelectMidiMode")
 	dx_RemoveFontFile = mod.NewProc("dx_RemoveFontFile")
 	dx_SetDoubleStartValidFlag = mod.NewProc("dx_SetDoubleStartValidFlag")
+	dx_DrawExtendString = mod.NewProc("dx_DrawExtendString")
+	dx_DrawExtendStringToHandle = mod.NewProc("dx_DrawExtendStringToHandle")
 	dx_DrawFormatString = mod.NewProc("dx_DrawFormatString")
 	dx_DrawFormatStringToHandle = mod.NewProc("dx_DrawFormatStringToHandle")
 	dx_ClearDrawScreen = mod.NewProc("dx_ClearDrawScreen")
 	dx_AddFontFile = mod.NewProc("dx_AddFontFile")
+	dx_DrawExtendFormatString = mod.NewProc("dx_DrawExtendFormatString")
+	dx_DrawExtendFormatStringToHandle = mod.NewProc("dx_DrawExtendFormatStringToHandle")
 
 }
 
@@ -3204,6 +3221,38 @@ func SetDoubleStartValidFlag(flag int32) int32 {
 	return int32(res)
 }
 
+func DrawExtendString(x int32, y int32, exRateX float64, exRateY float64, str string, color uint32, opt ...DrawExtendStringOption) int32 {
+	if dx_DrawExtendString == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	edgeColor := uint32(0)
+	if len(opt) > 0 && opt[0].EdgeColor != nil {
+		edgeColor = *opt[0].EdgeColor
+	}
+
+	res, _, _ := dx_DrawExtendString.Call(pint32(x), pint32(y), pfloat64(exRateX), pfloat64(exRateY), pstring(str), puint32(color), puint32(edgeColor))
+	return int32(res)
+}
+
+func DrawExtendStringToHandle(x int32, y int32, exRateX float64, exRateY float64, str string, color uint32, fontHandle int32, opt ...DrawExtendStringToHandleOption) int32 {
+	if dx_DrawExtendStringToHandle == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	edgeColor := uint32(0)
+	if len(opt) > 0 && opt[0].EdgeColor != nil {
+		edgeColor = *opt[0].EdgeColor
+	}
+	verticalFlag := int32(FALSE)
+	if len(opt) > 0 && opt[0].VerticalFlag != nil {
+		verticalFlag = *opt[0].VerticalFlag
+	}
+
+	res, _, _ := dx_DrawExtendStringToHandle.Call(pint32(x), pint32(y), pfloat64(exRateX), pfloat64(exRateY), pstring(str), puint32(color), pint32(fontHandle), puint32(edgeColor), pint32(verticalFlag))
+	return int32(res)
+}
+
 func DrawFormatString(x int32, y int32, color uint32, format string, a ...interface{}) int32 {
 	str := fmt.Sprintf(format, a...)
 	return DrawString(x, y, str, color)
@@ -3236,6 +3285,16 @@ func AddFontFile(fontFilePath string) *int32 {
 		return nil
 	}
 	return (*int32)(unsafe.Pointer(&res))
+}
+
+func DrawExtendFormatString(x int32, y int32, exRateX float64, exRateY float64, color uint32, format string, a ...interface{}) int32 {
+	str := fmt.Sprintf(format, a...)
+	return DrawExtendString(x, y, exRateX, exRateY, str, color)
+}
+
+func DrawExtendFormatStringToHandle(x int32, y int32, exRateX float64, exRateY float64, color uint32, fontHandle int32, format string, a ...interface{}) int32 {
+	str := fmt.Sprintf(format, a...)
+	return DrawExtendStringToHandle(x, y, exRateX, exRateY, str, color, fontHandle)
 }
 
 func ppint32(i *int32) uintptr {

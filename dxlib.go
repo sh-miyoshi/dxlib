@@ -339,6 +339,8 @@ package dxlib
 //dxlib int SelectMidiMode(int mode)
 //dxlib int RemoveFontFile(HANDLE fontHandle)
 //dxlib int SetDoubleStartValidFlag(int flag)
+//dxlib int DrawExtendString(int x, int y, double exRateX, double exRateY, char *str, unsigned int color, unsigned int edgeColor = 0)
+//dxlib int DrawExtendStringToHandle(int x, int y, double exRateX, double exRateY, char *str, unsigned int color, int fontHandle, unsigned int edgeColor = 0, int verticalFlag = FALSE)
 
 // Extra functions
 // 直接DXライブラリの関数を呼ばずにGo言語側で処理することで呼べる関数
@@ -346,6 +348,8 @@ package dxlib
 //ext_dxlib DrawFormatStringToHandle
 //ext_dxlib ClearDrawScreen
 //ext_dxlib AddFontFile
+//ext_dxlib DrawExtendFormatString
+//ext_dxlib DrawExtendFormatStringToHandle
 
 // Unsupported functions
 // 公式のreadme.txtより
