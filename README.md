@@ -56,3 +56,16 @@ func main() {
 go build -o project.exe
 .\project.exe
 ```
+
+## 開発方法
+
+### 1. ファイルを修正
+
+dxlib.go(もしくはdefines.go)を修正する  
+※dxlib_gen.goファイルは自動生成されるファイルなので直接編集しないでください
+
+### 2. ライブラリの生成
+
+```bat
+go generate
+```
