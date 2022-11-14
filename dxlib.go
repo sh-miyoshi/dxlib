@@ -341,6 +341,7 @@ package dxlib
 //dxlib int SetDoubleStartValidFlag(int flag)
 //dxlib int DrawExtendString(int x, int y, double exRateX, double exRateY, char *str, unsigned int color, unsigned int edgeColor = 0)
 //dxlib int DrawExtendStringToHandle(int x, int y, double exRateX, double exRateY, char *str, unsigned int color, int fontHandle, unsigned int edgeColor = 0, int verticalFlag = FALSE)
+//dxlib int SetWindowSize(int width, int height)
 
 // Extra functions
 // 直接DXライブラリの関数を呼ばずにGo言語側で処理することで呼べる関数

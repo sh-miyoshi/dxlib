@@ -407,6 +407,7 @@ var (
 	dx_SetDoubleStartValidFlag                  *syscall.LazyProc
 	dx_DrawExtendString                         *syscall.LazyProc
 	dx_DrawExtendStringToHandle                 *syscall.LazyProc
+	dx_SetWindowSize                            *syscall.LazyProc
 	dx_DrawFormatString                         *syscall.LazyProc
 	dx_DrawFormatStringToHandle                 *syscall.LazyProc
 	dx_ClearDrawScreen                          *syscall.LazyProc
@@ -648,6 +649,7 @@ func Init(dllFile string) {
 	dx_SetDoubleStartValidFlag = mod.NewProc("dx_SetDoubleStartValidFlag")
 	dx_DrawExtendString = mod.NewProc("dx_DrawExtendString")
 	dx_DrawExtendStringToHandle = mod.NewProc("dx_DrawExtendStringToHandle")
+	dx_SetWindowSize = mod.NewProc("dx_SetWindowSize")
 	dx_DrawFormatString = mod.NewProc("dx_DrawFormatString")
 	dx_DrawFormatStringToHandle = mod.NewProc("dx_DrawFormatStringToHandle")
 	dx_ClearDrawScreen = mod.NewProc("dx_ClearDrawScreen")
@@ -3250,6 +3252,15 @@ func DrawExtendStringToHandle(x int32, y int32, exRateX float64, exRateY float64
 	}
 
 	res, _, _ := dx_DrawExtendStringToHandle.Call(pint32(x), pint32(y), pfloat64(exRateX), pfloat64(exRateY), pstring(str), puint32(color), pint32(fontHandle), puint32(edgeColor), pint32(verticalFlag))
+	return int32(res)
+}
+
+func SetWindowSize(width int32, height int32) int32 {
+	if dx_SetWindowSize == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_SetWindowSize.Call(pint32(width), pint32(height))
 	return int32(res)
 }
 
