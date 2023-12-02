@@ -302,6 +302,7 @@ var (
 	dx_SetKeyInputString                        *syscall.LazyProc
 	dx_SetKeyInputNumber                        *syscall.LazyProc
 	dx_GetKeyInputNumber                        *syscall.LazyProc
+	dx_GetKeyInputString                        *syscall.LazyProc
 	dx_PlaySoundFile                            *syscall.LazyProc
 	dx_CheckSoundFile                           *syscall.LazyProc
 	dx_StopSoundFile                            *syscall.LazyProc
@@ -544,6 +545,7 @@ func Init(dllFile string) {
 	dx_SetKeyInputString = mod.NewProc("dx_SetKeyInputString")
 	dx_SetKeyInputNumber = mod.NewProc("dx_SetKeyInputNumber")
 	dx_GetKeyInputNumber = mod.NewProc("dx_GetKeyInputNumber")
+	dx_GetKeyInputString = mod.NewProc("dx_GetKeyInputString")
 	dx_PlaySoundFile = mod.NewProc("dx_PlaySoundFile")
 	dx_CheckSoundFile = mod.NewProc("dx_CheckSoundFile")
 	dx_StopSoundFile = mod.NewProc("dx_StopSoundFile")
@@ -689,10 +691,11 @@ func ProcessMessage() int32 {
 // DrawLine 線を描画
 //
 // 引数
-//   x1, y1: 線の起点座標
-//   x2, y2: 線の終点座標
-//   color: 線の色
-//   thickness: 文字の太さ(デフォルト: 1)
+//
+//	x1, y1: 線の起点座標
+//	x2, y2: 線の終点座標
+//	color: 線の色
+//	thickness: 文字の太さ(デフォルト: 1)
 func DrawLine(x1 int32, y1 int32, x2 int32, y2 int32, color uint32, opt ...DrawLineOption) int32 {
 	if dx_DrawLine == nil {
 		panic("Please call dxlib.Init() at first")
@@ -710,10 +713,11 @@ func DrawLine(x1 int32, y1 int32, x2 int32, y2 int32, color uint32, opt ...DrawL
 // DrawLineAA 線を描画(アンチエイリアス効果付き)
 //
 // 引数
-//   x1, y1: 線の起点座標
-//   x2, y2: 線の終点座標
-//   color: 線の色
-//   thickness: 文字の太さ(デフォルト: 1.0)
+//
+//	x1, y1: 線の起点座標
+//	x2, y2: 線の終点座標
+//	color: 線の色
+//	thickness: 文字の太さ(デフォルト: 1.0)
 func DrawLineAA(x1 float32, y1 float32, x2 float32, y2 float32, color uint32, opt ...DrawLineAAOption) int32 {
 	if dx_DrawLineAA == nil {
 		panic("Please call dxlib.Init() at first")
@@ -731,10 +735,11 @@ func DrawLineAA(x1 float32, y1 float32, x2 float32, y2 float32, color uint32, op
 // DrawBox 四角形を描画
 //
 // 引数
-//   x1, y1: 四角形の左上の頂点座標
-//   x2, y2: 四角形の右下＋１の頂点座標
-//   color: 四角形の色
-//   fillFlag: 四角の中身を塗りつぶすか(TRUEで塗りつぶし)
+//
+//	x1, y1: 四角形の左上の頂点座標
+//	x2, y2: 四角形の右下＋１の頂点座標
+//	color: 四角形の色
+//	fillFlag: 四角の中身を塗りつぶすか(TRUEで塗りつぶし)
 func DrawBox(x1 int32, y1 int32, x2 int32, y2 int32, color uint32, fillFlag int32) int32 {
 	if dx_DrawBox == nil {
 		panic("Please call dxlib.Init() at first")
@@ -747,11 +752,12 @@ func DrawBox(x1 int32, y1 int32, x2 int32, y2 int32, color uint32, fillFlag int3
 // DrawBoxAA 四角形を描画(アンチエイリアス効果付き)
 //
 // 引数
-//   x1, y1: 四角形の左上の頂点座標
-//   x2, y2: 四角形の右下＋１の頂点座標
-//   color: 四角形の色
-//   fillFlag: 四角の中身を塗りつぶすか(TRUEで塗りつぶし)
-//   lineThickness: 文字の太さ(デフォルト: 1.0)
+//
+//	x1, y1: 四角形の左上の頂点座標
+//	x2, y2: 四角形の右下＋１の頂点座標
+//	color: 四角形の色
+//	fillFlag: 四角の中身を塗りつぶすか(TRUEで塗りつぶし)
+//	lineThickness: 文字の太さ(デフォルト: 1.0)
 func DrawBoxAA(x1 float32, y1 float32, x2 float32, y2 float32, color uint32, fillFlag int32, opt ...DrawBoxAAOption) int32 {
 	if dx_DrawBoxAA == nil {
 		panic("Please call dxlib.Init() at first")
@@ -769,11 +775,12 @@ func DrawBoxAA(x1 float32, y1 float32, x2 float32, y2 float32, color uint32, fil
 // DrawCircle 円を描画
 //
 // 引数
-//   x, y: 円の中心座標
-//   r: 半径
-//   color: 円の色
-//   fillFlag: 塗りつぶすか(TRUEで塗りつぶし)
-//   lineThickness: 文字の太さ(デフォルト: 1)
+//
+//	x, y: 円の中心座標
+//	r: 半径
+//	color: 円の色
+//	fillFlag: 塗りつぶすか(TRUEで塗りつぶし)
+//	lineThickness: 文字の太さ(デフォルト: 1)
 func DrawCircle(x int32, y int32, r int32, color uint32, fillFlag int32, opt ...DrawCircleOption) int32 {
 	if dx_DrawCircle == nil {
 		panic("Please call dxlib.Init() at first")
@@ -791,12 +798,13 @@ func DrawCircle(x int32, y int32, r int32, color uint32, fillFlag int32, opt ...
 // DrawCircleAA 円を描画(アンチエイリアス効果付き)
 //
 // 引数
-//   x, y: 円の中心座標
-//   r: 半径
-//   posnum: 円を形成する頂点の数
-//   color: 円の色
-//   fillFlag: 塗りつぶすか(TRUEで塗りつぶし)
-//   lineThickness: 文字の太さ(デフォルト: 1.0)
+//
+//	x, y: 円の中心座標
+//	r: 半径
+//	posnum: 円を形成する頂点の数
+//	color: 円の色
+//	fillFlag: 塗りつぶすか(TRUEで塗りつぶし)
+//	lineThickness: 文字の太さ(デフォルト: 1.0)
 func DrawCircleAA(x float32, y float32, r float32, posnum int32, color uint32, fillFlag int32, opt ...DrawCircleAAOption) int32 {
 	if dx_DrawCircleAA == nil {
 		panic("Please call dxlib.Init() at first")
@@ -814,11 +822,12 @@ func DrawCircleAA(x float32, y float32, r float32, posnum int32, color uint32, f
 // DrawOval 楕円を描画
 //
 // 引数
-//   x, y: 楕円の中心座標
-//   rx, ry: 描く楕円のX軸に対する半径とY軸に対する半径
-//   color: 円の色
-//   fillFlag: 塗りつぶすか(TRUEで塗りつぶし)
-//   lineThickness: 文字の太さ(デフォルト: 1.0)
+//
+//	x, y: 楕円の中心座標
+//	rx, ry: 描く楕円のX軸に対する半径とY軸に対する半径
+//	color: 円の色
+//	fillFlag: 塗りつぶすか(TRUEで塗りつぶし)
+//	lineThickness: 文字の太さ(デフォルト: 1.0)
 func DrawOval(x int32, y int32, rx int32, ry int32, color uint32, fillFlag int32, opt ...DrawOvalOption) int32 {
 	if dx_DrawOval == nil {
 		panic("Please call dxlib.Init() at first")
@@ -836,12 +845,13 @@ func DrawOval(x int32, y int32, rx int32, ry int32, color uint32, fillFlag int32
 // DrawOvalAA 楕円を描画(アンチエイリアス効果付き)
 //
 // 引数
-//   x, y: 楕円の中心座標
-//   rx, ry: 描く楕円のX軸に対する半径とY軸に対する半径
-//   posnum: 円を形成する頂点の数
-//   color: 円の色
-//   fillFlag: 塗りつぶすか(TRUEで塗りつぶし)
-//   lineThickness: 文字の太さ(デフォルト: 1.0)
+//
+//	x, y: 楕円の中心座標
+//	rx, ry: 描く楕円のX軸に対する半径とY軸に対する半径
+//	posnum: 円を形成する頂点の数
+//	color: 円の色
+//	fillFlag: 塗りつぶすか(TRUEで塗りつぶし)
+//	lineThickness: 文字の太さ(デフォルト: 1.0)
 func DrawOvalAA(x float32, y float32, rx float32, ry float32, posnum int32, color uint32, fillFlag int32, opt ...DrawOvalAAOption) int32 {
 	if dx_DrawOvalAA == nil {
 		panic("Please call dxlib.Init() at first")
@@ -859,9 +869,10 @@ func DrawOvalAA(x float32, y float32, rx float32, ry float32, posnum int32, colo
 // DrawTriangle 三角形の描画
 //
 // 引数
-//   x1, y1, x2, y2, x3, y3: 三角形を描く３つの座標
-//   color: 三角形の色
-//   fillFlag: 塗りつぶすか(TRUEで塗りつぶし)
+//
+//	x1, y1, x2, y2, x3, y3: 三角形を描く３つの座標
+//	color: 三角形の色
+//	fillFlag: 塗りつぶすか(TRUEで塗りつぶし)
 func DrawTriangle(x1 int32, y1 int32, x2 int32, y2 int32, x3 int32, y3 int32, color uint32, fillFlag int32) int32 {
 	if dx_DrawTriangle == nil {
 		panic("Please call dxlib.Init() at first")
@@ -874,10 +885,11 @@ func DrawTriangle(x1 int32, y1 int32, x2 int32, y2 int32, x3 int32, y3 int32, co
 // DrawTriangleAA 三角形の描画(アンチエイリアス効果付き)
 //
 // 引数
-//   x1, y1, x2, y2, x3, y3: 三角形を描く３つの座標
-//   color: 三角形の色
-//   fillFlag: 塗りつぶすか(TRUEで塗りつぶし)
-//   lineThickness: 文字の太さ(デフォルト: 1.0)
+//
+//	x1, y1, x2, y2, x3, y3: 三角形を描く３つの座標
+//	color: 三角形の色
+//	fillFlag: 塗りつぶすか(TRUEで塗りつぶし)
+//	lineThickness: 文字の太さ(デフォルト: 1.0)
 func DrawTriangleAA(x1 float32, y1 float32, x2 float32, y2 float32, x3 float32, y3 float32, color uint32, fillFlag int32, opt ...DrawTriangleAAOption) int32 {
 	if dx_DrawTriangleAA == nil {
 		panic("Please call dxlib.Init() at first")
@@ -895,8 +907,9 @@ func DrawTriangleAA(x1 float32, y1 float32, x2 float32, y2 float32, x3 float32, 
 // DrawPixel 点を描画
 //
 // 引数
-//   x, y: 座標
-//   color: 点の色
+//
+//	x, y: 座標
+//	color: 点の色
 func DrawPixel(x int32, y int32, color uint32) int32 {
 	if dx_DrawPixel == nil {
 		panic("Please call dxlib.Init() at first")
@@ -909,7 +922,8 @@ func DrawPixel(x int32, y int32, color uint32) int32 {
 // GetPixel 指定点の色を取得
 //
 // 引数
-//   x, y: 座標
+//
+//	x, y: 座標
 func GetPixel(x int32, y int32) uint32 {
 	if dx_GetPixel == nil {
 		panic("Please call dxlib.Init() at first")
@@ -922,9 +936,10 @@ func GetPixel(x int32, y int32) uint32 {
 // LoadGraphScreen 画像ファイルを読みこんで画面に表示する
 //
 // 引数
-//   x, y: ロードした画像を描画する矩形の左上頂点の座標
-//   graphName: ロードする画像ファイルパス
-//   transFlag: 画像の透明度を有効にするかどうか(TRUE: 有効)
+//
+//	x, y: ロードした画像を描画する矩形の左上頂点の座標
+//	graphName: ロードする画像ファイルパス
+//	transFlag: 画像の透明度を有効にするかどうか(TRUE: 有効)
 func LoadGraphScreen(x int32, y int32, graphName string, transFlag int32) int32 {
 	if dx_LoadGraphScreen == nil {
 		panic("Please call dxlib.Init() at first")
@@ -937,8 +952,9 @@ func LoadGraphScreen(x int32, y int32, graphName string, transFlag int32) int32 
 // LoadGraph 画像ファイルのメモリへの読みこみ、及び動画ファイルのロード
 //
 // 引数
-//   fileName: ファイルパス
-//   notUse3DFlag: 3D機能を制限するか(デフォルト: FALSE)
+//
+//	fileName: ファイルパス
+//	notUse3DFlag: 3D機能を制限するか(デフォルト: FALSE)
 func LoadGraph(fileName string, opt ...LoadGraphOption) int32 {
 	if dx_LoadGraph == nil {
 		panic("Please call dxlib.Init() at first")
@@ -956,12 +972,13 @@ func LoadGraph(fileName string, opt ...LoadGraphOption) int32 {
 // LoadDivGraph 画像ファイルのメモリへの分割読みこみ
 //
 // 引数
-//   fileName: 画像ファイルパス
-//   allnum: 画像の分割総数
-//   xnum, ynum: 画像の横向きに対する分割数と縦に対する分割数
-//   xsize, ysize: 分割された画像一つの大きさ
-//   handleBuf: グラフィックハンドルを保存するバッファ
-//   notUse3DFlag: 3D機能を制限するか(デフォルト: FALSE)
+//
+//	fileName: 画像ファイルパス
+//	allnum: 画像の分割総数
+//	xnum, ynum: 画像の横向きに対する分割数と縦に対する分割数
+//	xsize, ysize: 分割された画像一つの大きさ
+//	handleBuf: グラフィックハンドルを保存するバッファ
+//	notUse3DFlag: 3D機能を制限するか(デフォルト: FALSE)
 func LoadDivGraph(fileName string, allnum int32, xnum int32, ynum int32, xsize int32, ysize int32, handleBuf []int32, opt ...LoadDivGraphOption) int32 {
 	if dx_LoadDivGraph == nil {
 		panic("Please call dxlib.Init() at first")
@@ -979,8 +996,9 @@ func LoadDivGraph(fileName string, allnum int32, xnum int32, ynum int32, xsize i
 // MakeGraph 空のグラフィックを作成する
 //
 // 引数
-//   sizeX, sizeY: 作成する空グラフィックのサイズ
-//   notUse3DFlag: 3D機能を制限するか(デフォルト: FALSE)
+//
+//	sizeX, sizeY: 作成する空グラフィックのサイズ
+//	notUse3DFlag: 3D機能を制限するか(デフォルト: FALSE)
 func MakeGraph(sizeX int32, sizeY int32, opt ...MakeGraphOption) int32 {
 	if dx_MakeGraph == nil {
 		panic("Please call dxlib.Init() at first")
@@ -998,8 +1016,9 @@ func MakeGraph(sizeX int32, sizeY int32, opt ...MakeGraphOption) int32 {
 // MakeScreen 描画対象にできるグラフィックを作成する
 //
 // 引数
-//   sizeX, sizeY: 作成するグラフィックのサイズ
-//  useAlphaChannel: 作成するグラフィックにアルファチャンネルを付けるかどうか(TRUE: つける)
+//
+//	 sizeX, sizeY: 作成するグラフィックのサイズ
+//	useAlphaChannel: 作成するグラフィックにアルファチャンネルを付けるかどうか(TRUE: つける)
 func MakeScreen(sizeX int32, sizeY int32, useAlphaChannel int32) int32 {
 	if dx_MakeScreen == nil {
 		panic("Please call dxlib.Init() at first")
@@ -1022,7 +1041,8 @@ func SetCreateDrawValidGraphMultiSample(samples int32, quality int32) int32 {
 // SetCreateGraphColorBitDepth 作成するグラフィックのビット深度を設定
 //
 // 引数
-//   bitDepth: ビット震度(16 or 32)
+//
+//	bitDepth: ビット震度(16 or 32)
 func SetCreateGraphColorBitDepth(bitDepth int32) int32 {
 	if dx_SetCreateGraphColorBitDepth == nil {
 		panic("Please call dxlib.Init() at first")
@@ -1045,7 +1065,8 @@ func SetDrawValidFloatTypeGraphCreateFlag(flag int32) int32 {
 // SetCreateDrawValidGraphChannelNum 作成する描画可能なグラフィックのチャンネル数の設定
 //
 // 引数
-//   channelNum: 作成する描画可能なグラフィックのチャンネル数(1, 2, or 4)
+//
+//	channelNum: 作成する描画可能なグラフィックのチャンネル数(1, 2, or 4)
 func SetCreateDrawValidGraphChannelNum(channelNum int32) int32 {
 	if dx_SetCreateDrawValidGraphChannelNum == nil {
 		panic("Please call dxlib.Init() at first")
@@ -1068,9 +1089,10 @@ func SetUsePremulAlphaConvertLoad(useFlag int32) int32 {
 // DrawGraph メモリに読みこんだグラフィックの描画
 //
 // 引数
-//   x, y: グラフィックを描画する領域の左上頂点の座標
-//   grHandle: グラフィックハンドル
-//   transFlag: 画像の透明度を有効にするかどうか(TRUE: 有効にする)
+//
+//	x, y: グラフィックを描画する領域の左上頂点の座標
+//	grHandle: グラフィックハンドル
+//	transFlag: 画像の透明度を有効にするかどうか(TRUE: 有効にする)
 func DrawGraph(x int32, y int32, grHandle int32, transFlag int32) int32 {
 	if dx_DrawGraph == nil {
 		panic("Please call dxlib.Init() at first")
@@ -1083,9 +1105,10 @@ func DrawGraph(x int32, y int32, grHandle int32, transFlag int32) int32 {
 // DrawTurnGraph メモリに読みこんだグラフィックのＬＲ反転描画
 //
 // 引数
-//   x, y: グラフィックを描画する領域の左上頂点の座標
-//   grHandle: グラフィックハンドル
-//   transFlag: 画像の透明度を有効にするかどうか(TRUE: 有効にする)
+//
+//	x, y: グラフィックを描画する領域の左上頂点の座標
+//	grHandle: グラフィックハンドル
+//	transFlag: 画像の透明度を有効にするかどうか(TRUE: 有効にする)
 func DrawTurnGraph(x int32, y int32, grHandle int32, transFlag int32) int32 {
 	if dx_DrawTurnGraph == nil {
 		panic("Please call dxlib.Init() at first")
@@ -1108,13 +1131,14 @@ func DrawExtendGraph(x1 int32, y1 int32, x2 int32, y2 int32, grHandle int32, tra
 // DrawRotaGraph メモリに読みこんだグラフィックの回転描画
 //
 // 引数
-//   x, y: グラフィックを描画する領域の中心座標
-//   extRate: 拡大率(1.0で等倍)
-//   angle: 描画角度(ラジアン指定)
-//   grHandle: グラフィックハンドル
-//   transFlag: 画像の透明度を有効にするかどうか(TRUE: 有効にする)
-//   reverseXFlag: 画像の左右反転を行うか
-//   reverseYFlag: 画像の上下反転を行うか
+//
+//	x, y: グラフィックを描画する領域の中心座標
+//	extRate: 拡大率(1.0で等倍)
+//	angle: 描画角度(ラジアン指定)
+//	grHandle: グラフィックハンドル
+//	transFlag: 画像の透明度を有効にするかどうか(TRUE: 有効にする)
+//	reverseXFlag: 画像の左右反転を行うか
+//	reverseYFlag: 画像の上下反転を行うか
 func DrawRotaGraph(x int32, y int32, extRate float64, angle float64, grHandle int32, transFlag int32, opt ...DrawRotaGraphOption) int32 {
 	if dx_DrawRotaGraph == nil {
 		panic("Please call dxlib.Init() at first")
@@ -1136,14 +1160,15 @@ func DrawRotaGraph(x int32, y int32, extRate float64, angle float64, grHandle in
 // DrawRotaGraph2 メモリに読みこんだグラフィックの回転描画(回転中心指定あり)
 //
 // 引数
-//   x, y: グラフィックを描画する領域の中心座標
-//   cx, cy: 画像を回転描画する画像上の中心座標
-//   extRate: 拡大率(1.0で等倍)
-//   angle: 描画角度(ラジアン指定)
-//   grHandle: グラフィックハンドル
-//   transFlag: 画像の透明度を有効にするかどうか(TRUE: 有効にする)
-//   reverseXFlag: 画像の左右反転を行うか
-//   reverseYFlag: 画像の上下反転を行うか
+//
+//	x, y: グラフィックを描画する領域の中心座標
+//	cx, cy: 画像を回転描画する画像上の中心座標
+//	extRate: 拡大率(1.0で等倍)
+//	angle: 描画角度(ラジアン指定)
+//	grHandle: グラフィックハンドル
+//	transFlag: 画像の透明度を有効にするかどうか(TRUE: 有効にする)
+//	reverseXFlag: 画像の左右反転を行うか
+//	reverseYFlag: 画像の上下反転を行うか
 func DrawRotaGraph2(x int32, y int32, cx int32, cy int32, extRate float64, angle float64, grHandle int32, transFlag int32, opt ...DrawRotaGraph2Option) int32 {
 	if dx_DrawRotaGraph2 == nil {
 		panic("Please call dxlib.Init() at first")
@@ -1165,14 +1190,15 @@ func DrawRotaGraph2(x int32, y int32, cx int32, cy int32, extRate float64, angle
 // DrawRotaGraph3 メモリに読みこんだグラフィックの回転描画(回転中心指定あり)
 //
 // 引数
-//   x, y: グラフィックを描画する領域の中心座標
-//   cx, cy: 画像を回転描画する画像上の中心座標
-//   extRateX, exRateY: 拡大率(1.0で等倍)
-//   angle: 描画角度(ラジアン指定)
-//   grHandle: グラフィックハンドル
-//   transFlag: 画像の透明度を有効にするかどうか(TRUE: 有効にする)
-//   reverseXFlag: 画像の左右反転を行うか
-//   reverseYFlag: 画像の上下反転を行うか
+//
+//	x, y: グラフィックを描画する領域の中心座標
+//	cx, cy: 画像を回転描画する画像上の中心座標
+//	extRateX, exRateY: 拡大率(1.0で等倍)
+//	angle: 描画角度(ラジアン指定)
+//	grHandle: グラフィックハンドル
+//	transFlag: 画像の透明度を有効にするかどうか(TRUE: 有効にする)
+//	reverseXFlag: 画像の左右反転を行うか
+//	reverseYFlag: 画像の上下反転を行うか
 func DrawRotaGraph3(x int32, y int32, cx int32, cy int32, extRateX float64, extRateY float64, angle float64, grHandle int32, transFlag int32, opt ...DrawRotaGraph3Option) int32 {
 	if dx_DrawRotaGraph3 == nil {
 		panic("Please call dxlib.Init() at first")
@@ -1248,9 +1274,10 @@ func DrawRotaGraphFast3(x int32, y int32, cx int32, cy int32, extRateX float32, 
 // DrawModiGraph メモリに読みこんだグラフィックの自由変形描画
 //
 // 引数
-//   x1, y1, x2, y2, x3, y3, x4, y4: x1から順に描画する画像の左上、右上、右下、左下の頂点の座標
-//   grHandle: グラフィックハンドル
-//   transFlag: 画像の透明度を有効にするかどうか(TRUE: 有効にする)
+//
+//	x1, y1, x2, y2, x3, y3, x4, y4: x1から順に描画する画像の左上、右上、右下、左下の頂点の座標
+//	grHandle: グラフィックハンドル
+//	transFlag: 画像の透明度を有効にするかどうか(TRUE: 有効にする)
 func DrawModiGraph(x1 int32, y1 int32, x2 int32, y2 int32, x3 int32, y3 int32, x4 int32, y4 int32, grHandle int32, transFlag int32) int32 {
 	if dx_DrawModiGraph == nil {
 		panic("Please call dxlib.Init() at first")
@@ -1263,13 +1290,14 @@ func DrawModiGraph(x1 int32, y1 int32, x2 int32, y2 int32, x3 int32, y3 int32, x
 // DrawRectGraph グラフィックの指定矩形部分のみを描画
 //
 // 引数
-//   destX, destY: グラフィックを描画する座標
-//   srcX, srcY: 描画するグラフィック上の描画したい矩形の左上座標
-//   width, height: 描画するグラフィックのサイズ
-//   grHandle: グラフィックハンドル
-//   transFlag: 画像の透明度を有効にするかどうか(TRUE: 有効にする)
-//   reverseXFlag: 画像の左右反転を行うか
-//   reverseYFlag: 画像の上下反転を行うか
+//
+//	destX, destY: グラフィックを描画する座標
+//	srcX, srcY: 描画するグラフィック上の描画したい矩形の左上座標
+//	width, height: 描画するグラフィックのサイズ
+//	grHandle: グラフィックハンドル
+//	transFlag: 画像の透明度を有効にするかどうか(TRUE: 有効にする)
+//	reverseXFlag: 画像の左右反転を行うか
+//	reverseYFlag: 画像の上下反転を行うか
 func DrawRectGraph(destX int32, destY int32, srcX int32, srcY int32, width int32, height int32, grHandle int32, transFlag int32, opt ...DrawRectGraphOption) int32 {
 	if dx_DrawRectGraph == nil {
 		panic("Please call dxlib.Init() at first")
@@ -1291,9 +1319,10 @@ func DrawRectGraph(destX int32, destY int32, srcX int32, srcY int32, width int32
 // DerivationGraph 指定のグラフィックの指定部分だけを抜き出して新たなグラフィックを作成する
 //
 // 引数
-//   srcX, secY: グラフィック中の抜き出したい矩形の左上座標
-//   width, height: 抜き出すグラフィックのサイズ
-//   srcGraphHandle: グラフィックハンドル
+//
+//	srcX, secY: グラフィック中の抜き出したい矩形の左上座標
+//	width, height: 抜き出すグラフィックのサイズ
+//	srcGraphHandle: グラフィックハンドル
 func DerivationGraph(srcX int32, srcY int32, width int32, height int32, srcGraphHandle int32) int32 {
 	if dx_DerivationGraph == nil {
 		panic("Please call dxlib.Init() at first")
@@ -1306,10 +1335,11 @@ func DerivationGraph(srcX int32, srcY int32, width int32, height int32, srcGraph
 // GetDrawScreenGraph 描画先に設定されているグラフィック領域から指定領域のグラフィックを読みこむ
 //
 // 引数
-//   x1, y1: 取得するグラフィック領域（矩形）の左上頂点の座標
-//   x2, y2: 取得するグラフィック領域の右下頂点＋１の座標
-//   grHandle: 取り込んだグラフィックを保存出来るサイズのグラフィックを持つハンドル
-//   useClientFlag: デフォルト TRUE
+//
+//	x1, y1: 取得するグラフィック領域（矩形）の左上頂点の座標
+//	x2, y2: 取得するグラフィック領域の右下頂点＋１の座標
+//	grHandle: 取り込んだグラフィックを保存出来るサイズのグラフィックを持つハンドル
+//	useClientFlag: デフォルト TRUE
 func GetDrawScreenGraph(x1 int32, y1 int32, x2 int32, y2 int32, grHandle int32, opt ...GetDrawScreenGraphOption) int32 {
 	if dx_GetDrawScreenGraph == nil {
 		panic("Please call dxlib.Init() at first")
@@ -1337,7 +1367,8 @@ func GetGraphSize(grHandle int32, sizeXBuf *int32, sizeYBuf *int32) int32 {
 // InitGraph 読みこんだグラフィックデータをすべて削除する
 //
 // 引数
-//   logOutFlag: デフォルト FALSE
+//
+//	logOutFlag: デフォルト FALSE
 func InitGraph(opt ...InitGraphOption) int32 {
 	if dx_InitGraph == nil {
 		panic("Please call dxlib.Init() at first")
@@ -1365,7 +1396,8 @@ func DeleteGraph(grHandle int32) int32 {
 // SetDrawMode 描画モードをセットする
 //
 // 引数
-//   drawMode: 描画モード(DX_DRAWMODE_NEAREST: 標準 or DX_DRAWMODE_BILINEAR)
+//
+//	drawMode: 描画モード(DX_DRAWMODE_NEAREST: 標準 or DX_DRAWMODE_BILINEAR)
 func SetDrawMode(drawMode int32) int32 {
 	if dx_SetDrawMode == nil {
 		panic("Please call dxlib.Init() at first")
@@ -1378,8 +1410,9 @@ func SetDrawMode(drawMode int32) int32 {
 // SetDrawBlendMode 描画の際のブレンドモードをセット
 //
 // 引数
-//   blendMode: 描画ブレンドモード
-//   pal: 描画ブレンドモードのパラメータ(0~255)
+//
+//	blendMode: 描画ブレンドモード
+//	pal: 描画ブレンドモードのパラメータ(0~255)
 func SetDrawBlendMode(blendMode int32, pal int32) int32 {
 	if dx_SetDrawBlendMode == nil {
 		panic("Please call dxlib.Init() at first")
@@ -1422,12 +1455,13 @@ func LoadBlendGraph(fileName string) int32 {
 // DrawBlendGraph ブレンド画像と通常画像を合成して描画する
 //
 // 引数
-//   x, y: 画像を描画する領域の左上端座標
-//   grHandle: グラフィックハンドル
-//   transFlag: 画像の透明度を有効にするかどうか(TRUE: 有効にする)
-//   blendGraph: ブレンド画像ハンドル
-//   borderParam: 境界位置(0~255)
-//   borderRange: 境界幅(指定できる値は1, 64, 128, 255の４つ)
+//
+//	x, y: 画像を描画する領域の左上端座標
+//	grHandle: グラフィックハンドル
+//	transFlag: 画像の透明度を有効にするかどうか(TRUE: 有効にする)
+//	blendGraph: ブレンド画像ハンドル
+//	borderParam: 境界位置(0~255)
+//	borderRange: 境界幅(指定できる値は1, 64, 128, 255の４つ)
 func DrawBlendGraph(x int32, y int32, grHandle int32, transFlag int32, blendGraph int32, borderParam int32, borderRange int32) int32 {
 	if dx_DrawBlendGraph == nil {
 		panic("Please call dxlib.Init() at first")
@@ -1440,10 +1474,11 @@ func DrawBlendGraph(x int32, y int32, grHandle int32, transFlag int32, blendGrap
 // DrawString 文字列を描画
 //
 // 引数
-//   x, y: 文字列を描画する領域の左上の座標
-//   str: 文字列
-//   color: 文字列の色
-//   edgeColor: デフォルト 0
+//
+//	x, y: 文字列を描画する領域の左上の座標
+//	str: 文字列
+//	color: 文字列の色
+//	edgeColor: デフォルト 0
 func DrawString(x int32, y int32, str string, color uint32, opt ...DrawStringOption) int32 {
 	if dx_DrawString == nil {
 		panic("Please call dxlib.Init() at first")
@@ -1461,9 +1496,10 @@ func DrawString(x int32, y int32, str string, color uint32, opt ...DrawStringOpt
 // GetDrawStringWidth 描画した時の文字列の幅(ドット単位)を得る
 //
 // 引数
-//  str: 文字列
-//   strLen: 文字列長
-//   vericalFlag: デフォルト FALSE
+//
+//	str: 文字列
+//	 strLen: 文字列長
+//	 vericalFlag: デフォルト FALSE
 func GetDrawStringWidth(str string, strLen int32, opt ...GetDrawStringWidthOption) int32 {
 	if dx_GetDrawStringWidth == nil {
 		panic("Please call dxlib.Init() at first")
@@ -1491,7 +1527,8 @@ func SetFontSize(fontSize int32) int32 {
 // SetFontThickness 描画する文字列の文字の太さをセットする
 //
 // 引数
-//   thickPal: 文字の太さ(0~9, デフォルト 6)
+//
+//	thickPal: 文字の太さ(0~9, デフォルト 6)
 func SetFontThickness(thickPal int32) int32 {
 	if dx_SetFontThickness == nil {
 		panic("Please call dxlib.Init() at first")
@@ -1504,8 +1541,9 @@ func SetFontThickness(thickPal int32) int32 {
 // ChangeFont 文字列描画に使用するフォントを変更する
 //
 // 引数
-//   fontName: フォント名
-//   charSet: デフォルト -1
+//
+//	fontName: フォント名
+//	charSet: デフォルト -1
 func ChangeFont(fontName string, opt ...ChangeFontOption) int32 {
 	if dx_ChangeFont == nil {
 		panic("Please call dxlib.Init() at first")
@@ -1533,14 +1571,15 @@ func ChangeFontType(fontType int32) int32 {
 // CreateFontToHandle 新しいフォントデータを作成
 //
 // 引数
-//   fontName: 作成するフォント名(NULLにするとデフォルトのフォント)
-//   size: サイズ(デフォルト -1)
-//   thick:  太さ(デフォルト -1)
-//   fontType: フォントタイプ(デフォルト -1)
-//   charSet: デフォルト -1
-//   edgeSize: デフォルト -1
-//   italic: デフォルト FALSE
-//   handle: デフォルト -1
+//
+//	fontName: 作成するフォント名(NULLにするとデフォルトのフォント)
+//	size: サイズ(デフォルト -1)
+//	thick:  太さ(デフォルト -1)
+//	fontType: フォントタイプ(デフォルト -1)
+//	charSet: デフォルト -1
+//	edgeSize: デフォルト -1
+//	italic: デフォルト FALSE
+//	handle: デフォルト -1
 func CreateFontToHandle(opt ...CreateFontToHandleOption) int32 {
 	if dx_CreateFontToHandle == nil {
 		panic("Please call dxlib.Init() at first")
@@ -1586,8 +1625,9 @@ func CreateFontToHandle(opt ...CreateFontToHandleOption) int32 {
 // LoadFontDataToHandle DXフォントデータファイルを読み込む
 //
 // 引数
-//   fileName: ファイル名
-//   edgeSize: 成するフォントの縁の太さ(0を指定すると縁無し)
+//
+//	fileName: ファイル名
+//	edgeSize: 成するフォントの縁の太さ(0を指定すると縁無し)
 func LoadFontDataToHandle(fileName string, opt ...LoadFontDataToHandleOption) int32 {
 	if dx_LoadFontDataToHandle == nil {
 		panic("Please call dxlib.Init() at first")
@@ -1625,12 +1665,13 @@ func SetFontCacheUsePremulAlphaFlag(flag int32) int32 {
 // DrawStringToHandle 指定のフォントデータで文字列を描画する
 //
 // 引数
-//   x, y: 文字列を描画する起点座標
-//   str: 文字列
-//   color: 文字の色
-//   fontHandle: 描画に使用するフォントハンドル
-//   edgeColor: 縁の色(デフォルト 0)
-//   verticalFlag: デフォルト FALSE
+//
+//	x, y: 文字列を描画する起点座標
+//	str: 文字列
+//	color: 文字の色
+//	fontHandle: 描画に使用するフォントハンドル
+//	edgeColor: 縁の色(デフォルト 0)
+//	verticalFlag: デフォルト FALSE
 func DrawStringToHandle(x int32, y int32, str string, color uint32, fontHandle int32, opt ...DrawStringToHandleOption) int32 {
 	if dx_DrawStringToHandle == nil {
 		panic("Please call dxlib.Init() at first")
@@ -1652,10 +1693,11 @@ func DrawStringToHandle(x int32, y int32, str string, color uint32, fontHandle i
 // GetDrawStringWidthToHandle 指定のフォントデータで描画する文字列の幅(ドット単位)を得る
 //
 // 引数
-//   str: 文字列
-//   strLen: 文字列長
-//   fontHandle: フォントハンドル
-//   verticalFlag: デフォルト FALSE
+//
+//	str: 文字列
+//	strLen: 文字列長
+//	fontHandle: フォントハンドル
+//	verticalFlag: デフォルト FALSE
 func GetDrawStringWidthToHandle(str string, strLen int32, fontHandle int32, opt ...GetDrawStringWidthToHandleOption) int32 {
 	if dx_GetDrawStringWidthToHandle == nil {
 		panic("Please call dxlib.Init() at first")
@@ -1693,9 +1735,10 @@ func InitFontToHandle() int32 {
 // SetGraphMode 画面モードの変更
 //
 // 引数
-//   sizeX, sizeY: 画面の解像度(デフォルト 640x480)
-//   colorButNum: カラービット数(DXライブラリの標準色ビット数: 16)
-//   refreshRate: デフォルト 60
+//
+//	sizeX, sizeY: 画面の解像度(デフォルト 640x480)
+//	colorButNum: カラービット数(DXライブラリの標準色ビット数: 16)
+//	refreshRate: デフォルト 60
 func SetGraphMode(sizeX int32, sizeY int32, opt ...SetGraphModeOption) int32 {
 	if dx_SetGraphMode == nil {
 		panic("Please call dxlib.Init() at first")
@@ -2263,6 +2306,15 @@ func GetKeyInputNumber(inputHandle int32) int32 {
 	return int32(res)
 }
 
+func GetKeyInputString(strBuffer string, inputHandle int32) int32 {
+	if dx_GetKeyInputString == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_GetKeyInputString.Call(pstring(strBuffer), pint32(inputHandle))
+	return int32(res)
+}
+
 func PlaySoundFile(fileName string, playType int32) int32 {
 	if dx_PlaySoundFile == nil {
 		panic("Please call dxlib.Init() at first")
@@ -2293,9 +2345,10 @@ func StopSoundFile() int32 {
 // LoadSoundMem 音ファイルをメモリに読みこむ
 //
 // 引数
-//   fileName: ファイル名
-//   bufferNum: デフォルト 3
-//   unionHandle: デフォルト -1
+//
+//	fileName: ファイル名
+//	bufferNum: デフォルト 3
+//	unionHandle: デフォルト -1
 func LoadSoundMem(fileName string, opt ...LoadSoundMemOption) int32 {
 	if dx_LoadSoundMem == nil {
 		panic("Please call dxlib.Init() at first")
@@ -2650,7 +2703,8 @@ func WaitKey() int32 {
 // GetNowCount ミリ秒単位の精度を持つカウンタの現在値を得る
 //
 // 引数
-//   useRDTSCFlag: デフォルト FALSE
+//
+//	useRDTSCFlag: デフォルト FALSE
 func GetNowCount(opt ...GetNowCountOption) int32 {
 	if dx_GetNowCount == nil {
 		panic("Please call dxlib.Init() at first")
@@ -2668,7 +2722,8 @@ func GetNowCount(opt ...GetNowCountOption) int32 {
 // GetNowHiPerformanceCount GetNowCountの高精度バージョン
 //
 // 引数
-//   useRDTSCFlag: デフォルト FALSE
+//
+//	useRDTSCFlag: デフォルト FALSE
 func GetNowHiPerformanceCount(opt ...GetNowHiPerformanceCountOption) int64 {
 	if dx_GetNowHiPerformanceCount == nil {
 		panic("Please call dxlib.Init() at first")

@@ -207,6 +207,7 @@ package dxlib
 //dxlib int SetKeyInputString(char *str, int inputHandle)
 //dxlib int SetKeyInputNumber(int number, int inputHandle)
 //dxlib int GetKeyInputNumber(int inputHandle)
+//dxlib int GetKeyInputString(char *strBuffer, int inputHandle)
 
 // 音利用関数
 //dxlib int PlaySoundFile(char *fileName, int playType)
