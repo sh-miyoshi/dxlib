@@ -2180,21 +2180,21 @@ func ClearInputCharBuf() int32 {
 	return int32(res)
 }
 
-func KeyInputString(x int32, y int32, charMaxLength int32, strBuffer string, cancelValidFlag int32) int32 {
+func KeyInputString(x int32, y int32, charMaxLength int32, strBuffer []byte, cancelValidFlag int32) int32 {
 	if dx_KeyInputString == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_KeyInputString.Call(pint32(x), pint32(y), pint32(charMaxLength), pstring(strBuffer), pint32(cancelValidFlag))
+	res, _, _ := dx_KeyInputString.Call(pint32(x), pint32(y), pint32(charMaxLength), parraybyte(strBuffer), pint32(cancelValidFlag))
 	return int32(res)
 }
 
-func KeyInputSingleCharString(x int32, y int32, charMaxLength int32, strBuffer string, cancelValidFlag int32) int32 {
+func KeyInputSingleCharString(x int32, y int32, charMaxLength int32, strBuffer []byte, cancelValidFlag int32) int32 {
 	if dx_KeyInputSingleCharString == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_KeyInputSingleCharString.Call(pint32(x), pint32(y), pint32(charMaxLength), pstring(strBuffer), pint32(cancelValidFlag))
+	res, _, _ := dx_KeyInputSingleCharString.Call(pint32(x), pint32(y), pint32(charMaxLength), parraybyte(strBuffer), pint32(cancelValidFlag))
 	return int32(res)
 }
 
@@ -2306,12 +2306,12 @@ func GetKeyInputNumber(inputHandle int32) int32 {
 	return int32(res)
 }
 
-func GetKeyInputString(strBuffer string, inputHandle int32) int32 {
+func GetKeyInputString(strBuffer []byte, inputHandle int32) int32 {
 	if dx_GetKeyInputString == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_GetKeyInputString.Call(pstring(strBuffer), pint32(inputHandle))
+	res, _, _ := dx_GetKeyInputString.Call(parraybyte(strBuffer), pint32(inputHandle))
 	return int32(res)
 }
 
