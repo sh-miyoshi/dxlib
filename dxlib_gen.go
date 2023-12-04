@@ -2207,12 +2207,12 @@ func KeyInputNumber(x int32, y int32, maxNum int32, minNum int32, cancelValidFla
 	return int32(res)
 }
 
-func SetKeyInputStringColor(nmlStr int32, nmlCur int32, imeStrBack int32, imeCur int32, imeLine int32, imeSelectStr int32, imeModeStr int32, nmlStrE int32, imeSelectStrE int32, imeModeStrE int32, imeSelectWinE int32, imeSelectWinF int32, selectStrBackColor int32, selectStrColor int32, selectStrEdgeColor int32, imeStr int32, imeStrE int32) int32 {
+func SetKeyInputStringColor(nmlStr uint32, nmlCur uint32, imeStrBack uint32, imeCur uint32, imeLine uint32, imeSelectStr uint32, imeModeStr uint32, nmlStrE uint32, imeSelectStrE uint32, imeModeStrE uint32, imeSelectWinE uint32, imeSelectWinF uint32, selectStrBackColor uint32, selectStrColor uint32, selectStrEdgeColor uint32, imeStr uint32, imeStrE uint32) int32 {
 	if dx_SetKeyInputStringColor == nil {
 		panic("Please call dxlib.Init() at first")
 	}
 
-	res, _, _ := dx_SetKeyInputStringColor.Call(pint32(nmlStr), pint32(nmlCur), pint32(imeStrBack), pint32(imeCur), pint32(imeLine), pint32(imeSelectStr), pint32(imeModeStr), pint32(nmlStrE), pint32(imeSelectStrE), pint32(imeModeStrE), pint32(imeSelectWinE), pint32(imeSelectWinF), pint32(selectStrBackColor), pint32(selectStrColor), pint32(selectStrEdgeColor), pint32(imeStr), pint32(imeStrE))
+	res, _, _ := dx_SetKeyInputStringColor.Call(puint32(nmlStr), puint32(nmlCur), puint32(imeStrBack), puint32(imeCur), puint32(imeLine), puint32(imeSelectStr), puint32(imeModeStr), puint32(nmlStrE), puint32(imeSelectStrE), puint32(imeModeStrE), puint32(imeSelectWinE), puint32(imeSelectWinF), puint32(selectStrBackColor), puint32(selectStrColor), puint32(selectStrEdgeColor), puint32(imeStr), puint32(imeStrE))
 	return int32(res)
 }
 

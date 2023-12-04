@@ -196,7 +196,7 @@ package dxlib
 //dxlib int KeyInputString(int x, int y, int charMaxLength, arraychar strBuffer, int cancelValidFlag)
 //dxlib int KeyInputSingleCharString(int x, int y, int charMaxLength, arraychar strBuffer, int cancelValidFlag)
 //dxlib int KeyInputNumber(int x, int y, int maxNum, int minNum, int cancelValidFlag)
-//dxlib int SetKeyInputStringColor(int nmlStr, int nmlCur, int imeStrBack, int imeCur, int imeLine, int imeSelectStr, int imeModeStr, int nmlStrE, int imeSelectStrE, int imeModeStrE, int imeSelectWinE, int imeSelectWinF, int selectStrBackColor, int selectStrColor, int selectStrEdgeColor, int imeStr, int imeStrE)
+//dxlib int SetKeyInputStringColor(unsigned int nmlStr, unsigned int nmlCur, unsigned int imeStrBack, unsigned int imeCur, unsigned int imeLine, unsigned int imeSelectStr, unsigned int imeModeStr, unsigned int nmlStrE, unsigned int imeSelectStrE, unsigned int imeModeStrE, unsigned int imeSelectWinE, unsigned int imeSelectWinF, unsigned int selectStrBackColor, unsigned int selectStrColor, unsigned int selectStrEdgeColor, unsigned int imeStr, unsigned int imeStrE)
 //dxlib int MakeKeyInput(int maxStrLength, int cancelValidFlag, int singleCharOnlyFlag, int numCharOnlyFlag, int doubleCharOnlyFlag, int enableNewLineFlag)
 //dxlib int DeleteKeyInput(int inputHandle)
 //dxlib int InitKeyInput()
