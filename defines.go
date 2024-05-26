@@ -345,6 +345,13 @@ const (
 	DX_FONTTYPE_ANTIALIASING_EDGE_8X8 = 35
 )
 
+// 画像の保存タイプ
+const (
+	DX_IMAGESAVETYPE_BMP  = 0
+	DX_IMAGESAVETYPE_JPEG = 1
+	DX_IMAGESAVETYPE_PNG  = 2
+)
+
 type RECT struct {
 	left   int32
 	top    int32
