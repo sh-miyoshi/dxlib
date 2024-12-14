@@ -162,6 +162,13 @@ type DrawExtendStringToHandleOption struct {
 	VerticalFlag *int32
 }
 
+type DrawCircleGaugeOption struct {
+	StartPercent *float64
+	Scale        *float64
+	ReverseX     *int32
+	ReverseY     *int32
+}
+
 func Int32Ptr(a int32) *int32 {
 	return &a
 }
@@ -409,6 +416,7 @@ var (
 	dx_DrawExtendString                         *syscall.LazyProc
 	dx_DrawExtendStringToHandle                 *syscall.LazyProc
 	dx_SetWindowSize                            *syscall.LazyProc
+	dx_DrawCircleGauge                          *syscall.LazyProc
 	dx_DrawFormatString                         *syscall.LazyProc
 	dx_DrawFormatStringToHandle                 *syscall.LazyProc
 	dx_ClearDrawScreen                          *syscall.LazyProc
@@ -652,6 +660,7 @@ func Init(dllFile string) {
 	dx_DrawExtendString = mod.NewProc("dx_DrawExtendString")
 	dx_DrawExtendStringToHandle = mod.NewProc("dx_DrawExtendStringToHandle")
 	dx_SetWindowSize = mod.NewProc("dx_SetWindowSize")
+	dx_DrawCircleGauge = mod.NewProc("dx_DrawCircleGauge")
 	dx_DrawFormatString = mod.NewProc("dx_DrawFormatString")
 	dx_DrawFormatStringToHandle = mod.NewProc("dx_DrawFormatStringToHandle")
 	dx_ClearDrawScreen = mod.NewProc("dx_ClearDrawScreen")
@@ -3316,6 +3325,32 @@ func SetWindowSize(width int32, height int32) int32 {
 	}
 
 	res, _, _ := dx_SetWindowSize.Call(pint32(width), pint32(height))
+	return int32(res)
+}
+
+func DrawCircleGauge(centerX int32, centerY int32, percent float64, grHandle int32, opt ...DrawCircleGaugeOption) int32 {
+	if dx_DrawCircleGauge == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	startPercent := float64(0)
+	if len(opt) > 0 && opt[0].StartPercent != nil {
+		startPercent = *opt[0].StartPercent
+	}
+	scale := float64(1)
+	if len(opt) > 0 && opt[0].Scale != nil {
+		scale = *opt[0].Scale
+	}
+	reverseX := int32(FALSE)
+	if len(opt) > 0 && opt[0].ReverseX != nil {
+		reverseX = *opt[0].ReverseX
+	}
+	reverseY := int32(FALSE)
+	if len(opt) > 0 && opt[0].ReverseY != nil {
+		reverseY = *opt[0].ReverseY
+	}
+
+	res, _, _ := dx_DrawCircleGauge.Call(pint32(centerX), pint32(centerY), pfloat64(percent), pint32(grHandle), pfloat64(startPercent), pfloat64(scale), pint32(reverseX), pint32(reverseY))
 	return int32(res)
 }
 
