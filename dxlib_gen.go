@@ -423,6 +423,9 @@ var (
 	dx_AddFontFile                              *syscall.LazyProc
 	dx_DrawExtendFormatString                   *syscall.LazyProc
 	dx_DrawExtendFormatStringToHandle           *syscall.LazyProc
+	dx_SaveDrawScreenToBMP                      *syscall.LazyProc
+	dx_SaveDrawScreenToJPEG                     *syscall.LazyProc
+	dx_SaveDrawScreenToPNG                      *syscall.LazyProc
 )
 
 // Init method set procs from dllFile.
@@ -667,6 +670,9 @@ func Init(dllFile string) {
 	dx_AddFontFile = mod.NewProc("dx_AddFontFile")
 	dx_DrawExtendFormatString = mod.NewProc("dx_DrawExtendFormatString")
 	dx_DrawExtendFormatStringToHandle = mod.NewProc("dx_DrawExtendFormatStringToHandle")
+	dx_SaveDrawScreenToBMP = mod.NewProc("dx_SaveDrawScreenToBMP")
+	dx_SaveDrawScreenToJPEG = mod.NewProc("dx_SaveDrawScreenToJPEG")
+	dx_SaveDrawScreenToPNG = mod.NewProc("dx_SaveDrawScreenToPNG")
 
 }
 
@@ -3206,6 +3212,14 @@ func GetColorBitDepth() int32 {
 	return int32(res)
 }
 
+// SaveDrawScreen 現在描画対象になっている画面を保存する
+//
+// 引数
+//
+//	saveType：保存形式
+//	jpegQuality: デフォルト 80(0:低画質〜100:高画質)
+//	jpegSample2x1: デフォルト TRUE
+//	pngCompressionLevel: デフォルト -1(0:無圧縮〜9:最高圧縮)
 func SaveDrawScreen(x1 int32, y1 int32, x2 int32, y2 int32, fileName string, saveType int32, jpegQuality int32, jpegSample2x1 int32, pngCompressionLevel int32) int32 {
 	if dx_SaveDrawScreen == nil {
 		panic("Please call dxlib.Init() at first")
@@ -3396,6 +3410,18 @@ func DrawExtendFormatString(x int32, y int32, exRateX float64, exRateY float64, 
 func DrawExtendFormatStringToHandle(x int32, y int32, exRateX float64, exRateY float64, color uint32, fontHandle int32, format string, a ...interface{}) int32 {
 	str := fmt.Sprintf(format, a...)
 	return DrawExtendStringToHandle(x, y, exRateX, exRateY, str, color, fontHandle)
+}
+
+func SaveDrawScreenToBMP(x1 int32, y1 int32, x2 int32, y2 int32, fileName string) int32 {
+	return SaveDrawScreen(x1, y1, x2, y2, fileName, DX_IMAGESAVETYPE_BMP, 80, TRUE, -1)
+}
+
+func SaveDrawScreenToJPEG(x1 int32, y1 int32, x2 int32, y2 int32, fileName string, quality int32, sample2x1 int32) int32 {
+	return SaveDrawScreen(x1, y1, x2, y2, fileName, DX_IMAGESAVETYPE_JPEG, quality, sample2x1, -1)
+}
+
+func SaveDrawScreenToPNG(x1 int32, y1 int32, x2 int32, y2 int32, fileName string, compressionLevel int32) int32 {
+	return SaveDrawScreen(x1, y1, x2, y2, fileName, DX_IMAGESAVETYPE_PNG, 80, TRUE, compressionLevel)
 }
 
 func ppint32(i *int32) uintptr {

@@ -331,6 +331,7 @@ package dxlib
 //dxlib int LoadPauseGraph(char *fileName)
 //dxlib int ScreenCopy()
 //dxlib int GetColorBitDepth()
+//comment; SaveDrawScreen; 現在描画対象になっている画面を保存する\n\n引数\n  saveType：保存形式\n  jpegQuality: デフォルト 80(0:低画質〜100:高画質)\n  jpegSample2x1: デフォルト TRUE\n  pngCompressionLevel: デフォルト -1(0:無圧縮〜9:最高圧縮)
 //dxlib int SaveDrawScreen(int x1, int y1, int x2, int y2, char *fileName, int saveType, int jpegQuality, int jpegSample2x1, int pngCompressionLevel)
 //dxlib int EnumFontName(arraychar nameBuffer, int nameBufferNum, int japanOnlyFlag)
 //dxlib int DrawVString(int x, int y, char *str, unsigned int color, unsigned int edgeColor)
@@ -353,6 +354,11 @@ package dxlib
 //ext_dxlib AddFontFile
 //ext_dxlib DrawExtendFormatString
 //ext_dxlib DrawExtendFormatStringToHandle
+//ext_dxlib SaveDrawScreenToBMP
+//comment; SaveDrawScreenToJPEG; 現在描画対象になっている画面をJPEG形式で保存する\n\n引数\n  quality: デフォルト 80(0:低画質〜100:高画質)\n  sample2x1: デフォルト TRUE
+//ext_dxlib SaveDrawScreenToJPEG
+//comment; SaveDrawScreenToPNG; 現在描画対象になっている画面をPNG形式で保存する\n\n引数\n  compressionLevel: デフォルト -1(0:無圧縮〜9:最高圧縮)
+//ext_dxlib SaveDrawScreenToPNG
 
 // Unsupported functions
 // 公式のreadme.txtより

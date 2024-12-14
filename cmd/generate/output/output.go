@@ -196,6 +196,18 @@ func DrawExtendFormatStringToHandle(x int32, y int32, exRateX float64, exRateY f
 	str := fmt.Sprintf(format, a...)
 	return DrawExtendStringToHandle(x, y, exRateX, exRateY, str, color, fontHandle)
 }
+
+func SaveDrawScreenToBMP(x1 int32, y1 int32, x2 int32, y2 int32, fileName string) int32 {
+	return SaveDrawScreen(x1, y1, x2, y2, fileName, DX_IMAGESAVETYPE_BMP, 80, TRUE, -1)
+}
+
+func SaveDrawScreenToJPEG(x1 int32, y1 int32, x2 int32, y2 int32, fileName string, quality int32, sample2x1 int32) int32 {
+	return SaveDrawScreen(x1, y1, x2, y2, fileName, DX_IMAGESAVETYPE_JPEG, quality, sample2x1, -1)
+}
+
+func SaveDrawScreenToPNG(x1 int32, y1 int32, x2 int32, y2 int32, fileName string, compressionLevel int32) int32 {
+	return SaveDrawScreen(x1, y1, x2, y2, fileName, DX_IMAGESAVETYPE_PNG, 80, TRUE, compressionLevel)
+}
 `)
 }
 
