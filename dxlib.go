@@ -345,6 +345,7 @@ package dxlib
 //dxlib int DrawExtendStringToHandle(int x, int y, double exRateX, double exRateY, char *str, unsigned int color, int fontHandle, unsigned int edgeColor = 0, int verticalFlag = FALSE)
 //dxlib int SetWindowSize(int width, int height)
 //dxlib int DrawCircleGauge(int centerX, int centerY, double percent, int grHandle, double startPercent = 0, double scale = 1, int reverseX = FALSE, int reverseY = FALSE)
+//dxlib int DrawQuadrangle(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, unsigned int color, int fillFlag)
 
 // Extra functions
 // 直接DXライブラリの関数を呼ばずにGo言語側で処理することで呼べる関数

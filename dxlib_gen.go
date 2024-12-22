@@ -417,6 +417,7 @@ var (
 	dx_DrawExtendStringToHandle                 *syscall.LazyProc
 	dx_SetWindowSize                            *syscall.LazyProc
 	dx_DrawCircleGauge                          *syscall.LazyProc
+	dx_DrawQuadrangle                           *syscall.LazyProc
 	dx_DrawFormatString                         *syscall.LazyProc
 	dx_DrawFormatStringToHandle                 *syscall.LazyProc
 	dx_ClearDrawScreen                          *syscall.LazyProc
@@ -664,6 +665,7 @@ func Init(dllFile string) {
 	dx_DrawExtendStringToHandle = mod.NewProc("dx_DrawExtendStringToHandle")
 	dx_SetWindowSize = mod.NewProc("dx_SetWindowSize")
 	dx_DrawCircleGauge = mod.NewProc("dx_DrawCircleGauge")
+	dx_DrawQuadrangle = mod.NewProc("dx_DrawQuadrangle")
 	dx_DrawFormatString = mod.NewProc("dx_DrawFormatString")
 	dx_DrawFormatStringToHandle = mod.NewProc("dx_DrawFormatStringToHandle")
 	dx_ClearDrawScreen = mod.NewProc("dx_ClearDrawScreen")
@@ -3365,6 +3367,15 @@ func DrawCircleGauge(centerX int32, centerY int32, percent float64, grHandle int
 	}
 
 	res, _, _ := dx_DrawCircleGauge.Call(pint32(centerX), pint32(centerY), pfloat64(percent), pint32(grHandle), pfloat64(startPercent), pfloat64(scale), pint32(reverseX), pint32(reverseY))
+	return int32(res)
+}
+
+func DrawQuadrangle(x1 int32, y1 int32, x2 int32, y2 int32, x3 int32, y3 int32, x4 int32, y4 int32, color uint32, fillFlag int32) int32 {
+	if dx_DrawQuadrangle == nil {
+		panic("Please call dxlib.Init() at first")
+	}
+
+	res, _, _ := dx_DrawQuadrangle.Call(pint32(x1), pint32(y1), pint32(x2), pint32(y2), pint32(x3), pint32(y3), pint32(x4), pint32(y4), puint32(color), pint32(fillFlag))
 	return int32(res)
 }
 
